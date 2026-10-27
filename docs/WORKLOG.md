@@ -86,3 +86,14 @@
 - Артефакты: `scheme.svg`, `statement.{csv,md}`, `coordinates.{csv,md}`, `reactor_before/after/diff`, `audit_report.*`, `actualization_report.*`, `config_validation.md`, `README.md` + 20 SVG галереи.
 - `scripts/verify.sh` (restore → build -warnaserror → test --no-build → demo all → `git diff --exit-code -- docs/demo`) выполнен успешно: 0 ошибок, 0 предупреждений, 102 теста, детерминизм подтверждён. CI делает то же самое.
 - Проверка отдельно: `dotnet test --no-build -v:n` действительно запускает оба тестовых проекта (83 + 19), а не «тихо проходит».
+
+## 2026-10-27T10:50+03:00 — M9, изоляция адаптера
+
+Цель: ни одного выдуманного API nanoCAD в ядре и в зелёной сборке.
+
+- Добавлен порт `OddMaster.Core.Ports.IDrawingPort` и `GeometryPortWriter`: ядро отдаёт отрезки, дуги, заливки и текст, ничего не зная о САПР.
+- `src/OddMaster.NanoCAD/` — отдельный проект в `OddMaster.NanoCAD.sln`, не входит в основной solution и CI. Восемь предположений SDK-001…SDK-008 зарегистрированы; у каждого вызова стоит `// [ПРОВЕРИТЬ В SDK: SDK-NNN]`.
+- Адаптер честно бросает `NotImplementedException` в методах порта: лучше явная заглушка, чем выдуманный вызов API. Комментарии и `BUILD_NANOCAD.md` объясняют, что компиляция не выполнялась.
+- Тесты M9-A01…A04: адаптер не в основном solution, нет DLL/EXE/PDF, маркеры в коде, порт отдаёт примитивы с учётом масштаба.
+- Проверка: 106 тестов зелёные (87 Core + 19 Render).
+- Попытка собрать с `-p:OddTargetFramework=net8.0` на SDK 3.1 закономерно упала (MSB3644): переключение на .NET 8 требует .NET 8 SDK; в песочнице его нет. Записано как ограничение, а не как успех.

@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Адаптер НЕ входит в OddMaster.sln и НЕ собирается в CI: для сборки нужен
+       проприетарный SDK nanoCAD 26, которого нет в репозитории (SDK-001). -->
+  <PropertyGroup>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <LangVersion>8.0</LangVersion>
+    <Nullable>enable</Nullable>
+    <EnableDefaultCompileItems>true</EnableDefaultCompileItems>
+    <NanoCadSdkPath Condition="'$(NanoCadSdkPath)' == ''">$(HOME)/nanoCAD/sdk26/include-x64</NanoCadSdkPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../OddMaster.Core/OddMaster.Core.csproj" />
+  </ItemGroup>
+  <ItemGroup Condition="Exists('$(NanoCadSdkPath)')">
+    <!-- SDK-001: имена и расположение сборок требуют проверки в SDK. -->
+    <Reference Include="mapimgd"><HintPath>$(NanoCadSdkPath)/mapimgd.dll</HintPath></Reference>
+    <Reference Include="mapibasetypes"><HintPath>$(NanoCadSdkPath)/mapibasetypes.dll</HintPath></Reference>
+    <Reference Include="imapimgd"><HintPath>$(NanoCadSdkPath)/imapimgd.dll</HintPath></Reference>
+  </ItemGroup>
+</Project>
