@@ -107,3 +107,5 @@
 - Исправлены неточности документации: шаблон знака `signTemplate`, wording про .NET 8, отсутствие CJK-символов и незаполненных заглушек проверено скриптом.
 - Чистый клон: `git clean -xdf` → `bash scripts/verify.sh` → 0/0, 106 тестов, `git diff --exit-code -- docs/demo` пуст.
 - Создан Draft PR из ветки `arena/649405ec-odd-master`.
+
+- Финальная проверка после `git clean -xdf`: `bash scripts/verify.sh` → 0/0, 106 тестов, `git status --short` пуст. Draft PR: https://github.com/Igorr112323/ODD-MASTER/pull/1
