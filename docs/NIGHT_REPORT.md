@@ -45,6 +45,7 @@
 | Коммитов | 11 (включая Initial) | `git rev-list --count HEAD` |
 | C# | 77 файлов, ~7 960 строк | `find src tests -name '*.cs'` |
 | Детерминизм | `git diff --exit-code -- docs/demo` пуст | `bash scripts/verify.sh`, шаг 4 |
+| GitHub Actions CI | ✅ success (push и PR, 12–18 с) | `gh run list` → оба запуска `CI` завершились success; `gh pr checks 1` → `build-test-demo pass` |
 
 ## 3. Что построено
 
@@ -100,6 +101,8 @@ dotnet test OddMaster.sln -v:n
 dotnet run --project src/OddMaster.Demo -- all
 git diff --exit-code -- docs/demo
 ```
+
+GitHub Actions на ветке и в Draft PR №1 также зелёный: два запуска `CI` (push и pull_request) завершились success за 12–18 с, `gh pr checks 1` показывает `build-test-demo pass`.
 
 Фактический вывод последнего шага:
 ```
