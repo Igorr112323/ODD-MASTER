@@ -123,18 +123,24 @@ namespace OddMaster.TestKit
             {
                 if (Environment.GetEnvironmentVariable("ODD_UPDATE_GOLDEN") == "1")
                 {
-                    File.WriteAllText(full, actual, new UTF8Encoding(false));
+                    File.WriteAllBytes(full, new UTF8Encoding(false).GetBytes(Normalize(actual)));
                     return;
                 }
                 throw new InvalidOperationException(
                     "Отсутствует golden-файл " + relativePath +
                     ". Это не «зелёный» тест: создайте эталон командой ODD_UPDATE_GOLDEN=1 dotnet test и закоммитьте его.");
             }
-            var expected = File.ReadAllText(full, Encoding.UTF8);
-            if (!string.Equals(expected, actual, StringComparison.Ordinal))
+            // Читаем байты и декодируем сами: File.ReadAllText съедает BOM,
+            // а для CSV с UTF-8 BOM он является частью формата.
+            var expected = new UTF8Encoding(false).GetString(File.ReadAllBytes(full));
+            // Git хранит golden-файлы с LF (.gitattributes). Сравниваем с нормализованными
+            // переводами строк; наличие CRLF в CSV проверяется отдельным тестом M5-S04.
+            var expectedNorm = Normalize(expected);
+            var actualNorm = Normalize(actual);
+            if (!string.Equals(expectedNorm, actualNorm, StringComparison.Ordinal))
             {
-                var lineExpected = expected.Split('\n');
-                var lineActual = actual.Split('\n');
+                var lineExpected = expectedNorm.Split('\n');
+                var lineActual = actualNorm.Split('\n');
                 var first = Enumerable.Range(0, Math.Min(lineExpected.Length, lineActual.Length))
                     .FirstOrDefault(i => !string.Equals(lineExpected[i], lineActual[i], StringComparison.Ordinal));
                 throw new InvalidOperationException(
@@ -143,6 +149,9 @@ namespace OddMaster.TestKit
                     "Если изменение намеренное — обновите эталон и опишите в WORKLOG.");
             }
         }
+
+        private static string Normalize(string text) =>
+            text.Replace("\r\n", "\n").Replace("\r", "\n");
 
         private static string Trim(string[] lines, int index) =>
             index < lines.Length ? (lines[index].Length > 160 ? lines[index].Substring(0, 160) + "…" : lines[index]) : "<конец файла>";
