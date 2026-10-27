@@ -82,12 +82,18 @@ namespace OddMaster.Core.Config
         /// <summary>Создаёт соглашения отрисовки.</summary>
         public DrawingConventions(NormRef normRef, Verification verification, double miniSignOnPaperMm,
             double sheetScaleDenominator, double stationTickEveryM, double postSymbolRadiusMm,
-            double leaderLineMm, string draftBanner, string note, List<string> markers)
+            double leaderLineMm, string draftBanner, string note, List<string> markers,
+            double placeholderInnerBorderWidthMm, double placeholderTextHeightRatio,
+            double placeholderPictogramRadiusRatio, Dictionary<string, string> parameterTextTemplates)
         {
             NormRef = normRef; Verification = verification; MiniSignOnPaperMm = miniSignOnPaperMm;
             SheetScaleDenominator = sheetScaleDenominator; StationTickEveryM = stationTickEveryM;
             PostSymbolRadiusMm = postSymbolRadiusMm; LeaderLineMm = leaderLineMm;
             DraftBanner = draftBanner; Note = note; Markers = markers;
+            PlaceholderInnerBorderWidthMm = placeholderInnerBorderWidthMm;
+            PlaceholderTextHeightRatio = placeholderTextHeightRatio;
+            PlaceholderPictogramRadiusRatio = placeholderPictogramRadiusRatio;
+            ParameterTextTemplates = parameterTextTemplates;
         }
 
         /// <summary>Ссылка на норму (внутреннее соглашение).</summary>
@@ -110,5 +116,13 @@ namespace OddMaster.Core.Config
         public string Note { get; }
         /// <summary>Маркеры GOST-NNN.</summary>
         public IReadOnlyList<string> Markers { get; }
+        /// <summary>Заглушка ширины внутренней каймы, мм (GOST-001, статус Placeholder).</summary>
+        public double PlaceholderInnerBorderWidthMm { get; }
+        /// <summary>Заглушка высоты надписи как доля меньшего габарита (GOST-002).</summary>
+        public double PlaceholderTextHeightRatio { get; }
+        /// <summary>Заглушка радиуса пиктограммы как доля меньшего габарита (GOST-019).</summary>
+        public double PlaceholderPictogramRadiusRatio { get; }
+        /// <summary>Шаблоны подписей параметров: speed, distance.</summary>
+        public IReadOnlyDictionary<string, string> ParameterTextTemplates { get; }
     }
 }

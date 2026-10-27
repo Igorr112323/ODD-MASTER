@@ -7,7 +7,11 @@
     "normRef",
     "verification",
     "miniSignOnPaperMm",
-    "sheetScaleDenominator"
+    "sheetScaleDenominator",
+    "placeholderInnerBorderWidthMm",
+    "placeholderTextHeightRatio",
+    "placeholderPictogramRadiusRatio",
+    "parameterTextTemplates"
   ],
   "properties": {
     "normRef": {
@@ -81,6 +85,31 @@
     },
     "sheetFrame": {
       "type": "object"
+    },
+    "placeholderInnerBorderWidthMm": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "placeholderTextHeightRatio": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "placeholderPictogramRadiusRatio": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "parameterTextTemplates": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "placeholderMarkers": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^GOST-[0-9]{3}$"
+      }
     }
   },
   "description": "JSON Schema (draft-07). Синтаксис проверяется тестом ConfigSchemaTests; семантические проверки выполняет ConfigValidator в ядре (ADR-0014)."

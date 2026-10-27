@@ -64,7 +64,22 @@ namespace OddMaster.Core.Config
                 J.Num(e, "miniSignOnPaperMm", file, ""), J.Num(e, "sheetScaleDenominator", file, ""),
                 J.Num(e, "stationTickEveryM", file, ""), J.Num(e, "postSymbolRadiusMm", file, ""),
                 J.Num(e, "leaderLineMm", file, ""), J.Str(e, "draftBanner", file, ""),
-                J.OptStr(e, "note", file, "") ?? "", J.StringList(e, "markers", file, ""));
+                J.OptStr(e, "note", file, "") ?? "", J.StringList(e, "markers", file, ""),
+                J.Num(e, "placeholderInnerBorderWidthMm", file, ""),
+                J.Num(e, "placeholderTextHeightRatio", file, ""),
+                J.Num(e, "placeholderPictogramRadiusRatio", file, ""),
+                ParseTemplates(e, file));
+        }
+
+        private static Dictionary<string, string> ParseTemplates(System.Text.Json.JsonElement e, string file)
+        {
+            var result = new Dictionary<string, string>(StringComparer.Ordinal);
+            var element = J.Optional(e, "parameterTextTemplates");
+            if (element != null && element.Value.ValueKind == System.Text.Json.JsonValueKind.Object)
+                foreach (var p in element.Value.EnumerateObject())
+                    if (p.Value.ValueKind == System.Text.Json.JsonValueKind.String)
+                        result[p.Name] = p.Value.GetString() ?? "";
+            return result;
         }
 
         /// <summary>Загружает карту замен. Принимает путь — боевая карта или ДЕМО-фикстура.</summary>
