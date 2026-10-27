@@ -19,7 +19,7 @@ dotnet run --project src/OddMaster.Demo -- all
 
 Или одной командой: `bash scripts/verify.sh`.
 
-Если у вас стоит обычный .NET 8 SDK — bootstrap не нужен: `global.json` разрешает более новый SDK, а целевой фреймворк переключается переменной `-p:OddTargetFramework=net8.0` (ADR-0009).
+Если у вас стоит обычный .NET 8 SDK — bootstrap не нужен: `global.json` разрешает более новый SDK. На машине **с установленным .NET 8 SDK** целевой фреймворк переключается одной переменной: `dotnet build OddMaster.sln -p:OddTargetFramework=net8.0` (ADR-0009). В песочнице ночного прогона это не проверялось: там доступен только SDK 3.1.102.
 
 ## Структура
 

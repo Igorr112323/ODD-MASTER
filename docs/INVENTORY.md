@@ -28,3 +28,39 @@
 ## Отклонение от задания
 
 Промпт просил .NET 8. В песочнице доступен только .NET Core SDK 3.1.102. Решение: целевой фреймворк вынесен в одну переменную `OddTargetFramework` (`Directory.Build.props`), по умолчанию `netcoreapp3.1`; `global.json` с `rollForward: latestMajor` позволяет собрать те же исходники на .NET 8 без правки кода. Подробности — ADR-0009, вопрос Q-001.
+
+---
+
+## Финальная опись (M10, 2026-10-27)
+
+Исходно в репозитории был один файл `README.md` на 13 байт и один коммит `2af39c8`. Ничего не удалялось и не переименовывалось, кроме перезаписи этого README (первая строка `# ODD-MASTER` сохранена как заголовок).
+
+| Категория | Количество | Где |
+|---|---|---|
+| Коммитов | 11 | `git log --oneline` |
+| Проектов в основном solution | 5 | `OddMaster.sln` |
+| Проектов в nanoCAD solution | 2 | `OddMaster.NanoCAD.sln` |
+| C# файлов / строк | 77 / ~7 960 | `src/`, `tests/` (без obj/bin) |
+| Конфигурационных JSON | 10 + 9 схем | `config/` |
+| Фикстур | 4 | `tests/fixtures/{checks,actualizer,demo}` |
+| Тестов | 106 | `tests/*/…Tests.cs`, `OddFact` |
+| Golden-файлов | 12 | `tests/*/Approved/` |
+| ADR | 16 | `docs/adr/` |
+| Документов `.md` | 37 | `README.md`, `CONTRIBUTING.md`, `docs/` |
+| Демо-артефактов | 14 + 20 SVG | `docs/demo/` |
+| GOST-NNN / SDK-NNN | 21 / 8 | `VERIFICATION_QUEUE.md`, `SDK_ASSUMPTIONS.md` |
+
+### Что осталось вне репозитория (осознанно)
+
+- Резервный .NET SDK 3.1.102, OpenSSL 1.1.1w, ICU — скачиваются `bootstrap-dotnet.sh` в `$HOME/.cache/oddmaster`, в git не попадают.
+- DLL MultiCAD .NET SDK — по условию задания не добавляются; ссылки в csproj через `$(NanoCadSdkPath)`.
+- PDF ГОСТ, сканы, персональные данные, секреты, LICENSE, большие бинарники — отсутствуют (тест M9-A02).
+- Сгенерированные `bin/`, `obj/`, `TestResults/` — в `.gitignore`.
+
+### Как проверить опись
+
+```bash
+bash scripts/verify.sh
+git status --short          # пусто после коммита
+find . -name '*.dll' -not -path './.git/*' | grep -v '/obj/' | grep -v '/bin/'   # пусто
+```
