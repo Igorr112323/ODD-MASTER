@@ -71,6 +71,7 @@ namespace OddMaster.Core.Config
 
             CheckFilesHaveProvenance(root, result);
             CheckSchemasAreParseable(root, result);
+            CheckConfigsMatchSchemas(root, result);
             CheckCatalog(set, result);
             CheckMarkers(root, result);
             DetectDataGaps(set, result);
@@ -124,6 +125,44 @@ namespace OddMaster.Core.Config
                         result.Errors.Add($"config/schema/{name}: нет обязательных полей $schema/title/type/required.");
                 }
                 catch (JsonException ex) { result.Errors.Add($"config/schema/{name}: некорректный JSON: {ex.Message}."); }
+            }
+        }
+
+        private static readonly (string Config, string Schema)[] ConfigSchemaPairs =
+        {
+            (ConfigPaths.MainProfile, "size-profile.schema.json"),
+            (ConfigPaths.SecondProfile, "size-profile.schema.json"),
+            (ConfigPaths.Borders, "borders.schema.json"),
+            (ConfigPaths.Parameters, "parameters.schema.json"),
+            (ConfigPaths.Variants, "variants.schema.json"),
+            (ConfigPaths.Sources, "sources.schema.json"),
+            (ConfigPaths.Catalog, "sign-catalog.schema.json"),
+            (ConfigPaths.Controls, "controls.schema.json"),
+            (ConfigPaths.Drawing, "drawing.schema.json"),
+            (ConfigPaths.MigrationMap, "migration-map.schema.json")
+        };
+
+        /// <summary>
+        /// Полноценного движка JSON Schema нет (нет NuGet), поэтому проверяем главное:
+        /// корневой объект имеет все поля из required соответствующей схемы.
+        /// </summary>
+        private static void CheckConfigsMatchSchemas(string root, ConfigValidationResult result)
+        {
+            foreach (var pair in ConfigSchemaPairs)
+            {
+                var schemaPath = Path.Combine(root, "config/schema", pair.Schema);
+                var configPath = Path.Combine(root, pair.Config);
+                if (!File.Exists(schemaPath) || !File.Exists(configPath)) continue;
+                using var schemaDoc = JsonDocument.Parse(File.ReadAllText(schemaPath));
+                using var configDoc = JsonDocument.Parse(File.ReadAllText(configPath));
+                if (!schemaDoc.RootElement.TryGetProperty("required", out var required)) continue;
+                foreach (var field in required.EnumerateArray())
+                {
+                    var name = field.GetString();
+                    if (name != null && !configDoc.RootElement.TryGetProperty(name, out _))
+                        result.Errors.Add($"{pair.Config}: нет обязательного поля «{name}» из {pair.Schema}. " +
+                            "Как исправить: добавьте поле по схеме.");
+                }
             }
         }
 

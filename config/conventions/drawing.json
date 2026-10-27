@@ -32,5 +32,6 @@
     "GOST-001",
     "GOST-002",
     "GOST-019"
-  ]
+  ],
+  "svgPaddingRatio": 0.12
 }

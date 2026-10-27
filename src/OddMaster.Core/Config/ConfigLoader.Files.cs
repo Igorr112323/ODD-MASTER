@@ -68,7 +68,7 @@ namespace OddMaster.Core.Config
                 J.Num(e, "placeholderInnerBorderWidthMm", file, ""),
                 J.Num(e, "placeholderTextHeightRatio", file, ""),
                 J.Num(e, "placeholderPictogramRadiusRatio", file, ""),
-                ParseTemplates(e, file));
+                ParseTemplates(e, file), J.Num(e, "svgPaddingRatio", file, ""));
         }
 
         private static Dictionary<string, string> ParseTemplates(System.Text.Json.JsonElement e, string file)

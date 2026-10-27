@@ -84,7 +84,8 @@ namespace OddMaster.Core.Config
             double sheetScaleDenominator, double stationTickEveryM, double postSymbolRadiusMm,
             double leaderLineMm, string draftBanner, string note, List<string> markers,
             double placeholderInnerBorderWidthMm, double placeholderTextHeightRatio,
-            double placeholderPictogramRadiusRatio, Dictionary<string, string> parameterTextTemplates)
+            double placeholderPictogramRadiusRatio, Dictionary<string, string> parameterTextTemplates,
+            double svgPaddingRatio)
         {
             NormRef = normRef; Verification = verification; MiniSignOnPaperMm = miniSignOnPaperMm;
             SheetScaleDenominator = sheetScaleDenominator; StationTickEveryM = stationTickEveryM;
@@ -93,7 +94,7 @@ namespace OddMaster.Core.Config
             PlaceholderInnerBorderWidthMm = placeholderInnerBorderWidthMm;
             PlaceholderTextHeightRatio = placeholderTextHeightRatio;
             PlaceholderPictogramRadiusRatio = placeholderPictogramRadiusRatio;
-            ParameterTextTemplates = parameterTextTemplates;
+            ParameterTextTemplates = parameterTextTemplates; SvgPaddingRatio = svgPaddingRatio;
         }
 
         /// <summary>Ссылка на норму (внутреннее соглашение).</summary>
@@ -124,5 +125,7 @@ namespace OddMaster.Core.Config
         public double PlaceholderPictogramRadiusRatio { get; }
         /// <summary>Шаблоны подписей параметров: speed, distance.</summary>
         public IReadOnlyDictionary<string, string> ParameterTextTemplates { get; }
+        /// <summary>Отступ viewBox SVG как доля габарита (только отображение).</summary>
+        public double SvgPaddingRatio { get; }
     }
 }

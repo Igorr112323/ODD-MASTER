@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-434 -434 868 868" width="868mm" height="868mm">
+  <metadata><odd:sign xmlns:odd="https://odd-master.local/metadata/1"
+      number="2.5"
+      sizeClass="II"
+      profile="GOST_R_52290_2024"
+      sizeTable="Д.3"
+      outerBorderMm="20"
+      verification="borders=CuratorExtracted; catalog=CuratorExtracted; colors=Unverified; innerBorder=Placeholder; sizeProfile=CuratorExtracted; textMetrics=Placeholder"
+      isDraft="true"
+      colorimetry="DISPLAY_ONLY_NOT_GOST"/>
+  </metadata>
+  <g id="Geometry" transform="scale(1,-1)">
+    <g id="Layer-Outline">
+      <path d="M350 -144.975 L350 -144.975 L350 144.975 L350 144.975 L144.975 350 L144.975 350 L-144.975 350 L-144.975 350 L-350 144.975 L-350 144.975 L-350 -144.975 L-350 -144.975 L-144.975 -350 L-144.975 -350 L144.975 -350 L144.975 -350 L350 -144.975 Z" fill="#FFFFFF" stroke="none"/>
+    </g>
+    <g id="Layer-OuterBorder">
+      <path d="M330 -136.69 L330 -136.69 L330 136.69 L330 136.69 L136.69 330 L136.69 330 L-136.69 330 L-136.69 330 L-330 136.69 L-330 136.69 L-330 -136.69 L-330 -136.69 L-136.69 -330 L-136.69 -330 L136.69 -330 L136.69 -330 L330 -136.69 Z" fill="#D7191C" stroke="none"/>
+    </g>
+    <g id="Layer-InnerBorder">
+      <path d="M327 -135.448 L327 -135.448 L327 135.448 L327 135.448 L135.448 327 L135.448 327 L-135.448 327 L-135.448 327 L-327 135.448 L-327 135.448 L-327 -135.448 L-327 -135.448 L-135.448 -327 L-135.448 -327 L135.448 -327 L135.448 -327 L327 -135.448 Z" fill="none" stroke="#D7191C" stroke-width="6"/>
+    </g>
+  </g>
+  <g id="Layer-Text"><text x="0" y="0" font-family="Arial Bold, Liberation Sans, sans-serif" font-weight="bold" font-size="245" text-anchor="middle" dominant-baseline="central" fill="#FFFFFF">STOP</text></g>
+  <g id="DraftWatermark"><text x="0" y="-379.4" text-anchor="middle" font-family="Arial, Liberation Sans, sans-serif" font-size="52.5" fill="#D7191C" fill-opacity="0.85">ЧЕРНОВИК: есть непроверенные параметры</text></g>
+</svg>

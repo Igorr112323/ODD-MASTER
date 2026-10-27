@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-744 -744 1488 1488" width="1488mm" height="1488mm">
+  <metadata><odd:sign xmlns:odd="https://odd-master.local/metadata/1"
+      number="2.5"
+      sizeClass="IV"
+      profile="GOST_R_52290_2024"
+      sizeTable="Д.3"
+      outerBorderMm="20"
+      verification="borders=CuratorExtracted; catalog=CuratorExtracted; colors=Unverified; innerBorder=Placeholder; sizeProfile=CuratorExtracted; textMetrics=Placeholder"
+      isDraft="true"
+      colorimetry="DISPLAY_ONLY_NOT_GOST"/>
+  </metadata>
+  <g id="Geometry" transform="scale(1,-1)">
+    <g id="Layer-Outline">
+      <path d="M600 -248.528 L600 -248.528 L600 248.528 L600 248.528 L248.528 600 L248.528 600 L-248.528 600 L-248.528 600 L-600 248.528 L-600 248.528 L-600 -248.528 L-600 -248.528 L-248.528 -600 L-248.528 -600 L248.528 -600 L248.528 -600 L600 -248.528 Z" fill="#FFFFFF" stroke="none"/>
+    </g>
+    <g id="Layer-OuterBorder">
+      <path d="M580 -240.244 L580 -240.244 L580 240.244 L580 240.244 L240.244 580 L240.244 580 L-240.244 580 L-240.244 580 L-580 240.244 L-580 240.244 L-580 -240.244 L-580 -240.244 L-240.244 -580 L-240.244 -580 L240.244 -580 L240.244 -580 L580 -240.244 Z" fill="#D7191C" stroke="none"/>
+    </g>
+    <g id="Layer-InnerBorder">
+      <path d="M577 -239.001 L577 -239.001 L577 239.001 L577 239.001 L239.001 577 L239.001 577 L-239.001 577 L-239.001 577 L-577 239.001 L-577 239.001 L-577 -239.001 L-577 -239.001 L-239.001 -577 L-239.001 -577 L239.001 -577 L239.001 -577 L577 -239.001 Z" fill="none" stroke="#D7191C" stroke-width="6"/>
+    </g>
+  </g>
+  <g id="Layer-Text"><text x="0" y="0" font-family="Arial Bold, Liberation Sans, sans-serif" font-weight="bold" font-size="420" text-anchor="middle" dominant-baseline="central" fill="#FFFFFF">STOP</text></g>
+  <g id="DraftWatermark"><text x="0" y="-650.4" text-anchor="middle" font-family="Arial, Liberation Sans, sans-serif" font-size="90" fill="#D7191C" fill-opacity="0.85">ЧЕРНОВИК: есть непроверенные параметры</text></g>
+</svg>

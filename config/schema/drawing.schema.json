@@ -11,7 +11,8 @@
     "placeholderInnerBorderWidthMm",
     "placeholderTextHeightRatio",
     "placeholderPictogramRadiusRatio",
-    "parameterTextTemplates"
+    "parameterTextTemplates",
+    "svgPaddingRatio"
   ],
   "properties": {
     "normRef": {
@@ -110,6 +111,10 @@
         "type": "string",
         "pattern": "^GOST-[0-9]{3}$"
       }
+    },
+    "svgPaddingRatio": {
+      "type": "number",
+      "minimum": 0
     }
   },
   "description": "JSON Schema (draft-07). Синтаксис проверяется тестом ConfigSchemaTests; семантические проверки выполняет ConfigValidator в ядре (ADR-0014)."

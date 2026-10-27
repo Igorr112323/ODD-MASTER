@@ -121,8 +121,14 @@ namespace OddMaster.TestKit
             Directory.CreateDirectory(Path.GetDirectoryName(full) ?? Repo.Root());
             if (!File.Exists(full))
             {
-                File.WriteAllText(full, actual, new UTF8Encoding(false));
-                return;
+                if (Environment.GetEnvironmentVariable("ODD_UPDATE_GOLDEN") == "1")
+                {
+                    File.WriteAllText(full, actual, new UTF8Encoding(false));
+                    return;
+                }
+                throw new InvalidOperationException(
+                    "Отсутствует golden-файл " + relativePath +
+                    ". Это не «зелёный» тест: создайте эталон командой ODD_UPDATE_GOLDEN=1 dotnet test и закоммитьте его.");
             }
             var expected = File.ReadAllText(full, Encoding.UTF8);
             if (!string.Equals(expected, actual, StringComparison.Ordinal))

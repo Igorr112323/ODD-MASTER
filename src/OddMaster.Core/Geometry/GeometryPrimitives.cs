@@ -128,7 +128,7 @@ namespace OddMaster.Core.Geometry
                 var a1 = Math.Atan2(tIn.Y - center.Y, tIn.X - center.X) * 180.0 / Math.PI;
                 var a2 = Math.Atan2(tOut.Y - center.Y, tOut.X - center.X) * 180.0 / Math.PI;
                 var sweep = NormalizeAngle(a2 - a1);
-                corners.Add(Corner.Rounded(tIn, tOut, center, radius, a1, sweep));
+                corners.Add(Corner.Rounded(tIn, tOut, center, a1, sweep));
             }
 
             var path = new Path(corners[0].TIn);
@@ -154,17 +154,16 @@ namespace OddMaster.Core.Geometry
             public Point2 TIn;
             public Point2 TOut;
             public Point2 Center;
-            public double Radius;
             public double StartAngle;
             public double Sweep;
             public bool HasArc;
 
             public static Corner Sharp(Point2 v) => new Corner { TIn = v, TOut = v, HasArc = false };
 
-            public static Corner Rounded(Point2 tIn, Point2 tOut, Point2 center, double radius,
+            public static Corner Rounded(Point2 tIn, Point2 tOut, Point2 center,
                 double startAngle, double sweep) => new Corner
                 {
-                    TIn = tIn, TOut = tOut, Center = center, Radius = radius,
+                    TIn = tIn, TOut = tOut, Center = center,
                     StartAngle = startAngle, Sweep = sweep, HasArc = Math.Abs(sweep) > 1e-9
                 };
         }

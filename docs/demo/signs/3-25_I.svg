@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-372 -372 744 744" width="744mm" height="744mm">
+  <metadata><odd:sign xmlns:odd="https://odd-master.local/metadata/1"
+      number="3.25"
+      sizeClass="I"
+      profile="GOST_R_52290_2024"
+      sizeTable="Д.4"
+      outerBorderMm="10"
+      verification="borders=CuratorExtracted; catalog=CuratorExtracted; colors=Unverified; innerBorder=Placeholder; parameters=CuratorExtracted; sizeProfile=CuratorExtracted; textMetrics=Placeholder"
+      isDraft="true"
+      colorimetry="DISPLAY_ONLY_NOT_GOST"/>
+  </metadata>
+  <g id="Geometry" transform="scale(1,-1)">
+    <g id="Layer-Outline">
+      <path d="M300 0 A300 300 0 0 1 0 300 A300 300 0 0 1 -300 0 A300 300 0 0 1 0 -300 A300 300 0 0 1 300 0 Z" fill="#1A1A1A" stroke="none"/>
+    </g>
+    <g id="Layer-OuterBorder">
+      <path d="M290 0 A290 290 0 0 1 0 290 A290 290 0 0 1 -290 0 A290 290 0 0 1 0 -290 A290 290 0 0 1 290 0 Z" fill="#FFFFFF" stroke="none"/>
+    </g>
+    <g id="Layer-InnerBorder">
+      <path d="M287 0 A287 287 0 0 1 0 287 A287 287 0 0 1 -287 0 A287 287 0 0 1 0 -287 A287 287 0 0 1 287 0 Z" fill="none" stroke="#D7191C" stroke-width="6"/>
+    </g>
+  </g>
+  <g id="Layer-Text"><text x="0" y="0" font-family="Arial Bold, Liberation Sans, sans-serif" font-weight="bold" font-size="210" text-anchor="middle" dominant-baseline="central" fill="#1A1A1A">40</text></g>
+  <g id="DraftWatermark"><text x="0" y="-325.2" text-anchor="middle" font-family="Arial, Liberation Sans, sans-serif" font-size="45" fill="#D7191C" fill-opacity="0.85">ЧЕРНОВИК: есть непроверенные параметры</text></g>
+</svg>
