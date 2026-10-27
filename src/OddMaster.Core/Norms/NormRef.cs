@@ -34,5 +34,8 @@ namespace OddMaster.Core.Norms
             if (Figure != null) text += ", рис. " + Figure;
             return text;
         }
+
+        /// <summary>То же, что Describe — для интерполяции в отчётах.</summary>
+        public override string ToString() => Describe();
     }
 }

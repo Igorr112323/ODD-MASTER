@@ -139,7 +139,7 @@ namespace OddMaster.Core.Config
             reason = string.Empty;
             if (rule.MultipleOf.HasValue && rule.MultipleOf.Value > 0 && value % rule.MultipleOf.Value != 0)
             {
-                reason = $"Значение {value} не кратно {rule.MultipleOf.Value} ({rule.Parameter}).";
+                reason = $"Значение {Inv(value)} не кратно {Inv(rule.MultipleOf.Value)} ({rule.Parameter}).";
                 return false;
             }
             if (rule.OneOf.Count > 0 && rule.OneOf.Contains(value)) return true;
@@ -148,11 +148,14 @@ namespace OddMaster.Core.Config
             if (rule.KmRanges.Count > 0 && reason.Length > 0) return false;
             if (rule.OneOf.Count > 0)
             {
-                reason = $"Значение {value} отсутствует в разрешённом наборе ({rule.Parameter}).";
+                reason = $"Значение {Inv(value)} отсутствует в разрешённом наборе ({rule.Parameter}).";
                 return false;
             }
             return true;
         }
+
+        private static string Inv(decimal value) =>
+            value.ToString("0.##", System.Globalization.CultureInfo.InvariantCulture);
 
         private static bool CheckKmRanges(ParameterRule rule, decimal value, out string reason)
         {
@@ -161,13 +164,13 @@ namespace OddMaster.Core.Config
             var range = rule.KmRanges.FirstOrDefault(r => r.Covers(km));
             if (range == null)
             {
-                reason = $"Значение {value} вне диапазонов табл. Д.1 ({rule.Parameter}).";
+                reason = $"Значение {Inv(value)} вне диапазонов табл. Д.1 ({rule.Parameter}).";
                 return false;
             }
             var step = (decimal)range.MultipleOfKm * (rule.Unit == "km" ? 1m : 1000m);
             if (step > 0 && value % step != 0)
             {
-                reason = $"Значение {value} не кратно {step} в своём диапазоне ({rule.Parameter}).";
+                reason = $"Значение {Inv(value)} не кратно {Inv(step)} в своём диапазоне ({rule.Parameter}).";
                 return false;
             }
             return true;
