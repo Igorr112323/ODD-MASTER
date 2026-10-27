@@ -64,6 +64,8 @@ namespace OddMaster.Core.Geometry
 
         /// <summary>Умножение на число.</summary>
         public static Vector2 operator *(Vector2 v, double k) => new Vector2(v.X * k, v.Y * k);
+        /// <summary>Деление на число.</summary>
+        public static Vector2 operator /(Vector2 v, double k) => new Vector2(v.X / k, v.Y / k);
         /// <summary>Сложение.</summary>
         public static Vector2 operator +(Vector2 a, Vector2 b) => new Vector2(a.X + b.X, a.Y + b.Y);
         /// <summary>Вычитание.</summary>
