@@ -22,3 +22,15 @@
 - Созданы `OddMaster.sln` (5 проектов), `global.json`, `Directory.Build.props`, `Directory.Build.targets`, `NuGet.Config` с `<clear/>`, `.editorconfig`, `.gitattributes`, `.gitignore`, `scripts/bootstrap-dotnet.sh`, `scripts/dotnet-env.sh`, `scripts/verify.sh`, `.github/workflows/ci.yml`.
 - Проверка: `dotnet build OddMaster.sln -warnaserror` → 0 ошибок / 0 предупреждений; `dotnet test OddMaster.sln -v:n` → 3 smoke-теста пройдены.
 - Осталось: наполнить ядро, конфиги, документы.
+
+## 2026-10-27T06:30+03:00 — M1, нормативные данные и конфиг
+
+Цель: вся нормативка в данных, ядро не знает чисел ГОСТ; пробелы видны.
+
+- Дизайн: System.Text.Json +разбор вручную JsonElement (в 3.1 нет атрибутов JsonNumberHandling), собственный валидатор с русскими сообщениями и JSON Pointer. Вариант с DTO-атрибутами отклонён: хуже диагностика.
+- Данные раздела 8.4 перенесены дословно в `config/profiles/`, `config/norms/`; добавлены `sources.json`, POC-каталог на 6 знаков, `controls.json`, `drawing.json`, пустая боевая карта. 9 JSON Schema (draft-07).
+- Ядро: `SignNumber`, `SignNumberSet`, `SignNumberRange`, `NormRef`, `Verification`, `Finding`, `VerificationSummary`, загрузчики, `SizeResolver`, `ConfigValidator` (несостыковки 1–4 автоматически), реестр GOST-NNN.
+- 16 ADR, `NORMATIVE_SOURCES.md`, `VERIFICATION_QUEUE.md` (21 маркер), `SDK_ASSUMPTIONS.md` (8 маркеров).
+- Проверка: `dotnet build -warnaserror` — 0/0; `dotnet test -v:n` — 27 тестов, 0 упало. Тесты culture ru-RU/en-US, кратность decimal, разрешение POC-знаков в Д.2/Д.3/Д.4/Д.5/Д.8.
+- Ошибки по ходу: CS1929 (`IReadOnlyList.Contains` с компаратором) → `Any`; CS8606 на `MatchCollection` → `.Cast<Match>()`; «висячий» незарегистрированный GOST-маркер в QUESTIONS → заменён на GOST-015. Записано в ERRORS.md.
+- Осталось: M2–M10.

@@ -12,3 +12,7 @@
 | E-006 | Попытка `gh search code` по бинарникам SDK дала 0 | Официальные репозитории .NET не публикуют бинарники SDK в git | Переключились на npm-зеркало | Опись в `INVENTORY.md` |
 
 Дополняется по ходу M1–M10.
+
+| E-007 | CS1929: `IReadOnlyList<string>` не содержит `Contains` с компаратором | `Enumerable.Contains` требует `IEnumerable<T>`, но перегрузка со сравнением не видна из-за неоднозначности с `MemoryExtensions.Contains` (Span) | Переписал на `SizeClasses.Any(x => string.Equals(...))`, добавил `using System.Linq` | Сборка с `TreatWarningsAsErrors` ловит сразу |
+| E-008 | CS8606/CS8602 на `foreach (Match m in Regex.Matches(...))` | `MatchCollection` реализует только не-generic `IEnumerable`, nullable-анализ считает переменную возможно null | `.Cast<Match>().Select(m => m.Value)` | Тест маркеров + warnaserror |
+| E-009 | Тест M1-M01 упал: незарегистрированный GOST-маркер в реестре | В `QUESTIONS.md` случайно появился несуществующий маркер | Заменён на GOST-015 (профиль 32945) | `MarkerRegistryTests` сверяет все маркеры из кода/конфигов/доков с очередью |

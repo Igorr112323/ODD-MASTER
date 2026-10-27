@@ -1,0 +1,71 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "variants.schema.json",
+  "title": "Варианты исполнения",
+  "type": "object",
+  "required": [
+    "normRef",
+    "verification",
+    "yellowBackgroundAllowed",
+    "individualDesign"
+  ],
+  "properties": {
+    "normRef": {
+      "type": "object",
+      "required": [
+        "doc",
+        "clause"
+      ],
+      "properties": {
+        "doc": {
+          "type": "string",
+          "minLength": 1
+        },
+        "clause": {
+          "type": "string",
+          "minLength": 1
+        },
+        "table": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "figure": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "verification": {
+      "type": "string",
+      "enum": [
+        "Placeholder",
+        "Unverified",
+        "CuratorExtracted",
+        "StudentVerified"
+      ]
+    },
+    "markers": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^GOST-[0-9]{3}$"
+      }
+    },
+    "yellowBackgroundAllowed": {
+      "type": "string",
+      "description": "Список номеров и диапазонов: '1.5 - 1.7, 2.4'. См. ADR-0005."
+    },
+    "individualDesign": {
+      "type": "string",
+      "description": "Список номеров и диапазонов: '1.5 - 1.7, 2.4'. См. ADR-0005."
+    },
+    "sign64OptionalSymbols": {
+      "type": "object"
+    }
+  },
+  "description": "JSON Schema (draft-07). Синтаксис проверяется тестом ConfigSchemaTests; семантические проверки выполняет ConfigValidator в ядре (ADR-0014)."
+}

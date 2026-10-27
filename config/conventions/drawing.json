@@ -1,0 +1,13 @@
+{
+  "normRef": { "doc": "внутреннее соглашение проекта", "clause": "ADR-0007; принятую практику уточнит студент на кафедре" },
+  "verification": "Placeholder",
+  "markers": ["GOST-016"],
+  "note": "Условное изображение: на плане 1:500/1:1000 знак в натуральную величину превращается в точку. Рисуем миниатюру фиксированного размера на бумаге × масштаб. НЕ норма ГОСТ.",
+  "miniSignOnPaperMm": 8.0,
+  "sheetScaleDenominator": 1000,
+  "stationTickEveryM": 100.0,
+  "postSymbolRadiusMm": 1.6,
+  "leaderLineMm": 12.0,
+  "draftBanner": "ЧЕРНОВИК/ДЕМО — параметры изображения не сверены",
+  "sheetFrame": { "enabled": false, "note": "Оформление листа по СПДС — позже, GOST-016" }
+}

@@ -1,0 +1,26 @@
+{
+  "normRef": { "doc": "ГОСТ Р 52289-2019 с изм. №1; ГОСТ Р 52290-2024", "clause": "правила применения; п. 3.12, 3.13; табл. Д.1" },
+  "verification": "CuratorExtracted",
+  "markers": ["GOST-017"],
+  "rules": [
+    { "id": "R001", "enabled": true, "severity": "Error", "title": "Дубль: тот же номер, та же сторона, пикеты ближе допуска",
+      "params": { "toleranceM": 5.0 }, "verification": "Unverified", "normRef": { "doc": "внутреннее соглашение", "clause": "M6" } },
+    { "id": "R002", "enabled": true, "severity": "Error", "title": "Табличка без основного знака на той же опоре",
+      "params": {}, "verification": "Unverified", "normRef": { "doc": "внутреннее соглашение", "clause": "M6" } },
+    { "id": "R003", "enabled": true, "severity": "Warning", "title": "Парность / зона действия: начало без конца",
+      "params": {}, "verification": "Unverified", "normRef": { "doc": "Изменение №1 к ГОСТ Р 52289-2019", "clause": "правила применения знаков" } },
+    { "id": "R004", "enabled": true, "severity": "Error", "title": "Опора за границами оси или коридора",
+      "params": { "corridorM": 50.0 }, "verification": "Unverified", "normRef": { "doc": "внутреннее соглашение", "clause": "M6" } },
+    { "id": "R005", "enabled": true, "severity": "Error", "title": "Типоразмер не предусмотрен таблицей прил. Д",
+      "params": {}, "verification": "CuratorExtracted", "normRef": { "doc": "ГОСТ Р 52290-2024", "clause": "п. 3.13; прил. Д" } },
+    { "id": "R006", "enabled": true, "severity": "Error", "title": "Значение параметра не по табл. Д.1",
+      "params": {}, "verification": "CuratorExtracted", "normRef": { "doc": "ГОСТ Р 52290-2024", "clause": "п. 3.5; табл. Д.1" } },
+    { "id": "R007", "enabled": true, "severity": "Warning", "title": "Пробел в нормативных данных: нет правила каймы или размера",
+      "params": {}, "verification": "CuratorExtracted", "normRef": { "doc": "ГОСТ Р 52290-2024", "clause": "п. 3.13, 3.14" } }
+  ],
+  "pairing": [
+    { "start": "3.24", "end": "3.25", "repeat": "3.24", "plates": ["8.2.1"],
+      "verification": "Unverified", "marker": "GOST-017",
+      "normRef": { "doc": "Изменение №1 к ГОСТ Р 52289-2019", "clause": "правила применения знаков 3.24/3.25" } }
+  ]
+}
