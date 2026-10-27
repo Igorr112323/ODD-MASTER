@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-60 -265 820 330">
+  <metadata><odd:scheme xmlns:odd="https://odd-master.local/metadata/1"
+      id="DEMO-SCHEME-01"
+      posts="6"
+      scale="1:1000"
+      colorimetry="DISPLAY_ONLY_NOT_GOST"/>
+  </metadata>
+  <g id="Geometry" transform="scale(1,-1)">
+    <g id="Alignment"><polyline fill="none" stroke="#1A1A1A" stroke-width="1.5" points="0,0 300,0 300,200 700,200"/></g>
+    <g id="StationTicks">
+      <line x1="0" y1="-1.6" x2="0" y2="1.6" stroke="#808080" stroke-width="0.8"/>
+      <line x1="100" y1="-1.6" x2="100" y2="1.6" stroke="#808080" stroke-width="0.8"/>
+      <line x1="200" y1="-1.6" x2="200" y2="1.6" stroke="#808080" stroke-width="0.8"/>
+      <line x1="300" y1="-1.6" x2="300" y2="1.6" stroke="#808080" stroke-width="0.8"/>
+      <line x1="300" y1="98.4" x2="300" y2="101.6" stroke="#808080" stroke-width="0.8"/>
+      <line x1="300" y1="198.4" x2="300" y2="201.6" stroke="#808080" stroke-width="0.8"/>
+      <line x1="400" y1="198.4" x2="400" y2="201.6" stroke="#808080" stroke-width="0.8"/>
+      <line x1="500" y1="198.4" x2="500" y2="201.6" stroke="#808080" stroke-width="0.8"/>
+      <line x1="600" y1="198.4" x2="600" y2="201.6" stroke="#808080" stroke-width="0.8"/>
+      <line x1="700" y1="198.4" x2="700" y2="201.6" stroke="#808080" stroke-width="0.8"/>
+    </g>
+    <g id="Post-P1">
+      <circle cx="50" cy="-5" r="1.6" fill="#FFFFFF" stroke="#1A1A1A" stroke-width="0.8"/>
+      <g transform="translate(50 -17.8) scale(0.011)"><path d="M350 0 A350 350 0 0 1 0 350 A350 350 0 0 1 -350 0 A350 350 0 0 1 0 -350 A350 350 0 0 1 350 0 Z" fill="#D7191C" stroke="none"/><path d="M340 0 A340 340 0 0 1 0 340 A340 340 0 0 1 -340 0 A340 340 0 0 1 0 -340 A340 340 0 0 1 340 0 Z" fill="#FFFFFF" stroke="none"/><path d="M337 0 A337 337 0 0 1 0 337 A337 337 0 0 1 -337 0 A337 337 0 0 1 0 -337 A337 337 0 0 1 337 0 Z" fill="none" stroke="#D7191C" stroke-width="6"/></g>
+      <g transform="translate(50 -23.4) scale(0.011)"><path d="M-350 -130 A45 45 0 0 1 -305 -175 L305 -175 A45 45 0 0 1 350 -130 L350 130 A45 45 0 0 1 305 175 L-305 175 A45 45 0 0 1 -350 130 L-350 -130 Z" fill="#1A1A1A" stroke="none"/><path d="M-340 -130 A35 35 0 0 1 -305 -165 L305 -165 A35 35 0 0 1 340 -130 L340 130 A35 35 0 0 1 305 165 L-305 165 A35 35 0 0 1 -340 130 L-340 -130 Z" fill="#FFFFFF" stroke="none"/><path d="M-337 -130 A32 32 0 0 1 -305 -162 L305 -162 A32 32 0 0 1 337 -130 L337 130 A32 32 0 0 1 305 162 L-305 162 A32 32 0 0 1 -337 130 L-337 -130 Z" fill="none" stroke="#D7191C" stroke-width="6"/></g>
+      <line x1="50" y1="-6.6" x2="50" y2="-23.4" stroke="#1A1A1A" stroke-width="0.5" stroke-dasharray="2,2"/>
+    </g>
+    <g id="Post-P2">
+      <circle cx="150" cy="5" r="1.6" fill="#FFFFFF" stroke="#1A1A1A" stroke-width="0.8"/>
+      <g transform="translate(150 -6.728) scale(0.009)"><path d="M-38.971 -452.115 A45 45 0 0 1 38.971 -452.115 L411.029 192.308 A45 45 0 0 1 372.058 259.808 L-372.058 259.808 A45 45 0 0 1 -411.029 192.308 L-38.971 -452.115 Z" fill="#D7191C" stroke="none"/><path d="M-30.311 -447.115 A35 35 0 0 1 30.311 -447.115 L402.369 197.308 A35 35 0 0 1 372.058 249.808 L-372.058 249.808 A35 35 0 0 1 -402.369 197.308 L-30.311 -447.115 Z" fill="#FFFFFF" stroke="none"/><path d="M-27.713 -445.615 A32 32 0 0 1 27.713 -445.615 L399.771 198.808 A32 32 0 0 1 372.058 246.808 L-372.058 246.808 A32 32 0 0 1 -399.771 198.808 L-27.713 -445.615 Z" fill="none" stroke="#D7191C" stroke-width="6"/><path d="M93.531 0 A93.531 93.531 0 0 1 0 93.531 A93.531 93.531 0 0 1 -93.531 0 A93.531 93.531 0 0 1 0 -93.531 A93.531 93.531 0 0 1 93.531 0 Z" fill="none" stroke="#1A1A1A" stroke-width="1"/></g>
+      <line x1="150" y1="3.4" x2="150" y2="-6.728" stroke="#1A1A1A" stroke-width="0.5" stroke-dasharray="2,2"/>
+    </g>
+    <g id="Post-P3">
+      <circle cx="250" cy="-5" r="1.6" fill="#FFFFFF" stroke="#1A1A1A" stroke-width="0.8"/>
+      <g transform="translate(250 -17.8) scale(0.011)"><path d="M350 -144.975 L350 -144.975 L350 144.975 L350 144.975 L144.975 350 L144.975 350 L-144.975 350 L-144.975 350 L-350 144.975 L-350 144.975 L-350 -144.975 L-350 -144.975 L-144.975 -350 L-144.975 -350 L144.975 -350 L144.975 -350 L350 -144.975 Z" fill="#FFFFFF" stroke="none"/><path d="M330 -136.69 L330 -136.69 L330 136.69 L330 136.69 L136.69 330 L136.69 330 L-136.69 330 L-136.69 330 L-330 136.69 L-330 136.69 L-330 -136.69 L-330 -136.69 L-136.69 -330 L-136.69 -330 L136.69 -330 L136.69 -330 L330 -136.69 Z" fill="#D7191C" stroke="none"/><path d="M327 -135.448 L327 -135.448 L327 135.448 L327 135.448 L135.448 327 L135.448 327 L-135.448 327 L-135.448 327 L-327 135.448 L-327 135.448 L-327 -135.448 L-327 -135.448 L-135.448 -327 L-135.448 -327 L135.448 -327 L135.448 -327 L327 -135.448 Z" fill="none" stroke="#D7191C" stroke-width="6"/></g>
+      <line x1="250" y1="-6.6" x2="250" y2="-17.8" stroke="#1A1A1A" stroke-width="0.5" stroke-dasharray="2,2"/>
+    </g>
+    <g id="Post-P4">
+      <circle cx="295" cy="50" r="1.6" fill="#FFFFFF" stroke="#1A1A1A" stroke-width="0.8"/>
+      <g transform="translate(295 37.2) scale(0.011)"><path d="M350 0 A350 350 0 0 1 0 350 A350 350 0 0 1 -350 0 A350 350 0 0 1 0 -350 A350 350 0 0 1 350 0 Z" fill="#1A1A1A" stroke="none"/><path d="M340 0 A340 340 0 0 1 0 340 A340 340 0 0 1 -340 0 A340 340 0 0 1 0 -340 A340 340 0 0 1 340 0 Z" fill="#FFFFFF" stroke="none"/><path d="M337 0 A337 337 0 0 1 0 337 A337 337 0 0 1 -337 0 A337 337 0 0 1 0 -337 A337 337 0 0 1 337 0 Z" fill="none" stroke="#D7191C" stroke-width="6"/></g>
+      <line x1="295" y1="48.4" x2="295" y2="37.2" stroke="#1A1A1A" stroke-width="0.5" stroke-dasharray="2,2"/>
+    </g>
+    <g id="Post-P5">
+      <circle cx="305" cy="150" r="1.6" fill="#FFFFFF" stroke="#1A1A1A" stroke-width="0.8"/>
+      <g transform="translate(305 137.2) scale(0.011)"><path d="M-350 -305 A45 45 0 0 1 -305 -350 L305 -350 A45 45 0 0 1 350 -305 L350 305 A45 45 0 0 1 305 350 L-305 350 A45 45 0 0 1 -350 305 L-350 -305 Z" fill="#FFFFFF" stroke="none"/><path d="M-330 -305 A25 25 0 0 1 -305 -330 L305 -330 A25 25 0 0 1 330 -305 L330 305 A25 25 0 0 1 305 330 L-305 330 A25 25 0 0 1 -330 305 L-330 -305 Z" fill="#0057B8" stroke="none"/><path d="M-327 -305 A22 22 0 0 1 -305 -327 L305 -327 A22 22 0 0 1 327 -305 L327 305 A22 22 0 0 1 305 327 L-305 327 A22 22 0 0 1 -327 305 L-327 -305 Z" fill="none" stroke="#D7191C" stroke-width="6"/></g>
+      <line x1="305" y1="148.4" x2="305" y2="137.2" stroke="#1A1A1A" stroke-width="0.5" stroke-dasharray="2,2"/>
+    </g>
+    <g id="Post-P6">
+      <circle cx="350" cy="205" r="1.6" fill="#FFFFFF" stroke="#1A1A1A" stroke-width="0.8"/>
+      <g transform="translate(350 192.2) scale(0.009)"><path d="M450 0 A450 450 0 0 1 0 450 A450 450 0 0 1 -450 0 A450 450 0 0 1 0 -450 A450 450 0 0 1 450 0 Z" fill="#D7191C" stroke="none"/><path d="M440 0 A440 440 0 0 1 0 440 A440 440 0 0 1 -440 0 A440 440 0 0 1 0 -440 A440 440 0 0 1 440 0 Z" fill="#FFFFFF" stroke="none"/><path d="M437 0 A437 437 0 0 1 0 437 A437 437 0 0 1 -437 0 A437 437 0 0 1 0 -437 A437 437 0 0 1 437 0 Z" fill="none" stroke="#D7191C" stroke-width="6"/></g>
+      <line x1="350" y1="203.4" x2="350" y2="192.2" stroke="#1A1A1A" stroke-width="0.5" stroke-dasharray="2,2"/>
+    </g>
+  </g>
+  <text x="0" y="4" text-anchor="middle" font-size="2.56" font-family="Arial, sans-serif" fill="#1A1A1A">ПК10+00,00</text>
+  <text x="100" y="4" text-anchor="middle" font-size="2.56" font-family="Arial, sans-serif" fill="#1A1A1A">ПК11+00,00</text>
+  <text x="200" y="4" text-anchor="middle" font-size="2.56" font-family="Arial, sans-serif" fill="#1A1A1A">ПК12+00,00</text>
+  <text x="300" y="4" text-anchor="middle" font-size="2.56" font-family="Arial, sans-serif" fill="#1A1A1A">ПК13+00,00</text>
+  <text x="300" y="-96" text-anchor="middle" font-size="2.56" font-family="Arial, sans-serif" fill="#1A1A1A">ПК14+00,00</text>
+  <text x="300" y="-196" text-anchor="middle" font-size="2.56" font-family="Arial, sans-serif" fill="#1A1A1A">ПК15+00,00</text>
+  <text x="400" y="-196" text-anchor="middle" font-size="2.56" font-family="Arial, sans-serif" fill="#1A1A1A">ПК16+00,00</text>
+  <text x="500" y="-196" text-anchor="middle" font-size="2.56" font-family="Arial, sans-serif" fill="#1A1A1A">ПК17+00,00</text>
+  <text x="600" y="-196" text-anchor="middle" font-size="2.56" font-family="Arial, sans-serif" fill="#1A1A1A">ПК18+00,00</text>
+  <text x="700" y="-196" text-anchor="middle" font-size="2.56" font-family="Arial, sans-serif" fill="#1A1A1A">ПК19+00,00</text>
+  <text x="50" y="21.8" text-anchor="middle" font-size="2.88" font-family="Arial, sans-serif" fill="#1A1A1A">P1: 3.24 (40), 8.2.1 (50)</text>
+  <text x="150" y="5.128" text-anchor="middle" font-size="2.88" font-family="Arial, sans-serif" fill="#1A1A1A">P2: 2.4</text>
+  <text x="250" y="16.2" text-anchor="middle" font-size="2.88" font-family="Arial, sans-serif" fill="#1A1A1A">P3: 2.5</text>
+  <text x="295" y="-38.8" text-anchor="middle" font-size="2.88" font-family="Arial, sans-serif" fill="#1A1A1A">P4: 3.25 (40)</text>
+  <text x="305" y="-138.8" text-anchor="middle" font-size="2.88" font-family="Arial, sans-serif" fill="#1A1A1A">P5: 6.4</text>
+  <text x="350" y="-193.8" text-anchor="middle" font-size="2.88" font-family="Arial, sans-serif" fill="#1A1A1A">P6: 3.24 (60)</text>
+  <g id="DraftBanner"><text x="-50" y="-250" font-family="Arial, sans-serif" font-size="8" fill="#D7191C">ЧЕРНОВИК/ДЕМО — параметры изображения не сверены</text></g>
+</svg>

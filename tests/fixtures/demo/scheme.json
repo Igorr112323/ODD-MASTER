@@ -1,0 +1,23 @@
+{
+  "id": "DEMO-SCHEME-01",
+  "title": "ДЕМО: синтетический участок дороги, не реальный объект",
+  "initialStation": 1000,
+  "vertices": [[0, 0], [300, 0], [300, 200], [700, 200]],
+  "posts": [
+    {
+      "id": "P1", "station": 1050, "offset": 5,
+      "signs": [
+        { "number": "3.24", "sizeClass": "II", "parameter": "speed", "value": 40 },
+        { "number": "8.2.1", "sizeClass": "II", "parameter": "distance", "value": 50 }
+      ]
+    },
+    { "id": "P2", "station": 1150, "offset": -5, "signs": [{ "number": "2.4", "sizeClass": "II" }] },
+    { "id": "P3", "station": 1250, "offset": 5, "signs": [{ "number": "2.5", "sizeClass": "II" }] },
+    {
+      "id": "P4", "station": 1350, "offset": -5,
+      "signs": [{ "number": "3.25", "sizeClass": "II", "parameter": "speed", "value": 40 }]
+    },
+    { "id": "P5", "station": 1450, "offset": 5, "signs": [{ "number": "6.4", "sizeClass": "II" }] },
+    { "id": "P6", "station": 1550, "offset": -5, "signs": [{ "number": "3.24", "sizeClass": "III", "parameter": "speed", "value": 60 }] }
+  ]
+}

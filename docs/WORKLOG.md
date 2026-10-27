@@ -76,3 +76,13 @@
 - Дизайн: вместо «придумать замены 2004→2024» оставил движок без данных — это безопаснее и честнее (ADR-0010).
 - Красная команда №2: 8 находок, 5 исправлено. Ключевые: `NormRef.ToString()` печатал имя типа в отчёте; интерполяция `decimal` в сообщениях была культурно-зависимой.
 - Проверка: 93 теста зелёные (83 Core + 10 Render). Golden: ведомость, отчёт аудитора, отчёт актуализатора, 3 SVG. PDF не делался: нет pandoc/wkhtmltopdf, по условию достаточно MD + CSV.
+
+## 2026-10-27T10:15+03:00 — M8, сквозное демо
+
+Цель: одна команда `bash scripts/verify.sh` даёт все артефакты и проверяет детерминизм.
+
+- `SvgSchemeRenderer`: ось полилинией, пикетные отметки, опоры, мини-знаки (8 мм на бумаге × 1:1000), выносные линии, подписи, баннер «ЧЕРНОВИК/ДЕМО». Все соглашения в `config/conventions/drawing.json`.
+- `DemoRunner` больше не имеет заглушек: `signs`, `scheme`, `check`, `actualize`, `all`. Схема читается из `tests/fixtures/demo/scheme.json`, а не зашита в код.
+- Артефакты: `scheme.svg`, `statement.{csv,md}`, `coordinates.{csv,md}`, `reactor_before/after/diff`, `audit_report.*`, `actualization_report.*`, `config_validation.md`, `README.md` + 20 SVG галереи.
+- `scripts/verify.sh` (restore → build -warnaserror → test --no-build → demo all → `git diff --exit-code -- docs/demo`) выполнен успешно: 0 ошибок, 0 предупреждений, 102 теста, детерминизм подтверждён. CI делает то же самое.
+- Проверка отдельно: `dotnet test --no-build -v:n` действительно запускает оба тестовых проекта (83 + 19), а не «тихо проходит».
