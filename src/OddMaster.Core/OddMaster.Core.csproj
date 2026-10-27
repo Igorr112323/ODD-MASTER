@@ -1,0 +1,7 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OddGenerateDocs>true</OddGenerateDocs>
+    <RootNamespace>OddMaster.Core</RootNamespace>
+    <AssemblyName>OddMaster.Core</AssemblyName>
+  </PropertyGroup>
+</Project>

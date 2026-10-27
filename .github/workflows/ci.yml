@@ -1,0 +1,42 @@
+name: CI
+
+on:
+  push:
+    branches-ignore: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build-test-demo:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Подготовка SDK (резервный канал, если .NET 8 недоступен)
+        run: bash scripts/bootstrap-dotnet.sh
+      - name: Версия SDK
+        run: |
+          source scripts/dotnet-env.sh
+          dotnet --info
+      - name: Restore
+        run: |
+          source scripts/dotnet-env.sh
+          dotnet restore OddMaster.sln
+      - name: Build (0 предупреждений)
+        run: |
+          source scripts/dotnet-env.sh
+          dotnet build OddMaster.sln --no-restore -warnaserror
+      - name: Tests
+        run: |
+          source scripts/dotnet-env.sh
+          dotnet test OddMaster.sln --no-build
+      - name: Demo all
+        run: |
+          source scripts/dotnet-env.sh
+          dotnet run --project src/OddMaster.Demo --no-build -- all
+      - name: Проверка детерминизма артефактов
+        run: git diff --exit-code -- docs/demo
+      - name: Артефакты демо
+        uses: actions/upload-artifact@v4
+        with:
+          name: oddmaster-demo
+          path: docs/demo/

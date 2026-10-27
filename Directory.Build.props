@@ -1,0 +1,28 @@
+<Project>
+  <!-- ADR-0009: одна переменная переключает целевой фреймворк на .NET 8. -->
+  <PropertyGroup>
+    <OddTargetFramework Condition="'$(OddTargetFramework)' == ''">netcoreapp3.1</OddTargetFramework>
+    <TargetFramework>$(OddTargetFramework)</TargetFramework>
+    <LangVersion>8.0</LangVersion>
+    <Nullable>enable</Nullable>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <AnalysisLevel>latest</AnalysisLevel>
+    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+    <Deterministic>true</Deterministic>
+    <CheckEolTargetFramework>false</CheckEolTargetFramework>
+    <EnableDefaultCompileItems>true</EnableDefaultCompileItems>
+    <InvariantGlobalization>false</InvariantGlobalization>
+    <NoLogo>true</NoLogo>
+  </PropertyGroup>
+
+  <!-- XML-документация обязательна только для библиотек; у exe и тестов XML-doc не требуется. -->
+  <PropertyGroup Condition="'$(OddGenerateDocs)' == 'true'">
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <Company>ОДД-Мастер</Company>
+    <Authors>Студенческий проект ОДД-Мастер</Authors>
+    <Product>ОДД-Мастер</Product>
+  </PropertyGroup>
+</Project>

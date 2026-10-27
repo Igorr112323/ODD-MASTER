@@ -1,0 +1,16 @@
+<Project>
+  <!--
+    ADR-0014: в песочнице нет доступа к NuGet, поэтому xUnit недоступен.
+    Тесты — обычные консольные проекты с собственным микро-раннером,
+    а `dotnet test` выполняет цель VSTest, которая запускает этот раннер.
+    Для обычных проектов цель пустая, поэтому `dotnet test` на решении не ломается.
+  -->
+  <Target Name="VSTest" DependsOnTargets="Build">
+    <Exec Condition="'$(OddIsTestProject)' == 'true'"
+          Command="dotnet &quot;$(TargetPath)&quot;"
+          WorkingDirectory="$(MSBuildProjectDirectory)" />
+    <Message Condition="'$(OddIsTestProject)' != 'true'"
+             Importance="low"
+             Text="VSTest: $(MSBuildProjectName) не является тестовым проектом, пропуск." />
+  </Target>
+</Project>
