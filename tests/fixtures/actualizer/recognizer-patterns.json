@@ -1,0 +1,10 @@
+{
+  "patterns": [
+    { "id": "P1", "field": "blockName", "regex": "^SIGN_3_24_PLATE$", "number": "3.24", "plates": ["8.2.1"], "confidence": 0.9 },
+    { "id": "P2", "field": "blockName", "regex": "^SIGN_5_19_1$", "number": "5.19.1", "plates": [], "confidence": 0.9 },
+    { "id": "P3", "field": "blockName", "regex": "^SIGN_5_19_1_PLATE$", "number": "5.19.1", "plates": ["8.2.1"], "confidence": 0.85 },
+    { "id": "P4", "field": "blockName", "regex": "^SIGN_5_19_2$", "number": "5.19.2", "plates": [], "confidence": 0.9 },
+    { "id": "P5", "field": "blockName", "regex": "^SIGN_2_4$", "number": "2.4", "plates": [], "confidence": 0.95 },
+    { "id": "P6", "field": "blockName", "regex": "^SIGN_7_99$", "number": "7.99", "plates": [], "confidence": 0.6 }
+  ]
+}

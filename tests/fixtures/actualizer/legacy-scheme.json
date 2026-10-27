@@ -1,0 +1,11 @@
+{
+  "elements": [
+    { "id": "E01", "blockName": "SIGN_3_24_PLATE", "attributes": { "NUMBER": "3.24" }, "texts": ["40"], "x": 100, "y": 0 },
+    { "id": "E02", "blockName": "SIGN_5_19_1", "attributes": {}, "texts": [], "x": 200, "y": 0 },
+    { "id": "E03", "blockName": "SIGN_5_19_1_PLATE", "attributes": {}, "texts": ["8.2.1"], "x": 300, "y": 0 },
+    { "id": "E04", "blockName": "SIGN_5_19_2", "attributes": {}, "texts": [], "x": 400, "y": 0 },
+    { "id": "E05", "blockName": "SIGN_2_4", "attributes": {}, "texts": [], "x": 500, "y": 0 },
+    { "id": "E06", "blockName": "SIGN_7_99", "attributes": {}, "texts": [], "x": 600, "y": 0 },
+    { "id": "E07", "blockName": "MYSTERY_BLOCK", "attributes": {}, "texts": [], "x": 700, "y": 0 }
+  ]
+}
