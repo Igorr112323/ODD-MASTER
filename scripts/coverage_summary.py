@@ -29,10 +29,15 @@ def main() -> int:
     hit = sum(v[0] for v in seen.values())
     total = sum(v[1] for v in seen.values())
     rate = 100.0 * hit / total if total else 0.0
+    worst = sorted(seen.items(), key=lambda kv: (kv[1][1] - kv[1][0]), reverse=True)[:12]
+    breakdown = "\n".join(
+        f"- `{name.split('OddMaster.Core/')[-1]}`: {v[0]}/{v[1]} ({v[1] - v[0]} непокрыто)"
+        for name, v in worst)
     text = (f"# Покрытие OddMaster.Core\n\n"
             f"Файлов в отчёте: {len(files)}; классов: {len(seen)}; "
             f"строк: {hit}/{total}; **{rate:.1f} %**.\n\n"
-            f"Цель по CR-03: не ниже 80 %.\n")
+            f"Цель по CR-03: не ниже 80 %.\n\n"
+            f"## Топ-12 файлов по числу непокрытых строк\n\n{breakdown}\n")
     with open("coverage-summary.md", "w", encoding="utf-8") as fh:
         fh.write(text)
     print(text)
