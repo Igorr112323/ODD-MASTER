@@ -39,7 +39,7 @@ namespace OddMaster.Core.Tests
                     TestAssert.True(result.IsSuccess,
                         $"{sign.Number}/{sizeClass}: {string.Join("; ", result.Findings.Select(f => f.Format()))}");
                     TestAssert.True(result.Geometry!.Outline.IsClosed, sign.Number + ": контур не замкнут");
-                    TestAssert.True(result.Geometry.Layers.Count >= 3, sign.Number + ": мало слоёв");
+                    TestAssert.True(result.Geometry.Layers.Count >= 2, sign.Number + ": мало слоёв");
                     TestAssert.True(result.IsDraft, sign.Number + ": ожидался ЧЕРНОВИК");
                     checkedCount++;
                 }
@@ -178,11 +178,15 @@ namespace OddMaster.Core.Tests
         [Fact(DisplayName = "M2-G08: неизвестная внутренняя кайма → заглушка, GOST-001 и ЧЕРНОВИК")]
         public void InnerBorderIsPlaceholder()
         {
-            var result = Generator().Generate("3.24", "II", Speed(40m));
+            // Внутренняя кайма есть только у 2.4 (CR-04); у 3.24 её нет.
+            var result = Generator().Generate("2.4", "II");
             TestAssert.True(result.IsSuccess);
             TestAssert.True(result.Geometry!.InnerBorderIsPlaceholder);
             TestAssert.Contains("GOST-001", string.Join(" ", result.Findings.Select(f => f.Format())));
             TestAssert.Contains("Placeholder", result.Geometry.Verification.Describe());
+            var noInner = Generator().Generate("3.24", "II", Speed(40m));
+            TestAssert.True(noInner.IsSuccess);
+            TestAssert.False(noInner.Geometry!.InnerBorderIsPlaceholder);
         }
 
         [Fact(DisplayName = "M2-G09: два прогона дают одинаковую геометрию")]

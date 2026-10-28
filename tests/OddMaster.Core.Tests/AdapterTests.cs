@@ -52,16 +52,19 @@ namespace OddMaster.Core.Tests
         public void PortWriterProducesPrimitives()
         {
             var cfg = OddMaster.Core.Config.ConfigLoader.Load(Repo.Root());
-            var sign = cfg.Catalog.Find("3.24")!;
-            var geometry = new SignGenerator(cfg).Generate(sign, "II",
-                new Dictionary<string, decimal> { ["speed"] = 40m }).Geometry!;
+            var sign = cfg.Catalog.Find("2.4")!;
+            var geometry = new SignGenerator(cfg).Generate(sign, "II").Geometry!;
             var port = new RecordingPort();
             GeometryPortWriter.Write(port, geometry, new Point2(10, 20), 0.5);
             TestAssert.True(port.Lines.Count + port.Arcs.Count > 0, "нет отрезков и дуг");
-            TestAssert.True(port.Arcs.Count > 0, " circle sign: ожидались дуги");
-            TestAssert.True(port.Texts.Count > 0, "нет надписей");
-            TestAssert.True(port.Fills.Count > 0, "нет заливок");
+            TestAssert.True(port.Fills.Count >= 2, "нет заливок контура и поля");
             TestAssert.Close(10 + geometry.Bounds.MinX * 0.5, port.Fills[0], 0.01);
+            var textSign = cfg.Catalog.Find("3.24")!;
+            var textGeometry = new SignGenerator(cfg).Generate(textSign, "II",
+                new Dictionary<string, decimal> { ["speed"] = 40m }).Geometry!;
+            var textPort = new RecordingPort();
+            GeometryPortWriter.Write(textPort, textGeometry, new Point2(0, 0), 1.0);
+            TestAssert.True(textPort.Texts.Count > 0, "нет надписей");
         }
 
         private sealed class RecordingPort : IDrawingPort

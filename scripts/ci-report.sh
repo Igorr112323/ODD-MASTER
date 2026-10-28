@@ -13,7 +13,12 @@ fi
   echo
   if [ -f dotnet-version.txt ]; then echo "SDK: \`$(cat dotnet-version.txt)\`"; fi
   if [ -f coverage.log ]; then echo '```'; cat coverage.log; echo '```'; fi
-  if [ -f test.log ]; then echo "<details><summary>Тесты (последние 40 строк)</summary>"; echo; echo '```'; tail -40 test.log; echo '```'; echo; echo "</details>"; fi
+  if [ -f test.log ]; then
+    if grep -qE '^\s*Failed ' test.log; then
+      echo "#### Упавшие тесты"; echo '```'; grep -E '^\s*Failed |^\s*Error Message:|^\s{3}[^ ]' test.log | head -120; echo '```'
+    fi
+    echo "<details><summary>Тесты (последние 60 строк)</summary>"; echo; echo '```'; tail -60 test.log; echo '```'; echo; echo "</details>"
+  fi
   if [ "$STATUS" != "success" ]; then
     echo "#### Логи ошибок"
     for f in build.log test.log netstandard.log; do

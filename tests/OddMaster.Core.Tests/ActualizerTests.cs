@@ -37,7 +37,7 @@ namespace OddMaster.Core.Tests
             TestAssert.Contains("GOST-018", string.Join(" ", battle.Markers));
             var (_, _, demo) = Fixture();
             TestAssert.True(demo.IsDemo);
-            TestAssert.Equal(4, demo.Rules.Count);
+            TestAssert.Equal(6, demo.Rules.Count);
         }
 
         [Fact(DisplayName = "M7-A11 (CR-11): >=12 элементов и >=2 в каждой категории")]

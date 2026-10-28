@@ -59,10 +59,14 @@ namespace OddMaster.Core.Geometry
             var r = side / Math.Sqrt(3.0);
             var vertices = new List<Point2>();
             var baseAngle = up ? 90.0 : 270.0;
+            // Вершины равностороннего треугольника дают габарит, смещённый относительно
+            // центра тяжести на r/4. Сдвигаем, чтобы габарит был центрирован в (0,0) —
+            // иначе слой геометрии выходит за номинальный BoundingBox (M9-V01).
+            var shift = up ? -r / 4 : r / 4;
             for (int i = 0; i < 3; i++)
             {
                 var angle = (baseAngle + i * 120.0) * Math.PI / 180.0;
-                vertices.Add(new Point2(r * Math.Cos(angle), r * Math.Sin(angle)));
+                vertices.Add(new Point2(r * Math.Cos(angle), r * Math.Sin(angle) + shift));
             }
             return RoundedPolygon(vertices, cornerRadius);
         }

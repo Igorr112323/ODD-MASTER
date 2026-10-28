@@ -160,7 +160,7 @@ namespace OddMaster.Core.Tests
         public void SchemasAreParseable()
         {
             var files = Directory.GetFiles(Path.Combine(Repo.Root(), "config/schema"), "*.schema.json");
-            TestAssert.Equal(9, files.Length);
+            TestAssert.Equal(10, files.Length);
             foreach (var file in files)
             {
                 var text = File.ReadAllText(file);
