@@ -11,7 +11,7 @@ dotnet restore OddMaster.sln
 echo "== 2/6 build -warnaserror =="
 dotnet build OddMaster.sln --no-restore -warnaserror
 echo "== 3/6 test + покрытие =="
-dotnet test OddMaster.sln --no-build --collect:"XPlat Code Coverage" --results-directory ./coverage
+dotnet test OddMaster.sln --no-build --collect:"XPlat Code Coverage" --settings coverage.runsettings --results-directory ./coverage
 echo "== 4/6 demo all =="
 dotnet run --project src/OddMaster.Demo --no-build -- all
 echo "== 5/6 детерминизм =="

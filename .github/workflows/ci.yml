@@ -39,6 +39,7 @@ jobs:
           set -o pipefail
           dotnet test OddMaster.sln --no-build \
             --collect:"XPlat Code Coverage" \
+            --settings coverage.runsettings \
             --results-directory ./coverage \
             --logger "console;verbosity=normal" 2>&1 | tee test.log
       - name: Сводка покрытия Core
