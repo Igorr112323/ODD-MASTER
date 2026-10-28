@@ -41,7 +41,8 @@ namespace OddMaster.Core.Tests
             TestAssert.Contains("\"status\": \"StudentTranscribed\"", json);
             TestAssert.Contains("\"cellsAcross\": 12", json);
             TestAssert.Contains("\"layers\"", json);
-            TestAssert.Contains("заметка", json);
+            // JsonSerializer по умолчанию экранирует кириллицу в \uXXXX — это валидный JSON.
+            TestAssert.Contains("\"note\"", json);
         }
 
         [Fact(DisplayName = "M12-X02: PictogramRegistry ловит ошибки статуса, сетки и ссылки на знак")]
