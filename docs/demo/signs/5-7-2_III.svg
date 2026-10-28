@@ -14,7 +14,7 @@
     <g id="Layer-Outline">
       <path d="M-675 -180 A45 45 0 0 1 -630 -225 L630 -225 A45 45 0 0 1 675 -180 L675 180 A45 45 0 0 1 630 225 L-630 225 A45 45 0 0 1 -675 180 L-675 -180 Z" fill="#FFFFFF" stroke="none"/>
     </g>
-    <g id="Layer-OuterBorder">
+    <g id="Layer-Field">
       <path d="M-655 -180 A25 25 0 0 1 -630 -205 L630 -205 A25 25 0 0 1 655 -180 L655 180 A25 25 0 0 1 630 205 L-630 205 A25 25 0 0 1 -655 180 L-655 -180 Z" fill="#0057B8" stroke="none"/>
     </g>
     <g id="Layer-Pictogram">
@@ -22,7 +22,7 @@
     </g>
   </g>
   <g id="DraftWatermark">
-    <text x="-94.916" y="162.622" font-family="Arial Bold, Liberation Sans Bold, sans-serif" font-size="34.02" fill="#D7191C" fill-opacity="0.85">ЧЕРНОВИК:</text>
-    <text x="-287.809" y="205.147" font-family="Arial Bold, Liberation Sans Bold, sans-serif" font-size="34.02" fill="#D7191C" fill-opacity="0.85">есть непроверенные параметры</text>
+    <text x="-114.435" y="162.928" font-family="DejaVu Sans Bold, Liberation Sans Bold, Arial Bold, sans-serif" font-size="34.02" fill="#D7191C" fill-opacity="0.85">ЧЕРНОВИК:</text>
+    <text x="-319.155" y="205.453" font-family="DejaVu Sans Bold, Liberation Sans Bold, Arial Bold, sans-serif" font-size="34.02" fill="#D7191C" fill-opacity="0.85">есть непроверенные параметры</text>
   </g>
 </svg>

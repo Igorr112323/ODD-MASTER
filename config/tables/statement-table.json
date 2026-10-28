@@ -1,0 +1,23 @@
+{
+  "normRef": {
+    "doc": "Приказ Минтранса России №49 / внутреннее соглашение проекта",
+    "clause": "форма ведомости ТС ОДД — черновик формы (GOST-011); размеры таблицы на листе — условные"
+  },
+  "verification": "Unverified",
+  "markers": ["GOST-011"],
+  "note": "Колонки и ширины — черновик формы ведомости. Реквизиты настоящей формы ПОДД студент сверяет с приказом Минтранса №49 (GOST-011). Ширины и высоты строк — условные размеры листа, не норма ГОСТ; при смене формы меняется только этот файл.",
+  "title": "Ведомость ТС ОДД (ЧЕРНОВИК формы)",
+  "titleRowHeightMm": 25.0,
+  "rowHeightMm": 12.0,
+  "cellPaddingRatio": 0.06,
+  "textFillRatio": 0.8,
+  "columns": [
+    { "title": "№", "widthMm": 12.0, "numeric": true },
+    { "title": "Номер знака по ГОСТ Р 52290-2024", "widthMm": 55.0, "numeric": false },
+    { "title": "Наименование", "widthMm": 85.0, "numeric": false },
+    { "title": "Типоразмер", "widthMm": 28.0, "numeric": false },
+    { "title": "Параметр", "widthMm": 30.0, "numeric": false },
+    { "title": "Количество", "widthMm": 26.0, "numeric": true },
+    { "title": "Примечание", "widthMm": 64.0, "numeric": false }
+  ]
+}

@@ -68,7 +68,8 @@ namespace OddMaster.Core.Config
                 J.Num(e, "placeholderInnerBorderWidthMm", file, ""),
                 J.Num(e, "placeholderTextHeightRatio", file, ""),
                 J.Num(e, "placeholderPictogramRadiusRatio", file, ""),
-                ParseTemplates(e, file), J.Num(e, "svgPaddingRatio", file, ""));
+                ParseTemplates(e, file), J.Num(e, "svgPaddingRatio", file, ""),
+                J.Num(e, "dxfFlattenSagittaMm", file, ""));
         }
 
         private static Dictionary<string, string> ParseTemplates(System.Text.Json.JsonElement e, string file)
@@ -165,6 +166,46 @@ namespace OddMaster.Core.Config
                     J.Num(r, "x", file, p), J.Num(r, "y", file, p)));
             }
             return new LegacyScheme(elements);
+        }
+
+        /// <summary>Загружает форму таблицы ведомости на чертеже (черновик, GOST-011).</summary>
+        public static Statement.StatementTableSpec LoadStatementTable(string root)
+        {
+            var file = ConfigPaths.StatementTable;
+            using var doc = JsonConfig.Load(root, file);
+            var e = doc.RootElement;
+            var columns = new List<Statement.StatementTableColumn>();
+            var items = J.Array(e, "columns", file, "");
+            for (int i = 0; i < items.Count; i++)
+            {
+                var p = "/columns/" + i.ToString(CultureInfo.InvariantCulture);
+                var width = J.Num(items[i], "widthMm", file, p);
+                if (!(width > 0))
+                    throw new ConfigException(file, p, "ширина колонки должна быть положительной, получено " + width,
+                        "укажите widthMm > 0");
+                columns.Add(new Statement.StatementTableColumn(J.Str(items[i], "title", file, p), width,
+                    J.OptBool(items[i], "numeric", false, file, p)));
+            }
+            if (columns.Count == 0)
+                throw new ConfigException(file, "/columns", "не задано ни одной колонки ведомости",
+                    "добавьте хотя бы одну колонку с title и widthMm");
+            var titleRow = J.Num(e, "titleRowHeightMm", file, "");
+            var rowHeight = J.Num(e, "rowHeightMm", file, "");
+            if (!(titleRow > 0) || !(rowHeight > 0))
+                throw new ConfigException(file, "", "высоты строк должны быть положительными",
+                    "задайте titleRowHeightMm и rowHeightMm больше нуля");
+            var padding = J.Num(e, "cellPaddingRatio", file, "");
+            if (padding < 0 || padding >= 0.5)
+                throw new ConfigException(file, "", "cellPaddingRatio должен быть в [0; 0,5), получено " + padding,
+                    "уменьшите cellPaddingRatio");
+            var fill = J.Num(e, "textFillRatio", file, "");
+            if (!(fill > 0) || fill > 1)
+                throw new ConfigException(file, "", "textFillRatio должен быть в (0; 1], получено " + fill,
+                    "задайте textFillRatio, например 0.8");
+            return new Statement.StatementTableSpec(
+                J.ReadNormRef(e, "normRef", file, ""), J.ReadVerification(e, file, ""),
+                J.Str(e, "title", file, ""), columns, titleRow, rowHeight, padding, fill,
+                J.StringList(e, "markers", file, ""), J.OptStr(e, "note", file, "") ?? "");
         }
     }
 }

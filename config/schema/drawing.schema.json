@@ -12,7 +12,8 @@
     "placeholderTextHeightRatio",
     "placeholderPictogramRadiusRatio",
     "parameterTextTemplates",
-    "svgPaddingRatio"
+    "svgPaddingRatio",
+    "dxfFlattenSagittaMm"
   ],
   "properties": {
     "normRef": {
@@ -115,6 +116,11 @@
     "svgPaddingRatio": {
       "type": "number",
       "minimum": 0
+    },
+    "dxfFlattenSagittaMm": {
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "description": "Допуск стрелки прогиба при аппроксимации дуг ломаной для DXF-стенда, мм. Только отображение."
     }
   },
   "description": "JSON Schema (draft-07). Синтаксис проверяется тестом ConfigSchemaTests; семантические проверки выполняет ConfigValidator в ядре (ADR-0014)."

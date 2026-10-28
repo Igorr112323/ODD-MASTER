@@ -56,8 +56,14 @@ namespace OddMaster.Core.Tests
             var geometry = new SignGenerator(cfg).Generate(sign, "II").Geometry!;
             var port = new RecordingPort();
             GeometryPortWriter.Write(port, geometry, new Point2(10, 20), 0.5);
-            TestAssert.True(port.Lines.Count + port.Arcs.Count > 0, "нет отрезков и дуг");
+            // CR-16: контур, кайма и поле — заливки (полосы), поэтому линий у 2.4 нет;
+            // линии и дуги появляются у незалитых слоёв — пиктограмм и штриховых надписей.
             TestAssert.True(port.Fills.Count >= 2, "нет заливок контура и поля");
+            var arrowSign = cfg.Catalog.Find("3.1")!;
+            var arrowGeometry = new SignGenerator(cfg).Generate(arrowSign, "I").Geometry!;
+            var arrowPort = new RecordingPort();
+            GeometryPortWriter.Write(arrowPort, arrowGeometry, new Point2(0, 0), 1.0);
+            TestAssert.True(arrowPort.Lines.Count > 0, "пиктограмма-стрелка должна давать отрезки");
             // Сравниваем с габаритом самого контура (скруглённого), а не с номинальным
             // габаритом носителя: скруглённые углы не доходят до острых вершин.
             var outline = geometry.Layers.First(l => l.Kind == OddMaster.Core.Catalog.SignLayerKind.Outline).Geometry!;

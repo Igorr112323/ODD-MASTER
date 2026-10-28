@@ -6,7 +6,7 @@
       profile="GOST_R_52290_2024"
       sizeTable="Д.8"
       outerBorderMm="10"
-      verification="borders=CuratorExtracted; catalog=CuratorExtracted; colors=Unverified; parameters=CuratorExtracted; sizeProfile=CuratorExtracted; textMetrics=Placeholder"
+      verification="borders=CuratorExtracted; catalog=CuratorExtracted; colors=Unverified; parameters=CuratorExtracted; sizeProfile=CuratorExtracted; textMetrics=Unverified"
       isDraft="true"
       colorimetry="DISPLAY_ONLY_NOT_GOST"/>
   </metadata>
@@ -14,13 +14,13 @@
     <g id="Layer-Outline">
       <path d="M-450 -180 A45 45 0 0 1 -405 -225 L405 -225 A45 45 0 0 1 450 -180 L450 180 A45 45 0 0 1 405 225 L-405 225 A45 45 0 0 1 -450 180 L-450 -180 Z" fill="#1A1A1A" stroke="none"/>
     </g>
-    <g id="Layer-OuterBorder">
+    <g id="Layer-Field">
       <path d="M-440 -180 A35 35 0 0 1 -405 -215 L405 -215 A35 35 0 0 1 440 -180 L440 180 A35 35 0 0 1 405 215 L-405 215 A35 35 0 0 1 -440 180 L-440 -180 Z" fill="#FFFFFF" stroke="none"/>
     </g>
   </g>
-  <g id="Layer-Text"><text x="-153.438" y="28.607" font-family="Arial Bold, Liberation Sans Bold, sans-serif" font-weight="bold" font-size="130.032" fill="#1A1A1A">50 м</text></g>
+  <g id="Layer-Text"><text x="-166.252" y="29.777" font-family="DejaVu Sans Bold, Liberation Sans Bold, Arial Bold, sans-serif" font-weight="bold" font-size="130.032" fill="#1A1A1A">50 м</text></g>
   <g id="DraftWatermark">
-    <text x="-94.916" y="162.622" font-family="Arial Bold, Liberation Sans Bold, sans-serif" font-size="34.02" fill="#D7191C" fill-opacity="0.85">ЧЕРНОВИК:</text>
-    <text x="-287.809" y="205.147" font-family="Arial Bold, Liberation Sans Bold, sans-serif" font-size="34.02" fill="#D7191C" fill-opacity="0.85">есть непроверенные параметры</text>
+    <text x="-114.435" y="162.928" font-family="DejaVu Sans Bold, Liberation Sans Bold, Arial Bold, sans-serif" font-size="34.02" fill="#D7191C" fill-opacity="0.85">ЧЕРНОВИК:</text>
+    <text x="-319.155" y="205.453" font-family="DejaVu Sans Bold, Liberation Sans Bold, Arial Bold, sans-serif" font-size="34.02" fill="#D7191C" fill-opacity="0.85">есть непроверенные параметры</text>
   </g>
 </svg>

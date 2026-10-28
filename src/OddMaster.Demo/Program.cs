@@ -11,10 +11,10 @@ namespace OddMaster.Demo
         {
             var command = args.Length > 0 ? args[0] : "all";
             if (command != "signs" && command != "scheme" && command != "check"
-                && command != "actualize" && command != "kernel" && command != "all")
+                && command != "actualize" && command != "kernel" && command != "dxf" && command != "all")
             {
                 Console.Error.WriteLine("Неизвестная команда: " + command +
-                    ". Доступно: signs, scheme, check, actualize, kernel, all.");
+                    ". Доступно: signs, scheme, check, actualize, kernel, dxf, all.");
                 return 2;
             }
             var root = DemoFiles.FindRoot();
@@ -27,12 +27,14 @@ namespace OddMaster.Demo
                 case "check": demo.Check(); break;
                 case "actualize": demo.Actualize(); break;
                 case "kernel": demo.Kernel(); break;
+                case "dxf": demo.Dxf(); break;
                 default:
                     demo.Signs();
                     demo.Scheme();
                     demo.Check();
                     demo.Actualize();
                     demo.Kernel();
+                    demo.Dxf();
                     break;
             }
             Console.WriteLine("ОДД-Мастер: команда «" + command + "» выполнена.");

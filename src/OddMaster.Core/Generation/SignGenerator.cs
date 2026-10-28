@@ -94,19 +94,11 @@ namespace OddMaster.Core.Generation
                 return Fail(findings, verification, "R007",
                     $"Не удалось прочитать размеры знака {definition.Number}: {problem}.", definition.Number.ToString());
 
-            var outer = builder.Build(0.0);
-            var field = builder.Build(borderWidth);
-            if (!outer.IsSuccess || !field.IsSuccess)
-                return Fail(findings, verification, "R007",
-                    $"Не удалось построить контур знака {definition.Number}: {outer.Problem ?? field.Problem}",
-                    definition.Number.ToString(), profile.NormRef);
-
             // CR-04: внутренняя кайма рисуется только там, где она объявлена в каталоге.
             // Красное кольцо на синем 6.4, на табличке 8.2.1 и на 3.25 больше не появляется.
             var hasInnerBorder = definition.Colors.ContainsKey("innerBorder");
             double innerWidth = 0;
             bool innerIsPlaceholder = false;
-            Path? innerPath = null;
             if (hasInnerBorder)
             {
                 var configuredInnerWidth = _config.Borders.InnerBorderWidthMm;
@@ -121,18 +113,25 @@ namespace OddMaster.Core.Generation
                         Verification.Placeholder, "GOST-001"));
                 }
                 else verification.Add("innerBorder", _config.Borders.Verification);
-                var inner = builder.Build(borderWidth + innerWidth / 2);
-                innerPath = inner.IsSuccess ? inner.Path : null;
-                if (!inner.IsSuccess)
-                    findings.Add(Finding.Warning("G-002",
-                        "Не удалось построить контур внутренней каймы: " + inner.Problem,
-                        definition.Number.ToString(), _config.Borders.NormRef,
-                        Verification.Placeholder, "GOST-001"));
             }
 
-            var layers = BuildLayers(definition, outer.Path!, field.Path!, innerPath,
+            // CR-16: кайма — это ПОЛОСА между двумя контурами носителя, а не линия по центру.
+            // Раньше внутренняя кайма рисовалась обводкой толщиной innerWidth: в DXF у отрезка
+            // нет ширины, и красная полоса исчезала. Теперь это две заливки:
+            //   поле до каймы (цвет каймы) + поле после каймы (цвет поля).
+            var outer = builder.Build(0.0);
+            var fieldEdge = builder.Build(borderWidth);
+            var fieldInset = hasInnerBorder ? builder.Build(borderWidth + innerWidth) : fieldEdge;
+            if (!outer.IsSuccess || !fieldEdge.IsSuccess || !fieldInset.IsSuccess)
+                return Fail(findings, verification, "R007",
+                    $"Не удалось построить контур знака {definition.Number}: " +
+                    (outer.Problem ?? fieldEdge.Problem ?? fieldInset.Problem),
+                    definition.Number.ToString(), profile.NormRef);
+
+            var layers = BuildLayers(definition, outer.Path!, fieldEdge.Path!, fieldInset.Path!,
                 innerWidth, builder, findings, verification);
-            var texts = BuildTexts(definition, parameterValue, builder, borderWidth, findings, verification);
+            var texts = BuildTexts(definition, parameterValue, builder, borderWidth + innerWidth,
+                findings, verification);
 
             var bounds = builder.NominalBounds();
             var geometry = new SignGeometry(definition, sizeClass, profile.Id, match.Table.Id, bounds,
@@ -177,15 +176,17 @@ namespace OddMaster.Core.Generation
             return value.ToString("0.##", CultureInfo.InvariantCulture);
         }
 
-        private List<SignLayer> BuildLayers(SignDefinition definition, Path outer, Path field,
-            Path? inner, double innerWidth, CarrierBuilder builder, List<Finding> findings,
+        private List<SignLayer> BuildLayers(SignDefinition definition, Path outer, Path fieldEdge,
+            Path fieldInset, double innerWidth, CarrierBuilder builder, List<Finding> findings,
             VerificationSummary verification)
         {
             var layers = new List<SignLayer>();
             AddLayer(layers, findings, definition, "outerBorder", SignLayerKind.Outline, outer, true, 0);
-            AddLayer(layers, findings, definition, "field", SignLayerKind.OuterBorder, field, true, 0);
-            if (inner != null)
-                AddLayer(layers, findings, definition, "innerBorder", SignLayerKind.InnerBorder, inner, false, innerWidth);
+            // Полоса каймы: заливается контур поля до каймы, затем сверху — поле после каймы.
+            if (innerWidth > 0)
+                AddLayer(layers, findings, definition, "innerBorder", SignLayerKind.InnerBorder,
+                    fieldEdge, true, 0);
+            AddLayer(layers, findings, definition, "field", SignLayerKind.Field, fieldInset, true, 0);
 
             if (definition.Pictogram != null && definition.Pictogram.Placeholder)
             {
@@ -272,9 +273,10 @@ namespace OddMaster.Core.Generation
                 metrics, new Point2(0, 0));
             verification.Add("textMetrics", metrics.Verification);
             findings.Add(Finding.Warning("G-002",
-                "Высота надписи и метрики шрифта — заглушка (config/typography/fonts.json); сверить с прил. Б/В/Г.",
+                "Метрики шрифта измерены по файлу (config/typography/fonts.json, measuredFrom), " +
+                "но требуемая гарнитура и высота надписей по ГОСТ не сверены: снять с масштабной сетки прил. Б.",
                 definition.Number.ToString(), definition.NormRef,
-                Verification.Placeholder, "GOST-002"));
+                metrics.Verification, "GOST-002"));
             result.Add(new SignText(value, new Point2(0, 0), layout.HeightMm,
                 color, layout.FontFamily, metrics.Verification, layout));
             return result;

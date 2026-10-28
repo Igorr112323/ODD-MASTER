@@ -6,5 +6,6 @@
   <ItemGroup>
     <ProjectReference Include="../OddMaster.Core/OddMaster.Core.csproj" />
     <ProjectReference Include="../OddMaster.Render.Svg/OddMaster.Render.Svg.csproj" />
+    <ProjectReference Include="../OddMaster.Render.Dxf/OddMaster.Render.Dxf.csproj" />
   </ItemGroup>
 </Project>

@@ -25,12 +25,14 @@ namespace OddMaster.Core.Config
         public const string MigrationMap = "config/actualizer/map-2004-2024.json";
         /// <summary>Метрики шрифта (Placeholder, GOST-002).</summary>
         public const string FontMetrics = "config/typography/fonts.json";
+        /// <summary>Форма таблицы ведомости на чертеже (черновик, GOST-011).</summary>
+        public const string StatementTable = "config/tables/statement-table.json";
 
         /// <summary>Все пути в устойчивом порядке (для валидатора).</summary>
         public static readonly string[] All =
         {
             MainProfile, SecondProfile, Borders, Parameters, Variants, Sources,
-            Catalog, Controls, Drawing, MigrationMap, FontMetrics
+            Catalog, Controls, Drawing, MigrationMap, FontMetrics, StatementTable
         };
     }
 }

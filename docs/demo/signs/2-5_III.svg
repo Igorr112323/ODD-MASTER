@@ -6,7 +6,7 @@
       profile="GOST_R_52290_2024"
       sizeTable="Д.3"
       outerBorderMm="20"
-      verification="borders=CuratorExtracted; catalog=CuratorExtracted; colors=Unverified; sizeProfile=CuratorExtracted; textMetrics=Placeholder"
+      verification="borders=CuratorExtracted; catalog=CuratorExtracted; colors=Unverified; sizeProfile=CuratorExtracted; textMetrics=Unverified"
       isDraft="true"
       colorimetry="DISPLAY_ONLY_NOT_GOST"/>
   </metadata>
@@ -14,13 +14,13 @@
     <g id="Layer-Outline">
       <path d="M450 -186.396 L450 186.396 L186.396 450 L-186.396 450 L-450 186.396 L-450 -186.396 L-186.396 -450 L186.396 -450 L450 -186.396 Z" fill="#FFFFFF" stroke="none"/>
     </g>
-    <g id="Layer-OuterBorder">
+    <g id="Layer-Field">
       <path d="M430 -178.112 L430 178.112 L178.112 430 L-178.112 430 L-430 178.112 L-430 -178.112 L-178.112 -430 L178.112 -430 L430 -178.112 Z" fill="#D7191C" stroke="none"/>
     </g>
   </g>
-  <g id="Layer-Text"><text x="-309.6" y="49.899" font-family="Arial Bold, Liberation Sans Bold, sans-serif" font-weight="bold" font-size="226.813" fill="#FFFFFF">STOP</text></g>
+  <g id="Layer-Text"><text x="-309.6" y="47.498" font-family="DejaVu Sans Bold, Liberation Sans Bold, Arial Bold, sans-serif" font-weight="bold" font-size="207.416" fill="#FFFFFF">STOP</text></g>
   <g id="DraftWatermark">
-    <text x="-133.564" y="333.412" font-family="Arial Bold, Liberation Sans Bold, sans-serif" font-size="47.872" fill="#D7191C" fill-opacity="0.85">ЧЕРНОВИК:</text>
-    <text x="-405" y="393.252" font-family="Arial Bold, Liberation Sans Bold, sans-serif" font-size="47.872" fill="#D7191C" fill-opacity="0.85">есть непроверенные параметры</text>
+    <text x="-145.215" y="335.704" font-family="DejaVu Sans Bold, Liberation Sans Bold, Arial Bold, sans-serif" font-size="43.171" fill="#D7191C" fill-opacity="0.85">ЧЕРНОВИК:</text>
+    <text x="-405" y="389.668" font-family="DejaVu Sans Bold, Liberation Sans Bold, Arial Bold, sans-serif" font-size="43.171" fill="#D7191C" fill-opacity="0.85">есть непроверенные параметры</text>
   </g>
 </svg>

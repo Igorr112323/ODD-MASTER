@@ -14,18 +14,18 @@
     <g id="Layer-Outline">
       <path d="M38.971 235.609 A45 45 0 0 1 -38.971 235.609 L-311.029 -235.609 A45 45 0 0 1 -272.058 -303.109 L272.058 -303.109 A45 45 0 0 1 311.029 -235.609 L38.971 235.609 Z" fill="#9AA0A6" stroke="none"/>
     </g>
-    <g id="Layer-OuterBorder">
-      <path d="M30.311 235.609 A35 35 0 0 1 -30.311 235.609 L-302.369 -235.609 A35 35 0 0 1 -272.058 -288.109 L272.058 -288.109 A35 35 0 0 1 302.369 -235.609 L30.311 235.609 Z" fill="#FFFFFF" stroke="none"/>
-    </g>
     <g id="Layer-InnerBorder">
-      <path d="M27.713 235.609 A32 32 0 0 1 -27.713 235.609 L-299.771 -235.609 A32 32 0 0 1 -272.058 -283.609 L272.058 -283.609 A32 32 0 0 1 299.771 -235.609 L27.713 235.609 Z" fill="none" stroke="#D7191C" stroke-width="6"/>
+      <path d="M30.311 235.609 A35 35 0 0 1 -30.311 235.609 L-302.369 -235.609 A35 35 0 0 1 -272.058 -288.109 L272.058 -288.109 A35 35 0 0 1 302.369 -235.609 L30.311 235.609 Z" fill="#D7191C" stroke="none"/>
+    </g>
+    <g id="Layer-Field">
+      <path d="M25.115 235.609 A29 29 0 0 1 -25.115 235.609 L-297.172 -235.609 A29 29 0 0 1 -272.058 -279.109 L272.058 -279.109 A29 29 0 0 1 297.172 -235.609 L25.115 235.609 Z" fill="#FFFFFF" stroke="none"/>
     </g>
     <g id="Layer-Pictogram">
       <path d="M-65.472 0 L14.549 0 L14.549 32.008 L65.472 0 L14.549 -32.008 L14.549 0 L-65.472 0 Z" fill="none" stroke="#1A1A1A" stroke-width="7.275"/>
     </g>
   </g>
   <g id="DraftWatermark">
-    <text x="-103.883" y="222.558" font-family="Arial Bold, Liberation Sans Bold, sans-serif" font-size="37.234" fill="#D7191C" fill-opacity="0.85">ЧЕРНОВИК:</text>
-    <text x="-315" y="269.1" font-family="Arial Bold, Liberation Sans Bold, sans-serif" font-size="37.234" fill="#D7191C" fill-opacity="0.85">есть непроверенные параметры</text>
+    <text x="-112.945" y="224.341" font-family="DejaVu Sans Bold, Liberation Sans Bold, Arial Bold, sans-serif" font-size="33.577" fill="#D7191C" fill-opacity="0.85">ЧЕРНОВИК:</text>
+    <text x="-315" y="266.312" font-family="DejaVu Sans Bold, Liberation Sans Bold, Arial Bold, sans-serif" font-size="33.577" fill="#D7191C" fill-opacity="0.85">есть непроверенные параметры</text>
   </g>
 </svg>

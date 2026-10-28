@@ -35,5 +35,6 @@
     "GOST-002",
     "GOST-019"
   ],
+  "dxfFlattenSagittaMm": 0.2,
   "svgPaddingRatio": 0.12
 }

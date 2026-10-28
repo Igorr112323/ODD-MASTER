@@ -85,7 +85,7 @@ namespace OddMaster.Core.Config
             double leaderLineMm, string draftBanner, string note, List<string> markers,
             double placeholderInnerBorderWidthMm, double placeholderTextHeightRatio,
             double placeholderPictogramRadiusRatio, Dictionary<string, string> parameterTextTemplates,
-            double svgPaddingRatio)
+            double svgPaddingRatio, double dxfFlattenSagittaMm)
         {
             NormRef = normRef; Verification = verification; MiniSignOnPaperMm = miniSignOnPaperMm;
             SheetScaleDenominator = sheetScaleDenominator; StationTickEveryM = stationTickEveryM;
@@ -95,6 +95,7 @@ namespace OddMaster.Core.Config
             PlaceholderTextHeightRatio = placeholderTextHeightRatio;
             PlaceholderPictogramRadiusRatio = placeholderPictogramRadiusRatio;
             ParameterTextTemplates = parameterTextTemplates; SvgPaddingRatio = svgPaddingRatio;
+            DxfFlattenSagittaMm = dxfFlattenSagittaMm;
         }
 
         /// <summary>Ссылка на норму (внутреннее соглашение).</summary>
@@ -127,5 +128,7 @@ namespace OddMaster.Core.Config
         public IReadOnlyDictionary<string, string> ParameterTextTemplates { get; }
         /// <summary>Отступ viewBox SVG как доля габарита (только отображение).</summary>
         public double SvgPaddingRatio { get; }
+        /// <summary>Допуск стрелки прогиба при замене дуг хордами в DXF, мм (только отображение).</summary>
+        public double DxfFlattenSagittaMm { get; }
     }
 }

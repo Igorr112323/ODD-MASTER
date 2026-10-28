@@ -104,12 +104,8 @@ namespace OddMaster.Render.Svg
         public IReadOnlyList<TextLayout> Watermark(SignGeometry geometry)
         {
             if (geometry == null) throw new ArgumentNullException(nameof(geometry));
-            var bounds = geometry.Bounds;
-            var lines = new[] { "ЧЕРНОВИК:", "есть непроверенные параметры" };
-            var boxWidth = bounds.Width * 0.90;
-            var boxHeight = bounds.Height * 0.18;
-            var center = new Point2(0, bounds.MinY + boxHeight * 0.60);
-            return TextEngine.LayoutBlock(lines, boxWidth, boxHeight, _font, center);
+            // CR-08: раскладка живёт в ядре (DraftWatermark), рендер только рисует.
+            return DraftWatermark.Layout(geometry, _font);
         }
 
         /// <summary>Экранирование XML-текста.</summary>

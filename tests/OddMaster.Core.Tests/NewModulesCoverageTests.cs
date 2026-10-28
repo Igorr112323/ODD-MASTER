@@ -221,7 +221,9 @@ namespace OddMaster.Core.Tests
         {
             var cfg = ConfigLoader.Load(Repo.Root());
             var m = cfg.Typography;
-            TestAssert.True(m.TotalAdvance("Ж") >= m.DefaultAdvanceRatio);
+            // Символ, которого нет ни в таблице метрик, ни в шрифте: ширина — запас по умолчанию.
+            TestAssert.True(!m.AdvanceRatios.ContainsKey("\u2603"));
+            TestAssert.Close(m.DefaultAdvanceRatio, m.TotalAdvance("\u2603"), 1e-9);
             TestAssert.True(m.TotalAdvance("") > 0);
             var layout = TextEngine.Layout("40", 300, 300, m, new Point2(0, 0));
             TestAssert.True(layout.WidthMm <= 300.01);

@@ -132,7 +132,7 @@ namespace OddMaster.Render.Svg.Tests
             var (geometry, renderer) = Make("2.5", "II");
             var svg = renderer.Render(geometry);
             TestAssert.Contains("id=\"Layer-Outline\"", svg);
-            TestAssert.Contains("id=\"Layer-OuterBorder\"", svg);
+            TestAssert.Contains("id=\"Layer-Field\"", svg);
             TestAssert.Contains("id=\"DraftWatermark\"", svg);
             TestAssert.Contains("#D7191C", svg);
             TestAssert.Equal("#D7191C", SvgPalette.Resolve("Red"));

@@ -29,7 +29,8 @@ namespace OddMaster.Core.Config
                 LoadControls(root),
                 LoadDrawing(root),
                 LoadMigrationMap(root, ConfigPaths.MigrationMap),
-                LoadFontMetrics(root));
+                LoadFontMetrics(root),
+                LoadStatementTable(root));
         }
 
         /// <summary>Загружает профиль типоразмеров.</summary>

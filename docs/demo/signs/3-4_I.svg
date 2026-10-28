@@ -6,7 +6,7 @@
       profile="GOST_R_52290_2024"
       sizeTable="Д.4"
       outerBorderMm="10"
-      verification="borders=CuratorExtracted; catalog=CuratorExtracted; colors=Unverified; parameters=CuratorExtracted; sizeProfile=CuratorExtracted; textMetrics=Placeholder"
+      verification="borders=CuratorExtracted; catalog=CuratorExtracted; colors=Unverified; parameters=CuratorExtracted; sizeProfile=CuratorExtracted; textMetrics=Unverified"
       isDraft="true"
       colorimetry="DISPLAY_ONLY_NOT_GOST"/>
   </metadata>
@@ -14,13 +14,13 @@
     <g id="Layer-Outline">
       <path d="M300 0 A300 300 0 0 1 0 300 A300 300 0 0 1 -300 0 A300 300 0 0 1 0 -300 A300 300 0 0 1 300 0 Z" fill="#D7191C" stroke="none"/>
     </g>
-    <g id="Layer-OuterBorder">
+    <g id="Layer-Field">
       <path d="M290 0 A290 290 0 0 1 0 290 A290 290 0 0 1 -290 0 A290 290 0 0 1 0 -290 A290 290 0 0 1 290 0 Z" fill="#FFFFFF" stroke="none"/>
     </g>
   </g>
-  <g id="Layer-Text"><text x="-135.052" y="38.586" font-family="Arial Bold, Liberation Sans Bold, sans-serif" font-weight="bold" font-size="175.392" fill="#1A1A1A">8 т</text></g>
+  <g id="Layer-Text"><text x="-142.374" y="40.165" font-family="DejaVu Sans Bold, Liberation Sans Bold, Arial Bold, sans-serif" font-weight="bold" font-size="175.392" fill="#1A1A1A">8 т</text></g>
   <g id="DraftWatermark">
-    <text x="-89.043" y="222.274" font-family="Arial Bold, Liberation Sans Bold, sans-serif" font-size="31.915" fill="#D7191C" fill-opacity="0.85">ЧЕРНОВИК:</text>
-    <text x="-270" y="262.168" font-family="Arial Bold, Liberation Sans Bold, sans-serif" font-size="31.915" fill="#D7191C" fill-opacity="0.85">есть непроверенные параметры</text>
+    <text x="-96.81" y="223.803" font-family="DejaVu Sans Bold, Liberation Sans Bold, Arial Bold, sans-serif" font-size="28.78" fill="#D7191C" fill-opacity="0.85">ЧЕРНОВИК:</text>
+    <text x="-270" y="259.778" font-family="DejaVu Sans Bold, Liberation Sans Bold, Arial Bold, sans-serif" font-size="28.78" fill="#D7191C" fill-opacity="0.85">есть непроверенные параметры</text>
   </g>
 </svg>
