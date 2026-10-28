@@ -101,7 +101,7 @@ namespace OddMaster.TestKit
         public static void Equal<T>(T expected, T actual, string message = "")
         {
             if (!EqualityComparer<T>.Default.Equals(expected, actual))
-                Assert.True(false, $"Проверка не прошла: ожидалось «{expected}», получено «{actual}». {message}");
+                Assert.Fail($"Проверка не прошла: ожидалось «{expected}», получено «{actual}». {message}");
         }
 
         /// <summary>Проверяет равенство double с допуском.</summary>
@@ -114,20 +114,20 @@ namespace OddMaster.TestKit
         public static void Contains(string expectedPart, string actual, string message = "")
         {
             if (actual == null || !actual.Contains(expectedPart, StringComparison.Ordinal))
-                Assert.True(false, $"Проверка не прошла: строка не содержит «{expectedPart}». {message}");
+                Assert.Fail($"Проверка не прошла: строка не содержит «{expectedPart}». {message}");
         }
 
         /// <summary>Проверяет, что строка НЕ содержит подстроку.</summary>
         public static void NotContains(string forbiddenPart, string actual, string message = "")
         {
             if (actual != null && actual.Contains(forbiddenPart, StringComparison.Ordinal))
-                Assert.True(false, $"Проверка не прошла: строка содержит «{forbiddenPart}». {message}");
+                Assert.Fail($"Проверка не прошла: строка содержит «{forbiddenPart}». {message}");
         }
 
         /// <summary>Проверяет, что значение не null.</summary>
         public static void NotNull(object? value, string message = "ожидалось не null")
         {
-            if (value == null) Assert.True(false, "Проверка не прошла: " + message);
+            if (value == null) Assert.Fail("Проверка не прошла: " + message);
         }
 
         /// <summary>Проверяет, что действие бросает исключение заданного типа.</summary>
