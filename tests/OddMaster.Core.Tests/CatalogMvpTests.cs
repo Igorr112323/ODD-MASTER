@@ -132,7 +132,9 @@ namespace OddMaster.Core.Tests
             var cfg = Cfg();
             foreach (var sign in cfg.Catalog.Signs.Where(s => s.ParameterKind != null))
             {
-                var check = cfg.Parameters.Validate(sign.Number, 40m);
+                var parameters = DemoParams(sign)!;
+                var check = cfg.Parameters.Validate(sign.Number, parameters[sign.ParameterKind!]);
+                // 6.2.1 — гипотеза куратора (GOST-009): правила ещё нет, это не ошибка генерации.
                 TestAssert.True(check.IsValid || !check.HasRule,
                     sign.Number + ": " + check.Reason);
             }
