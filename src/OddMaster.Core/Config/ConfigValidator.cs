@@ -111,8 +111,8 @@ namespace OddMaster.Core.Config
                 return;
             }
             var files = Directory.GetFiles(dir, "*.schema.json").OrderBy(x => x, StringComparer.Ordinal);
-            if (files.Count() < 9)
-                result.Errors.Add($"config/schema: найдено {files.Count()} схем, ожидается 9. Как исправить: добавьте недостающие.");
+            if (files.Count() < 10)
+                result.Errors.Add($"config/schema: найдено {files.Count()} схем, ожидается 10. Как исправить: добавьте недостающие.");
             foreach (var full in files)
             {
                 var name = Path.GetFileName(full);
@@ -139,7 +139,8 @@ namespace OddMaster.Core.Config
             (ConfigPaths.Catalog, "sign-catalog.schema.json"),
             (ConfigPaths.Controls, "controls.schema.json"),
             (ConfigPaths.Drawing, "drawing.schema.json"),
-            (ConfigPaths.MigrationMap, "migration-map.schema.json")
+            (ConfigPaths.MigrationMap, "migration-map.schema.json"),
+            (ConfigPaths.FontMetrics, "font-metrics.schema.json")
         };
 
         /// <summary>

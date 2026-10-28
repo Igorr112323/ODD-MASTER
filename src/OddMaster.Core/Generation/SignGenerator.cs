@@ -6,6 +6,7 @@ using OddMaster.Core.Catalog;
 using OddMaster.Core.Config;
 using OddMaster.Core.Geometry;
 using OddMaster.Core.Norms;
+using OddMaster.Core.Typography;
 
 namespace OddMaster.Core.Generation
 {
@@ -100,23 +101,38 @@ namespace OddMaster.Core.Generation
                     $"Не удалось построить контур знака {definition.Number}: {outer.Problem ?? field.Problem}",
                     definition.Number.ToString(), profile.NormRef);
 
-            var configuredInnerWidth = _config.Borders.InnerBorderWidthMm;
-            var innerIsPlaceholder = !configuredInnerWidth.HasValue;
-            var innerWidth = configuredInnerWidth ?? _config.Drawing.PlaceholderInnerBorderWidthMm;
-            if (innerIsPlaceholder)
+            // CR-04: внутренняя кайма рисуется только там, где она объявлена в каталоге.
+            // Красное кольцо на синем 6.4, на табличке 8.2.1 и на 3.25 больше не появляется.
+            var hasInnerBorder = definition.Colors.ContainsKey("innerBorder");
+            double innerWidth = 0;
+            bool innerIsPlaceholder = false;
+            Path? innerPath = null;
+            if (hasInnerBorder)
             {
-                verification.Add("innerBorder", Verification.Placeholder);
-                findings.Add(Finding.Warning("G-001",
-                    "Ширина внутренней каймы неизвестна: использована заглушка из config/conventions/drawing.json.",
-                    definition.Number.ToString(), _config.Borders.NormRef,
-                    Verification.Placeholder, "GOST-001"));
+                var configuredInnerWidth = _config.Borders.InnerBorderWidthMm;
+                innerIsPlaceholder = !configuredInnerWidth.HasValue;
+                innerWidth = configuredInnerWidth ?? _config.Drawing.PlaceholderInnerBorderWidthMm;
+                if (innerIsPlaceholder)
+                {
+                    verification.Add("innerBorder", Verification.Placeholder);
+                    findings.Add(Finding.Warning("G-001",
+                        "Ширина внутренней каймы неизвестна: использована заглушка из config/conventions/drawing.json.",
+                        definition.Number.ToString(), _config.Borders.NormRef,
+                        Verification.Placeholder, "GOST-001"));
+                }
+                else verification.Add("innerBorder", _config.Borders.Verification);
+                var inner = builder.Build(borderWidth + innerWidth / 2);
+                innerPath = inner.IsSuccess ? inner.Path : null;
+                if (!inner.IsSuccess)
+                    findings.Add(Finding.Warning("G-002",
+                        "Не удалось построить контур внутренней каймы: " + inner.Problem,
+                        definition.Number.ToString(), _config.Borders.NormRef,
+                        Verification.Placeholder, "GOST-001"));
             }
-            else verification.Add("innerBorder", _config.Borders.Verification);
 
-            var inner = builder.Build(borderWidth + innerWidth / 2);
-            var layers = BuildLayers(definition, outer.Path!, field.Path!, inner.IsSuccess ? inner.Path : null,
+            var layers = BuildLayers(definition, outer.Path!, field.Path!, innerPath,
                 innerWidth, builder, findings, verification);
-            var texts = BuildTexts(definition, parameterValue, builder, findings, verification);
+            var texts = BuildTexts(definition, parameterValue, builder, borderWidth, findings, verification);
 
             var bounds = builder.NominalBounds();
             var geometry = new SignGeometry(definition, sizeClass, profile.Id, match.Table.Id, bounds,
@@ -165,42 +181,69 @@ namespace OddMaster.Core.Generation
             Path? inner, double innerWidth, CarrierBuilder builder, List<Finding> findings,
             VerificationSummary verification)
         {
-            var colors = definition.Colors;
-            var layers = new List<SignLayer>
-            {
-                new SignLayer(SignLayerKind.Outline, Color(colors, "outerBorder", "Black"), outer, true, 0),
-                new SignLayer(SignLayerKind.OuterBorder, Color(colors, "field", "White"), field, true, 0)
-            };
+            var layers = new List<SignLayer>();
+            AddLayer(layers, findings, definition, "outerBorder", SignLayerKind.Outline, outer, true, 0);
+            AddLayer(layers, findings, definition, "field", SignLayerKind.OuterBorder, field, true, 0);
             if (inner != null)
-                layers.Add(new SignLayer(SignLayerKind.InnerBorder, "Red", inner, false, innerWidth));
-            else
-                findings.Add(Finding.Warning("G-002",
-                    "Не удалось построить контур внутренней каймы (габарит меньше каймы).",
-                    definition.Number.ToString(), _config.Borders.NormRef,
-                    Verification.Placeholder, "GOST-001"));
+                AddLayer(layers, findings, definition, "innerBorder", SignLayerKind.InnerBorder, inner, false, innerWidth);
 
             if (definition.Pictogram != null && definition.Pictogram.Placeholder)
             {
-                var minSide = Math.Min(builder.NominalBounds().Width, builder.NominalBounds().Height);
-                var radius = minSide * _config.Drawing.PlaceholderPictogramRadiusRatio;
-                layers.Add(new SignLayer(SignLayerKind.Pictogram,
-                    Color(colors, "pictogram", "Black"), GeometryPrimitives.Circle(radius * 2), false, 1.0));
+                var bounds = builder.NominalBounds();
+                var minSide = Math.Min(bounds.Width, bounds.Height);
+                var symbolColor = Color(definition.Colors, "symbol");
+                if (symbolColor != null)
+                {
+                    var stroke = minSide * 0.012;
+                    if (string.Equals(definition.Pictogram.PlaceholderShape, "diagonalBand", StringComparison.Ordinal))
+                    {
+                        // CR-05: 3.25 — контурные цифры и диагональная полоса из тонких линий.
+                        // Пока это схематичная заглушка: оцифровка прил. Б — за студентом.
+                        for (int i = -1; i <= 1; i++)
+                        {
+                            var offset = i * minSide * 0.055;
+                            var path = new Path(new Point2(-bounds.Width * 0.30, -bounds.Height * 0.30 + offset))
+                                .LineTo(new Point2(bounds.Width * 0.30, bounds.Height * 0.30 + offset));
+                            layers.Add(new SignLayer(SignLayerKind.Pictogram, symbolColor, path, false, stroke));
+                        }
+                    }
+                    else
+                    {
+                        var radius = minSide * _config.Drawing.PlaceholderPictogramRadiusRatio;
+                        layers.Add(new SignLayer(SignLayerKind.Pictogram, symbolColor,
+                            GeometryPrimitives.Circle(radius * 2), false, stroke));
+                    }
+                }
                 verification.Add("pictogram", Verification.Placeholder);
                 findings.Add(Finding.Warning("G-019",
-                    "Пиктограмма — заглушка (окружность), реальная геометрия по прил. Б не сверена.",
+                    "Пиктограмма — заглушка («" + (definition.Pictogram.PlaceholderShape ?? "circle")
+                    + "»); реальная геометрия по прил. Б не сверена.",
                     definition.Number.ToString(), definition.NormRef,
                     Verification.Placeholder, "GOST-019"));
             }
             return layers;
         }
 
+        private void AddLayer(List<SignLayer> layers, List<Finding> findings, SignDefinition definition,
+            string colorKey, SignLayerKind kind, Path path, bool filled, double strokeWidth)
+        {
+            var color = Color(definition.Colors, colorKey);
+            if (color == null)
+            {
+                findings.Add(Finding.Warning("G-004",
+                    "В каталоге знака " + definition.Number + " нет цвета «" + colorKey + "»: слой " + kind + " пропущен.",
+                    definition.Number.ToString(), definition.NormRef, Verification.Unverified, "GOST-012"));
+                return;
+            }
+            layers.Add(new SignLayer(kind, color, path, filled, strokeWidth));
+        }
+
         private List<SignText> BuildTexts(SignDefinition definition, string? parameterValue,
-            CarrierBuilder builder, List<Finding> findings, VerificationSummary verification)
+            CarrierBuilder builder, double borderWidth, List<Finding> findings, VerificationSummary verification)
         {
             var result = new List<SignText>();
             if (definition.Text == null) return result;
             var spec = definition.Text;
-            if (spec == null) return result;
             string value;
             if (spec.Kind == "Fixed") value = spec.Value;
             else
@@ -210,20 +253,35 @@ namespace OddMaster.Core.Generation
                     ? t : "{value}";
                 value = template.Replace("{value}", parameterValue);
             }
-            var minSide = Math.Min(builder.NominalBounds().Width, builder.NominalBounds().Height);
-            var height = minSide * _config.Drawing.PlaceholderTextHeightRatio;
-            verification.Add("textMetrics", Verification.Placeholder);
+            var color = Color(definition.Colors, "text");
+            if (color == null)
+            {
+                findings.Add(Finding.Warning("G-004",
+                    "В каталоге знака " + definition.Number + " нет цвета «text»: надпись пропущена.",
+                    definition.Number.ToString(), definition.NormRef, Verification.Unverified, "GOST-012"));
+                return result;
+            }
+
+            // CR-07: кегль и якорь считает TextEngine по метрикам шрифта из конфига,
+            // а не text-anchor/dominant-baseline (их в САПР нет).
+            var metrics = _config.Typography;
+            var fieldBox = builder.NominalBounds(borderWidth);
+            var padW = fieldBox.Width * metrics.PaddingRatio;
+            var padH = fieldBox.Height * metrics.PaddingRatio;
+            var layout = TextEngine.Layout(value, fieldBox.Width - 2 * padW, fieldBox.Height - 2 * padH,
+                metrics, new Point2(0, 0));
+            verification.Add("textMetrics", metrics.Verification);
             findings.Add(Finding.Warning("G-002",
-                "Высота надписи — заглушка из config/conventions/drawing.json; сверить с прил. В/Г.",
+                "Высота надписи и метрики шрифта — заглушка (config/typography/fonts.json); сверить с прил. Б/В/Г.",
                 definition.Number.ToString(), definition.NormRef,
                 Verification.Placeholder, "GOST-002"));
-            result.Add(new SignText(value, new Point2(0, 0), height,
-                Color(definition.Colors, "text", "Black"), "Arial Bold, Liberation Sans, sans-serif",
-                Verification.Placeholder));
+            result.Add(new SignText(value, new Point2(0, 0), layout.HeightMm,
+                color, layout.FontFamily, metrics.Verification, layout));
             return result;
         }
 
-        private static string Color(IReadOnlyDictionary<string, string> colors, string key, string fallback) =>
-            colors.TryGetValue(key, out var value) && value.Length > 0 ? value : fallback;
+        /// <summary>Цвет только из каталога. Никаких цветовых литералов в генераторе (CR-04).</summary>
+        private static string? Color(IReadOnlyDictionary<string, string> colors, string key) =>
+            colors.TryGetValue(key, out var value) && value.Length > 0 ? value : null;
     }
 }

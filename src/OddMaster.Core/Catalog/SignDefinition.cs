@@ -57,12 +57,14 @@ namespace OddMaster.Core.Catalog
     public sealed class SignPictogram
     {
         /// <summary>Создаёт описание пиктограммы.</summary>
-        public SignPictogram(string id, bool placeholder, string? marker, Verification verification)
+        public SignPictogram(string id, bool placeholder, string? marker, Verification verification,
+            string? placeholderShape = null)
         {
             Id = id;
             Placeholder = placeholder;
             Marker = marker;
             Verification = verification;
+            PlaceholderShape = placeholderShape;
         }
 
         /// <summary>Идентификатор пиктограммы.</summary>
@@ -76,6 +78,8 @@ namespace OddMaster.Core.Catalog
 
         /// <summary>Статус проверки.</summary>
         public Verification Verification { get; }
+        /// <summary>Форма заглушки из конфига: circle / diagonalBand (не нормативка).</summary>
+        public string? PlaceholderShape { get; }
     }
 
     /// <summary>Описание надписи на знаке.</summary>

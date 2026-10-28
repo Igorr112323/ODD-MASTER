@@ -1,0 +1,21 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://odd-master.local/schema/font-metrics.schema.json",
+  "title": "Метрики шрифта для вписывания надписей (Placeholder)",
+  "type": "object",
+  "required": ["fontId", "fontFamily", "capHeightRatio", "defaultAdvanceRatio", "maxHeightRatio", "paddingRatio", "lineGapRatio", "advanceRatios", "normRef", "verification", "markers"],
+  "properties": {
+    "fontId": { "type": "string" },
+    "fontFamily": { "type": "string" },
+    "capHeightRatio": { "type": "number", "exclusiveMinimum": 0, "maximum": 1 },
+    "defaultAdvanceRatio": { "type": "number", "exclusiveMinimum": 0 },
+    "maxHeightRatio": { "type": "number", "exclusiveMinimum": 0, "maximum": 1 },
+    "paddingRatio": { "type": "number", "minimum": 0, "maximum": 0.4 },
+    "lineGapRatio": { "type": "number", "minimum": 0 },
+    "advanceRatios": { "type": "object", "additionalProperties": { "type": "number", "exclusiveMinimum": 0 } },
+    "normRef": { "type": "object" },
+    "verification": { "type": "string", "enum": ["Placeholder", "Unverified", "CuratorExtracted", "StudentVerified"] },
+    "note": { "type": "string" },
+    "markers": { "type": "array", "items": { "type": "string", "pattern": "^GOST-[0-9]{3}$" } }
+  }
+}

@@ -16,11 +16,11 @@ namespace OddMaster.Core.Tests
     {
         private static NormativeConfigSet Load() => ConfigLoader.Load(Repo.Root());
 
-        [Fact(DisplayName = "M1-C01: все конфиги загружаются, 10 файлов, 6 POC-знаков")]
+        [Fact(DisplayName = "M1-C01: все конфиги загружаются, 11 файлов, 6 POC-знаков")]
         public void LoadAllConfigs()
         {
             var set = Load();
-            TestAssert.Equal(10, ConfigPaths.All.Length);
+            TestAssert.Equal(11, ConfigPaths.All.Length);
             TestAssert.Equal(6, set.Catalog.Signs.Count);
             TestAssert.Equal(8, set.MainProfile.Tables.Count);
             TestAssert.Equal(4, set.MainProfile.SizeClasses.Count);

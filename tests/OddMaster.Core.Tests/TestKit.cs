@@ -22,7 +22,8 @@ namespace OddMaster.TestKit
 
         /// <summary>Читает файл репозитория как текст UTF-8.</summary>
         public static string ReadText(string relativePath) =>
-            File.ReadAllText(Path.Combine(Root(), relativePath), Encoding.UTF8);
+            File.ReadAllText(Path.Combine(Root(), relativePath), Encoding.UTF8)
+                .Replace("\r\n", "\n");
 
         /// <summary>Читает файл репозитория как байты.</summary>
         public static byte[] ReadBytes(string relativePath) =>

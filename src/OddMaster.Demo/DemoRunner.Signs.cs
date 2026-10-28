@@ -24,7 +24,7 @@ namespace OddMaster.Demo
             _root = root;
             _config = config;
             _generator = new SignGenerator(config);
-            _signRenderer = new SvgSignRenderer(config.Drawing);
+            _signRenderer = new SvgSignRenderer(config.Drawing, config.Typography);
         }
 
         /// <summary>Генерирует галерею POC-знаков во всех предусмотренных типоразмерах.</summary>

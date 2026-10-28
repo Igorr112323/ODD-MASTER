@@ -28,7 +28,8 @@ namespace OddMaster.Core.Config
                 LoadCatalog(root),
                 LoadControls(root),
                 LoadDrawing(root),
-                LoadMigrationMap(root, ConfigPaths.MigrationMap));
+                LoadMigrationMap(root, ConfigPaths.MigrationMap),
+                LoadFontMetrics(root));
         }
 
         /// <summary>Загружает профиль типоразмеров.</summary>
@@ -262,7 +263,8 @@ namespace OddMaster.Core.Config
                     if (marker != null) markers.Add(marker);
                     pictogram = new SignPictogram(J.Str(pic.Value, "id", file, pp),
                         J.OptBool(pic.Value, "placeholder", false, file, pp),
-                        marker, ReadVerificationAt(pic.Value, file, pp));
+                        marker, ReadVerificationAt(pic.Value, file, pp),
+                        J.OptStr(pic.Value, "placeholderShape", file, pp));
                 }
                 var txt = J.Optional(s, "text");
                 SignTextSpec? text = null;

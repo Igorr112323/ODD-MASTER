@@ -6,7 +6,7 @@
       profile="GOST_R_52290_2024"
       sizeTable="Д.5"
       outerBorderMm="20"
-      verification="borders=CuratorExtracted; catalog=CuratorExtracted; colors=Unverified; innerBorder=Placeholder; sizeProfile=CuratorExtracted; textMetrics=Placeholder"
+      verification="borders=CuratorExtracted; catalog=CuratorExtracted; colors=Unverified; sizeProfile=CuratorExtracted; textMetrics=Placeholder"
       isDraft="true"
       colorimetry="DISPLAY_ONLY_NOT_GOST"/>
   </metadata>
@@ -17,10 +17,10 @@
     <g id="Layer-OuterBorder">
       <path d="M-330 -305 A25 25 0 0 1 -305 -330 L305 -330 A25 25 0 0 1 330 -305 L330 305 A25 25 0 0 1 305 330 L-305 330 A25 25 0 0 1 -330 305 L-330 -305 Z" fill="#0057B8" stroke="none"/>
     </g>
-    <g id="Layer-InnerBorder">
-      <path d="M-327 -305 A22 22 0 0 1 -305 -327 L305 -327 A22 22 0 0 1 327 -305 L327 305 A22 22 0 0 1 305 327 L-305 327 A22 22 0 0 1 -327 305 L-327 -305 Z" fill="none" stroke="#D7191C" stroke-width="6"/>
-    </g>
   </g>
-  <g id="Layer-Text"><text x="0" y="0" font-family="Arial Bold, Liberation Sans, sans-serif" font-weight="bold" font-size="245" text-anchor="middle" dominant-baseline="central" fill="#FFFFFF">P</text></g>
-  <g id="DraftWatermark"><text x="0" y="-379.4" text-anchor="middle" font-family="Arial, Liberation Sans, sans-serif" font-size="52.5" fill="#D7191C" fill-opacity="0.85">ЧЕРНОВИК: есть непроверенные параметры</text></g>
+  <g id="Layer-Text"><text x="-66.861" y="43.908" font-family="Arial Bold, Liberation Sans Bold, sans-serif" font-weight="bold" font-size="199.584" fill="#FFFFFF">P</text></g>
+  <g id="DraftWatermark">
+    <text x="-103.883" y="259.32" font-family="Arial Bold, Liberation Sans Bold, sans-serif" font-size="37.234" fill="#D7191C" fill-opacity="0.85">ЧЕРНОВИК:</text>
+    <text x="-315" y="305.863" font-family="Arial Bold, Liberation Sans Bold, sans-serif" font-size="37.234" fill="#D7191C" fill-opacity="0.85">есть непроверенные параметры</text>
+  </g>
 </svg>

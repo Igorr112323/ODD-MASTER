@@ -31,10 +31,12 @@ namespace OddMaster.Core.Generation
     public sealed class SignText
     {
         /// <summary>Создаёт надпись.</summary>
-        public SignText(string value, Point2 anchor, double heightMm, string colorName, string fontFamily, Verification verification)
+        public SignText(string value, Point2 anchor, double heightMm, string colorName, string fontFamily,
+            Verification verification, OddMaster.Core.Typography.TextLayout? layout = null)
         {
             Value = value; Anchor = anchor; HeightMm = heightMm;
             ColorName = colorName; FontFamily = fontFamily; Verification = verification;
+            Layout = layout;
         }
 
         /// <summary>Текст (STOP, P, 40, «50 м»).</summary>
@@ -49,6 +51,8 @@ namespace OddMaster.Core.Generation
         public string FontFamily { get; }
         /// <summary>Статус проверки высоты/начертания.</summary>
         public Verification Verification { get; }
+        /// <summary>Раскладка: базовая линия, кегль и ширина (CR-07). Null только у чужих SignText.</summary>
+        public OddMaster.Core.Typography.TextLayout? Layout { get; }
     }
 
     /// <summary>Результат параметрической генерации знака. Геометрия не зависит от nanoCAD.</summary>

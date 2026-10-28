@@ -13,13 +13,14 @@ namespace OddMaster.Core.Config
             SizeProfile mainProfile, SizeProfile secondProfile, BordersNorms borders,
             ParameterNorms parameters, VariantNorms variants, SourceRegistry sources,
             SignCatalog catalog, ControlSettings controls, DrawingConventions drawing,
-            MigrationMap migrationMap)
+            MigrationMap migrationMap, OddMaster.Core.Typography.FontMetrics typography)
         {
             MainProfile = mainProfile ?? throw new ArgumentNullException(nameof(mainProfile));
             SecondProfile = secondProfile;
             Borders = borders; Parameters = parameters; Variants = variants;
             Sources = sources; Catalog = catalog; Controls = controls;
             Drawing = drawing; MigrationMap = migrationMap;
+            Typography = typography ?? throw new ArgumentNullException(nameof(typography));
         }
 
         /// <summary>Профиль по умолчанию — ГОСТ Р 52290-2024.</summary>
@@ -42,6 +43,8 @@ namespace OddMaster.Core.Config
         public DrawingConventions Drawing { get; }
         /// <summary>Боевая карта замен.</summary>
         public MigrationMap MigrationMap { get; }
+        /// <summary>Метрики шрифта для вписывания надписей.</summary>
+        public OddMaster.Core.Typography.FontMetrics Typography { get; }
 
         /// <summary>Возвращает профиль по идентификатору.</summary>
         public SizeProfile? ProfileById(string id) =>

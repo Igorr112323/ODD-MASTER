@@ -32,8 +32,11 @@ namespace OddMaster.Core.Ports
                 }
             }
             foreach (var text in geometry.Texts)
-                port.DrawText(text.Value, Transform(text.Anchor, origin, scale),
+            {
+                var anchor = text.Layout != null ? text.Layout.BaselineStart : text.Anchor;
+                port.DrawText(text.Value, Transform(anchor, origin, scale),
                     text.HeightMm * scale, "Text");
+            }
         }
 
         private static Point2 Transform(Point2 point, Point2 origin, double scale) =>

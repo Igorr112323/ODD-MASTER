@@ -127,6 +127,8 @@ namespace OddMaster.Core.Geometry
         /// <summary>Добавляет отрезок до точки.</summary>
         public Path LineTo(Point2 point)
         {
+            // CR-09: нулевые отрезки создают вырожденные сегменты в САПР.
+            if (Current.DistanceTo(point) < 1e-9) return this;
             _segments.Add(new LineSegment(Current, point));
             return this;
         }
@@ -134,6 +136,7 @@ namespace OddMaster.Core.Geometry
         /// <summary>Добавляет дугу с заданным центром и радиусом.</summary>
         public Path ArcTo(Point2 center, double radius, double startAngleDeg, double sweepDeg)
         {
+            if (Math.Abs(sweepDeg) < 1e-9) return this;
             var arc = new ArcSegment(center, radius, startAngleDeg, sweepDeg);
             var gap = Current.DistanceTo(arc.Start);
             if (gap > 1e-6)

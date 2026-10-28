@@ -135,5 +135,14 @@ jobs:
         shell: pwsh
         run: dotnet build OddMaster.sln -warnaserror
       - name: Test
-        shell: pwsh
-        run: dotnet test OddMaster.sln --no-build
+        shell: bash
+        run: |
+          set -o pipefail
+          dotnet test OddMaster.sln --no-build --logger "console;verbosity=normal" 2>&1 | tee test.log
+      - name: Диагностика Windows в PR
+        if: failure()
+        shell: bash
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: bash scripts/ci-report.sh "$PR_NUMBER" "failure-windows"

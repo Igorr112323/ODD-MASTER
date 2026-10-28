@@ -6,7 +6,7 @@
       profile="GOST_R_52290_2024"
       sizeTable="Д.8"
       outerBorderMm="10"
-      verification="borders=CuratorExtracted; catalog=Unverified; colors=Unverified; innerBorder=Placeholder; parameters=CuratorExtracted; sizeProfile=CuratorExtracted; textMetrics=Placeholder"
+      verification="borders=CuratorExtracted; catalog=Unverified; colors=Unverified; parameters=CuratorExtracted; sizeProfile=CuratorExtracted; textMetrics=Placeholder"
       isDraft="true"
       colorimetry="DISPLAY_ONLY_NOT_GOST"/>
   </metadata>
@@ -17,10 +17,10 @@
     <g id="Layer-OuterBorder">
       <path d="M-340 -130 A35 35 0 0 1 -305 -165 L305 -165 A35 35 0 0 1 340 -130 L340 130 A35 35 0 0 1 305 165 L-305 165 A35 35 0 0 1 -340 130 L-340 -130 Z" fill="#FFFFFF" stroke="none"/>
     </g>
-    <g id="Layer-InnerBorder">
-      <path d="M-337 -130 A32 32 0 0 1 -305 -162 L305 -162 A32 32 0 0 1 337 -130 L337 130 A32 32 0 0 1 305 162 L-305 162 A32 32 0 0 1 -337 130 L-337 -130 Z" fill="none" stroke="#D7191C" stroke-width="6"/>
-    </g>
   </g>
-  <g id="Layer-Text"><text x="0" y="0" font-family="Arial Bold, Liberation Sans, sans-serif" font-weight="bold" font-size="122.5" text-anchor="middle" dominant-baseline="central" fill="#1A1A1A">50 м</text></g>
-  <g id="DraftWatermark"><text x="0" y="-204.4" text-anchor="middle" font-family="Arial, Liberation Sans, sans-serif" font-size="52.5" fill="#D7191C" fill-opacity="0.85">ЧЕРНОВИК: есть непроверенные параметры</text></g>
+  <g id="Layer-Text"><text x="-117.755" y="21.954" font-family="Arial Bold, Liberation Sans Bold, sans-serif" font-weight="bold" font-size="99.792" fill="#1A1A1A">50 м</text></g>
+  <g id="DraftWatermark">
+    <text x="-73.823" y="126.484" font-family="Arial Bold, Liberation Sans Bold, sans-serif" font-size="26.46" fill="#D7191C" fill-opacity="0.85">ЧЕРНОВИК:</text>
+    <text x="-223.852" y="159.559" font-family="Arial Bold, Liberation Sans Bold, sans-serif" font-size="26.46" fill="#D7191C" fill-opacity="0.85">есть непроверенные параметры</text>
+  </g>
 </svg>

@@ -29,7 +29,7 @@ namespace OddMaster.Core.Tests
         {
             var root = Repo.Root();
             var files = Directory.GetFiles(root, "*", SearchOption.AllDirectories)
-                .Where(f => !f.Contains("/.git/") && !f.Contains("/obj/") && !f.Contains("/bin/"));
+                .Where(f => !IsIgnored(f) && !IsIgnored(f) && !IsIgnored(f));
             foreach (var file in files)
             {
                 var ext = IoPath.GetExtension(file).ToLowerInvariant();
@@ -76,6 +76,15 @@ namespace OddMaster.Core.Tests
                 Arcs.Add(center + " r=" + radius);
             public void DrawFilledPath(OddMaster.Core.Geometry.Path path, string layer) => Fills.Add(path.Bounds().MinX);
             public void DrawText(string text, Point2 anchor, double heightMm, string layer) => Texts.Add(text);
+        }
+
+        /// <summary>Кроссплатформенная проверка служебных каталогов (Windows использует \).</summary>
+        private static bool IsIgnored(string path)
+        {
+            var p = path.Replace('\\', '/');
+            return p.Contains("/obj/", StringComparison.Ordinal)
+                || p.Contains("/bin/", StringComparison.Ordinal)
+                || p.Contains("/.git/", StringComparison.Ordinal);
         }
     }
 }

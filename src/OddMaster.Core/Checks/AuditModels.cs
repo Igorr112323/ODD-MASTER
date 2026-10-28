@@ -84,8 +84,11 @@ namespace OddMaster.Core.Checks
         public Verification Verification { get; }
         /// <summary>Маркер GOST-NNN.</summary>
         public string? Marker { get; }
-        /// <summary>Истина, если правило не сверено.</summary>
-        public bool IsDraft => Verification != Verification.StudentVerified;
+        /// <summary>
+        /// Истина только для Placeholder/Unverified: CuratorExtracted — проверенная выписка,
+        /// пометка «не проверено по ГОСТ» к нему не относится (CR-12).
+        /// </summary>
+        public bool IsDraft => Verification == Verification.Placeholder || Verification == Verification.Unverified;
 
         /// <summary>Строка отчёта с пометкой «не проверено по ГОСТ» при необходимости.</summary>
         public string Format()

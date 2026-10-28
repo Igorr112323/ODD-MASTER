@@ -122,3 +122,17 @@
 - CR-15: страховочный проект `src/OddMaster.Core.NetStandard` (netstandard2.0 + System.Text.Json 8.0.5); из ядра убраны `HashCode.Combine` и `Replace(...,StringComparison)`.
 - ADR-0017…0020; обновлены README, DEPENDENCIES, QUESTIONS (ответы куратора Q-001…Q-015), ERRORS (E-021…E-025).
 - Локальная проверка типов: `/tmp/oracle` (SDK 3.1 **вне репозитория**) компилирует Core+Render+Demo и все 106 тестов с xUnit-shim — 0 ошибок. Это не заменяет зелёный CI.
+
+## 2026-10-28 · Сессия 02, P1 (часть 2): визуальные дефекты, аудитор, Актуализатор
+
+- CI-оракул заработал: первая ошибка xUnit2020 (`Assert.True(false, msg)`) исправлена на `Assert.Fail(msg)`; второй прогон дал Linux **success** и покрытие Core **80.9 %** (2339/2893 строк) при 106 тестах. Windows-job упал — добавлена диагностика и убрана зависимость тестов от `/` в путях (`IsIgnored`, нормализация `Repo.ReadText`).
+- CR-04: цвета только из каталога (`field/outerBorder/innerBorder/symbol/text`), в `Generation/*` нет цветовых литералов; красная внутренняя кайма рисуется только у 2.4; `OuterBorderUnverified` + GOST-022.
+- CR-05/06: 3.25 — отдельная заглушка `diagonalBand` (3 тонкие линии) + GOST-023; у 2.4 пиктограммы нет.
+- CR-07: `config/typography/fonts.json` + `FontMetrics` + `TextEngine`; кегль/ширина/базовая линия вычисляются, SVG больше не использует `text-anchor`/`dominant-baseline`.
+- CR-08: водяной знак в две строки, раскладка `Watermark()` доступна тестам; габарит внутри знака.
+- CR-09: `Path.LineTo/ArcTo` пропускают вырожденные сегменты.
+- CR-10: `docs/visual/REVIEW-01.md`, job `previews` (rsvg-convert + montage), 8 новых инвариантов M9-V01…V08.
+- CR-11: фикстура Актуализатора — 12 элементов, ≥2 в каждой из 6 категорий; в `NIGHT_REPORT.md` исправлена завышенная оценка прогона №1.
+- CR-12: аудитор без дублей (R005/R006), пометка «не проверено по ГОСТ» только у Unverified/Placeholder, ID в сообщении согласованы с Location; тесты M6-C11/C12.
+- ADR-0021 (изображение для схемы) и ADR-0022 (цвета и текст).
+- Локальный оракул: все C#-файлы компилируются (Core/Render/Demo/117 тестов с xUnit-shim), демо-артефакты и 12 golden-файлов перегенерированы через `/tmp/oracle` (вне репозитория).

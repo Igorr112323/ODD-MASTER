@@ -241,7 +241,7 @@ namespace OddMaster.Core.Tests
             var root = Repo.Root();
             var files = System.IO.Directory.GetFiles(System.IO.Path.Combine(root, "src/OddMaster.Core"),
                 "*.cs", System.IO.SearchOption.AllDirectories)
-                .Where(f => !f.Contains("/obj/") && !f.Contains("/bin/"));
+                .Where(f => !IsIgnored(f) && !IsIgnored(f));
             var forbidden = new[] { "Multicad", "Teigha", "Avalonia", "System.Windows", "OddMaster.Render" };
             foreach (var file in files)
             {
@@ -251,6 +251,15 @@ namespace OddMaster.Core.Tests
             }
             var csproj = Repo.ReadText("src/OddMaster.Core/OddMaster.Core.csproj");
             foreach (var word in forbidden) TestAssert.NotContains(word, csproj);
+        }
+
+        /// <summary>Кроссплатформенная проверка служебных каталогов (Windows использует \).</summary>
+        private static bool IsIgnored(string path)
+        {
+            var p = path.Replace('\\', '/');
+            return p.Contains("/obj/", StringComparison.Ordinal)
+                || p.Contains("/bin/", StringComparison.Ordinal)
+                || p.Contains("/.git/", StringComparison.Ordinal);
         }
     }
 }

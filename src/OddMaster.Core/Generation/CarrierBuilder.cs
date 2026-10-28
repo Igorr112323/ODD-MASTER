@@ -50,7 +50,8 @@ namespace OddMaster.Core.Generation
         /// <summary>Номинальный габарит носителя (A/D/B/H включают наружную кайму, GOST-004).</summary>
         public BoundingBox NominalBounds() => NominalBounds(0.0);
 
-        private BoundingBox NominalBounds(double inset)
+        /// <summary>Габарит контура, смещённого внутрь на inset (для поля и каймы).</summary>
+        public BoundingBox NominalBounds(double inset)
         {
             switch (Shape)
             {

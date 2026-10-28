@@ -1,8 +1,10 @@
 using System;
-using System.Globalization;
+using System.Collections.Generic;
 using System.Text;
 using OddMaster.Core.Config;
+using OddMaster.Core.Geometry;
 using OddMaster.Core.Generation;
+using OddMaster.Core.Typography;
 
 namespace OddMaster.Render.Svg
 {
@@ -10,11 +12,13 @@ namespace OddMaster.Render.Svg
     public sealed class SvgSignRenderer
     {
         private readonly DrawingConventions _drawing;
+        private readonly FontMetrics _font;
 
-        /// <summary>Создаёт рендер с соглашениями отрисовки.</summary>
-        public SvgSignRenderer(DrawingConventions drawing)
+        /// <summary>Создаёт рендер с соглашениями отрисовки и метриками шрифта.</summary>
+        public SvgSignRenderer(DrawingConventions drawing, FontMetrics font)
         {
             _drawing = drawing ?? throw new ArgumentNullException(nameof(drawing));
+            _font = font ?? throw new ArgumentNullException(nameof(font));
         }
 
         /// <summary>Формирует SVG-документ. Одинаковый вход даёт байт-в-байт одинаковый результат.</summary>
@@ -63,26 +67,49 @@ namespace OddMaster.Render.Svg
 
             foreach (var text in geometry.Texts)
             {
+                // CR-07: якорь и кегль посчитаны TextEngine; text-anchor/dominant-baseline не нужны.
+                var layout = text.Layout;
+                var x = layout != null ? layout.BaselineStart.X : text.Anchor.X - text.HeightMm;
+                var y = layout != null ? -layout.BaselineStart.Y : -text.Anchor.Y;
                 sb.Append("  <g id=\"Layer-Text\"><text x=\"")
-                  .Append(SvgPathWriter.Num(text.Anchor.X)).Append("\" y=\"")
-                  .Append(SvgPathWriter.Num(-text.Anchor.Y)).Append("\" font-family=\"")
+                  .Append(SvgPathWriter.Num(x)).Append("\" y=\"")
+                  .Append(SvgPathWriter.Num(y)).Append("\" font-family=\"")
                   .Append(Escape(text.FontFamily)).Append("\" font-weight=\"bold\" font-size=\"")
-                  .Append(SvgPathWriter.Num(text.HeightMm)).Append("\" text-anchor=\"middle\" dominant-baseline=\"central\" fill=\"")
+                  .Append(SvgPathWriter.Num(text.HeightMm)).Append("\" fill=\"")
                   .Append(SvgPalette.Resolve(text.ColorName)).Append("\">")
                   .Append(Escape(text.Value)).AppendLine("</text></g>");
             }
 
             if (geometry.IsDraft)
             {
-                var watermarkSize = Math.Max(bounds.Width, bounds.Height) * 0.075;
-                sb.Append("  <g id=\"DraftWatermark\"><text x=\"0\" y=\"")
-                  .Append(SvgPathWriter.Num(-bounds.MaxY - pad * 0.35))
-                  .Append("\" text-anchor=\"middle\" font-family=\"Arial, Liberation Sans, sans-serif\" font-size=\"")
-                  .Append(SvgPathWriter.Num(watermarkSize)).Append("\" fill=\"#D7191C\" fill-opacity=\"0.85\">")
-                  .Append("ЧЕРНОВИК: есть непроверенные параметры").AppendLine("</text></g>");
+                // CR-08: две строки, кегль подобран так, чтобы габарит водяного знака
+                // находился внутри габарита знака. Инвариант проверяет тест M9-V06.
+                sb.AppendLine("  <g id=\"DraftWatermark\">");
+                foreach (var line in Watermark(geometry))
+                {
+                    sb.Append("    <text x=\"").Append(SvgPathWriter.Num(line.BaselineStart.X))
+                      .Append("\" y=\"").Append(SvgPathWriter.Num(-line.BaselineStart.Y))
+                      .Append("\" font-family=\"").Append(Escape(line.FontFamily))
+                      .Append("\" font-size=\"").Append(SvgPathWriter.Num(line.HeightMm))
+                      .Append("\" fill=\"#D7191C\" fill-opacity=\"0.85\">")
+                      .Append(Escape(line.Value)).AppendLine("</text>");
+                }
+                sb.AppendLine("  </g>");
             }
             sb.AppendLine("</svg>");
             return sb.ToString().Replace("\r\n", "\n");
+        }
+
+        /// <summary>Раскладка водяного знака: доступна тестам как инвариант «внутри габарита».</summary>
+        public IReadOnlyList<TextLayout> Watermark(SignGeometry geometry)
+        {
+            if (geometry == null) throw new ArgumentNullException(nameof(geometry));
+            var bounds = geometry.Bounds;
+            var lines = new[] { "ЧЕРНОВИК:", "есть непроверенные параметры" };
+            var boxWidth = bounds.Width * 0.90;
+            var boxHeight = bounds.Height * 0.18;
+            var center = new Point2(0, bounds.MinY + boxHeight * 0.60);
+            return TextEngine.LayoutBlock(lines, boxWidth, boxHeight, _font, center);
         }
 
         /// <summary>Экранирование XML-текста.</summary>

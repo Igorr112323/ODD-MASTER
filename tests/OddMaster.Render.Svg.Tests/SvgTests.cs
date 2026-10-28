@@ -26,7 +26,7 @@ namespace OddMaster.Render.Svg.Tests
             var result = new SignGenerator(cfg).Generate(sign, sizeClass,
                 OddMaster.Demo.DemoRunner.DefaultParameters(sign));
             TestAssert.True(result.IsSuccess, number + "/" + sizeClass);
-            return (result.Geometry!, new SvgSignRenderer(cfg.Drawing));
+            return (result.Geometry!, new SvgSignRenderer(cfg.Drawing, cfg.Typography));
         }
 
         [Fact(DisplayName = "M3-S01: все SVG галереи разбираются как XML")]

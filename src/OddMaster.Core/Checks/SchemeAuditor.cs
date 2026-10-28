@@ -29,10 +29,10 @@ namespace OddMaster.Core.Checks
             var findings = new List<AuditFinding>();
             foreach (var entry in request.Entries)
             {
-                CheckSize(entry, findings);       // R005
-                CheckParameter(entry, findings);  // R006
-                CheckGaps(entry, findings);       // R007
-                CheckCorridor(entry, findings);   // R004
+                var sizeOk = CheckSize(entry, findings);   // R005
+                CheckParameter(entry, findings, sizeOk);   // R006
+                CheckGaps(entry, findings);                // R007
+                CheckCorridor(entry, findings);            // R004
                 CheckPlateWithoutSign(entry, request, findings); // R002
             }
             CheckDuplicates(request, findings);  // R001
@@ -55,18 +55,22 @@ namespace OddMaster.Core.Checks
                 entry.Location, message, rule.NormRef, rule.Verification));
         }
 
-        private void CheckSize(SchemeEntry entry, List<AuditFinding> findings)
+        private bool CheckSize(SchemeEntry entry, List<AuditFinding> findings)
         {
             var resolution = SizeResolver.Resolve(_config.MainProfile, entry.Number, entry.SizeClass);
-            if (resolution.IsUnambiguous) return;
+            if (resolution.IsUnambiguous) return true;
             var details = string.Join("; ", resolution.Findings.Select(f => f.Message));
             Add(findings, "R005", entry,
                 "Типоразмер «" + entry.SizeClass + "» для знака " + entry.Number + " не разрешён: " + details);
+            return false;
         }
 
-        private void CheckParameter(SchemeEntry entry, List<AuditFinding> findings)
+        private void CheckParameter(SchemeEntry entry, List<AuditFinding> findings, bool sizeOk)
         {
             var definition = _config.Catalog.Find(entry.Number);
+            // CR-12: одна находка — одна запись. Если типоразмер уже не разрешён (R005)
+            // или знака нет в каталоге (R007), генератор не дёргаем: он добавил бы дубль R006.
+            if (!sizeOk || definition == null) return;
             var kind = entry.ParameterKind ?? definition?.ParameterKind;
             if (kind != null && !entry.ParameterValue.HasValue)
             {
@@ -159,7 +163,7 @@ namespace OddMaster.Core.Checks
                     if (a.ParameterValue != b.ParameterValue) continue;
                     if (Math.Abs(a.StationMeters - b.StationMeters) > tolerance) continue;
                     Add(findings, "R001", b,
-                        "Дубль записи " + a.Id + ": тот же знак " + a.Number + " на расстоянии " +
+                        "Дубль записи " + b.Id + " совпадает с " + a.Id + ": тот же знак " + a.Number + " на расстоянии " +
                         Math.Abs(a.StationMeters - b.StationMeters).ToString("0.##", CultureInfo.InvariantCulture) +
                         " м (допуск " + tolerance.ToString("0.##", CultureInfo.InvariantCulture) + " м).");
                 }

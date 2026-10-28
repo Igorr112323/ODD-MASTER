@@ -6,13 +6,13 @@
       profile="GOST_R_52290_2024"
       sizeTable="Д.2"
       outerBorderMm="10"
-      verification="borders=CuratorExtracted; catalog=CuratorExtracted; colors=Unverified; innerBorder=Placeholder; pictogram=Placeholder; sizeProfile=CuratorExtracted"
+      verification="borders=CuratorExtracted; catalog=CuratorExtracted; colors=Unverified; innerBorder=Placeholder; sizeProfile=CuratorExtracted"
       isDraft="true"
       colorimetry="DISPLAY_ONLY_NOT_GOST"/>
   </metadata>
   <g id="Geometry" transform="scale(1,-1)">
     <g id="Layer-Outline">
-      <path d="M-38.971 -625.32 A45 45 0 0 1 38.971 -625.32 L561.029 278.91 A45 45 0 0 1 522.058 346.41 L-522.058 346.41 A45 45 0 0 1 -561.029 278.91 L-38.971 -625.32 Z" fill="#D7191C" stroke="none"/>
+      <path d="M-38.971 -625.32 A45 45 0 0 1 38.971 -625.32 L561.029 278.91 A45 45 0 0 1 522.058 346.41 L-522.058 346.41 A45 45 0 0 1 -561.029 278.91 L-38.971 -625.32 Z" fill="#9AA0A6" stroke="none"/>
     </g>
     <g id="Layer-OuterBorder">
       <path d="M-30.311 -620.32 A35 35 0 0 1 30.311 -620.32 L552.369 283.91 A35 35 0 0 1 522.058 336.41 L-522.058 336.41 A35 35 0 0 1 -552.369 283.91 L-30.311 -620.32 Z" fill="#FFFFFF" stroke="none"/>
@@ -20,9 +20,9 @@
     <g id="Layer-InnerBorder">
       <path d="M-27.713 -618.82 A32 32 0 0 1 27.713 -618.82 L549.771 285.41 A32 32 0 0 1 522.058 333.41 L-522.058 333.41 A32 32 0 0 1 -549.771 285.41 L-27.713 -618.82 Z" fill="none" stroke="#D7191C" stroke-width="6"/>
     </g>
-    <g id="Layer-Pictogram">
-      <path d="M124.708 0 A124.708 124.708 0 0 1 0 124.708 A124.708 124.708 0 0 1 -124.708 0 A124.708 124.708 0 0 1 0 -124.708 A124.708 124.708 0 0 1 124.708 0 Z" fill="none" stroke="#1A1A1A" stroke-width="1"/>
-    </g>
   </g>
-  <g id="DraftWatermark"><text x="0" y="-570.015" text-anchor="middle" font-family="Arial, Liberation Sans, sans-serif" font-size="90" fill="#D7191C" fill-opacity="0.85">ЧЕРНОВИК: есть непроверенные параметры</text></g>
+  <g id="DraftWatermark">
+    <text x="-178.085" y="381.527" font-family="Arial Bold, Liberation Sans Bold, sans-serif" font-size="63.83" fill="#D7191C" fill-opacity="0.85">ЧЕРНОВИК:</text>
+    <text x="-540" y="461.315" font-family="Arial Bold, Liberation Sans Bold, sans-serif" font-size="63.83" fill="#D7191C" fill-opacity="0.85">есть непроверенные параметры</text>
+  </g>
 </svg>

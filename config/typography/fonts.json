@@ -1,0 +1,22 @@
+{
+  "fontId": "placeholder.arial-bold",
+  "fontFamily": "Arial Bold, Liberation Sans Bold, sans-serif",
+  "capHeightRatio": 0.72,
+  "defaultAdvanceRatio": 0.62,
+  "maxHeightRatio": 0.42,
+  "paddingRatio": 0.14,
+  "lineGapRatio": 0.25,
+  "advanceRatios": {
+    "0": 0.62, "1": 0.62, "2": 0.62, "3": 0.62, "4": 0.62,
+    "5": 0.62, "6": 0.62, "7": 0.62, "8": 0.62, "9": 0.62,
+    "S": 0.67, "T": 0.61, "O": 0.78, "P": 0.67,
+    "м": 0.82, " ": 0.30, "-": 0.36
+  },
+  "normRef": {
+    "doc": "ГОСТ Р 52290-2024",
+    "clause": "п. 3.4; прил. В, Г; масштабная сетка прил. Б"
+  },
+  "verification": "Placeholder",
+  "note": "Заглушка: реальные метрики гарнитуры и высоту надписей нужно снять с масштабной сетки прил. Б (GOST-002). Значения ниже — только для вписывания текста в поле, а не норма высоты шрифта.",
+  "markers": ["GOST-002"]
+}

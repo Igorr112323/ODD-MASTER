@@ -40,6 +40,20 @@ namespace OddMaster.Core.Tests
             TestAssert.Equal(4, demo.Rules.Count);
         }
 
+        [Fact(DisplayName = "M7-A11 (CR-11): >=12 элементов и >=2 в каждой категории")]
+        public void FixtureHasTwoPerCategory()
+        {
+            var (engine, scheme, _) = Fixture();
+            TestAssert.True(scheme.Elements.Count >= 12,
+                "нужно >=12 элементов, есть " + scheme.Elements.Count.ToString(CultureInfo.InvariantCulture));
+            var report = engine.Run(scheme);
+            foreach (MigrationCategory category in Enum.GetValues(typeof(MigrationCategory)).Cast<MigrationCategory>())
+                TestAssert.True(report.Counts[category] >= 2,
+                    "в категории " + category + " меньше двух элементов: "
+                    + report.Counts[category].ToString(CultureInfo.InvariantCulture));
+            TestAssert.True(report.Items.Count >= 12);
+        }
+
         [Fact(DisplayName = "M7-A02: отчёт содержит все шесть категорий")]
         public void AllSixCategories()
         {

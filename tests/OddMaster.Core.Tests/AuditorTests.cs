@@ -116,6 +116,41 @@ namespace OddMaster.Core.Tests
             TestAssert.Contains("Как исправить", ex.Message);
         }
 
+        [Fact(DisplayName = "M6-C11 (CR-12): одна находка — одна запись, ID согласованы")]
+        public void NoDuplicateFindingsAndConsistentIds()
+        {
+            var (_, report) = Fixture();
+            var keys = report.Findings
+                .Select(f => f.RuleId + "|" + f.Location + "|" + f.Message)
+                .ToList();
+            TestAssert.Equal(keys.Count, keys.Distinct(StringComparer.Ordinal).Count());
+            foreach (var finding in report.Findings)
+            {
+                var match = System.Text.RegularExpressions.Regex.Match(finding.Message, @"\bE[0-9]{2}\b");
+                if (match.Success)
+                    TestAssert.Contains(match.Value, finding.Location,
+                        "первый ID в сообщении должен совпадать с местом: " + finding.RuleId);
+            }
+            // Для E04 (2.5/I) ровно одна находка R005, а не дубль R005+R006.
+            var e04 = report.Findings.Where(f => f.Location.Contains("E04")).ToList();
+            TestAssert.Equal(1, e04.Count(f => f.RuleId == "R005"));
+            TestAssert.Equal(0, e04.Count(f => f.RuleId == "R006"));
+        }
+
+        [Fact(DisplayName = "M6-C12 (CR-12): пометка «не проверено по ГОСТ» только у Unverified/Placeholder")]
+        public void DraftMarkerDependsOnRuleStatus()
+        {
+            var (_, report) = Fixture();
+            foreach (var f in report.Findings)
+            {
+                if (f.Verification == Verification.CuratorExtracted)
+                    TestAssert.False(f.IsDraft, "CuratorExtracted не должен помечаться как черновик: " + f.RuleId);
+                if (f.Verification == Verification.Unverified)
+                    TestAssert.True(f.IsDraft, "Unverified должен помечаться: " + f.RuleId);
+            }
+            TestAssert.NotContains("[не проверено по ГОСТ] R005", report.ToMarkdown());
+        }
+
         [Fact(DisplayName = "M6-C09: отчёт не зависит от текущей культуры")]
         public void CultureInvariantReport()
         {

@@ -16,7 +16,9 @@ namespace OddMaster.Render.Svg
             ["Yellow"] = "#FFD200",
             ["Black"] = "#1A1A1A",
             ["Green"] = "#00843D",
-            ["Grey"] = "#808080"
+            ["Grey"] = "#808080",
+            // Не колориметрия ГОСТ: цвет наружной каймы [ПРОВЕРИТЬ ПО ТЕКСТУ ГОСТ] (GOST-022).
+            ["OuterBorderUnverified"] = "#9AA0A6"
         };
 
         /// <summary>Возвращает HEX-цвет для семантического имени. Неизвестное имя — серый.</summary>

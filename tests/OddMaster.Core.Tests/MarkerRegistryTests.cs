@@ -1,4 +1,5 @@
 using Xunit;
+using System;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -42,7 +43,7 @@ namespace OddMaster.Core.Tests
                 if (!Directory.Exists(path)) continue;
                 foreach (var file in Directory.GetFiles(path, "*", SearchOption.AllDirectories))
                 {
-                    if (file.Contains("/obj/") || file.Contains("/bin/")) continue;
+                    if (IsIgnored(file) || IsIgnored(file)) continue;
                     if (!file.EndsWith(".cs") && !file.EndsWith(".json") && !file.EndsWith(".md")
                         && !file.EndsWith(".csproj") && !file.EndsWith(".yml")) continue;
                     foreach (var marker in regex.Matches(File.ReadAllText(file)).Cast<Match>()
@@ -50,6 +51,15 @@ namespace OddMaster.Core.Tests
                 }
             }
             return result;
+        }
+
+        /// <summary>Кроссплатформенная проверка служебных каталогов (Windows использует \).</summary>
+        private static bool IsIgnored(string path)
+        {
+            var p = path.Replace('\\', '/');
+            return p.Contains("/obj/", StringComparison.Ordinal)
+                || p.Contains("/bin/", StringComparison.Ordinal)
+                || p.Contains("/.git/", StringComparison.Ordinal);
         }
     }
 }
