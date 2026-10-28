@@ -113,7 +113,8 @@ namespace OddMaster.Core.Catalog
         /// <summary>Создаёт запись каталога.</summary>
         public SignDefinition(SignNumber number, string name, int group, CarrierShape shape, string sizeTableId,
             bool isPlate, Dictionary<string, string> colors, SignPictogram? pictogram, SignTextSpec? text,
-            string? parameterKind, string? note, NormRef normRef, Verification verification, List<string> markers)
+            string? parameterKind, string? note, NormRef normRef, Verification verification, List<string> markers,
+            string? mirrorOf = null, List<string>? composedOf = null)
         {
             Number = number ?? throw new ArgumentNullException(nameof(number));
             Name = name;
@@ -129,6 +130,8 @@ namespace OddMaster.Core.Catalog
             NormRef = normRef ?? throw new ArgumentNullException(nameof(normRef));
             Verification = verification;
             Markers = markers ?? throw new ArgumentNullException(nameof(markers));
+            MirrorOf = mirrorOf;
+            ComposedOf = composedOf ?? new List<string>();
         }
 
         /// <summary>Номер знака.</summary>
@@ -166,6 +169,12 @@ namespace OddMaster.Core.Catalog
 
         /// <summary>Ссылка на норму.</summary>
         public NormRef NormRef { get; }
+
+        /// <summary>Номер знака-оригинала для зеркальной пары (3.18.2, 5.7.2, 5.19.2).</summary>
+        public string? MirrorOf { get; }
+
+        /// <summary>Номера знаков, из символов которых составлен данный (5.41/5.42).</summary>
+        public IReadOnlyList<string> ComposedOf { get; }
 
         /// <summary>Статус проверки записи.</summary>
         public Verification Verification { get; }

@@ -32,9 +32,7 @@ namespace OddMaster.Core.Tests
                 TestAssert.True(classes.Count > 0, "нет типоразмеров для " + sign.Number);
                 foreach (var sizeClass in classes)
                 {
-                    var parameters = sign.ParameterKind == "speed" ? Speed(40m)
-                        : sign.ParameterKind == "distance" ? new Dictionary<string, decimal> { ["distance"] = 50m }
-                        : null;
+                    var parameters = DemoParams(sign);
                     var result = gen.Generate(sign, sizeClass, parameters);
                     TestAssert.True(result.IsSuccess,
                         $"{sign.Number}/{sizeClass}: {string.Join("; ", result.Findings.Select(f => f.Format()))}");
@@ -45,6 +43,20 @@ namespace OddMaster.Core.Tests
                 }
             }
             TestAssert.True(checkedCount >= 12, "проверено слишком мало комбинаций: " + checkedCount);
+        }
+
+        /// <summary>Произвольные демо-значения параметров, подходящие под табл. Д.1.</summary>
+        private static Dictionary<string, decimal>? DemoParams(SignDefinition sign)
+        {
+            if (sign.ParameterKind == null) return null;
+            var map = new Dictionary<string, decimal>(StringComparer.Ordinal)
+            {
+                ["speed"] = 40m, ["distance"] = 50m, ["mass"] = 8m, ["timeMinutes"] = 30m
+            };
+            return new Dictionary<string, decimal>
+            {
+                [sign.ParameterKind] = map.TryGetValue(sign.ParameterKind, out var v) ? v : 1m
+            };
         }
 
         private static List<string> AvailableClasses(SizeProfile profile, SignNumber number)

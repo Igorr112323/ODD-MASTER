@@ -136,3 +136,13 @@
 - CR-12: аудитор без дублей (R005/R006), пометка «не проверено по ГОСТ» только у Unverified/Placeholder, ID в сообщении согласованы с Location; тесты M6-C11/C12.
 - ADR-0021 (изображение для схемы) и ADR-0022 (цвета и текст).
 - Локальный оракул: все C#-файлы компилируются (Core/Render/Demo/117 тестов с xUnit-shim), демо-артефакты и 12 golden-файлов перегенерированы через `/tmp/oracle` (вне репозитория).
+
+## 2026-10-28 · Сессия 02, P2: каталог MVP-30 и конвейер оцифровки
+
+- Каталог: **30 знаков MVP + 11 табличек 8.x** (§7 программы). Имена — CuratorExtracted из PDF-копии, статус `StudentVerified` не ставился. Размеры не дублируются: берутся из Д.2–Д.9. Галерея — 111 SVG.
+- Поля `mirrorOf` (3 пары: 3.18.2, 5.7.2, 5.19.2) и `composedOf` (5.41/5.42 → 3.27). Асимметричная стрелка-заглушка + `GeometryPrimitives.MirrorPath` позволяют проверять зеркальность геометрией, а не только данными.
+- `config/pictograms/placeholders.json` + `config/schema/pictogram.schema.json` + `PictogramRegistry` (ADR-0023): формат в клетках масштабной сетки прил. Б, 31 заглушка, у каждой есть статус.
+- `tools/OddMaster.Tools` (`odd-tools`): `pictogram import` (Дуглас–Пекер, привязка цветов, StudentTranscribed), `pictogram overlay`, `nomenclature import`, `selftest` на синтетической стрелке. Инструкция — `docs/howto/PICTOGRAMS.md`.
+- `config/catalog/nomenclature-2024.csv` (41 строка) и `data/diff-2004-2024.template.csv` (шаблон Q-008/G4).
+- Тесты `CatalogMvpTests` M10-P01…P11 (11 новых), итого 128 тестов. CI добавлен шаг `odd-tools selftest`.
+- `docs/visual/REVIEW-02.md`: что видно на 111 картинках и что проверяет студент.

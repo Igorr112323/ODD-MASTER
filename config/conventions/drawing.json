@@ -26,7 +26,9 @@
   "placeholderPictogramRadiusRatio": 0.12,
   "parameterTextTemplates": {
     "speed": "{value}",
-    "distance": "{value} м"
+    "distance": "{value} м",
+    "mass": "{value} т",
+    "timeMinutes": "{value} мин"
   },
   "placeholderMarkers": [
     "GOST-001",

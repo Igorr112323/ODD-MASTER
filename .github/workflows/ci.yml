@@ -45,6 +45,10 @@ jobs:
         run: |
           python3 scripts/coverage_summary.py coverage | tee coverage.log
           cp coverage-summary.md coverage/coverage-summary.md || true
+      - name: odd-tools selftest (конвейер оцифровки)
+        run: |
+          dotnet build tools/OddMaster.Tools/OddMaster.Tools.csproj -warnaserror 2>&1 | tee tools.log
+          dotnet run --project tools/OddMaster.Tools --no-build -- selftest
       - name: Demo all
         run: dotnet run --project src/OddMaster.Demo --no-build -- all
       - name: Проверка детерминизма артефактов
@@ -65,6 +69,7 @@ jobs:
             coverage-summary.md
             build.log
             test.log
+            tools.log
             dotnet-version.txt
       - name: Отчёт в PR (оракул для песочницы)
         if: always()

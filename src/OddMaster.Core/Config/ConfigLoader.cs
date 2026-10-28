@@ -285,7 +285,8 @@ namespace OddMaster.Core.Config
                     (int)J.Num(s, "group", file, p), shape, J.Str(s, "sizeTableId", file, p),
                     J.OptBool(s, "isPlate", false, file, p), colors, pictogram, text,
                     J.OptStr(s, "parameterKind", file, p), J.OptStr(s, "note", file, p),
-                    J.ReadNormRef(s, "normRef", file, p), ReadVerificationAt(s, file, p), markers));
+                    J.ReadNormRef(s, "normRef", file, p), ReadVerificationAt(s, file, p), markers,
+                    J.OptStr(s, "mirrorOf", file, p), J.StringList(s, "composedOf", file, p)));
             }
             return new SignCatalog(J.Str(e, "catalog", file, ""), J.Str(e, "title", file, ""),
                 J.ReadNormRef(e, "normRef", file, ""), J.ReadVerification(e, file, ""),

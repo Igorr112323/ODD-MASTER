@@ -27,6 +27,39 @@ namespace OddMaster.Core.Geometry
     /// <summary>Примитивы носителей знаков. Все размеры — миллиметры, центр в (0,0), ось Y вверх.</summary>
     public static class GeometryPrimitives
     {
+        /// <summary>
+        /// Асимметричная стрелка-заглушка для пиктограмм. При mirrored=true отражена по X —
+        /// это позволяет проверять пары mirrorOf геометрией, а не только данными.
+        /// </summary>
+        public static Path Arrow(double size, bool mirrored)
+        {
+            var k = mirrored ? -1.0 : 1.0;
+            var path = new Path(new Point2(k * -size * 0.45, 0));
+            path.LineTo(new Point2(k * size * 0.10, 0));
+            path.LineTo(new Point2(k * size * 0.10, size * 0.22));
+            path.LineTo(new Point2(k * size * 0.45, 0));
+            path.LineTo(new Point2(k * size * 0.10, -size * 0.22));
+            path.LineTo(new Point2(k * size * 0.10, 0));
+            path.Close();
+            return path;
+        }
+
+        /// <summary>Зеркалирует контур по оси X: координаты и направление дуг меняют знак.</summary>
+        public static Path MirrorPath(Path path)
+        {
+            var result = new Path(Mirror(path.Start));
+            foreach (var segment in path.Segments)
+            {
+                if (segment is ArcSegment arc)
+                    result.ArcTo(Mirror(arc.Center), arc.Radius, 180.0 - arc.StartAngleDeg, -arc.SweepDeg);
+                else result.LineTo(Mirror(segment.End));
+            }
+            if (path.IsClosed) result.Close();
+            return result;
+        }
+
+        private static Point2 Mirror(Point2 p) => new Point2(-p.X, p.Y);
+
         /// <summary>Окружность заданного диаметра: четыре дуги по 90° (SVG не умеет полный круг одной дугой).</summary>
         public static Path Circle(double diameter)
         {

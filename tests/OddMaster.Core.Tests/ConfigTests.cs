@@ -16,12 +16,12 @@ namespace OddMaster.Core.Tests
     {
         private static NormativeConfigSet Load() => ConfigLoader.Load(Repo.Root());
 
-        [Fact(DisplayName = "M1-C01: все конфиги загружаются, 11 файлов, 6 POC-знаков")]
+        [Fact(DisplayName = "M1-C01: все конфиги загружаются, 11 файлов, каталог MVP-30 + 11 табличек")]
         public void LoadAllConfigs()
         {
             var set = Load();
             TestAssert.Equal(11, ConfigPaths.All.Length);
-            TestAssert.Equal(6, set.Catalog.Signs.Count);
+            TestAssert.Equal(41, set.Catalog.Signs.Count);
             TestAssert.Equal(8, set.MainProfile.Tables.Count);
             TestAssert.Equal(4, set.MainProfile.SizeClasses.Count);
             TestAssert.Equal(5, set.SecondProfile.SizeClasses.Count);
@@ -160,7 +160,7 @@ namespace OddMaster.Core.Tests
         public void SchemasAreParseable()
         {
             var files = Directory.GetFiles(Path.Combine(Repo.Root(), "config/schema"), "*.schema.json");
-            TestAssert.Equal(10, files.Length);
+            TestAssert.Equal(11, files.Length);
             foreach (var file in files)
             {
                 var text = File.ReadAllText(file);

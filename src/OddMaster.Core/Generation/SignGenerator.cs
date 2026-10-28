@@ -209,9 +209,9 @@ namespace OddMaster.Core.Generation
                     }
                     else
                     {
-                        var radius = minSide * _config.Drawing.PlaceholderPictogramRadiusRatio;
+                        var size = minSide * _config.Drawing.PlaceholderPictogramRadiusRatio * 2;
                         layers.Add(new SignLayer(SignLayerKind.Pictogram, symbolColor,
-                            GeometryPrimitives.Circle(radius * 2), false, stroke));
+                            GeometryPrimitives.Arrow(size, definition.MirrorOf != null), false, stroke));
                     }
                 }
                 verification.Add("pictogram", Verification.Placeholder);

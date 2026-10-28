@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -68,9 +69,14 @@ namespace OddMaster.Demo
         public static Dictionary<string, decimal>? DefaultParameters(SignDefinition sign)
         {
             if (sign.ParameterKind == null) return null;
+            // Произвольные демо-значения (не нормативка): подходят под правила табл. Д.1.
+            var defaults = new Dictionary<string, decimal>(StringComparer.Ordinal)
+            {
+                ["speed"] = 40m, ["distance"] = 50m, ["mass"] = 8m, ["timeMinutes"] = 30m
+            };
             return new Dictionary<string, decimal>
             {
-                [sign.ParameterKind] = sign.ParameterKind == "speed" ? 40m : 50m
+                [sign.ParameterKind] = defaults.TryGetValue(sign.ParameterKind, out var v) ? v : 1m
             };
         }
 
