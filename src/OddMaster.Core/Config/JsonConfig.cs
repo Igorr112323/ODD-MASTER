@@ -32,6 +32,13 @@ namespace OddMaster.Core.Config
             }
         }
 
+        /// <summary>Читает текст UTF-8, если файл есть; иначе возвращает пустую строку.</summary>
+        public static string ReadUtf8IfExists(string root, string relativePath)
+        {
+            var full = Path.Combine(root, relativePath);
+            return File.Exists(full) ? File.ReadAllText(full, Encoding.UTF8) : string.Empty;
+        }
+
         /// <summary>Читает текст UTF-8 без BOM (для эталонных файлов и демо-артефактов).</summary>
         public static string ReadUtf8(string root, string relativePath)
         {

@@ -146,3 +146,14 @@
 - `config/catalog/nomenclature-2024.csv` (41 строка) и `data/diff-2004-2024.template.csv` (шаблон Q-008/G4).
 - Тесты `CatalogMvpTests` M10-P01…P11 (11 новых), итого 128 тестов. CI добавлен шаг `odd-tools selftest`.
 - `docs/visual/REVIEW-02.md`: что видно на 111 картинках и что проверяет студент.
+
+## 2026-10-28 · Сессия 02, P3 (частично) и финализация
+
+- `SchemeDocument` (schemaVersion=1, устойчивые ID оси/стоек/знаков/зон, JSON DTO) — будущая начинка McCustomBase, механизм хранения [ПРОВЕРИТЬ В SDK].
+- `LiveStatement`: инкрементальный пересчёт по событиям «добавлен/изменён/удалён», дельта строк; перф-тест 1000 стоек → одно изменение < 50 мс.
+- `LegendModel`, `SheetModel`, `ZoneRuleSet` (`config/rules/zones.json`, 8.2.1–8.2.6, статус Unverified), пустой реестр подсказок `hints-52289.json`, `DiffMapImporter` (CSV → MigrationMap, ADR-0024).
+- Демо-команда `kernel`: 13 артефактов (`kernel_document.json`, statement/delta, журнал до/после сдвига оси на 50 м, легенда, лист, зоны, Актуализатор на 12 элементах, импорт различий).
+- Тесты `DocumentModelTests` M11-D01…D09. Итого **137 тестов** (106 исходных + 8 визуальных + 2 CR-12 + 1 CR-11 + 11 P2 + 9 P3).
+- Windows-параллелизм: тесты, читающие/пишущие `docs/demo`, объединены в коллекцию `Demo artifacts` с `DisableParallelization` (E-032).
+- Пакет передачи студенту: `docs/runner/RUNNER_SETUP_NANOCAD.md` (одна страница), шаблон `nanocad-build.yml` **не активирован** (репозиторий PUBLIC, CR-01), `samples/legacy/README.md` честно говорит, что G4 закрыт.
+- `docs/PRODUCT_STATUS.md` обновлён: L1 доказан для MVP-1/2, 🟡 для MVP-3…8, L2–L4 нигде.

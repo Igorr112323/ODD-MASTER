@@ -15,6 +15,7 @@ using IoPath = System.IO.Path;
 namespace OddMaster.Render.Svg.Tests
 {
     /// <summary>Геометрические инварианты §9.3 (CR-10). Проверяются на всех сгенерированных знаках.</summary>
+    [Collection("Demo artifacts")]
     public class VisualInvariantTests
     {
         private static NormativeConfigSet Config() => ConfigLoader.Load(Repo.Root());

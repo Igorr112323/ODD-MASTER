@@ -1,0 +1,212 @@
+{
+  "schemaVersion": 1,
+  "id": "DEMO-KERNEL-01",
+  "title": "\u0414\u0415\u041C\u041E: \u0446\u0435\u043D\u0442\u0440\u0430\u043B\u044C\u043D\u0430\u044F \u0443\u043B\u0438\u0446\u0430 \u041A\u0440\u0430\u0441\u043D\u043E\u0434\u0430\u0440\u0430 (\u0441\u0438\u043D\u0442\u0435\u0442\u0438\u043A\u0430)",
+  "axes": [
+    {
+      "id": "DEMO-KERNEL-01-axis-1",
+      "initialStationMeters": 1000,
+      "vertices": [
+        [
+          0,
+          0
+        ],
+        [
+          400,
+          0
+        ],
+        [
+          400,
+          250
+        ],
+        [
+          900,
+          250
+        ]
+      ]
+    }
+  ],
+  "posts": [
+    {
+      "id": "K1",
+      "stationMeters": 1050,
+      "offsetMeters": 5,
+      "side": "\u0441\u043F\u0440\u0430\u0432\u0430",
+      "signs": [
+        {
+          "id": "K1-S1",
+          "number": "3.24",
+          "sizeClass": "II",
+          "parameterKind": "speed",
+          "parameterValue": 40
+        }
+      ]
+    },
+    {
+      "id": "K2",
+      "stationMeters": 1110,
+      "offsetMeters": -5,
+      "side": "\u0441\u043B\u0435\u0432\u0430",
+      "signs": [
+        {
+          "id": "K2-S1",
+          "number": "3.25",
+          "sizeClass": "II",
+          "parameterKind": "speed",
+          "parameterValue": 40
+        }
+      ]
+    },
+    {
+      "id": "K3",
+      "stationMeters": 1170,
+      "offsetMeters": 5,
+      "side": "\u0441\u043F\u0440\u0430\u0432\u0430",
+      "signs": [
+        {
+          "id": "K3-S1",
+          "number": "2.4",
+          "sizeClass": "II",
+          "parameterKind": null,
+          "parameterValue": null
+        }
+      ]
+    },
+    {
+      "id": "K4",
+      "stationMeters": 1230,
+      "offsetMeters": -5,
+      "side": "\u0441\u043B\u0435\u0432\u0430",
+      "signs": [
+        {
+          "id": "K4-S1",
+          "number": "2.5",
+          "sizeClass": "II",
+          "parameterKind": null,
+          "parameterValue": null
+        }
+      ]
+    },
+    {
+      "id": "K5",
+      "stationMeters": 1290,
+      "offsetMeters": 5,
+      "side": "\u0441\u043F\u0440\u0430\u0432\u0430",
+      "signs": [
+        {
+          "id": "K5-S1",
+          "number": "5.19.1",
+          "sizeClass": "II",
+          "parameterKind": null,
+          "parameterValue": null
+        }
+      ]
+    },
+    {
+      "id": "K6",
+      "stationMeters": 1350,
+      "offsetMeters": -5,
+      "side": "\u0441\u043B\u0435\u0432\u0430",
+      "signs": [
+        {
+          "id": "K6-S1",
+          "number": "8.2.1",
+          "sizeClass": "II",
+          "parameterKind": "distance",
+          "parameterValue": 50
+        }
+      ]
+    },
+    {
+      "id": "K7",
+      "stationMeters": 1410,
+      "offsetMeters": 5,
+      "side": "\u0441\u043F\u0440\u0430\u0432\u0430",
+      "signs": [
+        {
+          "id": "K7-S1",
+          "number": "3.27",
+          "sizeClass": "II",
+          "parameterKind": null,
+          "parameterValue": null
+        }
+      ]
+    },
+    {
+      "id": "K8",
+      "stationMeters": 1470,
+      "offsetMeters": -5,
+      "side": "\u0441\u043B\u0435\u0432\u0430",
+      "signs": [
+        {
+          "id": "K8-S1",
+          "number": "6.4",
+          "sizeClass": "II",
+          "parameterKind": null,
+          "parameterValue": null
+        }
+      ]
+    },
+    {
+      "id": "K9",
+      "stationMeters": 1530,
+      "offsetMeters": 5,
+      "side": "\u0441\u043F\u0440\u0430\u0432\u0430",
+      "signs": [
+        {
+          "id": "K9-S1",
+          "number": "5.41",
+          "sizeClass": "II",
+          "parameterKind": null,
+          "parameterValue": null
+        }
+      ]
+    },
+    {
+      "id": "K10",
+      "stationMeters": 1590,
+      "offsetMeters": -5,
+      "side": "\u0441\u043B\u0435\u0432\u0430",
+      "signs": [
+        {
+          "id": "K10-S1",
+          "number": "5.42",
+          "sizeClass": "II",
+          "parameterKind": null,
+          "parameterValue": null
+        }
+      ]
+    },
+    {
+      "id": "K11",
+      "stationMeters": 1650,
+      "offsetMeters": 5,
+      "side": "\u0441\u043F\u0440\u0430\u0432\u0430",
+      "signs": [
+        {
+          "id": "K11-S1",
+          "number": "6.2.1",
+          "sizeClass": "II",
+          "parameterKind": "speed",
+          "parameterValue": 30
+        }
+      ]
+    },
+    {
+      "id": "K12",
+      "stationMeters": 1710,
+      "offsetMeters": -5,
+      "side": "\u0441\u043B\u0435\u0432\u0430",
+      "signs": [
+        {
+          "id": "K12-S1",
+          "number": "8.1.1",
+          "sizeClass": "II",
+          "parameterKind": "distance",
+          "parameterValue": 100
+        }
+      ]
+    }
+  ],
+  "zones": []
+}

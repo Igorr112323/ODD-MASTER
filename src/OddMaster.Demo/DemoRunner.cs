@@ -73,6 +73,7 @@ namespace OddMaster.Demo
             sb.AppendLine("| `audit_report.csv` / `audit_report.md` | Проверка чужой схемы правилами R001–R007 |");
             sb.AppendLine("| `actualization_report.csv` / `actualization_report.md` | Актуализация на ДЕМО-карте замен |");
             sb.AppendLine("| `config_validation.md` | Находки валидатора конфигов и несостыковки стандарта |");
+            sb.AppendLine("| `kernel_*` | Модель документа, живая ведомость (дельта), легенда, лист, зоны, Актуализатор на 12+ элементах |");
             sb.AppendLine();
             sb.AppendLine("Опор: " + scheme.Posts.Count + "; строк ведомости: " + statement.Rows.Count + "; строк журнала: " + log.Rows.Count + ".");
             sb.AppendLine();

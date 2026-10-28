@@ -17,6 +17,7 @@ using IoPath = System.IO.Path;
 namespace OddMaster.Render.Svg.Tests
 {
     /// <summary>Golden-тесты и инварианты SVG-рендера (M3).</summary>
+    [Collection("Demo artifacts")]
     public class SvgTests
     {
         private static (SignGeometry Geometry, SvgSignRenderer Renderer) Make(string number, string sizeClass)

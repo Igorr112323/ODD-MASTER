@@ -64,3 +64,19 @@ bash scripts/verify.sh
 git status --short          # пусто после коммита
 find . -name '*.dll' -not -path './.git/*' | grep -v '/obj/' | grep -v '/bin/'   # пусто
 ```
+
+## Финальная опись сессии 02 (28.10.2026)
+
+| Категория | Было (PR #1) | Стало |
+|---|---|---|
+| Тестов | 106 (свой раннер) | 137 (xUnit + coverlet), покрытие Core измеряется в CI |
+| ADR | 16 | 24 |
+| Схем JSON | 9 | 11 |
+| Записей каталога | 6 | 41 (MVP-30 + 11 табличек) |
+| SVG галереи | 20 | 111 |
+| Golden-файлов | 12 | 12 (обновлены вместе с REVIEW-01/02) |
+| GOST-NNN | 21 | 23 |
+| Демо-артефактов | 14 + 20 SVG | 27 + 111 SVG (включая `kernel_*`) |
+| Проектов | 5 + адаптер | 5 + адаптер + `Core.NetStandard` + `odd-tools` |
+
+Удалены: `scripts/bootstrap-dotnet.sh`, `scripts/dotnet-env.sh`, `Directory.Build.targets`, самописный `OddFact`/`TestRunner`, `Program.cs` в тестах. `LICENSE` не добавлялся. DLL/PDF/сканы по-прежнему отсутствуют (тест M9-A02).

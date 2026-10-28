@@ -9,7 +9,8 @@
 3. Проставьте `normRef` (`doc`, `clause`, `table`, `figure`) и `verification`. Статус `StudentVerified` ставит только человек после сверки с официальным текстом ГОСТ.
 4. Если точной геометрии нет — ставьте `null` и заведите `GOST-NNN` в `docs/VERIFICATION_QUEUE.md`; для отрисовки допустим `Placeholder`, но тогда выход помечается «ЧЕРНОВИК».
 5. Запустите `dotnet test OddMaster.sln`. Тест конфигов проверит наличие `normRef`/`verification`, тест каталога — разрешение размеров.
-6. Обновите галерею: `dotnet run --project src/OddMaster.Demo -- signs`, затем закоммитьте `docs/demo/signs/`.
+6. Если у знака есть пиктограмма — добавьте запись в `config/pictograms/` по `docs/howto/PICTOGRAMS.md` (статус `Placeholder` или `StudentTranscribed`).
+7. Обновите галерею и артефакты: `dotnet run --project src/OddMaster.Demo -- all`, затем закоммитьте `docs/demo/`. Обновление golden-эталонов — только вместе с `docs/visual/REVIEW-NN.md`.
 
 ## Как сверить нормативные данные
 

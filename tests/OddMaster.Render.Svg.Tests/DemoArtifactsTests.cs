@@ -15,6 +15,7 @@ using IoPath = System.IO.Path;
 namespace OddMaster.Render.Svg.Tests
 {
     /// <summary>Сквозные демо-артефакты и детерминизм (M8).</summary>
+    [Collection("Demo artifacts")]
     public class DemoArtifactsTests
     {
         private static readonly string[] Expected =
