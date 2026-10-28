@@ -17,7 +17,7 @@
 6. **Активировать workflow**: скопировать `docs/runner/nanocad-build.yml.template` → `.github/workflows/nanocad-build.yml`. Пока `NANOCAD_RUNNER != on`, job пропускается и не висит в очереди.
 7. **Собрать**: `dotnet build OddMaster.NanoCAD.sln -c Release -p:NanoCadSdkPath=...`. Первым делом закрыть SDK-001 (имена DLL) и SDK-002/003 (`Multicad.Runtime`, `CommandMethod`) по логу компиляции.
 8. **SdkProbe**: `tools/SdkProbe` на `MetadataLoadContext` (создаётся в P4) читает типы/сигнатуры SDK, результат `sdk-api.txt` — артефакт, **в git не коммитить** (лицензия SDK).
-9. **Смоук**: загрузить DLL в nanoCAD (`NETLOAD`), выполнить `ODD_HELLO`, заполнить `docs/feedback/SMOKE-2026-11-..md` по шаблону (P4). Только после этого ставить L3.
+9. **Смоук**: загрузить DLL в nanoCAD (`NETLOAD`), выполнить `ODD_HELLO`, заполнить `docs/feedback/SMOKE-2026-11-..md` по шаблону `docs/runner/SMOKE_TEMPLATE.md`. Только после этого ставить L3.
 
 ## Чек-лист готовности G1
 

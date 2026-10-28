@@ -157,3 +157,10 @@
 - Windows-параллелизм: тесты, читающие/пишущие `docs/demo`, объединены в коллекцию `Demo artifacts` с `DisableParallelization` (E-032).
 - Пакет передачи студенту: `docs/runner/RUNNER_SETUP_NANOCAD.md` (одна страница), шаблон `nanocad-build.yml` **не активирован** (репозиторий PUBLIC, CR-01), `samples/legacy/README.md` честно говорит, что G4 закрыт.
 - `docs/PRODUCT_STATUS.md` обновлён: L1 доказан для MVP-1/2, 🟡 для MVP-3…8, L2–L4 нигде.
+
+## 2026-10-28 · Финализация сессии 02
+
+- CI: Linux/Windows/netstandard/previews — все pass (run 40720411817); `gh pr checks 1` зелёный. 153 теста, покрытие Core **91.3 %** (commit status `coverage/core`).
+- Причина прежних 70 % — отсутствие инструментации Core коллектором; закрыто `coverage.runsettings` (E-036). Сводка покрытия исправлена (E-035).
+- `docs/reports/SESSION-02.md` — отчёт по §14; `docs/PRODUCT_STATUS.md`, `AI_USAGE_LOG.md`, `EXPLAIN_FOR_AUTHOR.md`, `QUESTIONS.md`, `INVENTORY.md`, `ERRORS.md` обновлены.
+- Пакет передачи студенту: `docs/runner/RUNNER_SETUP_NANOCAD.md` + шаблон workflow (не активен, PUBLIC) + `samples/legacy/README.md`.
