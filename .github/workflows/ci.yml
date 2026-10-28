@@ -6,37 +6,134 @@ on:
   pull_request:
   workflow_dispatch:
 
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  pull-requests: write
+  issues: write
+
 jobs:
   build-test-demo:
-    runs-on: ubuntu-22.04
+    name: Linux · build / test / coverage / demo
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Подготовка SDK (резервный канал, если .NET 8 недоступен)
-        run: bash scripts/bootstrap-dotnet.sh
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
       - name: Версия SDK
-        run: |
-          source scripts/dotnet-env.sh
-          dotnet --info
+        run: dotnet --version | tee dotnet-version.txt
       - name: Restore
-        run: |
-          source scripts/dotnet-env.sh
-          dotnet restore OddMaster.sln
+        run: dotnet restore OddMaster.sln
       - name: Build (0 предупреждений)
+        shell: bash
         run: |
-          source scripts/dotnet-env.sh
-          dotnet build OddMaster.sln --no-restore -warnaserror
-      - name: Tests
+          set -o pipefail
+          dotnet build OddMaster.sln --no-restore -warnaserror 2>&1 | tee build.log
+      - name: Tests + покрытие
+        shell: bash
         run: |
-          source scripts/dotnet-env.sh
-          dotnet test OddMaster.sln --no-build
+          set -o pipefail
+          dotnet test OddMaster.sln --no-build \
+            --collect:"XPlat Code Coverage" \
+            --results-directory ./coverage \
+            --logger "console;verbosity=normal" 2>&1 | tee test.log
+      - name: Сводка покрытия Core
+        run: |
+          python3 scripts/coverage_summary.py coverage | tee coverage.log
+          cp coverage-summary.md coverage/coverage-summary.md || true
       - name: Demo all
-        run: |
-          source scripts/dotnet-env.sh
-          dotnet run --project src/OddMaster.Demo --no-build -- all
+        run: dotnet run --project src/OddMaster.Demo --no-build -- all
       - name: Проверка детерминизма артефактов
         run: git diff --exit-code -- docs/demo
       - name: Артефакты демо
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: oddmaster-demo
           path: docs/demo/
+      - name: Покрытие и логи
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-and-logs
+          path: |
+            coverage/
+            coverage-summary.md
+            build.log
+            test.log
+            dotnet-version.txt
+      - name: Отчёт в PR (оракул для песочницы)
+        if: always()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          JOB_STATUS: ${{ job.status }}
+        shell: bash
+        run: bash scripts/ci-report.sh "$PR_NUMBER" "$JOB_STATUS"
+
+  netstandard:
+    name: Страховка netstandard2.0 (CR-15)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+      - name: Сборка ядра под netstandard2.0
+        run: dotnet build src/OddMaster.Core.NetStandard/OddMaster.Core.NetStandard.csproj -warnaserror 2>&1 | tee netstandard.log
+      - name: Лог в PR при ошибке
+        if: failure()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        shell: bash
+        run: |
+          { echo "### ❌ netstandard2.0"; echo '```'; tail -80 netstandard.log; echo '```'; } > /tmp/ns.md
+          PR="${PR_NUMBER:-$(gh pr list --head "$GITHUB_REF_NAME" --json number --jq '.[0].number' || true)}"
+          if [ -n "$PR" ]; then gh pr comment "$PR" --body-file /tmp/ns.md; fi
+
+  previews:
+    name: Превью знаков (PNG + контактный лист)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+      - name: Инструменты превью
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq librsvg2-bin imagemagick
+      - name: Генерация SVG
+        run: |
+          dotnet build OddMaster.sln -warnaserror
+          dotnet run --project src/OddMaster.Demo --no-build -- signs
+          mkdir -p artifacts/previews
+          for f in docs/demo/signs/*.svg; do
+            rsvg-convert -w 260 "$f" -o "artifacts/previews/$(basename "${f%.svg}").png"
+          done
+          montage artifacts/previews/*.png -tile 5x -geometry 260x260+6+6 \
+            -background white artifacts/previews/contact-sheet.png
+      - name: Артефакт превью
+        uses: actions/upload-artifact@v4
+        with:
+          name: sign-previews
+          path: artifacts/previews/
+
+  windows-build:
+    name: Windows · build / test (только PR и ручной запуск)
+    if: ${{ github.event_name == 'pull_request' || github.event_name == 'workflow_dispatch' }}
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+      - name: Build
+        shell: pwsh
+        run: dotnet build OddMaster.sln -warnaserror
+      - name: Test
+        shell: pwsh
+        run: dotnet test OddMaster.sln --no-build

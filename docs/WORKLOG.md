@@ -109,3 +109,16 @@
 - Создан Draft PR из ветки `arena/649405ec-odd-master`.
 
 - Финальная проверка после `git clean -xdf`: `bash scripts/verify.sh` → 0/0, 106 тестов, `git status --short` пуст. Draft PR: https://github.com/Igorr112323/ODD-MASTER/pull/1
+
+---
+
+## 2026-10-28 · Сессия 02, P1 (часть 1): тулчейн и тесты
+
+- Старт по протоколу §13: промт программы сохранён дословно в `docs/prompts/PRODUCT_PROGRAM_PROMPT.md`; созданы `docs/PRODUCT_STATUS.md` и `docs/sessions/SESSION-02-PLAN.md`.
+- CR-01: `gh api repos/... --jq .visibility` → **public**. Это первая строка отчёта. Self-hosted workflow не создаётся; вместо него шаблон в `docs/runner/` (готовится).
+- Гейты G1–G5 закрыты: нет `docs/feedback/`, `samples/legacy/`, `data/diff-2004-2024.csv`, `docs/contest/`.
+- CR-02: `net8.0`, `LangVersion latest`, `global.json` 8.0.100/latestFeature; удалены bootstrap-скрипты, `dotnet-env.sh`, `Directory.Build.targets`, ICU/EOL-костыли; CI на `actions/setup-dotnet@v4`.
+- CR-03: 106 тестов перенесены 1:1 на xUnit (`[Fact(DisplayName=...)]`), `TestAssert` — тонкая обёртка над `Xunit.Assert`; пакеты Microsoft.NET.Test.Sdk/xunit/xunit.runner.visualstudio/coverlet.collector; `NuGet.Config` с nuget.org; покрытие Cobertura.
+- CR-15: страховочный проект `src/OddMaster.Core.NetStandard` (netstandard2.0 + System.Text.Json 8.0.5); из ядра убраны `HashCode.Combine` и `Replace(...,StringComparison)`.
+- ADR-0017…0020; обновлены README, DEPENDENCIES, QUESTIONS (ответы куратора Q-001…Q-015), ERRORS (E-021…E-025).
+- Локальная проверка типов: `/tmp/oracle` (SDK 3.1 **вне репозитория**) компилирует Core+Render+Demo и все 106 тестов с xUnit-shim — 0 ошибок. Это не заменяет зелёный CI.

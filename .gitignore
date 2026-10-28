@@ -19,3 +19,6 @@ nanoCAD-SDK/
 *.pfx
 .env
 *.nupkg
+coverage/
+*.binlog
+artifacts/previews/

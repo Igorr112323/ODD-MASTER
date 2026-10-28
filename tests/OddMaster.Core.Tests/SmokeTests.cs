@@ -1,24 +1,25 @@
+using Xunit;
 using OddMaster.TestKit;
 
 namespace OddMaster.Core.Tests
 {
     /// <summary>Дымовой тест: раннер и инфраструктура репозитория живы.</summary>
-    public static class SmokeTests
+    public class SmokeTests
     {
         /// <summary>Решение и промпт доступны из теста.</summary>
-        [OddFact("SMOKE-01: репозиторий доступен из теста")]
-        public static void RepositoryIsReachable()
+        [Fact(DisplayName = "SMOKE-01: репозиторий доступен из теста")]
+        public void RepositoryIsReachable()
         {
-            Assert.True(Repo.Exists("OddMaster.sln"), "нет OddMaster.sln");
-            Assert.True(Repo.Exists("docs/prompts/NIGHT_RUN_PROMPT.md"), "нет сохранённого промпта");
-            Assert.Contains("НОЧНОЙ ПРОГОН", Repo.ReadText("docs/prompts/NIGHT_RUN_PROMPT.md"));
+            TestAssert.True(Repo.Exists("OddMaster.sln"), "нет OddMaster.sln");
+            TestAssert.True(Repo.Exists("docs/prompts/NIGHT_RUN_PROMPT.md"), "нет сохранённого промпта");
+            TestAssert.Contains("НОЧНОЙ ПРОГОН", Repo.ReadText("docs/prompts/NIGHT_RUN_PROMPT.md"));
         }
 
         /// <summary>Сборка ядра загружается.</summary>
-        [OddFact("SMOKE-02: сборка Core загружается")]
-        public static void CoreAssemblyLoads()
+        [Fact(DisplayName = "SMOKE-02: сборка Core загружается")]
+        public void CoreAssemblyLoads()
         {
-            Assert.NotNull(typeof(OddMaster.Core.Marker).Assembly);
+            TestAssert.NotNull(typeof(OddMaster.Core.Marker).Assembly);
         }
     }
 }

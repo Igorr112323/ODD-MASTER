@@ -1,8 +1,8 @@
 {
   "sdk": {
-    "version": "3.1.102",
-    "rollForward": "latestMajor",
+    "version": "8.0.100",
+    "rollForward": "latestFeature",
     "allowPrerelease": false
   },
-  "_comment": "3.1.102 — единственный SDK, доступный в песочнице (см. ADR-0009). rollForward=latestMajor позволяет собрать тем же исходником на .NET 8+, когда он появится у студента."
+  "_comment": "Только официальный .NET 8 SDK. Резервные каналы и самосборный OpenSSL запрещены (CR-02, ADR-0017)."
 }

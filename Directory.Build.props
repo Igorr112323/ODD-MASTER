@@ -1,21 +1,20 @@
 <Project>
-  <!-- ADR-0009: одна переменная переключает целевой фреймворк на .NET 8. -->
+  <!-- CR-02: единственный целевой фреймворк .NET 8; переменная сохранена для
+       страховочной сборки netstandard2.0 (CR-15) и будущих экспериментов. -->
   <PropertyGroup>
-    <OddTargetFramework Condition="'$(OddTargetFramework)' == ''">netcoreapp3.1</OddTargetFramework>
+    <OddTargetFramework Condition="'$(OddTargetFramework)' == ''">net8.0</OddTargetFramework>
     <TargetFramework>$(OddTargetFramework)</TargetFramework>
-    <LangVersion>8.0</LangVersion>
+    <LangVersion>latest</LangVersion>
     <Nullable>enable</Nullable>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <AnalysisLevel>latest</AnalysisLevel>
     <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
     <Deterministic>true</Deterministic>
-    <CheckEolTargetFramework>false</CheckEolTargetFramework>
     <EnableDefaultCompileItems>true</EnableDefaultCompileItems>
     <InvariantGlobalization>false</InvariantGlobalization>
     <NoLogo>true</NoLogo>
   </PropertyGroup>
 
-  <!-- XML-документация обязательна только для библиотек; у exe и тестов XML-doc не требуется. -->
   <PropertyGroup Condition="'$(OddGenerateDocs)' == 'true'">
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>

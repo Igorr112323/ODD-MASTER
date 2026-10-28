@@ -208,7 +208,7 @@ namespace OddMaster.Core.Generation
                 if (parameterValue == null) return result;
                 var template = _config.Drawing.ParameterTextTemplates.TryGetValue(spec.Value, out var t)
                     ? t : "{value}";
-                value = template.Replace("{value}", parameterValue, StringComparison.Ordinal);
+                value = template.Replace("{value}", parameterValue);
             }
             var minSide = Math.Min(builder.NominalBounds().Width, builder.NominalBounds().Height);
             var height = minSide * _config.Drawing.PlaceholderTextHeightRatio;

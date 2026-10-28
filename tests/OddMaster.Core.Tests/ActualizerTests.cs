@@ -1,3 +1,4 @@
+using Xunit;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -10,7 +11,7 @@ using OddMaster.TestKit;
 namespace OddMaster.Core.Tests
 {
     /// <summary>Актуализатор 2004 → 2024 на синтетической ДЕМО-карте (M7).</summary>
-    public static class ActualizerTests
+    public class ActualizerTests
     {
         private const string DemoMap = "tests/fixtures/actualizer/map-demo.json";
         private const string Patterns = "tests/fixtures/actualizer/recognizer-patterns.json";
@@ -26,66 +27,66 @@ namespace OddMaster.Core.Tests
             return (new ActualizationEngine(recognizer, map, cfg.Catalog), scheme, map);
         }
 
-        [OddFact("M7-A01: боевая карта замен пустая, ДЕМО-карта помечена")]
-        public static void BattleMapIsEmpty()
+        [Fact(DisplayName = "M7-A01: боевая карта замен пустая, ДЕМО-карта помечена")]
+        public void BattleMapIsEmpty()
         {
             var root = Repo.Root();
             var battle = ConfigLoader.Load(root).MigrationMap;
-            Assert.Equal(0, battle.Rules.Count);
-            Assert.False(battle.IsDemo);
-            Assert.Contains("GOST-018", string.Join(" ", battle.Markers));
+            TestAssert.Equal(0, battle.Rules.Count);
+            TestAssert.False(battle.IsDemo);
+            TestAssert.Contains("GOST-018", string.Join(" ", battle.Markers));
             var (_, _, demo) = Fixture();
-            Assert.True(demo.IsDemo);
-            Assert.Equal(4, demo.Rules.Count);
+            TestAssert.True(demo.IsDemo);
+            TestAssert.Equal(4, demo.Rules.Count);
         }
 
-        [OddFact("M7-A02: отчёт содержит все шесть категорий")]
-        public static void AllSixCategories()
+        [Fact(DisplayName = "M7-A02: отчёт содержит все шесть категорий")]
+        public void AllSixCategories()
         {
             var (engine, scheme, _) = Fixture();
             var report = engine.Run(scheme);
             foreach (MigrationCategory category in Enum.GetValues(typeof(MigrationCategory)).Cast<MigrationCategory>())
-                Assert.True(report.Counts[category] > 0, "нет категории " + category);
+                TestAssert.True(report.Counts[category] > 0, "нет категории " + category);
         }
 
-        [OddFact("M7-A03: конфликт правил → NeedsDecision с обоих идентификаторами")]
-        public static void ConflictNeedsDecision()
+        [Fact(DisplayName = "M7-A03: конфликт правил → NeedsDecision с обоих идентификаторами")]
+        public void ConflictNeedsDecision()
         {
             var (engine, scheme, _) = Fixture();
             var item = engine.Run(scheme).Items.First(i => i.ElementId == "E03");
-            Assert.Equal(MigrationCategory.NeedsDecision, item.Category);
-            Assert.Contains("DEMO-R2", item.RuleId ?? "");
-            Assert.Contains("DEMO-R4", item.RuleId ?? "");
-            Assert.Contains("Нужно решение человека", item.Note);
+            TestAssert.Equal(MigrationCategory.NeedsDecision, item.Category);
+            TestAssert.Contains("DEMO-R2", item.RuleId ?? "");
+            TestAssert.Contains("DEMO-R4", item.RuleId ?? "");
+            TestAssert.Contains("Нужно решение человека", item.Note);
         }
 
-        [OddFact("M7-A04: баннер прямо говорит о ДЕМО и несверенной карте")]
-        public static void BannerIsExplicit()
+        [Fact(DisplayName = "M7-A04: баннер прямо говорит о ДЕМО и несверенной карте")]
+        public void BannerIsExplicit()
         {
             var (engine, scheme, _) = Fixture();
             var report = engine.Run(scheme);
-            Assert.Contains("ДЕМО", report.Banner);
-            Assert.Contains("не сверена", report.Banner);
-            Assert.Contains("ДЕМО", report.ToMarkdown());
+            TestAssert.Contains("ДЕМО", report.Banner);
+            TestAssert.Contains("не сверена", report.Banner);
+            TestAssert.Contains("ДЕМО", report.ToMarkdown());
         }
 
-        [OddFact("M7-A05: с пустой боевой картой нет замен и отмен")]
-        public static void EmptyBattleMapDoesNotReplace()
+        [Fact(DisplayName = "M7-A05: с пустой боевой картой нет замен и отмен")]
+        public void EmptyBattleMapDoesNotReplace()
         {
             var root = Repo.Root();
             var cfg = ConfigLoader.Load(root);
             var recognizer = ConfigLoader.LoadRecognizer(root, Patterns);
             var scheme = ConfigLoader.LoadLegacyScheme(root, Legacy);
             var report = new ActualizationEngine(recognizer, cfg.MigrationMap, cfg.Catalog).Run(scheme);
-            Assert.Equal(0, report.Counts[MigrationCategory.Replaced]);
-            Assert.Equal(0, report.Counts[MigrationCategory.Removed]);
-            Assert.Equal(0, report.Counts[MigrationCategory.NeedsDecision]);
-            Assert.False(report.IsDemo);
-            Assert.True(report.Counts[MigrationCategory.Unknown] > 0);
+            TestAssert.Equal(0, report.Counts[MigrationCategory.Replaced]);
+            TestAssert.Equal(0, report.Counts[MigrationCategory.Removed]);
+            TestAssert.Equal(0, report.Counts[MigrationCategory.NeedsDecision]);
+            TestAssert.False(report.IsDemo);
+            TestAssert.True(report.Counts[MigrationCategory.Unknown] > 0);
         }
 
-        [OddFact("M7-A06: golden-файлы отчёта актуализатора")]
-        public static void GoldenActualizationReport()
+        [Fact(DisplayName = "M7-A06: golden-файлы отчёта актуализатора")]
+        public void GoldenActualizationReport()
         {
             var (engine, scheme, _) = Fixture();
             var report = engine.Run(scheme);
@@ -93,8 +94,8 @@ namespace OddMaster.Core.Tests
             Golden.CheckText("tests/OddMaster.Core.Tests/Approved/actualization_report.csv", report.ToCsv());
         }
 
-        [OddFact("M7-A07: два прогона и две культуры дают одинаковый отчёт")]
-        public static void DeterministicAndCultureInvariant()
+        [Fact(DisplayName = "M7-A07: два прогона и две культуры дают одинаковый отчёт")]
+        public void DeterministicAndCultureInvariant()
         {
             var (engine, scheme, _) = Fixture();
             var saved = CultureInfo.CurrentCulture;
@@ -107,40 +108,40 @@ namespace OddMaster.Core.Tests
                     var report = engine.Run(scheme);
                     results.Add(report.ToMarkdown() + "|" + report.ToCsv());
                 }
-                Assert.Equal(results[0], results[1]);
-                Assert.Equal(engine.Run(scheme).ToMarkdown(), engine.Run(scheme).ToMarkdown());
+                TestAssert.Equal(results[0], results[1]);
+                TestAssert.Equal(engine.Run(scheme).ToMarkdown(), engine.Run(scheme).ToMarkdown());
             }
             finally { CultureInfo.CurrentCulture = saved; }
         }
 
-        [OddFact("M7-A08: CSV-отчёт с BOM и CRLF")]
-        public static void ActualizationCsv()
+        [Fact(DisplayName = "M7-A08: CSV-отчёт с BOM и CRLF")]
+        public void ActualizationCsv()
         {
             var (engine, scheme, _) = Fixture();
             var csv = engine.Run(scheme).ToCsv();
-            Assert.True(CsvWriter.HasBom(csv));
-            Assert.Contains("\r\n", csv);
-            Assert.Contains("NeedsDecision", csv);
-            Assert.NotContains("2026-", csv);
+            TestAssert.True(CsvWriter.HasBom(csv));
+            TestAssert.Contains("\r\n", csv);
+            TestAssert.Contains("NeedsDecision", csv);
+            TestAssert.NotContains("2026-", csv);
         }
 
-        [OddFact("M7-A09: неизвестный блок → Unknown, шаблон NONE")]
-        public static void UnrecognizedBlock()
+        [Fact(DisplayName = "M7-A09: неизвестный блок → Unknown, шаблон NONE")]
+        public void UnrecognizedBlock()
         {
             var (engine, scheme, _) = Fixture();
             var item = engine.Run(scheme).Items.First(i => i.ElementId == "E07");
-            Assert.Equal(MigrationCategory.Unknown, item.Category);
-            Assert.Equal("NONE", item.PatternId);
-            Assert.Contains("Не распознано", item.Note);
+            TestAssert.Equal(MigrationCategory.Unknown, item.Category);
+            TestAssert.Equal("NONE", item.PatternId);
+            TestAssert.Contains("Не распознано", item.Note);
         }
 
-        [OddFact("M7-A10: номер из каталога 2024 без правила карты → Unchanged")]
-        public static void KnownSignIsUnchanged()
+        [Fact(DisplayName = "M7-A10: номер из каталога 2024 без правила карты → Unchanged")]
+        public void KnownSignIsUnchanged()
         {
             var (engine, scheme, _) = Fixture();
             var item = engine.Run(scheme).Items.First(i => i.ElementId == "E05");
-            Assert.Equal(MigrationCategory.Unchanged, item.Category);
-            Assert.Equal("2.4", item.ResultSigns);
+            TestAssert.Equal(MigrationCategory.Unchanged, item.Category);
+            TestAssert.Equal("2.4", item.ResultSigns);
         }
     }
 }

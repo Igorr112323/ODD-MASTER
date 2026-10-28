@@ -24,7 +24,7 @@ namespace OddMaster.Core.Statement
         {
             var text = value ?? string.Empty;
             if (text.IndexOfAny(new[] { ';', '"', '\r', '\n' }) < 0) return text;
-            return "\"" + text.Replace("\"", "\"\"", StringComparison.Ordinal) + "\"";
+            return "\"" + text.Replace("\"", "\"\"") + "\"";
         }
 
         /// <summary>Число в инвариантной культуре с заменой точки на запятую (только для CSV).</summary>

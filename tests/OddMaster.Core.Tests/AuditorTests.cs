@@ -1,3 +1,4 @@
+using Xunit;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -11,7 +12,7 @@ using OddMaster.TestKit;
 namespace OddMaster.Core.Tests
 {
     /// <summary>Аудитор схемы и отчёт (M6).</summary>
-    public static class AuditorTests
+    public class AuditorTests
     {
         private static (AuditRequest Request, AuditReport Report) Fixture()
         {
@@ -21,26 +22,26 @@ namespace OddMaster.Core.Tests
             return (request, report);
         }
 
-        [OddFact("M6-C01: CSV-фикстура разбирается: 11 записей, BOM и запятая в дроби")]
-        public static void FixtureParses()
+        [Fact(DisplayName = "M6-C01: CSV-фикстура разбирается: 11 записей, BOM и запятая в дроби")]
+        public void FixtureParses()
         {
             var (request, _) = Fixture();
-            Assert.Equal(12, request.Entries.Count);
-            Assert.Equal(2.35m, request.Entries.First(e => e.Id == "E09").ParameterValue!.Value);
-            Assert.Equal("справа", request.Entries.First(e => e.Id == "E01").Side);
+            TestAssert.Equal(12, request.Entries.Count);
+            TestAssert.Equal(2.35m, request.Entries.First(e => e.Id == "E09").ParameterValue!.Value);
+            TestAssert.Equal("справа", request.Entries.First(e => e.Id == "E01").Side);
         }
 
-        [OddFact("M6-C02: отчёт содержит находки всех правил R001–R007")]
-        public static void AllRulesProduceFindings()
+        [Fact(DisplayName = "M6-C02: отчёт содержит находки всех правил R001–R007")]
+        public void AllRulesProduceFindings()
         {
             var (_, report) = Fixture();
             var ids = report.Findings.Select(f => f.RuleId).ToHashSet();
             foreach (var id in new[] { "R001", "R002", "R003", "R004", "R005", "R006", "R007" })
-                Assert.True(ids.Contains(id), "нет находок правила " + id);
+                TestAssert.True(ids.Contains(id), "нет находок правила " + id);
         }
 
-        [OddFact("M6-C03: находки отсортированы по пикету, затем по месту и правилу")]
-        public static void FindingsAreSorted()
+        [Fact(DisplayName = "M6-C03: находки отсортированы по пикету, затем по месту и правилу")]
+        public void FindingsAreSorted()
         {
             var (_, report) = Fixture();
             var sorted = report.Findings
@@ -50,73 +51,73 @@ namespace OddMaster.Core.Tests
                 .ToList();
             for (int i = 0; i < sorted.Count; i++)
             {
-                Assert.Equal(sorted[i].StationMeters, report.Findings[i].StationMeters);
-                Assert.Equal(sorted[i].RuleId, report.Findings[i].RuleId);
+                TestAssert.Equal(sorted[i].StationMeters, report.Findings[i].StationMeters);
+                TestAssert.Equal(sorted[i].RuleId, report.Findings[i].RuleId);
             }
         }
 
-        [OddFact("M6-C04: баннер «ЧЕРНОВИК» и пометка «не проверено по ГОСТ»")]
-        public static void DraftBannerAndMarker()
+        [Fact(DisplayName = "M6-C04: баннер «ЧЕРНОВИК» и пометка «не проверено по ГОСТ»")]
+        public void DraftBannerAndMarker()
         {
             var (_, report) = Fixture();
-            Assert.True(report.HasUnverified);
-            Assert.Contains("ЧЕРНОВИК", report.Banner);
-            Assert.Contains("не проверено по ГОСТ", report.ToMarkdown());
-            Assert.Contains("не проверено по ГОСТ", report.ToCsv());
-            Assert.NotContains("OddMaster.Core.Norms.NormRef", report.ToMarkdown());
-            Assert.Contains("ГОСТ Р 52290-2024", report.ToMarkdown());
-            Assert.True(report.Findings.Any(f => f.RuleId == "R003" && f.IsDraft && f.Marker == "GOST-017"));
+            TestAssert.True(report.HasUnverified);
+            TestAssert.Contains("ЧЕРНОВИК", report.Banner);
+            TestAssert.Contains("не проверено по ГОСТ", report.ToMarkdown());
+            TestAssert.Contains("не проверено по ГОСТ", report.ToCsv());
+            TestAssert.NotContains("OddMaster.Core.Norms.NormRef", report.ToMarkdown());
+            TestAssert.Contains("ГОСТ Р 52290-2024", report.ToMarkdown());
+            TestAssert.True(report.Findings.Any(f => f.RuleId == "R003" && f.IsDraft && f.Marker == "GOST-017"));
         }
 
-        [OddFact("M6-C05: CSV-отчёт с BOM, «;», CRLF и без времени/GUID")]
-        public static void AuditCsvFormat()
+        [Fact(DisplayName = "M6-C05: CSV-отчёт с BOM, «;», CRLF и без времени/GUID")]
+        public void AuditCsvFormat()
         {
             var (_, report) = Fixture();
             var csv = report.ToCsv();
-            Assert.True(CsvWriter.HasBom(csv));
-            Assert.Contains(";", csv);
-            Assert.Contains("\r\n", csv);
-            Assert.NotContains("2026-", csv);
-            Assert.NotContains("guid", csv.ToLowerInvariant());
+            TestAssert.True(CsvWriter.HasBom(csv));
+            TestAssert.Contains(";", csv);
+            TestAssert.Contains("\r\n", csv);
+            TestAssert.NotContains("2026-", csv);
+            TestAssert.NotContains("guid", csv.ToLowerInvariant());
         }
 
-        [OddFact("M6-C06: golden-файлы отчёта аудитора")]
-        public static void GoldenAuditReport()
+        [Fact(DisplayName = "M6-C06: golden-файлы отчёта аудитора")]
+        public void GoldenAuditReport()
         {
             var (_, report) = Fixture();
             Golden.CheckText("tests/OddMaster.Core.Tests/Approved/audit_report.csv", report.ToCsv());
             Golden.CheckText("tests/OddMaster.Core.Tests/Approved/audit_report.md", report.ToMarkdown());
         }
 
-        [OddFact("M6-C07: дубли R001 учитывают допуск из controls.json")]
-        public static void DuplicateTolerance()
+        [Fact(DisplayName = "M6-C07: дубли R001 учитывают допуск из controls.json")]
+        public void DuplicateTolerance()
         {
             var (_, report) = Fixture();
             var duplicate = report.Findings.First(f => f.RuleId == "R001");
-            Assert.Contains("3 м", duplicate.Message);
-            Assert.Contains("допуск 5 м", duplicate.Message);
+            TestAssert.Contains("3 м", duplicate.Message);
+            TestAssert.Contains("допуск 5 м", duplicate.Message);
         }
 
-        [OddFact("M6-C08: пустая схема даёт только глобальный пробел по кайме")]
-        public static void EmptySchemeGivesGlobalGap()
+        [Fact(DisplayName = "M6-C08: пустая схема даёт только глобальный пробел по кайме")]
+        public void EmptySchemeGivesGlobalGap()
         {
             var report = new SchemeAuditor(ConfigLoader.Load(Repo.Root()))
                 .Audit(new AuditRequest("пустая", new List<SchemeEntry>()));
-            Assert.Equal(1, report.Findings.Count);
-            Assert.Equal("R007", report.Findings[0].RuleId);
-            Assert.Equal("GOST-001", report.Findings[0].Marker);
+            TestAssert.Equal(1, report.Findings.Count);
+            TestAssert.Equal("R007", report.Findings[0].RuleId);
+            TestAssert.Equal("GOST-001", report.Findings[0].Marker);
         }
 
-        [OddFact("M6-C10: неверный заголовок CSV даёт понятную русскую ошибку")]
-        public static void BadFixtureHeaderFailsClearly()
+        [Fact(DisplayName = "M6-C10: неверный заголовок CSV даёт понятную русскую ошибку")]
+        public void BadFixtureHeaderFailsClearly()
         {
-            var ex = Assert.Throws<Config.ConfigException>(() =>
+            var ex = TestAssert.Throws<Config.ConfigException>(() =>
                 AuditCsvParser.Parse("id;number;sizeClass\r\nE1;3.24;II\r\n", "плохая"));
-            Assert.Contains("Как исправить", ex.Message);
+            TestAssert.Contains("Как исправить", ex.Message);
         }
 
-        [OddFact("M6-C09: отчёт не зависит от текущей культуры")]
-        public static void CultureInvariantReport()
+        [Fact(DisplayName = "M6-C09: отчёт не зависит от текущей культуры")]
+        public void CultureInvariantReport()
         {
             var saved = CultureInfo.CurrentCulture;
             try
@@ -128,7 +129,7 @@ namespace OddMaster.Core.Tests
                     var (_, report) = Fixture();
                     results.Add(report.ToCsv() + "|" + report.ToMarkdown());
                 }
-                Assert.Equal(results[0], results[1]);
+                TestAssert.Equal(results[0], results[1]);
             }
             finally { CultureInfo.CurrentCulture = saved; }
         }

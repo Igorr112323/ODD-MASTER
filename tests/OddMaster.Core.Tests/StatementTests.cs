@@ -1,3 +1,4 @@
+using Xunit;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -14,7 +15,7 @@ using OddMaster.TestKit;
 namespace OddMaster.Core.Tests
 {
     /// <summary>Ведомость ТС ОДД (M5).</summary>
-    public static class StatementTests
+    public class StatementTests
     {
         private static SchemeModel Scheme()
         {
@@ -36,32 +37,32 @@ namespace OddMaster.Core.Tests
         private static TsoddStatement Statement() =>
             TsoddStatement.Build(Scheme(), ConfigLoader.Load(Repo.Root()).Catalog);
 
-        [OddFact("M5-S01: группировка по номер + типоразмер + параметр")]
-        public static void GroupingByNumberSizeAndParameter()
+        [Fact(DisplayName = "M5-S01: группировка по номер + типоразмер + параметр")]
+        public void GroupingByNumberSizeAndParameter()
         {
             var rows = Statement().Rows;
             var s40 = rows.FirstOrDefault(r => r.Number.ToString() == "3.24" && r.Parameter == "40" && r.SizeClass == "II");
-            Assert.NotNull(s40);
-            Assert.Equal(2, s40!.Count);
+            TestAssert.NotNull(s40);
+            TestAssert.Equal(2, s40!.Count);
             var s60 = rows.FirstOrDefault(r => r.Number.ToString() == "3.24" && r.Parameter == "60");
-            Assert.NotNull(s60);
-            Assert.Equal(1, s60!.Count);
-            Assert.Equal(5, rows.Count);
+            TestAssert.NotNull(s60);
+            TestAssert.Equal(1, s60!.Count);
+            TestAssert.Equal(5, rows.Count);
         }
 
-        [OddFact("M5-S02: натуральная сортировка 3.2 < 3.10 < 3.24")]
-        public static void NaturalSort()
+        [Fact(DisplayName = "M5-S02: натуральная сортировка 3.2 < 3.10 < 3.24")]
+        public void NaturalSort()
         {
             var numbers = new List<string>();
             foreach (var row in Statement().Rows) numbers.Add(row.Number.ToString());
             var i2 = numbers.IndexOf("3.2");
             var i10 = numbers.IndexOf("3.10");
             var i24 = numbers.IndexOf("3.24");
-            Assert.True(i2 < i10 && i10 < i24, string.Join(",", numbers));
+            TestAssert.True(i2 < i10 && i10 < i24, string.Join(",", numbers));
         }
 
-        [OddFact("M5-S03: экранирование CSV: кавычки и «;» в наименовании")]
-        public static void CsvEscaping()
+        [Fact(DisplayName = "M5-S03: экранирование CSV: кавычки и «;» в наименовании")]
+        public void CsvEscaping()
         {
             var definition = new SignDefinition(SignNumber.Parse("3.2"),
                 "Знак \"особый\"; правый", 3, CarrierShape.Circle, "Д.4", false,
@@ -73,51 +74,51 @@ namespace OddMaster.Core.Tests
                 new List<SignDefinition> { definition });
             var statement = TsoddStatement.Build(Scheme(), catalog);
             var csv = statement.ToCsv();
-            Assert.Contains("\"Знак \"\"особый\"\"; правый\"", csv);
-            Assert.Contains(";", csv);
+            TestAssert.Contains("\"Знак \"\"особый\"\"; правый\"", csv);
+            TestAssert.Contains(";", csv);
         }
 
-        [OddFact("M5-S04: CSV начинается с BOM и использует CRLF")]
-        public static void CsvBomAndLineEndings()
+        [Fact(DisplayName = "M5-S04: CSV начинается с BOM и использует CRLF")]
+        public void CsvBomAndLineEndings()
         {
             var csv = Statement().ToCsv();
-            Assert.True(CsvWriter.HasBom(csv));
-            Assert.Contains("\r\n", csv);
-            Assert.Contains("Номер знака по ГОСТ Р 52290-2024", csv);
+            TestAssert.True(CsvWriter.HasBom(csv));
+            TestAssert.Contains("\r\n", csv);
+            TestAssert.Contains("Номер знака по ГОСТ Р 52290-2024", csv);
         }
 
-        [OddFact("M5-S05: пустой вход → только шапка")]
-        public static void EmptyInputHeaderOnly()
+        [Fact(DisplayName = "M5-S05: пустой вход → только шапка")]
+        public void EmptyInputHeaderOnly()
         {
             var axis = new Alignment.Alignment(new[] { new Point2(0, 0), new Point2(10, 0) });
             var empty = new SchemeModel("empty", axis);
             var statement = TsoddStatement.Build(empty, ConfigLoader.Load(Repo.Root()).Catalog);
-            Assert.Equal(0, statement.Rows.Count);
-            Assert.Equal(7, statement.ToTableModel()[0].Count);
-            Assert.Equal(1, statement.ToCsv().Split(new[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries).Length);
+            TestAssert.Equal(0, statement.Rows.Count);
+            TestAssert.Equal(7, statement.ToTableModel()[0].Count);
+            TestAssert.Equal(1, statement.ToCsv().Split(new[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries).Length);
         }
 
-        [OddFact("M5-S06: golden-файлы ведомости CSV и MD")]
-        public static void GoldenStatement()
+        [Fact(DisplayName = "M5-S06: golden-файлы ведомости CSV и MD")]
+        public void GoldenStatement()
         {
             var statement = Statement();
             Golden.CheckText("tests/OddMaster.Core.Tests/Approved/statement.csv", statement.ToCsv());
             Golden.CheckText("tests/OddMaster.Core.Tests/Approved/statement.md", statement.ToMarkdown());
         }
 
-        [OddFact("M5-S07: перечень по опорам в порядке задания")]
-        public static void PostListOrder()
+        [Fact(DisplayName = "M5-S07: перечень по опорам в порядке задания")]
+        public void PostListOrder()
         {
             var posts = Statement().Posts;
-            Assert.Equal(2, posts.Count);
-            Assert.Equal("P1", posts[0].PostId);
-            Assert.Equal("ПК1+00,00", posts[0].StationText);
-            Assert.Equal("слева", posts[1].Side);
-            Assert.Contains("3.24 (40)", posts[0].Signs);
+            TestAssert.Equal(2, posts.Count);
+            TestAssert.Equal("P1", posts[0].PostId);
+            TestAssert.Equal("ПК1+00,00", posts[0].StationText);
+            TestAssert.Equal("слева", posts[1].Side);
+            TestAssert.Contains("3.24 (40)", posts[0].Signs);
         }
 
-        [OddFact("M5-S08: CSV и Markdown не зависят от текущей культуры")]
-        public static void CultureInvariantStatement()
+        [Fact(DisplayName = "M5-S08: CSV и Markdown не зависят от текущей культуры")]
+        public void CultureInvariantStatement()
         {
             var saved = CultureInfo.CurrentCulture;
             try
@@ -129,18 +130,18 @@ namespace OddMaster.Core.Tests
                     var statement = Statement();
                     results.Add(statement.ToCsv() + "|" + statement.ToMarkdown());
                 }
-                Assert.Equal(results[0], results[1]);
+                TestAssert.Equal(results[0], results[1]);
             }
             finally { CultureInfo.CurrentCulture = saved; }
         }
 
-        [OddFact("M5-S09: табличная модель содержит 7 колонок и все строки")]
-        public static void TableModel()
+        [Fact(DisplayName = "M5-S09: табличная модель содержит 7 колонок и все строки")]
+        public void TableModel()
         {
             var table = Statement().ToTableModel();
-            Assert.Equal(7, table[0].Count);
-            Assert.Equal(6, table.Count); // шапка + 5 строк
-            Assert.Equal("1", table[1][0]);
+            TestAssert.Equal(7, table[0].Count);
+            TestAssert.Equal(6, table.Count); // шапка + 5 строк
+            TestAssert.Equal("1", table[1][0]);
         }
     }
 }

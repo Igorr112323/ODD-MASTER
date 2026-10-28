@@ -115,6 +115,6 @@ namespace OddMaster.Core.Actualizer
         }
 
         private static string Escape(string? value) =>
-            (value ?? string.Empty).Replace("|", "\\|", StringComparison.Ordinal);
+            (value ?? string.Empty).Replace("|", "\\|");
     }
 }

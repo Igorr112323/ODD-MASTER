@@ -1,3 +1,4 @@
+using Xunit;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -11,20 +12,20 @@ using IoPath = System.IO.Path;
 namespace OddMaster.Core.Tests
 {
     /// <summary>Изоляция адаптера и порт отрисовки (M9).</summary>
-    public static class AdapterTests
+    public class AdapterTests
     {
-        [OddFact("M9-A01: адаптер не входит в OddMaster.sln, но есть в OddMaster.NanoCAD.sln")]
-        public static void AdapterIsSeparate()
+        [Fact(DisplayName = "M9-A01: адаптер не входит в OddMaster.sln, но есть в OddMaster.NanoCAD.sln")]
+        public void AdapterIsSeparate()
         {
             var main = Repo.ReadText("OddMaster.sln");
             var nano = Repo.ReadText("OddMaster.NanoCAD.sln");
-            Assert.NotContains("OddMaster.NanoCAD", main);
-            Assert.Contains("OddMaster.NanoCAD", nano);
-            Assert.Contains("OddMaster.Core", nano);
+            TestAssert.NotContains("OddMaster.NanoCAD", main);
+            TestAssert.Contains("OddMaster.NanoCAD", nano);
+            TestAssert.Contains("OddMaster.Core", nano);
         }
 
-        [OddFact("M9-A02: в репозитории нет DLL, EXE и PDF")]
-        public static void NoBinaries()
+        [Fact(DisplayName = "M9-A02: в репозитории нет DLL, EXE и PDF")]
+        public void NoBinaries()
         {
             var root = Repo.Root();
             var files = Directory.GetFiles(root, "*", SearchOption.AllDirectories)
@@ -32,23 +33,23 @@ namespace OddMaster.Core.Tests
             foreach (var file in files)
             {
                 var ext = IoPath.GetExtension(file).ToLowerInvariant();
-                Assert.True(ext != ".dll" && ext != ".exe" && ext != ".pdf",
+                TestAssert.True(ext != ".dll" && ext != ".exe" && ext != ".pdf",
                     "запрещённый бинарный файл: " + file);
             }
         }
 
-        [OddFact("M9-A03: все SDK-NNN вызовы в адаптере зарегистрированы")]
-        public static void SdkMarkersInAdapter()
+        [Fact(DisplayName = "M9-A03: все SDK-NNN вызовы в адаптере зарегистрированы")]
+        public void SdkMarkersInAdapter()
         {
             var dir = IoPath.Combine(Repo.Root(), "src/OddMaster.NanoCAD");
             var csproj = Repo.ReadText("src/OddMaster.NanoCAD/OddMaster.NanoCAD.csproj");
-            Assert.Contains("SDK-001", csproj);
+            TestAssert.Contains("SDK-001", csproj);
             foreach (var file in Directory.GetFiles(dir, "*.cs"))
-                Assert.Contains("ПРОВЕРИТЬ В SDK", File.ReadAllText(file), IoPath.GetFileName(file));
+                TestAssert.Contains("ПРОВЕРИТЬ В SDK", File.ReadAllText(file), IoPath.GetFileName(file));
         }
 
-        [OddFact("M9-A04: GeometryPortWriter отдаёт примитивы без знания о САПР")]
-        public static void PortWriterProducesPrimitives()
+        [Fact(DisplayName = "M9-A04: GeometryPortWriter отдаёт примитивы без знания о САПР")]
+        public void PortWriterProducesPrimitives()
         {
             var cfg = OddMaster.Core.Config.ConfigLoader.Load(Repo.Root());
             var sign = cfg.Catalog.Find("3.24")!;
@@ -56,11 +57,11 @@ namespace OddMaster.Core.Tests
                 new Dictionary<string, decimal> { ["speed"] = 40m }).Geometry!;
             var port = new RecordingPort();
             GeometryPortWriter.Write(port, geometry, new Point2(10, 20), 0.5);
-            Assert.True(port.Lines.Count + port.Arcs.Count > 0, "нет отрезков и дуг");
-            Assert.True(port.Arcs.Count > 0, " circle sign: ожидались дуги");
-            Assert.True(port.Texts.Count > 0, "нет надписей");
-            Assert.True(port.Fills.Count > 0, "нет заливок");
-            Assert.Close(10 + geometry.Bounds.MinX * 0.5, port.Fills[0], 0.01);
+            TestAssert.True(port.Lines.Count + port.Arcs.Count > 0, "нет отрезков и дуг");
+            TestAssert.True(port.Arcs.Count > 0, " circle sign: ожидались дуги");
+            TestAssert.True(port.Texts.Count > 0, "нет надписей");
+            TestAssert.True(port.Fills.Count > 0, "нет заливок");
+            TestAssert.Close(10 + geometry.Bounds.MinX * 0.5, port.Fills[0], 0.01);
         }
 
         private sealed class RecordingPort : IDrawingPort

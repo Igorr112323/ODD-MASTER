@@ -1,3 +1,4 @@
+using Xunit;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -12,15 +13,15 @@ using OddMaster.TestKit;
 namespace OddMaster.Core.Tests
 {
     /// <summary>Инварианты параметрического генератора носителей (M2).</summary>
-    public static class GeneratorTests
+    public class GeneratorTests
     {
         private static SignGenerator Generator() => new SignGenerator(ConfigLoader.Load(Repo.Root()));
 
         private static Dictionary<string, decimal> Speed(decimal value) =>
             new Dictionary<string, decimal> { ["speed"] = value };
 
-        [OddFact("M2-G01: POC-знаки генерируются во всех предусмотренных типоразмерах")]
-        public static void AllPocSignsGenerate()
+        [Fact(DisplayName = "M2-G01: POC-знаки генерируются во всех предусмотренных типоразмерах")]
+        public void AllPocSignsGenerate()
         {
             var cfg = ConfigLoader.Load(Repo.Root());
             var gen = new SignGenerator(cfg);
@@ -28,22 +29,22 @@ namespace OddMaster.Core.Tests
             foreach (var sign in cfg.Catalog.Signs)
             {
                 var classes = AvailableClasses(cfg.MainProfile, sign.Number);
-                Assert.True(classes.Count > 0, "нет типоразмеров для " + sign.Number);
+                TestAssert.True(classes.Count > 0, "нет типоразмеров для " + sign.Number);
                 foreach (var sizeClass in classes)
                 {
                     var parameters = sign.ParameterKind == "speed" ? Speed(40m)
                         : sign.ParameterKind == "distance" ? new Dictionary<string, decimal> { ["distance"] = 50m }
                         : null;
                     var result = gen.Generate(sign, sizeClass, parameters);
-                    Assert.True(result.IsSuccess,
+                    TestAssert.True(result.IsSuccess,
                         $"{sign.Number}/{sizeClass}: {string.Join("; ", result.Findings.Select(f => f.Format()))}");
-                    Assert.True(result.Geometry!.Outline.IsClosed, sign.Number + ": контур не замкнут");
-                    Assert.True(result.Geometry.Layers.Count >= 3, sign.Number + ": мало слоёв");
-                    Assert.True(result.IsDraft, sign.Number + ": ожидался ЧЕРНОВИК");
+                    TestAssert.True(result.Geometry!.Outline.IsClosed, sign.Number + ": контур не замкнут");
+                    TestAssert.True(result.Geometry.Layers.Count >= 3, sign.Number + ": мало слоёв");
+                    TestAssert.True(result.IsDraft, sign.Number + ": ожидался ЧЕРНОВИК");
                     checkedCount++;
                 }
             }
-            Assert.True(checkedCount >= 12, "проверено слишком мало комбинаций: " + checkedCount);
+            TestAssert.True(checkedCount >= 12, "проверено слишком мало комбинаций: " + checkedCount);
         }
 
         private static List<string> AvailableClasses(SizeProfile profile, SignNumber number)
@@ -59,8 +60,8 @@ namespace OddMaster.Core.Tests
             return result;
         }
 
-        [OddFact("M2-G02: габариты совпадают с данными прил. Д (0,01 мм)")]
-        public static void DimensionsMatchTables()
+        [Fact(DisplayName = "M2-G02: габариты совпадают с данными прил. Д (0,01 мм)")]
+        public void DimensionsMatchTables()
         {
             var gen = Generator();
             var cases = new (string Number, string Class, double W, double H)[]
@@ -78,15 +79,15 @@ namespace OddMaster.Core.Tests
                 var p = c.Number == "3.24" || c.Number == "3.25" ? Speed(40m)
                     : c.Number == "8.2.1" ? new Dictionary<string, decimal> { ["distance"] = 50m } : null;
                 var result = gen.Generate(c.Number, c.Class, p);
-                Assert.True(result.IsSuccess, c.Number + "/" + c.Class + ": " +
+                TestAssert.True(result.IsSuccess, c.Number + "/" + c.Class + ": " +
                     string.Join("; ", result.Findings.Select(f => f.Format())));
-                Assert.Close(c.W, result.Geometry!.WidthMm, 0.01, c.Number + " ширина");
-                Assert.Close(c.H, result.Geometry.HeightMm, 0.01, c.Number + " высота");
+                TestAssert.Close(c.W, result.Geometry!.WidthMm, 0.01, c.Number + " ширина");
+                TestAssert.Close(c.H, result.Geometry.HeightMm, 0.01, c.Number + " высота");
             }
         }
 
-        [OddFact("M2-G03: ширина наружной каймы 10/20 мм приходит из borders.json")]
-        public static void BorderWidthFromConfig()
+        [Fact(DisplayName = "M2-G03: ширина наружной каймы 10/20 мм приходит из borders.json")]
+        public void BorderWidthFromConfig()
         {
             var gen = Generator();
             var expected = new Dictionary<string, double>
@@ -98,33 +99,33 @@ namespace OddMaster.Core.Tests
                 var p = pair.Key == "3.24" || pair.Key == "3.25" ? Speed(40m)
                     : pair.Key == "8.2.1" ? new Dictionary<string, decimal> { ["distance"] = 50m } : null;
                 var result = gen.Generate(pair.Key, "II", p);
-                Assert.True(result.IsSuccess, pair.Key);
-                Assert.Equal(pair.Value, result.Geometry!.OuterBorderWidthMm);
+                TestAssert.True(result.IsSuccess, pair.Key);
+                TestAssert.Equal(pair.Value, result.Geometry!.OuterBorderWidthMm);
             }
         }
 
-        [OddFact("M2-G04: 2.5 в типоразмере I → находка со ссылкой на Д.3")]
-        public static void MissingSizeClassGivesFinding()
+        [Fact(DisplayName = "M2-G04: 2.5 в типоразмере I → находка со ссылкой на Д.3")]
+        public void MissingSizeClassGivesFinding()
         {
             var result = Generator().Generate("2.5", "I");
-            Assert.False(result.IsSuccess);
-            Assert.Contains("Д.3", string.Join(" ", result.Findings.Select(f => f.Format())));
+            TestAssert.False(result.IsSuccess);
+            TestAssert.Contains("Д.3", string.Join(" ", result.Findings.Select(f => f.Format())));
         }
 
-        [OddFact("M2-G05: 3.24 со скоростью 45 → находка, 40 → геометрия")]
-        public static void InvalidSpeedGivesFinding()
+        [Fact(DisplayName = "M2-G05: 3.24 со скоростью 45 → находка, 40 → геометрия")]
+        public void InvalidSpeedGivesFinding()
         {
             var gen = Generator();
             var bad = gen.Generate("3.24", "II", Speed(45m));
-            Assert.False(bad.IsSuccess);
-            Assert.Contains("R006", string.Join(" ", bad.Findings.Select(f => f.Format())));
+            TestAssert.False(bad.IsSuccess);
+            TestAssert.Contains("R006", string.Join(" ", bad.Findings.Select(f => f.Format())));
             var good = gen.Generate("3.24", "II", Speed(40m));
-            Assert.True(good.IsSuccess);
-            Assert.Equal("40", good.Geometry!.ParameterValue);
+            TestAssert.True(good.IsSuccess);
+            TestAssert.Equal("40", good.Geometry!.ParameterValue);
         }
 
-        [OddFact("M2-G06: индивидуальное проектирование возвращает находку, а не геометрию")]
-        public static void IndividualDesignIsFinding()
+        [Fact(DisplayName = "M2-G06: индивидуальное проектирование возвращает находку, а не геометрию")]
+        public void IndividualDesignIsFinding()
         {
             var cfg = ConfigLoader.Load(Repo.Root());
             var fake = new SignDefinition(SignNumber.Parse("6.14.1"), "Индивидуальный", 6,
@@ -132,16 +133,16 @@ namespace OddMaster.Core.Tests
                 new Dictionary<string, string>(), null, null, null, null,
                 new NormRef("ГОСТ Р 52290-2024", "разд. 4"), Verification.CuratorExtracted, new List<string>());
             var result = new SignGenerator(cfg).Generate(fake, "II");
-            Assert.False(result.IsSuccess);
-            Assert.Contains("индивидуального проектирования", string.Join(" ", result.Findings.Select(f => f.Message)));
+            TestAssert.False(result.IsSuccess);
+            TestAssert.Contains("индивидуального проектирования", string.Join(" ", result.Findings.Select(f => f.Message)));
         }
 
-        [OddFact("M2-G07: нижний треугольник — зеркальное отражение верхнего")]
-        public static void TriangleDownIsMirror()
+        [Fact(DisplayName = "M2-G07: нижний треугольник — зеркальное отражение верхнего")]
+        public void TriangleDownIsMirror()
         {
             var up = GeometryPrimitives.Triangle(900, 45, true);
             var down = GeometryPrimitives.Triangle(900, 45, false);
-            Assert.True(up.IsSuccess && down.IsSuccess);
+            TestAssert.True(up.IsSuccess && down.IsSuccess);
             var upPoints = SamplePoints(up.Path!);
             var mirrored = upPoints.Select(p => new Point2(p.X, -p.Y));
             var downPoints = SamplePoints(down.Path!);
@@ -150,9 +151,9 @@ namespace OddMaster.Core.Tests
             foreach (var point in expected)
             {
                 var found = downPoints.Any(p => Math.Abs(p.X - point.X) < 1e-6 && Math.Abs(p.Y - point.Y) < 1e-6);
-                Assert.True(found, "нет зеркальной точки " + point);
+                TestAssert.True(found, "нет зеркальной точки " + point);
             }
-            Assert.Equal(expected.Count, downPoints.Count);
+            TestAssert.Equal(expected.Count, downPoints.Count);
         }
 
         private static List<Point2> SamplePoints(Path path)
@@ -174,23 +175,23 @@ namespace OddMaster.Core.Tests
             return points;
         }
 
-        [OddFact("M2-G08: неизвестная внутренняя кайма → заглушка, GOST-001 и ЧЕРНОВИК")]
-        public static void InnerBorderIsPlaceholder()
+        [Fact(DisplayName = "M2-G08: неизвестная внутренняя кайма → заглушка, GOST-001 и ЧЕРНОВИК")]
+        public void InnerBorderIsPlaceholder()
         {
             var result = Generator().Generate("3.24", "II", Speed(40m));
-            Assert.True(result.IsSuccess);
-            Assert.True(result.Geometry!.InnerBorderIsPlaceholder);
-            Assert.Contains("GOST-001", string.Join(" ", result.Findings.Select(f => f.Format())));
-            Assert.Contains("Placeholder", result.Geometry.Verification.Describe());
+            TestAssert.True(result.IsSuccess);
+            TestAssert.True(result.Geometry!.InnerBorderIsPlaceholder);
+            TestAssert.Contains("GOST-001", string.Join(" ", result.Findings.Select(f => f.Format())));
+            TestAssert.Contains("Placeholder", result.Geometry.Verification.Describe());
         }
 
-        [OddFact("M2-G09: два прогона дают одинаковую геометрию")]
-        public static void GenerationIsDeterministic()
+        [Fact(DisplayName = "M2-G09: два прогона дают одинаковую геометрию")]
+        public void GenerationIsDeterministic()
         {
             var gen = Generator();
             var a = gen.Generate("3.24", "II", Speed(40m));
             var b = gen.Generate("3.24", "II", Speed(40m));
-            Assert.Equal(Describe(a.Geometry!), Describe(b.Geometry!));
+            TestAssert.Equal(Describe(a.Geometry!), Describe(b.Geometry!));
         }
 
         private static string Describe(SignGeometry g)
@@ -207,35 +208,35 @@ namespace OddMaster.Core.Tests
             return string.Join("|", parts);
         }
 
-        [OddFact("M2-G10: скругление, которое не помещается, даёт находку-причину")]
-        public static void TooLargeRadiusFails()
+        [Fact(DisplayName = "M2-G10: скругление, которое не помещается, даёт находку-причину")]
+        public void TooLargeRadiusFails()
         {
             var result = GeometryPrimitives.RoundedRectangle(100, 100, 80);
-            Assert.False(result.IsSuccess);
-            Assert.Contains("не помещается", result.Problem ?? "");
+            TestAssert.False(result.IsSuccess);
+            TestAssert.Contains("не помещается", result.Problem ?? "");
         }
 
-        [OddFact("M2-G11: габарит окружности по дугам равен диаметру")]
-        public static void CircleBoundsAreExact()
+        [Fact(DisplayName = "M2-G11: габарит окружности по дугам равен диаметру")]
+        public void CircleBoundsAreExact()
         {
             var path = GeometryPrimitives.Circle(700);
             var bounds = path.Bounds();
-            Assert.Close(700, bounds.Width, 0.0001);
-            Assert.Close(700, bounds.Height, 0.0001);
-            Assert.True(path.IsClosed);
+            TestAssert.Close(700, bounds.Width, 0.0001);
+            TestAssert.Close(700, bounds.Height, 0.0001);
+            TestAssert.True(path.IsClosed);
         }
 
-        [OddFact("M2-G12: восьмиугольник: B — расстояние между параллельными сторонами")]
-        public static void OctagonAcrossFlats()
+        [Fact(DisplayName = "M2-G12: восьмиугольник: B — расстояние между параллельными сторонами")]
+        public void OctagonAcrossFlats()
         {
             var path = GeometryPrimitives.RegularOctagon(700);
             var bounds = path.Bounds();
-            Assert.Close(700, bounds.Width, 0.01);
-            Assert.Close(700, bounds.Height, 0.01);
+            TestAssert.Close(700, bounds.Width, 0.01);
+            TestAssert.Close(700, bounds.Height, 0.01);
         }
 
-        [OddFact("M2-G13: в исходниках Core нет Multicad/Teigha/Avalonia/WinForms/WPF/Render")]
-        public static void ArchitectureNoCadReferences()
+        [Fact(DisplayName = "M2-G13: в исходниках Core нет Multicad/Teigha/Avalonia/WinForms/WPF/Render")]
+        public void ArchitectureNoCadReferences()
         {
             var root = Repo.Root();
             var files = System.IO.Directory.GetFiles(System.IO.Path.Combine(root, "src/OddMaster.Core"),
@@ -246,10 +247,10 @@ namespace OddMaster.Core.Tests
             {
                 var text = System.IO.File.ReadAllText(file);
                 foreach (var word in forbidden)
-                    Assert.NotContains(word, text, System.IO.Path.GetFileName(file));
+                    TestAssert.NotContains(word, text, System.IO.Path.GetFileName(file));
             }
             var csproj = Repo.ReadText("src/OddMaster.Core/OddMaster.Core.csproj");
-            foreach (var word in forbidden) Assert.NotContains(word, csproj);
+            foreach (var word in forbidden) TestAssert.NotContains(word, csproj);
         }
     }
 }

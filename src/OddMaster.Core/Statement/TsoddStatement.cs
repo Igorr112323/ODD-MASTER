@@ -167,6 +167,6 @@ namespace OddMaster.Core.Statement
         }
 
         private static string MarkdownEscape(string? value) =>
-            (value ?? string.Empty).Replace("|", "\\|", StringComparison.Ordinal);
+            (value ?? string.Empty).Replace("|", "\\|");
     }
 }

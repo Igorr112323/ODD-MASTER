@@ -31,7 +31,7 @@ namespace OddMaster.Core.Geometry
         public override bool Equals(object? obj) => obj is Point2 p && Equals(p);
 
         /// <summary>Хэш.</summary>
-        public override int GetHashCode() => HashCode.Combine(X, Y);
+        public override int GetHashCode() => (X.GetHashCode() * 397) ^ Y.GetHashCode();
 
         /// <summary>Инвариантное представление «x;y».</summary>
         public override string ToString() =>

@@ -31,3 +31,13 @@
 
 | E-019 | `dotnet build -p:OddTargetFramework=net8.0` → MSB3644 | SDK 3.1 не знает TFM net8.0 и считает его .NET Framework | Переключение целевого фреймворка требует установленного .NET 8 SDK; в песочнице недоступно. README явно говорит «на машине с .NET 8» | Обычная сборка `netcoreapp3.1` остаётся зелёной; ограничение записано в отчёт |
 | E-020 | Адаптер `NanoCadDrawingPort` сначала не реализовывал `DrawFilledPath`, а порт не масштабировал залитые контуры | Порт был добавлен раньше, чем реализация | `GeometryPortWriter.TransformPath` масштабирует весь контур, тест M9-A04 проверяет MinX после масштаба | Тест M9-A04 |
+
+## Сессия 02 (28.10.2026) — долги качества
+
+| ID | Симптом | Причина | Исправление | Правило |
+|---|---|---|---|---|
+| E-021 | Локальная ветка в начале сессии указывала на `2af39c8`, все файлы были untracked | Платформа сбросила локальную ветку на `main`, PR #1 не смёржен | `git reset --hard origin/arena/649405ec-odd-master` (удалённая ветка цела) | В начале сессии проверять `git log -1` и `git branch -avv`, а не только `git status` |
+| E-022 | `gh repo view --json visibility` → «Unknown JSON field» | CLI не поддерживает поле `visibility` | `gh api repos/OWNER/REPO --jq '{private,visibility}'` | Проверять видимость через REST API |
+| E-023 | `gh run view --log` / `gh run download` → EOF | Хосты `results-receiver.actions.githubusercontent.com` и `blob.core.windows.net` недоступны в песочнице | `scripts/ci-report.sh` публикует статус, покрытие и хвост логов комментарием в PR | «CI как оракул» (§11.3) требует своего канала диагностики |
+| E-024 | Локально нет .NET 8 и NuGet | Сеть ограничена GitHub/npm/PyPI | Локальный оракул: официальный SDK 3.1 из npm **только в /tmp** для проверки типов C# (не коммитится, не в CI) + CI как основной оракул | Разделять «средство проверки типов» и «цепочку поставок продукта» |
+| E-025 | `System.Text.Json` недоступен для netstandard2.0 | API отсутствует в BCL netstandard2.0 | Пакет System.Text.Json 8.0.5 в страховочном проекте; `HashCode.Combine` и `Replace(...,StringComparison)` заменены на netstandard2.0-совместимые | Проверять переносимость ядра отдельной сборкой в CI |

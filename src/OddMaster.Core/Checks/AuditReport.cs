@@ -73,6 +73,6 @@ namespace OddMaster.Core.Checks
         }
 
         private static string Escape(string? value) =>
-            (value ?? string.Empty).Replace("|", "\\|", StringComparison.Ordinal);
+            (value ?? string.Empty).Replace("|", "\\|");
     }
 }

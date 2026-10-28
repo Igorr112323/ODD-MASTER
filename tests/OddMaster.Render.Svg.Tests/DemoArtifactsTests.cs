@@ -1,3 +1,4 @@
+using Xunit;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -14,7 +15,7 @@ using IoPath = System.IO.Path;
 namespace OddMaster.Render.Svg.Tests
 {
     /// <summary>Сквозные демо-артефакты и детерминизм (M8).</summary>
-    public static class DemoArtifactsTests
+    public class DemoArtifactsTests
     {
         private static readonly string[] Expected =
         {
@@ -36,39 +37,39 @@ namespace OddMaster.Render.Svg.Tests
             demo.Actualize();
         }
 
-        [OddFact("M8-S01: все ожидаемые артефакты существуют")]
-        public static void AllArtifactsExist()
+        [Fact(DisplayName = "M8-S01: все ожидаемые артефакты существуют")]
+        public void AllArtifactsExist()
         {
             foreach (var file in Expected)
-                Assert.True(File.Exists(Demo(file)), "нет файла docs/demo/" + file);
-            Assert.True(Directory.GetFiles(Demo("signs"), "*.svg").Length >= 20);
+                TestAssert.True(File.Exists(Demo(file)), "нет файла docs/demo/" + file);
+            TestAssert.True(Directory.GetFiles(Demo("signs"), "*.svg").Length >= 20);
         }
 
-        [OddFact("M8-S02: scheme.svg — корректный XML со слоями и баннером")]
-        public static void SchemeSvgStructure()
+        [Fact(DisplayName = "M8-S02: scheme.svg — корректный XML со слоями и баннером")]
+        public void SchemeSvgStructure()
         {
             var svg = File.ReadAllText(Demo("scheme.svg"));
             var doc = XDocument.Parse(svg);
-            Assert.Equal("svg", doc.Root!.Name.LocalName);
-            Assert.Contains("id=\"Alignment\"", svg);
-            Assert.Contains("id=\"Post-P1\"", svg);
-            Assert.Contains("id=\"StationTicks\"", svg);
-            Assert.Contains("id=\"DraftBanner\"", svg);
-            Assert.Contains("ЧЕРНОВИК", svg);
-            Assert.Contains("odd:scheme", svg);
-            Assert.Contains("ПК", svg);
-            Assert.NotContains("2026-", svg);
+            TestAssert.Equal("svg", doc.Root!.Name.LocalName);
+            TestAssert.Contains("id=\"Alignment\"", svg);
+            TestAssert.Contains("id=\"Post-P1\"", svg);
+            TestAssert.Contains("id=\"StationTicks\"", svg);
+            TestAssert.Contains("id=\"DraftBanner\"", svg);
+            TestAssert.Contains("ЧЕРНОВИК", svg);
+            TestAssert.Contains("odd:scheme", svg);
+            TestAssert.Contains("ПК", svg);
+            TestAssert.NotContains("2026-", svg);
         }
 
-        [OddFact("M8-S03: повторный прогон all даёт байт-в-байт те же файлы")]
-        public static void DemoIsByteDeterministic()
+        [Fact(DisplayName = "M8-S03: повторный прогон all даёт байт-в-байт те же файлы")]
+        public void DemoIsByteDeterministic()
         {
             var hashes = Snapshot();
             RunDemo();
             var second = Snapshot();
-            Assert.Equal(hashes.Count, second.Count);
+            TestAssert.Equal(hashes.Count, second.Count);
             foreach (var pair in hashes)
-                Assert.Equal(pair.Value, second[pair.Key]);
+                TestAssert.Equal(pair.Value, second[pair.Key]);
         }
 
         private static Dictionary<string, string> Snapshot()
@@ -85,17 +86,17 @@ namespace OddMaster.Render.Svg.Tests
             return result;
         }
 
-        [OddFact("M8-S04: reactor_diff показывает сдвиг X на +50 без смены пикетов")]
-        public static void ReactorDiffContent()
+        [Fact(DisplayName = "M8-S04: reactor_diff показывает сдвиг X на +50 без смены пикетов")]
+        public void ReactorDiffContent()
         {
             var diff = File.ReadAllText(Demo("reactor_diff.txt"));
-            Assert.Contains("X 50 → 100", diff);
-            Assert.Contains("X 350 → 400", diff);
-            Assert.NotContains("пикет", diff);
+            TestAssert.Contains("X 50 → 100", diff);
+            TestAssert.Contains("X 350 → 400", diff);
+            TestAssert.NotContains("пикет", diff);
         }
 
-        [OddFact("M8-S05: golden scheme.svg, reactor_diff.txt и config_validation.md")]
-        public static void GoldenDemoArtifacts()
+        [Fact(DisplayName = "M8-S05: golden scheme.svg, reactor_diff.txt и config_validation.md")]
+        public void GoldenDemoArtifacts()
         {
             Golden.CheckText("tests/OddMaster.Render.Svg.Tests/Approved/scheme.svg",
                 File.ReadAllText(Demo("scheme.svg")));
@@ -105,49 +106,49 @@ namespace OddMaster.Render.Svg.Tests
                 File.ReadAllText(Demo("config_validation.md")));
         }
 
-        [OddFact("M8-S06: ведомость и журнал координат — CSV с BOM")]
-        public static void CsvArtifacts()
+        [Fact(DisplayName = "M8-S06: ведомость и журнал координат — CSV с BOM")]
+        public void CsvArtifacts()
         {
             foreach (var file in new[] { "statement.csv", "coordinates.csv", "audit_report.csv", "actualization_report.csv" })
             {
                 var bytes = File.ReadAllBytes(Demo(file));
-                Assert.True(bytes.Length > 3 && bytes[0] == 0xEF && bytes[1] == 0xBB && bytes[2] == 0xBF,
+                TestAssert.True(bytes.Length > 3 && bytes[0] == 0xEF && bytes[1] == 0xBB && bytes[2] == 0xBF,
                     file + " без BOM");
                 var csv = Encoding.UTF8.GetString(bytes);
-                Assert.Contains(";", csv);
+                TestAssert.Contains(";", csv);
             }
-            Assert.Contains("GOST-011", File.ReadAllText(Demo("statement.md")));
+            TestAssert.Contains("GOST-011", File.ReadAllText(Demo("statement.md")));
         }
 
-        [OddFact("M8-S07: config_validation.md находит четыре несостыковки и не содержит ошибок конфигов")]
-        public static void ConfigValidationReport()
+        [Fact(DisplayName = "M8-S07: config_validation.md находит четыре несостыковки и не содержит ошибок конфигов")]
+        public void ConfigValidationReport()
         {
             var text = File.ReadAllText(Demo("config_validation.md"));
-            Assert.Contains("Ошибки: 0", text);
-            Assert.Contains("GAP-001", text);
-            Assert.Contains("GAP-002A", text);
-            Assert.Contains("GAP-002B", text);
-            Assert.Contains("GAP-003", text);
-            Assert.Contains("GAP-004", text);
+            TestAssert.Contains("Ошибки: 0", text);
+            TestAssert.Contains("GAP-001", text);
+            TestAssert.Contains("GAP-002A", text);
+            TestAssert.Contains("GAP-002B", text);
+            TestAssert.Contains("GAP-003", text);
+            TestAssert.Contains("GAP-004", text);
         }
 
-        [OddFact("M8-S08: отчёты аудитора и актуализатора честно помечены")]
-        public static void ReportsAreHonest()
+        [Fact(DisplayName = "M8-S08: отчёты аудитора и актуализатора честно помечены")]
+        public void ReportsAreHonest()
         {
-            Assert.Contains("ЧЕРНОВИК", File.ReadAllText(Demo("audit_report.md")));
-            Assert.Contains("не проверено по ГОСТ", File.ReadAllText(Demo("audit_report.csv")));
-            Assert.Contains("ДЕМО", File.ReadAllText(Demo("actualization_report.md")));
-            Assert.Contains("NeedsDecision", File.ReadAllText(Demo("actualization_report.csv")));
+            TestAssert.Contains("ЧЕРНОВИК", File.ReadAllText(Demo("audit_report.md")));
+            TestAssert.Contains("не проверено по ГОСТ", File.ReadAllText(Demo("audit_report.csv")));
+            TestAssert.Contains("ДЕМО", File.ReadAllText(Demo("actualization_report.md")));
+            TestAssert.Contains("NeedsDecision", File.ReadAllText(Demo("actualization_report.csv")));
         }
 
-        [OddFact("M8-S09: в артефактах нет дат, GUID и случайных чисел")]
-        public static void NoTimestampsOrGuids()
+        [Fact(DisplayName = "M8-S09: в артефактах нет дат, GUID и случайных чисел")]
+        public void NoTimestampsOrGuids()
         {
             foreach (var file in Directory.GetFiles(Demo(""), "*", SearchOption.AllDirectories))
             {
                 var text = File.ReadAllText(file);
-                Assert.NotContains("2026-", text, IoPath.GetFileName(file));
-                Assert.NotContains("Guid.NewGuid", text, IoPath.GetFileName(file));
+                TestAssert.NotContains("2026-", text, IoPath.GetFileName(file));
+                TestAssert.NotContains("Guid.NewGuid", text, IoPath.GetFileName(file));
             }
         }
     }

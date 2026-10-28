@@ -1,90 +1,12 @@
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 using System.Text;
+using Xunit;
 
 namespace OddMaster.TestKit
 {
-    /// <summary>Пометка теста. Свой микро-раннер вместо xUnit: NuGet в среде агента недоступен (ADR-0014).</summary>
-    [AttributeUsage(AttributeTargets.Method, AllowMultiple = false)]
-    public sealed class OddFactAttribute : Attribute
-    {
-        /// <summary>Создаёт пометку теста.</summary>
-        public OddFactAttribute(string name) { Name = name; }
-
-        /// <summary>Имя теста для отчёта.</summary>
-        public string Name { get; }
-    }
-
-    /// <summary>Минимальный набор проверок. Любая неудача бросает исключение с русским сообщением.</summary>
-    public static class Assert
-    {
-        /// <summary>Проверяет истинность.</summary>
-        public static void True(bool condition, string message = "ожидалось true")
-        {
-            if (!condition) throw new InvalidOperationException("Проверка не прошла: " + message);
-        }
-
-        /// <summary>Проверяет ложность.</summary>
-        public static void False(bool condition, string message = "ожидалось false")
-        {
-            if (condition) throw new InvalidOperationException("Проверка не прошла: " + message);
-        }
-
-        /// <summary>Проверяет равенство значений.</summary>
-        public static void Equal<T>(T expected, T actual, string message = "")
-        {
-            if (!EqualityComparer<T>.Default.Equals(expected, actual))
-                throw new InvalidOperationException(
-                    $"Проверка не прошла: ожидалось «{expected}», получено «{actual}». {message}");
-        }
-
-        /// <summary>Проверяет равенство double с допуском.</summary>
-        public static void Close(double expected, double actual, double tolerance, string message = "")
-        {
-            if (Math.Abs(expected - actual) > tolerance)
-                throw new InvalidOperationException(
-                    $"Проверка не прошла: ожидалось {expected.ToString("R", CultureInfo.InvariantCulture)}, " +
-                    $"получено {actual.ToString("R", CultureInfo.InvariantCulture)}, допуск {tolerance}. {message}");
-        }
-
-        /// <summary>Проверяет, что строка содержит подстроку.</summary>
-        public static void Contains(string expectedPart, string actual, string message = "")
-        {
-            if (actual == null || !actual.Contains(expectedPart, StringComparison.Ordinal))
-                throw new InvalidOperationException($"Проверка не прошла: строка не содержит «{expectedPart}». {message}");
-        }
-
-        /// <summary>Проверяет, что строка НЕ содержит подстроку.</summary>
-        public static void NotContains(string forbiddenPart, string actual, string message = "")
-        {
-            if (actual != null && actual.Contains(forbiddenPart, StringComparison.Ordinal))
-                throw new InvalidOperationException($"Проверка не прошла: строка содержит «{forbiddenPart}». {message}");
-        }
-
-        /// <summary>Проверяет, что значение не null.</summary>
-        public static void NotNull(object? value, string message = "ожидалось не null")
-        {
-            if (value == null) throw new InvalidOperationException("Проверка не прошла: " + message);
-        }
-
-        /// <summary>Проверяет, что действие бросает исключение заданного типа.</summary>
-        public static TException Throws<TException>(Action action) where TException : Exception
-        {
-            try { action(); }
-            catch (TException ex) { return ex; }
-            catch (Exception other)
-            {
-                throw new InvalidOperationException(
-                    $"Ожидалось исключение {typeof(TException).Name}, получено {other.GetType().Name}");
-            }
-            throw new InvalidOperationException($"Ожидалось исключение {typeof(TException).Name}, но его не было");
-        }
-    }
-
     /// <summary>Поиск корня репозитория: тесты запускаются и из корня, и из папки проекта.</summary>
     public static class Repo
     {
@@ -111,42 +33,41 @@ namespace OddMaster.TestKit
             File.Exists(Path.Combine(Root(), relativePath));
     }
 
-    /// <summary>Сверка с эталонным файлом (golden). При расхождении печатает понятный отчёт.</summary>
+    /// <summary>
+    /// Сверка с эталонным файлом (golden, CR-10). Эталон обновляется только вместе
+    /// с docs/visual/REVIEW-NN.md через ODD_UPDATE_GOLDEN=1.
+    /// Git хранит golden с LF, поэтому сравниваем после нормализации переводов строк.
+    /// </summary>
     public static class Golden
     {
-        /// <summary>Сверяет текст с эталоном. Если эталона нет, он создаётся (первый прогон).</summary>
+        /// <summary>Сверяет текст с эталоном. Отсутствие эталона — ошибка, а не тихое создание.</summary>
         public static void CheckText(string relativePath, string actual)
         {
             var full = Path.Combine(Repo.Root(), relativePath);
             Directory.CreateDirectory(Path.GetDirectoryName(full) ?? Repo.Root());
+            var normalized = Normalize(actual);
             if (!File.Exists(full))
             {
                 if (Environment.GetEnvironmentVariable("ODD_UPDATE_GOLDEN") == "1")
                 {
-                    File.WriteAllBytes(full, new UTF8Encoding(false).GetBytes(Normalize(actual)));
+                    File.WriteAllBytes(full, new UTF8Encoding(false).GetBytes(normalized));
                     return;
                 }
                 throw new InvalidOperationException(
                     "Отсутствует golden-файл " + relativePath +
-                    ". Это не «зелёный» тест: создайте эталон командой ODD_UPDATE_GOLDEN=1 dotnet test и закоммитьте его.");
+                    ". Создайте эталон командой ODD_UPDATE_GOLDEN=1 dotnet test и приложите docs/visual/REVIEW-NN.md.");
             }
-            // Читаем байты и декодируем сами: File.ReadAllText съедает BOM,
-            // а для CSV с UTF-8 BOM он является частью формата.
-            var expected = new UTF8Encoding(false).GetString(File.ReadAllBytes(full));
-            // Git хранит golden-файлы с LF (.gitattributes). Сравниваем с нормализованными
-            // переводами строк; наличие CRLF в CSV проверяется отдельным тестом M5-S04.
-            var expectedNorm = Normalize(expected);
-            var actualNorm = Normalize(actual);
-            if (!string.Equals(expectedNorm, actualNorm, StringComparison.Ordinal))
+            var expected = Normalize(new UTF8Encoding(false).GetString(File.ReadAllBytes(full)));
+            if (!string.Equals(expected, normalized, StringComparison.Ordinal))
             {
-                var lineExpected = expectedNorm.Split('\n');
-                var lineActual = actualNorm.Split('\n');
+                var lineExpected = expected.Split('\n');
+                var lineActual = normalized.Split('\n');
                 var first = Enumerable.Range(0, Math.Min(lineExpected.Length, lineActual.Length))
                     .FirstOrDefault(i => !string.Equals(lineExpected[i], lineActual[i], StringComparison.Ordinal));
                 throw new InvalidOperationException(
                     $"Golden-файл {relativePath} не совпал (строка {first + 1}). " +
                     $"Ожидалось: «{Trim(lineExpected, first)}». Получено: «{Trim(lineActual, first)}». " +
-                    "Если изменение намеренное — обновите эталон и опишите в WORKLOG.");
+                    "Эталон обновляется только вместе с docs/visual/REVIEW-NN.md.");
             }
         }
 
@@ -157,42 +78,60 @@ namespace OddMaster.TestKit
             index < lines.Length ? (lines[index].Length > 160 ? lines[index].Substring(0, 160) + "…" : lines[index]) : "<конец файла>";
     }
 
-    /// <summary>Запускает все методы с OddFact в сборке и печатает результат.</summary>
-    public static class TestRunner
+    /// <summary>
+    /// Тонкая обёртка над Xunit.Assert: сохраняет русские сообщения прогона №1 и
+    /// методы Close/NotContains, которых нет в xUnit. Все проверки завершаются
+    /// настоящим Xunit.Assert — самописного раннера больше нет (CR-03).
+    /// </summary>
+    public static class TestAssert
     {
-        /// <summary>Точка входа тестового проекта. Возвращает 0 при полном успехе.</summary>
-        public static int Run(Assembly assembly)
+        /// <summary>Проверяет истинность.</summary>
+        public static void True(bool condition, string message = "ожидалось true")
         {
-            var methods = assembly.GetTypes()
-                .SelectMany(t => t.GetMethods(BindingFlags.Public | BindingFlags.Static))
-                .Where(m => m.GetCustomAttribute<OddFactAttribute>() != null)
-                .OrderBy(m => m.DeclaringType!.FullName, StringComparer.Ordinal)
-                .ThenBy(m => m.Name, StringComparer.Ordinal)
-                .ToList();
-            int passed = 0;
-            var failures = new List<string>();
-            foreach (var method in methods)
-            {
-                var name = method.GetCustomAttribute<OddFactAttribute>()!.Name;
-                try
-                {
-                    method.Invoke(null, null);
-                    passed++;
-                    Console.WriteLine("  ПРОЙДЕН  " + name);
-                }
-                catch (TargetInvocationException ex)
-                {
-                    failures.Add(name + " -> " + (ex.InnerException?.Message ?? ex.Message));
-                    Console.WriteLine("  УПАЛ     " + name + " -> " + (ex.InnerException?.Message ?? ex.Message));
-                }
-                catch (Exception ex)
-                {
-                    failures.Add(name + " -> " + ex.Message);
-                    Console.WriteLine("  УПАЛ     " + name + " -> " + ex.Message);
-                }
-            }
-            Console.WriteLine($"ИТОГО: {methods.Count} тестов, прошло {passed}, упало {failures.Count}, пропущено 0.");
-            return failures.Count == 0 ? 0 : 1;
+            Assert.True(condition, "Проверка не прошла: " + message);
         }
+
+        /// <summary>Проверяет ложность.</summary>
+        public static void False(bool condition, string message = "ожидалось false")
+        {
+            Assert.False(condition, "Проверка не прошла: " + message);
+        }
+
+        /// <summary>Проверяет равенство значений.</summary>
+        public static void Equal<T>(T expected, T actual, string message = "")
+        {
+            if (!EqualityComparer<T>.Default.Equals(expected, actual))
+                Assert.True(false, $"Проверка не прошла: ожидалось «{expected}», получено «{actual}». {message}");
+        }
+
+        /// <summary>Проверяет равенство double с допуском.</summary>
+        public static void Close(double expected, double actual, double tolerance, string message = "")
+        {
+            Assert.InRange(actual, expected - tolerance, expected + tolerance);
+        }
+
+        /// <summary>Проверяет, что строка содержит подстроку.</summary>
+        public static void Contains(string expectedPart, string actual, string message = "")
+        {
+            if (actual == null || !actual.Contains(expectedPart, StringComparison.Ordinal))
+                Assert.True(false, $"Проверка не прошла: строка не содержит «{expectedPart}». {message}");
+        }
+
+        /// <summary>Проверяет, что строка НЕ содержит подстроку.</summary>
+        public static void NotContains(string forbiddenPart, string actual, string message = "")
+        {
+            if (actual != null && actual.Contains(forbiddenPart, StringComparison.Ordinal))
+                Assert.True(false, $"Проверка не прошла: строка содержит «{forbiddenPart}». {message}");
+        }
+
+        /// <summary>Проверяет, что значение не null.</summary>
+        public static void NotNull(object? value, string message = "ожидалось не null")
+        {
+            if (value == null) Assert.True(false, "Проверка не прошла: " + message);
+        }
+
+        /// <summary>Проверяет, что действие бросает исключение заданного типа.</summary>
+        public static TException Throws<TException>(Action action) where TException : Exception =>
+            Assert.Throws<TException>(action);
     }
 }
