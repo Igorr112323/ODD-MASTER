@@ -58,7 +58,10 @@ namespace OddMaster.Core.Tests
             GeometryPortWriter.Write(port, geometry, new Point2(10, 20), 0.5);
             TestAssert.True(port.Lines.Count + port.Arcs.Count > 0, "нет отрезков и дуг");
             TestAssert.True(port.Fills.Count >= 2, "нет заливок контура и поля");
-            TestAssert.Close(10 + geometry.Bounds.MinX * 0.5, port.Fills[0], 0.01);
+            // Сравниваем с габаритом самого контура (скруглённого), а не с номинальным
+            // габаритом носителя: скруглённые углы не доходят до острых вершин.
+            var outline = geometry.Layers.First(l => l.Kind == OddMaster.Core.Catalog.SignLayerKind.Outline).Geometry!;
+            TestAssert.Close(10 + outline.Bounds().MinX * 0.5, port.Fills[0], 0.01);
             var textSign = cfg.Catalog.Find("3.24")!;
             var textGeometry = new SignGenerator(cfg).Generate(textSign, "II",
                 new Dictionary<string, decimal> { ["speed"] = 40m }).Geometry!;
