@@ -16,6 +16,9 @@ on:
 
 permissions:
   contents: write
+  # Комментарий с выжимкой упавших тестов: без этого токен не может писать в PR (E-079).
+  pull-requests: write
+  issues: write
 
 concurrency:
   group: regenerate-${{ github.ref }}
