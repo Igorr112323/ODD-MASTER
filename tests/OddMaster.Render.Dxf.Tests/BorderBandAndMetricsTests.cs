@@ -21,7 +21,9 @@ namespace OddMaster.Render.Dxf.Tests
         [Fact(DisplayName = "M14-B01 Внутренняя кайма — залитая полоса между двумя контурами")]
         public void B01_InnerBorderIsBand()
         {
-            var geometry = Stand.Sign("2.4", "II");
+            // CR-22: у 3.24 (круг) красная кайма ≈0,087·D — на круге смещение внутрь
+            // равно ширине полосы, поэтому здесь можно проверить саму полосу.
+            var geometry = Stand.Sign("3.24", "II");
             var inner = geometry.Layers.Single(l => l.Kind == SignLayerKind.InnerBorder);
             var field = geometry.Layers.Single(l => l.Kind == SignLayerKind.Field);
             TestAssert.True(inner.Filled, "кайма должна заливаться, а не обводиться: у отрезка в DXF нет ширины");
@@ -52,9 +54,10 @@ namespace OddMaster.Render.Dxf.Tests
         [Fact(DisplayName = "M14-B03 У знака без внутренней каймы слоя InnerBorder нет")]
         public void B03_NoInnerBorderWhenNotDeclared()
         {
-            var geometry = Stand.Sign("3.24", "II");
+            // CR-04/CR-22: у 6.4 внутренней каймы нет, у 3.24 теперь есть красная.
+            var geometry = Stand.Sign("6.4", "II");
             TestAssert.True(geometry.Layers.All(l => l.Kind != SignLayerKind.InnerBorder),
-                "3.24: внутренней каймы нет (CR-04)");
+                "6.4: внутренней каймы нет (CR-04)");
             TestAssert.True(geometry.Layers.All(l => l.Kind != SignLayerKind.InnerBorder
                 || l.Geometry != null));
         }

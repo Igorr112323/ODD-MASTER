@@ -195,7 +195,9 @@ namespace OddMaster.Core.Tests
             TestAssert.True(result.IsSuccess);
             TestAssert.True(result.Geometry!.InnerBorderIsPlaceholder);
             TestAssert.Contains("GOST-001", string.Join(" ", result.Findings.Select(f => f.Format())));
-            TestAssert.Contains("Placeholder", result.Geometry.Verification.Describe());
+            // CR-22 §3: ширина в мм неизвестна, но есть замеренная пропорция (Unverified),
+            // поэтому статус — Unverified, а не Placeholder; маркер GOST-001 обязателен.
+            TestAssert.Contains("Unverified", result.Geometry.Verification.Describe());
             var noInner = Generator().Generate("3.24", "II", Speed(40m));
             TestAssert.True(noInner.IsSuccess);
             TestAssert.False(noInner.Geometry!.InnerBorderIsPlaceholder);

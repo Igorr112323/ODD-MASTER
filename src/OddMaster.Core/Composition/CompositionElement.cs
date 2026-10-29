@@ -37,7 +37,8 @@ namespace OddMaster.Core.Composition
         public CompositionElement(string id, CompositionKind kind, string colorName, bool filled,
             double xRatio, double yRatio, double widthRatio, double heightRatio, double bandRatio,
             double lengthRatio, double spacingRatio, int count, double angleDeg, double strokeRatio,
-            double sizeRatio, string? direction, string? note, Verification verification, string? marker)
+            double sizeRatio, string? direction, string? note, Verification verification, string? marker,
+            string accentColor = "")
         {
             Id = id ?? throw new ArgumentNullException(nameof(id));
             Kind = kind;
@@ -48,6 +49,7 @@ namespace OddMaster.Core.Composition
             BandRatio = bandRatio; LengthRatio = lengthRatio; SpacingRatio = spacingRatio;
             Count = count; AngleDeg = angleDeg; StrokeRatio = strokeRatio; SizeRatio = sizeRatio;
             Direction = direction; Note = note; Verification = verification; Marker = marker;
+            AccentColor = accentColor ?? string.Empty;
         }
 
         /// <summary>Идентификатор элемента (ключ в конфиге и в каталоге знака).</summary>
@@ -88,6 +90,9 @@ namespace OddMaster.Core.Composition
         public Verification Verification { get; }
         /// <summary>Маркер GOST-NNN.</summary>
         public string? Marker { get; }
+
+        /// <summary>Второй цвет элемента (например, красный крест во вложенном знаке).</summary>
+        public string AccentColor { get; }
     }
 
     /// <summary>Библиотека примитивов состава, загруженная из config/elements/elements.json.</summary>

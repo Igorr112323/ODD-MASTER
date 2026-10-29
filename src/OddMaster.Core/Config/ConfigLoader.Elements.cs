@@ -78,7 +78,8 @@ namespace OddMaster.Core.Config
                     p.Value.TryGetProperty("verification", out _)
                         ? ReadVerificationAt(p.Value, file, pointer)
                         : libraryVerification,
-                    Markers(p.Value, file, pointer));
+                    Markers(p.Value, file, pointer),
+                    J.OptStr(p.Value, "accentColor", file, pointer) ?? "");
                 defaults++;
             }
             if (defaults == 0)

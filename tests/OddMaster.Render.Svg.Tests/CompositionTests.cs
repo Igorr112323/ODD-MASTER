@@ -20,17 +20,25 @@ namespace OddMaster.Render.Svg.Tests
     {
         private static NormativeConfigSet Config() => ConfigLoader.Load(Repo.Root());
 
-        private static SignGeometry Build(string number, string sizeClass = "II")
+        /// <summary>Первый типоразмер, который реально есть у знака в профиле (I, II, III, IV).</summary>
+        private static SignGeometry Build(string number, string? sizeClass = null)
         {
             var cfg = Config();
             var sign = cfg.Catalog.Find(number);
             if (sign == null) throw new InvalidOperationException("нет знака " + number + " в каталоге");
-            var generated = new SignGenerator(cfg)
-                .Generate(sign, sizeClass, OddMaster.Demo.DemoRunner.DefaultParameters(sign));
-            if (!generated.IsSuccess)
-                throw new InvalidOperationException("знак " + number + " не построен: " +
-                    string.Join("; ", generated.Findings.Select(f => f.Message)));
-            return generated.Geometry!;
+            var generator = new SignGenerator(cfg);
+            var classes = sizeClass != null
+                ? new[] { sizeClass }
+                : new[] { "I", "II", "III", "IV" };
+            var problems = new List<string>();
+            foreach (var candidate in classes)
+            {
+                var generated = generator.Generate(sign, candidate,
+                    OddMaster.Demo.DemoRunner.DefaultParameters(sign));
+                if (generated.IsSuccess) return generated.Geometry!;
+                problems.Add(candidate + ": " + string.Join("; ", generated.Findings.Select(f => f.Message)));
+            }
+            throw new InvalidOperationException("знак " + number + " не построен: " + string.Join(" | ", problems));
         }
 
         [Fact(DisplayName = "M16-E01 У знака без пиктограммы нет пиктограммного слоя")]

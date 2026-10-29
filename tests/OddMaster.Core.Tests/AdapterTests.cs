@@ -59,7 +59,9 @@ namespace OddMaster.Core.Tests
             // CR-16: контур, кайма и поле — заливки (полосы), поэтому линий у 2.4 нет;
             // линии и дуги появляются у незалитых слоёв — пиктограмм и штриховых надписей.
             TestAssert.True(port.Fills.Count >= 2, "нет заливок контура и поля");
-            var arrowSign = cfg.Catalog.Find("3.1")!;
+            // CR-22: у 3.1 пиктограммы нет (белый «кирпич» на красном поле), стрелка-заглушка
+            // осталась у знаков, чья пиктограмма ещё в очереди оцифровки, — например у 5.5.
+            var arrowSign = cfg.Catalog.Find("5.5")!;
             var arrowGeometry = new SignGenerator(cfg).Generate(arrowSign, "I").Geometry!;
             var arrowPort = new RecordingPort();
             GeometryPortWriter.Write(arrowPort, arrowGeometry, new Point2(0, 0), 1.0);

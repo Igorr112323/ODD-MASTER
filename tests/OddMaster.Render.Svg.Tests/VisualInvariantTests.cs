@@ -191,19 +191,22 @@ namespace OddMaster.Render.Svg.Tests
                 TestAssert.Equal(renderer.Render(g), renderer.Render(g));
         }
 
-        [Fact(DisplayName = "M9-V08: 2.4 без пиктограммы, 3.25 с диагональной полосой")]
+        [Fact(DisplayName = "M9-V08: 2.4 без пиктограммы, 3.25 — пучок полос вместо пиктограммы")]
         public void Cr05Cr06CatalogRules()
         {
             var cfg = Config();
             TestAssert.True(cfg.Catalog.Find("2.4")!.Pictogram == null,
                 "у 2.4 не должно быть пиктограммы");
+            // CR-22: полосы 3.25 — примитив состава (bundleSlash), а не пиктограмма.
             var sign325 = cfg.Catalog.Find("3.25")!;
-            TestAssert.NotNull(sign325.Pictogram);
-            TestAssert.Equal("diagonalBand", sign325.Pictogram!.PlaceholderShape);
+            TestAssert.True(sign325.Pictogram == null, "3.25: пиктограммы нет, есть примитивы состава");
+            TestAssert.True(sign325.Elements.Contains("bundleSlash"), "3.25: пучок полос «/» из конфига");
             var g = new SignGenerator(cfg).Generate(sign325, "II",
                 new Dictionary<string, decimal> { ["speed"] = 40m }).Geometry!;
-            TestAssert.True(g.Layers.Count(l => l.Kind == SignLayerKind.Pictogram) == 3,
-                "3.25: ожидались три тонкие линии заглушки");
+            TestAssert.True(g.Layers.Count(l => l.Kind == SignLayerKind.Pictogram) == 0,
+                "3.25: пиктограммного слоя быть не должно");
+            TestAssert.True(g.Layers.Count(l => l.Kind == SignLayerKind.Composition) == 1 + 5,
+                "3.25: контур плюс пять полос пучка");
             TestAssert.True(g.Layers.All(l => l.Kind != SignLayerKind.InnerBorder),
                 "3.25: красная внутренняя кайма недопустима");
             TestAssert.True(cfg.Catalog.Find("6.4")!.Colors.ContainsKey("innerBorder") == false);
