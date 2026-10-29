@@ -80,3 +80,20 @@ find . -name '*.dll' -not -path './.git/*' | grep -v '/obj/' | grep -v '/bin/'  
 | Проектов | 5 + адаптер | 5 + адаптер + `Core.NetStandard` + `odd-tools` |
 
 Удалены: `scripts/bootstrap-dotnet.sh`, `scripts/dotnet-env.sh`, `Directory.Build.targets`, самописный `OddFact`/`TestRunner`, `Program.cs` в тестах. `LICENSE` не добавлялся. DLL/PDF/сканы по-прежнему отсутствуют (тест M9-A02).
+
+## Добавлено в сессиях 02–03
+
+| Путь | Что это | Часть продукта? |
+|---|---|---|
+| `src/OddMaster.Core/Composition/` | примитивы состава знака (`CompositionElement`, `CompositionBuilder`) | да |
+| `src/OddMaster.Core/Geometry/PolygonClip.cs` | отсечение многоугольника выпуклым контуром (ADR-0031) | да |
+| `src/OddMaster.Core/Generation/DraftWatermark.cs` | водяной знак «ЧЕРНОВИК» внутри поля (CR-24) | да |
+| `src/OddMaster.Render.Dxf/` | DXF-бэкенд R12 + стенд (ADR-0025) | да |
+| `config/elements/elements.json` + схема | 16 примитивов состава (CR-22) | да |
+| `scripts/check_golden_review.py` | страж «эталон — закон» (F0) | инфраструктура |
+| `scripts/classify_test_failures.py` | допуск регенерации только при эталонных падениях (F0) | инфраструктура |
+| `scripts/ci-annotate.sh` | выжимка упавших тестов в комментарий PR (единственный канал логов из песочницы) | инфраструктура |
+| `scripts/dxf_verify.py` | независимая перечитка DXF через `ezdxf` | инфраструктура |
+| `tools/preview/svg_raster.py` | растеризатор сгенерированных SVG для самопроверки агента (в песочнице нет .NET и cairo) | **нет**, инструмент агента |
+| `.github/workflows/regenerate.yml` | регенерация эталонов официальным SDK 8 по метке `[regen]` | инфраструктура |
+

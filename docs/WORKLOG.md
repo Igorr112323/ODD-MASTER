@@ -164,3 +164,24 @@
 - Причина прежних 70 % — отсутствие инструментации Core коллектором; закрыто `coverage.runsettings` (E-036). Сводка покрытия исправлена (E-035).
 - `docs/reports/SESSION-02.md` — отчёт по §14; `docs/PRODUCT_STATUS.md`, `AI_USAGE_LOG.md`, `EXPLAIN_FOR_AUTHOR.md`, `QUESTIONS.md`, `INVENTORY.md`, `ERRORS.md` обновлены.
 - Пакет передачи студенту: `docs/runner/RUNNER_SETUP_NANOCAD.md` + шаблон workflow (не активен, PUBLIC) + `samples/legacy/README.md`.
+
+## Сессия 03 (29.10.2026, CURATOR-03 + F0 «LINUX-ПОЛИГОН»)
+
+Порядок работы — по §6 CURATOR-03, затем F0 новой программы.
+
+- Прочитано: `docs/curator/CURATOR-03.md`, `docs/PRODUCT_STATUS.md`, `docs/prompts/LINUX_FIRST_PROGRAM.md` (сохранён дословно).
+- CR-21: конфигурации `OddMaster.Render.Dxf.Tests` в решении + `scripts/check_solution_tests.py` + CI-шаг «Страж CR-21».
+- CR-22/23/25: `config/elements/elements.json` (16 примитивов, 13-я схема), переписаны `colors`/`elements`/`orientation`
+  у 41 знака, `mirrorOf` — только пиктограмма, `SwapAxes()` для 8.2.2/8.2.3.
+- CR-24: водяной знак внутри поля.
+- CR-26: триггеры CI (`push: [main]`, `pull_request`, `workflow_dispatch`), ADR-0029/0030, workflow регенерации по метке `[regen]`.
+- Найдено и исправлено по ходу: полосы строились по Y (клинья), `Flatten` ошибался на дугах, отсечение давало нулевой сегмент,
+  ромб 2.1/2.2 был нарисован как жёлтое поле.
+- Отсечение состава контуром знака (Сазерленд—Ходжмен, ADR-0031), 5 тестов M17-C01…C05.
+- Эталоны перегенерированы официальным .NET 8 в CI (коммиты бота `f9a3b05`, `f9fa901`, `d654d0d`, `b2b0950`, `d18fd92`),
+  перечень — задним числом в `docs/visual/REVIEW-03.md`.
+- F0: `scripts/check_golden_review.py` (страж), `scripts/classify_test_failures.py` (допуск регенерации),
+  правки `ci.yml` и `regenerate.yml`, `test.log` удалён из репозитория.
+- CI: PR-run `40841097675` (коммит `6f896e9`) — все 5 job'ов зелёные, шаг «Страж „эталон — закон“ (F0)» выполнен.
+- Отчёт: `docs/reports/SESSION-03.md`.
+
