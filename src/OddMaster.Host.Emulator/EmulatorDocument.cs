@@ -287,7 +287,7 @@ namespace OddMaster.Host.Emulator
         {
             private readonly EmulatorDocument _document;
             private readonly string _name;
-            private SortedDictionary<int, EmulatorObject> _work;
+            private SortedDictionary<int, EmulatorObject>? _work;
 
             public EmulatorTransaction(EmulatorDocument document, string name,
                 SortedDictionary<int, EmulatorObject> work)
@@ -345,7 +345,7 @@ namespace OddMaster.Host.Emulator
                 if (_work == null)
                     throw new CadMutationRejectedException(
                         "Транзакция «" + _name + "» уже завершена: изменение после Commit/Abort запрещено.");
-                return _work;
+                return _work!;
             }
         }
     }
