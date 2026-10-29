@@ -24,3 +24,6 @@ coverage/
 artifacts/previews/
 __pycache__/
 *.pyc
+
+# Логи CI-прогонов: публикуются артефактом, в историю не попадают (E-080).
+*.log

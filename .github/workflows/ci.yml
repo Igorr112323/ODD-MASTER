@@ -27,11 +27,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          # Стражу эталонов нужна база сравнения (origin/main), значит — полная история.
+          fetch-depth: 0
       - uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 8.0.x
       - name: Версия SDK
         run: dotnet --version | tee dotnet-version.txt
+      - name: Страж «эталон — закон» (F0)
+        if: github.event_name == 'pull_request'
+        run: python3 scripts/check_golden_review.py --base "origin/${{ github.base_ref }}"
       - name: Restore
         run: dotnet restore OddMaster.sln
       - name: Build (0 предупреждений)

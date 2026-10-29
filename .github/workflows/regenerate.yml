@@ -34,6 +34,8 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: ${{ github.ref_name }}
+          # Стражу эталонов и классификатору падений нужна история и база origin/main.
+          fetch-depth: 0
       - uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 8.0.x
@@ -42,8 +44,21 @@ jobs:
           python-version: '3.12'
       - name: Зависимости перечитки
         run: pip install -r scripts/requirements-dxf.txt
+      - name: Страж «эталон — закон» (F0)
+        # Молчаливая регенерация запрещена: в ветке должна быть запись REVIEW-NN.md
+        # с перечнем артефактов, причиной и CR (§9.3 LINUX_FIRST_PROGRAM).
+        run: python3 scripts/check_golden_review.py --base origin/main
       - name: Сборка
         run: dotnet build OddMaster.sln -warnaserror
+      - name: Строгий прогон тестов (эталоны не перезаписываются)
+        # Если падает что-то, кроме самих эталонов, — это ошибка, а не повод
+        # перезаписать ожидания. Классификатор ниже решает, можно ли регенерировать.
+        shell: bash
+        run: |
+          set -o pipefail
+          dotnet test OddMaster.sln --no-build --logger "console;verbosity=normal" 2>&1 | tee strict.log || true
+      - name: Классификация падений
+        run: python3 scripts/classify_test_failures.py strict.log
       - name: Артефакты демо
         run: |
           dotnet run --project src/OddMaster.Demo --no-build -- all
@@ -51,6 +66,7 @@ jobs:
       - name: Эталоны SVG и отчёты
         # Тесты запускаются с ODD_UPDATE_GOLDEN=1: эталоны перезаписываются, а падения
         # не останавливают job — иначе обновлённые эталоны не попадут в коммит.
+        # Право на это даёт шаг «Классификация падений»: он уже отсеял обычные ошибки.
         shell: bash
         env:
           ODD_UPDATE_GOLDEN: '1'
@@ -68,6 +84,8 @@ jobs:
         run: python3 scripts/dxf_verify.py --summary docs/demo/dxf/verification.md
       - name: Коммит и пуш в ветку
         run: |
+          # Логи — артефакт прогона, а не содержимое репозитория (E-081).
+          rm -f strict.log test.log build.log
           git config user.name "ODD-Master CI"
           git config user.email "ci@odd-master.local"
           git add -A
