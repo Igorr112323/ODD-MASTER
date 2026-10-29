@@ -2,6 +2,7 @@ using System;
 using OddMaster.Core.Actualizer;
 using OddMaster.Core.Catalog;
 using OddMaster.Core.Checks;
+using OddMaster.Core.Composition;
 
 namespace OddMaster.Core.Config
 {
@@ -14,7 +15,7 @@ namespace OddMaster.Core.Config
             ParameterNorms parameters, VariantNorms variants, SourceRegistry sources,
             SignCatalog catalog, ControlSettings controls, DrawingConventions drawing,
             MigrationMap migrationMap, OddMaster.Core.Typography.FontMetrics typography,
-            Statement.StatementTableSpec statementTable)
+            Statement.StatementTableSpec statementTable, CompositionLibrary elements)
         {
             MainProfile = mainProfile ?? throw new ArgumentNullException(nameof(mainProfile));
             SecondProfile = secondProfile;
@@ -23,6 +24,7 @@ namespace OddMaster.Core.Config
             Drawing = drawing; MigrationMap = migrationMap;
             Typography = typography ?? throw new ArgumentNullException(nameof(typography));
             StatementTable = statementTable ?? throw new ArgumentNullException(nameof(statementTable));
+            Elements = elements ?? throw new ArgumentNullException(nameof(elements));
         }
 
         /// <summary>Профиль по умолчанию — ГОСТ Р 52290-2024.</summary>
@@ -49,6 +51,9 @@ namespace OddMaster.Core.Config
         public OddMaster.Core.Typography.FontMetrics Typography { get; }
         /// <summary>Форма таблицы ведомости на чертеже (черновик, GOST-011).</summary>
         public Statement.StatementTableSpec StatementTable { get; }
+
+        /// <summary>Примитивы состава знаков (CR-22): полосы, кресты, вставки, панели.</summary>
+        public CompositionLibrary Elements { get; }
 
         /// <summary>Возвращает профиль по идентификатору.</summary>
         public SizeProfile? ProfileById(string id) =>

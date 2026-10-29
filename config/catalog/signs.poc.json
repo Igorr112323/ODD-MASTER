@@ -7,7 +7,7 @@
   },
   "verification": "CuratorExtracted",
   "colorStatus": "Unverified",
-  "colorNote": "Семантические имена цветов: field, outerBorder, innerBorder (только там, где она есть), symbol, text. Экранный RGB задаётся только в рендере и не является колориметрией ГОСТ. OuterBorderUnverified — цвет наружной каймы [ПРОВЕРИТЬ ПО ТЕКСТУ ГОСТ], GOST-022. Красная кайма по п. 3.14 — внутренняя (innerBorder), GOST-001.",
+  "colorNote": "Семантические имена цветов: field, outerBorder, innerBorder (только там, где она есть), symbol, text. Экранный RGB задаётся только в рендере и не является колориметрией ГОСТ. OuterBorderUnverified — цвет наружной каймы [ПРОВЕРИТЬ ПО ТЕКСТУ ГОСТ], GOST-022. Красная кайма по п. 3.14 — внутренняя (innerBorder), GOST-001. CR-22: цвета MVP-30 сняты куратором с цветных изображений прил. А (CuratorExtracted); размеры элементов состава — Unverified (GOST-025).",
   "markers": [
     "GOST-001",
     "GOST-002",
@@ -17,7 +17,10 @@
     "GOST-013",
     "GOST-019",
     "GOST-022",
-    "GOST-023"
+    "GOST-023",
+    "GOST-025",
+    "GOST-026",
+    "GOST-027"
   ],
   "signTemplate": {
     "number": "0.0",
@@ -50,7 +53,14 @@
     },
     "verification": "CuratorExtracted",
     "mirrorOf": null,
-    "composedOf": []
+    "composedOf": [],
+    "elements": [
+      "contourGrey"
+    ],
+    "demoPriority": 0,
+    "orientation": "asTable",
+    "textPosition": "center",
+    "textWidthRatio": 1.0
   },
   "signs": [
     {
@@ -62,16 +72,9 @@
       "isPlate": false,
       "colors": {
         "field": "Yellow",
-        "outerBorder": "Black",
+        "outerBorder": "White",
         "symbol": "Black",
         "text": "Black"
-      },
-      "pictogram": {
-        "id": "pict.2.1.placeholder",
-        "placeholder": true,
-        "placeholderShape": "arrow",
-        "marker": "GOST-019",
-        "verification": "Placeholder"
       },
       "text": null,
       "parameterKind": null,
@@ -82,7 +85,10 @@
         "figure": "Д.5"
       },
       "verification": "CuratorExtracted",
-      "note": "Ромб; зона с 2.2."
+      "note": "2.1: белый ромб с тонким серым контуром, внутри жёлтый ромб. Пиктограммы нет (CR-22).",
+      "elements": [
+        "contourGrey"
+      ]
     },
     {
       "number": "2.2",
@@ -93,16 +99,9 @@
       "isPlate": false,
       "colors": {
         "field": "Yellow",
-        "outerBorder": "Black",
+        "outerBorder": "White",
         "symbol": "Black",
         "text": "Black"
-      },
-      "pictogram": {
-        "id": "pict.2.2.placeholder",
-        "placeholder": true,
-        "placeholderShape": "arrow",
-        "marker": "GOST-019",
-        "verification": "Placeholder"
       },
       "text": null,
       "parameterKind": null,
@@ -113,7 +112,11 @@
         "figure": "Д.5"
       },
       "verification": "CuratorExtracted",
-      "note": "Конец зоны, парность."
+      "note": "2.2: как 2.1 плюс пучок тонких чёрных полос «\\» (направление — прил. Б, стр. 76), [ПРОВЕРИТЬ].",
+      "elements": [
+        "contourGrey",
+        "bundleBackslash"
+      ]
     },
     {
       "number": "2.3.1",
@@ -124,17 +127,10 @@
       "isPlate": false,
       "colors": {
         "field": "White",
-        "outerBorder": "OuterBorderUnverified",
+        "outerBorder": "White",
+        "innerBorder": "Red",
         "symbol": "Black",
-        "text": "Black",
-        "innerBorder": "Red"
-      },
-      "pictogram": {
-        "id": "pict.2.3.1.placeholder",
-        "placeholder": true,
-        "placeholderShape": "arrow",
-        "marker": "GOST-019",
-        "verification": "Placeholder"
+        "text": "Black"
       },
       "text": null,
       "parameterKind": null,
@@ -145,7 +141,11 @@
         "figure": "Д.2"
       },
       "verification": "CuratorExtracted",
-      "note": "Наименование — CuratorExtracted из PDF-копии ГОСТ Р 52290-2024; студент сверяет каждую строку по тексту стандарта (G3)."
+      "note": "2.3.1: широкая красная внутренняя кайма, чёрный «перекрёсток» — пиктограмма в очереди G3 (GOST-019).",
+      "elements": [
+        "contourGrey"
+      ],
+      "demoPriority": 2
     },
     {
       "number": "2.4",
@@ -156,12 +156,11 @@
       "isPlate": false,
       "colors": {
         "field": "White",
-        "outerBorder": "OuterBorderUnverified",
+        "outerBorder": "White",
+        "innerBorder": "Red",
         "symbol": "Black",
-        "text": "Black",
-        "innerBorder": "Red"
+        "text": "Black"
       },
-      "pictogram": null,
       "text": null,
       "parameterKind": null,
       "normRef": {
@@ -171,7 +170,11 @@
         "figure": "Д.2"
       },
       "verification": "CuratorExtracted",
-      "note": "Красная кайма по п. 3.14 — внутренняя. Цвет узкой наружной каймы [ПРОВЕРИТЬ ПО ТЕКСТУ ГОСТ] (GOST-022). Пиктограммы у знака нет."
+      "note": "2.4: широкая красная внутренняя кайма, без пиктограммы (сетка — прил. Б, стр. 78), [ПРОВЕРИТЬ].",
+      "elements": [
+        "contourGrey"
+      ],
+      "demoPriority": 1
     },
     {
       "number": "2.5",
@@ -186,7 +189,6 @@
         "symbol": "White",
         "text": "White"
       },
-      "pictogram": null,
       "text": {
         "kind": "Fixed",
         "value": "STOP",
@@ -200,7 +202,11 @@
         "table": "А.2",
         "figure": "Д.3"
       },
-      "verification": "CuratorExtracted"
+      "verification": "CuratorExtracted",
+      "elements": [
+        "contourGrey"
+      ],
+      "note": null
     },
     {
       "number": "3.1",
@@ -210,17 +216,10 @@
       "sizeTableId": "Д.4",
       "isPlate": false,
       "colors": {
-        "field": "White",
-        "outerBorder": "Red",
-        "symbol": "Black",
-        "text": "Black"
-      },
-      "pictogram": {
-        "id": "pict.3.1.placeholder",
-        "placeholder": true,
-        "placeholderShape": "arrow",
-        "marker": "GOST-019",
-        "verification": "Placeholder"
+        "field": "Red",
+        "outerBorder": "White",
+        "symbol": "White",
+        "text": "White"
       },
       "text": null,
       "parameterKind": null,
@@ -231,7 +230,11 @@
         "figure": "Д.4"
       },
       "verification": "CuratorExtracted",
-      "note": "Наименование — CuratorExtracted из PDF-копии ГОСТ Р 52290-2024; студент сверяет каждую строку по тексту стандарта (G3)."
+      "note": "3.1: красное поле, белый горизонтальный прямоугольник 0,68·D по центру (CR-22), [ПРОВЕРИТЬ по прил. Б].",
+      "elements": [
+        "contourGrey",
+        "brickBand"
+      ]
     },
     {
       "number": "3.4",
@@ -242,9 +245,10 @@
       "isPlate": false,
       "colors": {
         "field": "White",
-        "outerBorder": "Red",
+        "outerBorder": "White",
+        "innerBorder": "Red",
         "symbol": "Black",
-        "text": "Black"
+        "text": "White"
       },
       "pictogram": null,
       "text": {
@@ -261,7 +265,10 @@
         "figure": "Д.4"
       },
       "verification": "CuratorExtracted",
-      "note": "Параметр «масса» по табл. Д.1; значение по умолчанию — демо."
+      "note": "3.4: белое поле, красная кайма, чёрный грузовик с белой массой на кузове — пиктограмма в очереди G3 (GOST-019).",
+      "elements": [
+        "contourGrey"
+      ]
     },
     {
       "number": "3.18.1",
@@ -272,7 +279,8 @@
       "isPlate": false,
       "colors": {
         "field": "White",
-        "outerBorder": "Red",
+        "outerBorder": "White",
+        "innerBorder": "Red",
         "symbol": "Black",
         "text": "Black"
       },
@@ -292,7 +300,11 @@
         "figure": "Д.4"
       },
       "verification": "CuratorExtracted",
-      "note": "Наименование — CuratorExtracted из PDF-копии ГОСТ Р 52290-2024; студент сверяет каждую строку по тексту стандарта (G3)."
+      "note": "3.18.1: стрелка вверх-направо — пиктограмма в очереди G3; красная полоса «\\» не зеркалится (CR-23).",
+      "elements": [
+        "contourGrey",
+        "bandBackslash"
+      ]
     },
     {
       "number": "3.18.2",
@@ -303,7 +315,8 @@
       "isPlate": false,
       "colors": {
         "field": "White",
-        "outerBorder": "Red",
+        "outerBorder": "White",
+        "innerBorder": "Red",
         "symbol": "Black",
         "text": "Black"
       },
@@ -323,8 +336,12 @@
         "figure": "Д.4"
       },
       "verification": "CuratorExtracted",
-      "note": "Зеркальная пара 3.18.1.",
-      "mirrorOf": "3.18.1"
+      "note": "3.18.2: зеркальна только стрелка, красная полоса «\\» та же, что у 3.18.1 (CR-23, прил. А стр. 35).",
+      "mirrorOf": "3.18.1",
+      "elements": [
+        "contourGrey",
+        "bandBackslash"
+      ]
     },
     {
       "number": "3.19",
@@ -335,7 +352,8 @@
       "isPlate": false,
       "colors": {
         "field": "White",
-        "outerBorder": "Red",
+        "outerBorder": "White",
+        "innerBorder": "Red",
         "symbol": "Black",
         "text": "Black"
       },
@@ -355,7 +373,11 @@
         "figure": "Д.4"
       },
       "verification": "CuratorExtracted",
-      "note": "Пиктограмма-стрелка; оцифровка прил. Б — P2/G3."
+      "note": "3.19: U-образная стрелка — в очереди G3; красная полоса «\\» (CR-23).",
+      "elements": [
+        "contourGrey",
+        "bandBackslash"
+      ]
     },
     {
       "number": "3.24",
@@ -366,7 +388,8 @@
       "isPlate": false,
       "colors": {
         "field": "White",
-        "outerBorder": "Red",
+        "outerBorder": "White",
+        "innerBorder": "Red",
         "symbol": "Black",
         "text": "Black"
       },
@@ -384,7 +407,12 @@
         "table": "А.3",
         "figure": "Д.4"
       },
-      "verification": "CuratorExtracted"
+      "verification": "CuratorExtracted",
+      "elements": [
+        "contourGrey"
+      ],
+      "demoPriority": 1,
+      "note": "3.24: белое поле, красная кайма ≈0,087·D (curator-measure, GOST-001), чёрное число — параметр «speed»."
     },
     {
       "number": "3.25",
@@ -396,15 +424,8 @@
       "colors": {
         "field": "White",
         "outerBorder": "Black",
-        "symbol": "Black",
-        "text": "Black"
-      },
-      "pictogram": {
-        "id": "pict.3.25.placeholder",
-        "placeholder": true,
-        "placeholderShape": "diagonalBand",
-        "marker": "GOST-023",
-        "verification": "Placeholder"
+        "symbol": "Grey",
+        "text": "Grey"
       },
       "text": {
         "kind": "Parameter",
@@ -420,7 +441,12 @@
         "figure": "Д.4"
       },
       "verification": "CuratorExtracted",
-      "note": "По прил. Б (стр. 84 PDF): цифры контурные, через знак идёт диагональная полоса из нескольких тонких линий, кайма — двойной тонкий контур. Рисунок — заглушка Placeholder; цвет цифр и линий [ПРОВЕРИТЬ ПО ТЕКСТУ ГОСТ], GOST-023."
+      "note": "3.25: тонкий чёрный контур, серое число, около 5 тонких чёрных полос «/» (CR-22); цвет числа [ПРОВЕРИТЬ].",
+      "elements": [
+        "contourGrey",
+        "bundleSlash"
+      ],
+      "demoPriority": 1
     },
     {
       "number": "3.27",
@@ -430,17 +456,11 @@
       "sizeTableId": "Д.4",
       "isPlate": false,
       "colors": {
-        "field": "White",
-        "outerBorder": "Red",
-        "symbol": "Black",
-        "text": "Black"
-      },
-      "pictogram": {
-        "id": "pict.3.27.placeholder",
-        "placeholder": true,
-        "placeholderShape": "arrow",
-        "marker": "GOST-019",
-        "verification": "Placeholder"
+        "field": "Blue",
+        "outerBorder": "White",
+        "innerBorder": "Red",
+        "symbol": "Red",
+        "text": "Red"
       },
       "text": null,
       "parameterKind": null,
@@ -451,7 +471,11 @@
         "figure": "Д.4"
       },
       "verification": "CuratorExtracted",
-      "note": "Зоны и таблички 8.2.x."
+      "note": "3.27: синее поле, красная кайма, красный косой крест (CR-22).",
+      "elements": [
+        "contourGrey",
+        "crossRed"
+      ]
     },
     {
       "number": "3.28",
@@ -461,17 +485,11 @@
       "sizeTableId": "Д.4",
       "isPlate": false,
       "colors": {
-        "field": "White",
-        "outerBorder": "Red",
-        "symbol": "Black",
-        "text": "Black"
-      },
-      "pictogram": {
-        "id": "pict.3.28.placeholder",
-        "placeholder": true,
-        "placeholderShape": "arrow",
-        "marker": "GOST-019",
-        "verification": "Placeholder"
+        "field": "Blue",
+        "outerBorder": "White",
+        "innerBorder": "Red",
+        "symbol": "Red",
+        "text": "Red"
       },
       "text": null,
       "parameterKind": null,
@@ -482,7 +500,11 @@
         "figure": "Д.4"
       },
       "verification": "CuratorExtracted",
-      "note": "Наименование — CuratorExtracted из PDF-копии ГОСТ Р 52290-2024; студент сверяет каждую строку по тексту стандарта (G3)."
+      "note": "3.28: синее поле, красная кайма, красная полоса «\\» (CR-22).",
+      "elements": [
+        "contourGrey",
+        "bandBackslash"
+      ]
     },
     {
       "number": "3.31",
@@ -493,16 +515,9 @@
       "isPlate": false,
       "colors": {
         "field": "White",
-        "outerBorder": "Red",
+        "outerBorder": "Black",
         "symbol": "Black",
         "text": "Black"
-      },
-      "pictogram": {
-        "id": "pict.3.31.placeholder",
-        "placeholder": true,
-        "placeholderShape": "arrow",
-        "marker": "GOST-019",
-        "verification": "Placeholder"
       },
       "text": null,
       "parameterKind": null,
@@ -513,7 +528,11 @@
         "figure": "Д.4"
       },
       "verification": "CuratorExtracted",
-      "note": "Формулировку 2024 сверить; в 2004 иначе [ПРОВЕРИТЬ]."
+      "note": "3.31: белое поле, тонкий чёрный контур, около 5 чёрных полос «/», без красного (CR-22).",
+      "elements": [
+        "contourGrey",
+        "bundleSlash"
+      ]
     },
     {
       "number": "5.5",
@@ -544,7 +563,10 @@
         "figure": "Д.5"
       },
       "verification": "CuratorExtracted",
-      "note": "Наименование — CuratorExtracted из PDF-копии ГОСТ Р 52290-2024; студент сверяет каждую строку по тексту стандарта (G3)."
+      "note": "5.5: белая стрелка вверх — пиктограмма в очереди G3 (сейчас стрелка-заглушка, GOST-019).",
+      "elements": [
+        "contourGrey"
+      ]
     },
     {
       "number": "5.6",
@@ -575,7 +597,11 @@
         "figure": "Д.5"
       },
       "verification": "CuratorExtracted",
-      "note": "Наименование — CuratorExtracted из PDF-копии ГОСТ Р 52290-2024; студент сверяет каждую строку по тексту стандарта (G3)."
+      "note": "5.6: как 5.5 плюс красная полоса «/» (CR-22).",
+      "elements": [
+        "contourGrey",
+        "bandSlash"
+      ]
     },
     {
       "number": "5.7.1",
@@ -606,7 +632,10 @@
         "figure": "Д.8"
       },
       "verification": "CuratorExtracted",
-      "note": "Д.8, типоразмер II, 350×1050; строка таблицы разорвана между стр. 164 и 165 PDF — сверить."
+      "note": "5.7.1: белая длинная стрелка вправо — в очереди G3.",
+      "elements": [
+        "contourGrey"
+      ]
     },
     {
       "number": "5.7.2",
@@ -637,8 +666,11 @@
         "figure": "Д.8"
       },
       "verification": "CuratorExtracted",
-      "note": "Зеркало 5.7.1.",
-      "mirrorOf": "5.7.1"
+      "note": "5.7.2: зеркало 5.7.1 — зеркалится только пиктограмма (CR-23), сверка по прил. А стр. 41.",
+      "mirrorOf": "5.7.1",
+      "elements": [
+        "contourGrey"
+      ]
     },
     {
       "number": "5.16",
@@ -650,8 +682,8 @@
       "colors": {
         "field": "Blue",
         "outerBorder": "White",
-        "symbol": "White",
-        "text": "White"
+        "symbol": "Black",
+        "text": "Black"
       },
       "pictogram": {
         "id": "pict.5.16.placeholder",
@@ -669,7 +701,11 @@
         "figure": "Д.7"
       },
       "verification": "CuratorExtracted",
-      "note": "Наименование — CuratorExtracted из PDF-копии ГОСТ Р 52290-2024; студент сверяет каждую строку по тексту стандарта (G3)."
+      "note": "5.16: синяя рамка, белая внутренняя панель, автобус — пиктограмма в очереди G3.",
+      "elements": [
+        "contourGrey",
+        "panelWhite"
+      ]
     },
     {
       "number": "5.19.1",
@@ -681,8 +717,8 @@
       "colors": {
         "field": "Blue",
         "outerBorder": "White",
-        "symbol": "White",
-        "text": "White"
+        "symbol": "Black",
+        "text": "Black"
       },
       "pictogram": {
         "id": "pict.5.19.1.placeholder",
@@ -700,7 +736,11 @@
         "figure": "Д.5"
       },
       "verification": "CuratorExtracted",
-      "note": "Наименование — CuratorExtracted из PDF-копии ГОСТ Р 52290-2024; студент сверяет каждую строку по тексту стандарта (G3)."
+      "note": "5.19.1: белый треугольник-вставка, пешеход — пиктограмма в очереди G3 (CR-22).",
+      "elements": [
+        "contourGrey",
+        "triangleWhite"
+      ]
     },
     {
       "number": "5.19.2",
@@ -712,8 +752,8 @@
       "colors": {
         "field": "Blue",
         "outerBorder": "White",
-        "symbol": "White",
-        "text": "White"
+        "symbol": "Black",
+        "text": "Black"
       },
       "pictogram": {
         "id": "pict.5.19.2.placeholder",
@@ -731,8 +771,12 @@
         "figure": "Д.5"
       },
       "verification": "CuratorExtracted",
-      "note": "Зеркало 5.19.1.",
-      "mirrorOf": "5.19.1"
+      "note": "5.19.2: зеркало 5.19.1 по пиктограмме (CR-23), сверка по прил. А стр. 46.",
+      "mirrorOf": "5.19.1",
+      "elements": [
+        "contourGrey",
+        "triangleWhite"
+      ]
     },
     {
       "number": "5.20",
@@ -744,8 +788,8 @@
       "colors": {
         "field": "Blue",
         "outerBorder": "White",
-        "symbol": "White",
-        "text": "White"
+        "symbol": "Black",
+        "text": "Black"
       },
       "pictogram": {
         "id": "pict.5.20.placeholder",
@@ -763,7 +807,11 @@
         "figure": "Д.5"
       },
       "verification": "CuratorExtracted",
-      "note": "Связка с 6.2.1 (изменение 2024)."
+      "note": "5.20: белый треугольник, «неровность» у основания — в очереди G3.",
+      "elements": [
+        "contourGrey",
+        "triangleWhite"
+      ]
     },
     {
       "number": "5.21",
@@ -794,7 +842,10 @@
         "figure": "Д.7"
       },
       "verification": "CuratorExtracted",
-      "note": "Наименование — CuratorExtracted из PDF-копии ГОСТ Р 52290-2024; студент сверяет каждую строку по тексту стандарта (G3)."
+      "note": "5.21: белые пиктограммы зоны (автомобиль, дом, пешеход, ребёнок) — в очереди G3.",
+      "elements": [
+        "contourGrey"
+      ]
     },
     {
       "number": "5.22",
@@ -825,7 +876,11 @@
         "figure": "Д.7"
       },
       "verification": "CuratorExtracted",
-      "note": "Наименование — CuratorExtracted из PDF-копии ГОСТ Р 52290-2024; студент сверяет каждую строку по тексту стандарта (G3)."
+      "note": "5.22: пиктограммы зоны + красные полосы «/» (CR-22).",
+      "elements": [
+        "contourGrey",
+        "bundleSlashRed"
+      ]
     },
     {
       "number": "5.41",
@@ -835,10 +890,10 @@
       "sizeTableId": "Д.7",
       "isPlate": false,
       "colors": {
-        "field": "Blue",
-        "outerBorder": "White",
-        "symbol": "White",
-        "text": "White"
+        "field": "White",
+        "outerBorder": "Black",
+        "symbol": "Black",
+        "text": "Black"
       },
       "pictogram": {
         "id": "pict.5.41.placeholder",
@@ -856,9 +911,13 @@
         "figure": "Д.7"
       },
       "verification": "CuratorExtracted",
-      "note": "Новый; составной (символ 3.27) [ПРОВЕРИТЬ по рисунку].",
+      "note": "5.41: белое поле, вложенный 3.27, надпись [ПРОВЕРИТЬ: вероятно «ЗОНА»] (CR-22).",
       "composedOf": [
         "3.27"
+      ],
+      "elements": [
+        "contourGrey",
+        "nestedSign"
       ]
     },
     {
@@ -869,10 +928,10 @@
       "sizeTableId": "Д.7",
       "isPlate": false,
       "colors": {
-        "field": "Blue",
-        "outerBorder": "White",
-        "symbol": "White",
-        "text": "White"
+        "field": "White",
+        "outerBorder": "Black",
+        "symbol": "Grey",
+        "text": "Black"
       },
       "pictogram": {
         "id": "pict.5.42.placeholder",
@@ -890,9 +949,14 @@
         "figure": "Д.7"
       },
       "verification": "CuratorExtracted",
-      "note": "Новый; пара к 5.41.",
+      "note": "5.42: белое поле, 3.27 серым, чёрные полосы «/» (CR-22).",
       "composedOf": [
         "3.27"
+      ],
+      "elements": [
+        "contourGrey",
+        "nestedSign",
+        "bundleSlash"
       ]
     },
     {
@@ -923,7 +987,12 @@
         "figure": "Д.7"
       },
       "verification": "CuratorExtracted",
-      "note": "Новый знак 2024. ГИПОТЕЗА куратора (Q-006): параметр = скорость, как у 6.2. GOST-009."
+      "note": "6.2.1: верх синий с белым числом, низ — белая панель с «неровностью» (очередь G3); GOST-009.",
+      "elements": [
+        "contourGrey",
+        "panelWhite"
+      ],
+      "textPosition": "top"
     },
     {
       "number": "6.3.1",
@@ -954,7 +1023,10 @@
         "figure": "Д.5"
       },
       "verification": "CuratorExtracted",
-      "note": "Наименование — CuratorExtracted из PDF-копии ГОСТ Р 52290-2024; студент сверяет каждую строку по тексту стандарта (G3)."
+      "note": "6.3.1: белая U-образная стрелка — в очереди G3.",
+      "elements": [
+        "contourGrey"
+      ]
     },
     {
       "number": "6.4",
@@ -983,7 +1055,11 @@
         "table": "А.6",
         "figure": "Д.5"
       },
-      "verification": "CuratorExtracted"
+      "verification": "CuratorExtracted",
+      "elements": [
+        "contourGrey"
+      ],
+      "note": null
     },
     {
       "number": "8.1.1",
@@ -1013,7 +1089,7 @@
         "figure": "Д.8"
       },
       "verification": "CuratorExtracted",
-      "note": "Наименование — CuratorExtracted из PDF-копии ГОСТ Р 52290-2024; студент сверяет каждую строку по тексту стандарта (G3)."
+      "note": null
     },
     {
       "number": "8.2.1",
@@ -1036,14 +1112,21 @@
         "marker": "GOST-013"
       },
       "parameterKind": "distance",
-      "note": "Связь «номер 8.2.1 — наименование» не сверена куратором: статус Unverified, GOST-013.",
+      "note": "8.2.1: «↑100 м↑» — стрелки по сторонам числа (CR-22), [ПРОВЕРИТЬ по прил. Б].",
       "normRef": {
         "doc": "ГОСТ Р 52290-2024",
         "clause": "п. 3.2; прил. Б, стр. 125 PDF; прил. Д",
         "table": "А.8",
         "figure": "Д.8"
       },
-      "verification": "Unverified"
+      "verification": "Unverified",
+      "elements": [
+        "contourGrey",
+        "arrowUpSmallBlack",
+        "arrowUpSmallBlackRight"
+      ],
+      "textWidthRatio": 0.5,
+      "demoPriority": 1
     },
     {
       "number": "8.2.2",
@@ -1073,7 +1156,13 @@
         "figure": "Д.8"
       },
       "verification": "CuratorExtracted",
-      "note": "Наименование — CuratorExtracted из PDF-копии ГОСТ Р 52290-2024; студент сверяет каждую строку по тексту стандарта (G3)."
+      "note": "8.2.2: вертикальная табличка — стрелка ↑, ниже расстояние (прил. А стр. 61, прил. Б стр. 126); размеры Д.8 с поворотом H↔B (CR-25, GOST-026, [ПРОВЕРИТЬ]).",
+      "elements": [
+        "contourGrey",
+        "arrowUpBlack"
+      ],
+      "orientation": "vertical",
+      "textPosition": "bottom"
     },
     {
       "number": "8.2.3",
@@ -1088,14 +1177,6 @@
         "symbol": "Black",
         "text": "Black"
       },
-      "pictogram": null,
-      "text": {
-        "kind": "Parameter",
-        "value": "distance",
-        "verification": "CuratorExtracted",
-        "marker": "GOST-002"
-      },
-      "parameterKind": "distance",
       "normRef": {
         "doc": "ГОСТ Р 52290-2024",
         "clause": "п. 3.2; прил. Б, стр. 126 PDF; прил. Д",
@@ -1103,7 +1184,12 @@
         "figure": "Д.8"
       },
       "verification": "CuratorExtracted",
-      "note": "Наименование — CuratorExtracted из PDF-копии ГОСТ Р 52290-2024; студент сверяет каждую строку по тексту стандарта (G3)."
+      "note": "8.2.3: вертикальная табличка — длинная стрелка ↓ без расстояния (прил. А стр. 60); размеры Д.8 с поворотом H↔B (CR-25, GOST-026, [ПРОВЕРИТЬ]).",
+      "elements": [
+        "contourGrey",
+        "arrowDownLongBlack"
+      ],
+      "orientation": "vertical"
     },
     {
       "number": "8.4.1",
@@ -1134,7 +1220,10 @@
         "figure": "Д.8"
       },
       "verification": "CuratorExtracted",
-      "note": "Наименование — CuratorExtracted из PDF-копии ГОСТ Р 52290-2024; студент сверяет каждую строку по тексту стандарта (G3)."
+      "note": "8.4.1: чёрный грузовик — пиктограмма в очереди G3.",
+      "elements": [
+        "contourGrey"
+      ]
     },
     {
       "number": "8.5.4",
@@ -1149,15 +1238,12 @@
         "symbol": "Black",
         "text": "Black"
       },
-      "pictogram": {
-        "id": "pict.8.5.4.placeholder",
-        "placeholder": true,
-        "placeholderShape": "arrow",
-        "marker": "GOST-019",
-        "verification": "Placeholder"
+      "text": {
+        "kind": "Fixed",
+        "value": "8.00–17.30",
+        "verification": "CuratorExtracted",
+        "marker": "GOST-027"
       },
-      "text": null,
-      "parameterKind": null,
       "normRef": {
         "doc": "ГОСТ Р 52290-2024",
         "clause": "п. 3.2; прил. Б, стр. 129 PDF; прил. Д",
@@ -1165,7 +1251,10 @@
         "figure": "Д.8"
       },
       "verification": "CuratorExtracted",
-      "note": "Параметр времени по табл. Д.1 — поддержка в P3."
+      "note": "8.5.4: время «8.00–17.30» — это параметр «время», а не пиктограмма (CR-22); типы значений времени — GOST-027 [ПРОВЕРИТЬ].",
+      "elements": [
+        "contourGrey"
+      ]
     },
     {
       "number": "8.6.1",
@@ -1196,7 +1285,10 @@
         "figure": "Д.8"
       },
       "verification": "CuratorExtracted",
-      "note": "Наименование — CuratorExtracted из PDF-копии ГОСТ Р 52290-2024; студент сверяет каждую строку по тексту стандарта (G3)."
+      "note": "8.6.1: автомобиль на бордюре — в очереди G3; цвета [ПРОВЕРИТЬ по прил. Б, стр. 130].",
+      "elements": [
+        "contourGrey"
+      ]
     },
     {
       "number": "8.8",
@@ -1227,7 +1319,10 @@
         "figure": "Д.8"
       },
       "verification": "CuratorExtracted",
-      "note": "Наименование — CuratorExtracted из PDF-копии ГОСТ Р 52290-2024; студент сверяет каждую строку по тексту стандарта (G3)."
+      "note": "8.8: монеты «10 15 20» — в очереди G3; [ПРОВЕРИТЬ, стр. 131].",
+      "elements": [
+        "contourGrey"
+      ]
     },
     {
       "number": "8.15.1",
@@ -1242,14 +1337,12 @@
         "symbol": "Black",
         "text": "Black"
       },
-      "pictogram": {
-        "id": "pict.8.15.1.placeholder",
-        "placeholder": true,
-        "placeholderShape": "arrow",
-        "marker": "GOST-019",
-        "verification": "Placeholder"
+      "text": {
+        "kind": "Fixed",
+        "value": "ГЛУХИЕ",
+        "verification": "CuratorExtracted",
+        "marker": "GOST-027"
       },
-      "text": null,
       "parameterKind": null,
       "normRef": {
         "doc": "ГОСТ Р 52290-2024",
@@ -1258,7 +1351,10 @@
         "figure": "Д.8"
       },
       "verification": "CuratorExtracted",
-      "note": "Новая табличка 2024."
+      "note": "8.15.1: текстовая табличка «ГЛУХИЕ»; цвет фона [ПРОВЕРИТЬ, стр. 132].",
+      "elements": [
+        "contourGrey"
+      ]
     },
     {
       "number": "8.17",
@@ -1289,7 +1385,10 @@
         "figure": "Д.8"
       },
       "verification": "CuratorExtracted",
-      "note": "Наименование — CuratorExtracted из PDF-копии ГОСТ Р 52290-2024; студент сверяет каждую строку по тексту стандарта (G3)."
+      "note": "8.17: символ инвалидной коляски — в очереди G3.",
+      "elements": [
+        "contourGrey"
+      ]
     },
     {
       "number": "8.24",
@@ -1320,7 +1419,10 @@
         "figure": "Д.8"
       },
       "verification": "CuratorExtracted",
-      "note": "Страницу прил. Б автопоиском найти не удалось — найти вручную (G3)."
+      "note": "8.24: эвакуатор с автомобилем — в очереди G3.",
+      "elements": [
+        "contourGrey"
+      ]
     }
   ]
 }

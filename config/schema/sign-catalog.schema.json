@@ -75,7 +75,39 @@
       }
     },
     "signTemplate": {
-      "type": "object"
+      "type": "object",
+      "properties": {
+        "elements": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "demoPriority": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "orientation": {
+          "type": "string",
+          "enum": [
+            "asTable",
+            "vertical"
+          ]
+        },
+        "textPosition": {
+          "type": "string",
+          "enum": [
+            "center",
+            "top",
+            "bottom"
+          ]
+        },
+        "textWidthRatio": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "maximum": 1
+        }
+      }
     },
     "signs": {
       "type": "array",
@@ -186,6 +218,39 @@
               "CuratorExtracted",
               "StudentVerified"
             ]
+          },
+          "elements": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Идентификаторы примитивов состава из config/elements/elements.json (CR-22)."
+          },
+          "demoPriority": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Приоритет оцифровки и демо (Q-018): 1 — первым."
+          },
+          "orientation": {
+            "type": "string",
+            "enum": [
+              "asTable",
+              "vertical"
+            ],
+            "description": "Ориентация относительно таблицы прил. Д: vertical — поворот H↔B (CR-25)."
+          },
+          "textPosition": {
+            "type": "string",
+            "enum": [
+              "center",
+              "top",
+              "bottom"
+            ]
+          },
+          "textWidthRatio": {
+            "type": "number",
+            "exclusiveMinimum": 0,
+            "maximum": 1
           }
         }
       }

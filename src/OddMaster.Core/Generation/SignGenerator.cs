@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using OddMaster.Core.Catalog;
+using OddMaster.Core.Composition;
 using OddMaster.Core.Config;
 using OddMaster.Core.Geometry;
 using OddMaster.Core.Norms;
@@ -94,6 +95,17 @@ namespace OddMaster.Core.Generation
                 return Fail(findings, verification, "R007",
                     $"Не удалось прочитать размеры знака {definition.Number}: {problem}.", definition.Number.ToString());
 
+            // CR-25: вертикальные таблички 8.2.2/8.2.3 — размеры Д.8 применяются с поворотом H↔B.
+            if (definition.Orientation == "vertical")
+            {
+                builder.SwapAxes();
+                verification.Add("orientation", Verification.Unverified);
+                findings.Add(Finding.Warning("G-026",
+                    "Знак " + definition.Number + " на изображении прил. А вертикальный, а табл. Д.8 даёт H < B: " +
+                    "размеры применены с поворотом H↔B. Норма — прил. Б, сверяет студент.",
+                    definition.Number.ToString(), definition.NormRef, Verification.Unverified, "GOST-026"));
+            }
+
             // CR-04: внутренняя кайма рисуется только там, где она объявлена в каталоге.
             // Красное кольцо на синем 6.4, на табличке 8.2.1 и на 3.25 больше не появляется.
             var hasInnerBorder = definition.Colors.ContainsKey("innerBorder");
@@ -102,17 +114,36 @@ namespace OddMaster.Core.Generation
             if (hasInnerBorder)
             {
                 var configuredInnerWidth = _config.Borders.InnerBorderWidthMm;
-                innerIsPlaceholder = !configuredInnerWidth.HasValue;
-                innerWidth = configuredInnerWidth ?? _config.Drawing.PlaceholderInnerBorderWidthMm;
-                if (innerIsPlaceholder)
+                var ratio = configuredInnerWidth.HasValue ? null : _config.Borders.MatchInnerRatio(definition.Number);
+                var minSide = Math.Min(builder.NominalBounds().Width, builder.NominalBounds().Height);
+                innerIsPlaceholder = true;
+                if (configuredInnerWidth.HasValue)
                 {
+                    innerWidth = configuredInnerWidth.Value;
+                    innerIsPlaceholder = false;
+                    verification.Add("innerBorder", _config.Borders.Verification);
+                }
+                else if (ratio != null)
+                {
+                    // CR-22 §3: ширина в мм неизвестна, но есть доля от меньшей стороны поля.
+                    innerWidth = ratio.Value * minSide;
+                    verification.Add("innerBorder", Verification.Unverified);
+                    findings.Add(Finding.Warning("G-001",
+                        "Ширина внутренней каймы " + definition.Number + " взята как " +
+                        ratio.Value.ToString("0.###", CultureInfo.InvariantCulture) +
+                        " от меньшей стороны поля (curator-measure, прил. А): норма — масштабная сетка прил. Б.",
+                        definition.Number.ToString(), _config.Borders.NormRef,
+                        Verification.Unverified, "GOST-001"));
+                }
+                else
+                {
+                    innerWidth = _config.Drawing.PlaceholderInnerBorderWidthMm;
                     verification.Add("innerBorder", Verification.Placeholder);
                     findings.Add(Finding.Warning("G-001",
                         "Ширина внутренней каймы неизвестна: использована заглушка из config/conventions/drawing.json.",
                         definition.Number.ToString(), _config.Borders.NormRef,
                         Verification.Placeholder, "GOST-001"));
                 }
-                else verification.Add("innerBorder", _config.Borders.Verification);
             }
 
             // CR-16: кайма — это ПОЛОСА между двумя контурами носителя, а не линия по центру.
@@ -129,7 +160,7 @@ namespace OddMaster.Core.Generation
                     definition.Number.ToString(), profile.NormRef);
 
             var layers = BuildLayers(definition, outer.Path!, fieldEdge.Path!, fieldInset.Path!,
-                innerWidth, builder, findings, verification);
+                borderWidth, innerWidth, builder, findings, verification);
             var texts = BuildTexts(definition, parameterValue, builder, borderWidth + innerWidth,
                 findings, verification);
 
@@ -177,8 +208,8 @@ namespace OddMaster.Core.Generation
         }
 
         private List<SignLayer> BuildLayers(SignDefinition definition, Path outer, Path fieldEdge,
-            Path fieldInset, double innerWidth, CarrierBuilder builder, List<Finding> findings,
-            VerificationSummary verification)
+            Path fieldInset, double outerWidth, double innerWidth, CarrierBuilder builder,
+            List<Finding> findings, VerificationSummary verification)
         {
             var layers = new List<SignLayer>();
             AddLayer(layers, findings, definition, "outerBorder", SignLayerKind.Outline, outer, true, 0);
@@ -187,6 +218,36 @@ namespace OddMaster.Core.Generation
                 AddLayer(layers, findings, definition, "innerBorder", SignLayerKind.InnerBorder,
                     fieldEdge, true, 0);
             AddLayer(layers, findings, definition, "field", SignLayerKind.Field, fieldInset, true, 0);
+
+            // CR-22: примитивы состава — параметрические элементы из config/elements.
+            // У знака без пиктограммы поля пиктограммы нет вообще: только состав и надпись.
+            var fieldBox = builder.NominalBounds(outerWidth + innerWidth);
+            var composition = new List<CompositionElement>();
+            foreach (var id in definition.Elements)
+            {
+                var element = _config.Elements.Find(id);
+                if (element == null)
+                {
+                    findings.Add(Finding.Warning("G-004",
+                        "В библиотеке элементов нет «" + id + "»: состав знака " + definition.Number + " неполон.",
+                        definition.Number.ToString(), _config.Elements.NormRef,
+                        Verification.Unverified, "GOST-025"));
+                    continue;
+                }
+                composition.Add(element);
+                verification.Add("elements." + id, element.Verification);
+            }
+            if (definition.Elements.Count > 0)
+            {
+                var compositionLayers = CompositionBuilder.Build(composition, fieldBox, fieldEdge);
+                foreach (var layer in compositionLayers) layers.Add(layer);
+                findings.Add(Finding.Warning("G-025",
+                    "Примитивы состава (" + string.Join(", ", definition.Elements) +
+                    ") построены по временным долям config/elements/elements.json: " +
+                    "норма — масштабная сетка прил. Б, сверяет студент.",
+                    definition.Number.ToString(), _config.Elements.NormRef,
+                    Verification.Unverified, "GOST-025"));
+            }
 
             if (definition.Pictogram != null && definition.Pictogram.Placeholder)
             {
@@ -212,7 +273,7 @@ namespace OddMaster.Core.Generation
                     {
                         var size = minSide * _config.Drawing.PlaceholderPictogramRadiusRatio * 2;
                         layers.Add(new SignLayer(SignLayerKind.Pictogram, symbolColor,
-                            GeometryPrimitives.Arrow(size, definition.MirrorOf != null), false, stroke));
+                            GeometryPrimitives.Arrow(size, false), false, stroke));
                     }
                 }
                 verification.Add("pictogram", Verification.Placeholder);
@@ -221,6 +282,23 @@ namespace OddMaster.Core.Generation
                     + "»); реальная геометрия по прил. Б не сверена.",
                     definition.Number.ToString(), definition.NormRef,
                     Verification.Placeholder, "GOST-019"));
+            }
+            // CR-23: у пары «зеркало» отражается ТОЛЬКО пиктограмма. Примитивы состава
+            // (например, красная полоса у 3.18.1 и 3.18.2) у обоих знаков идут в одну сторону.
+            if (definition.MirrorOf != null)
+            {
+                for (var i = 0; i < layers.Count; i++)
+                {
+                    var layer = layers[i];
+                    if (layer.Kind != SignLayerKind.Pictogram || layer.Geometry == null) continue;
+                    layers[i] = new SignLayer(layer.Kind, layer.ColorName,
+                        GeometryPrimitives.MirrorPath(layer.Geometry), layer.Filled, layer.StrokeWidthMm);
+                }
+                findings.Add(Finding.Warning("G-023",
+                    "Знак " + definition.Number + " — зеркальная пара к " + definition.MirrorOf +
+                    ": отражена только пиктограмма, примитивы состава не зеркалятся.",
+                    definition.Number.ToString(), definition.NormRef,
+                    Verification.Placeholder, "GOST-023"));
             }
             return layers;
         }
@@ -269,8 +347,22 @@ namespace OddMaster.Core.Generation
             var fieldBox = builder.NominalBounds(borderWidth);
             var padW = fieldBox.Width * metrics.PaddingRatio;
             var padH = fieldBox.Height * metrics.PaddingRatio;
-            var layout = TextEngine.Layout(value, fieldBox.Width - 2 * padW, fieldBox.Height - 2 * padH,
-                metrics, new Point2(0, 0));
+            // CR-22/CR-25: место под надпись задаётся каталогом — у 8.2.1 по бокам стрелки,
+            // у 8.2.2 стрелка сверху, надпись снизу.
+            var boxWidth = Math.Max(fieldBox.Width * definition.TextWidthRatio - 2 * padW, 1.0);
+            var boxHeight = fieldBox.Height - 2 * padH;
+            var centerY = 0.0;
+            if (definition.TextPosition == "top")
+            {
+                boxHeight = Math.Max((fieldBox.Height - 2 * padH) * 0.35, 1.0);
+                centerY = fieldBox.MaxY - padH - boxHeight / 2;
+            }
+            else if (definition.TextPosition == "bottom")
+            {
+                boxHeight = Math.Max((fieldBox.Height - 2 * padH) * 0.35, 1.0);
+                centerY = fieldBox.MinY + padH + boxHeight / 2;
+            }
+            var layout = TextEngine.Layout(value, boxWidth, boxHeight, metrics, new Point2(0, centerY));
             verification.Add("textMetrics", metrics.Verification);
             findings.Add(Finding.Warning("G-002",
                 "Метрики шрифта измерены по файлу (config/typography/fonts.json, measuredFrom), " +

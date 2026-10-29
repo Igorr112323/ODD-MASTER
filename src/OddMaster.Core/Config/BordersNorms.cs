@@ -20,6 +20,23 @@ namespace OddMaster.Core.Config
         public double Value { get; }
     }
 
+    /// <summary>Пропорция элемента к меньшей стороне поля: доля из замера, а не норма ГОСТ.</summary>
+    public sealed class RatioRule
+    {
+        /// <summary>Создаёт правило.</summary>
+        public RatioRule(SignNumberSet signs, double value, string note)
+        {
+            Signs = signs; Value = value; Note = note;
+        }
+
+        /// <summary>Номера знаков.</summary>
+        public SignNumberSet Signs { get; }
+        /// <summary>Доля меньшей стороны поля.</summary>
+        public double Value { get; }
+        /// <summary>Откуда взято (curator-measure).</summary>
+        public string Note { get; }
+    }
+
     /// <summary>Каймы и допуски по п. 3.14–3.16 ГОСТ Р 52290-2024.</summary>
     public sealed class BordersNorms
     {
@@ -27,7 +44,7 @@ namespace OddMaster.Core.Config
         public BordersNorms(NormRef normRef, Verification verification, List<ValueRule> outer,
             List<ValueRule> plates, List<ValueRule> redRadius, SignNumberSet mayBeOmitted,
             double? innerBorderWidthMm, string innerBorderWidthNote, Dictionary<string, double> tolerances,
-            List<string> markers)
+            List<string> markers, List<RatioRule>? innerBorderRatio = null, string innerBorderRatioNote = "")
         {
             NormRef = normRef;
             Verification = verification;
@@ -37,6 +54,8 @@ namespace OddMaster.Core.Config
             MayBeOmitted = mayBeOmitted;
             InnerBorderWidthMm = innerBorderWidthMm;
             InnerBorderWidthNote = innerBorderWidthNote;
+            InnerBorderRatio = innerBorderRatio ?? new List<RatioRule>();
+            InnerBorderRatioNote = innerBorderRatioNote;
             Tolerances = tolerances;
             Markers = markers;
         }
@@ -64,6 +83,23 @@ namespace OddMaster.Core.Config
 
         /// <summary>Пояснение к пропущенному значению.</summary>
         public string InnerBorderWidthNote { get; }
+
+        /// <summary>
+        /// Временная пропорция внутренней каймы (доля меньшей стороны поля), CR-22 §3.
+        /// Пусто — используется заглушка из config/conventions/drawing.json.
+        /// </summary>
+        public IReadOnlyList<RatioRule> InnerBorderRatio { get; }
+
+        /// <summary>Пояснение к пропорции.</summary>
+        public string InnerBorderRatioNote { get; }
+
+        /// <summary>Ищет пропорцию каймы для знака. Отсутствие — null, а не исключение.</summary>
+        public RatioRule? MatchInnerRatio(SignNumber number)
+        {
+            foreach (var rule in InnerBorderRatio)
+                if (rule.Signs.Contains(number)) return rule;
+            return null;
+        }
 
         /// <summary>Допуски из п. 3.15–3.16.</summary>
         public IReadOnlyDictionary<string, double> Tolerances { get; }

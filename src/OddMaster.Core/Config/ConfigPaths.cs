@@ -28,11 +28,14 @@ namespace OddMaster.Core.Config
         /// <summary>Форма таблицы ведомости на чертеже (черновик, GOST-011).</summary>
         public const string StatementTable = "config/tables/statement-table.json";
 
+        /// <summary>Примитивы состава знаков (CR-22), размеры — временные.</summary>
+        public const string Elements = "config/elements/elements.json";
+
         /// <summary>Все пути в устойчивом порядке (для валидатора).</summary>
         public static readonly string[] All =
         {
             MainProfile, SecondProfile, Borders, Parameters, Variants, Sources,
-            Catalog, Controls, Drawing, MigrationMap, FontMetrics, StatementTable
+            Catalog, Controls, Drawing, MigrationMap, FontMetrics, StatementTable, Elements
         };
     }
 }

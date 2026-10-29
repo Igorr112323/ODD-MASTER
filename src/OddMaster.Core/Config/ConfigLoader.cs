@@ -30,7 +30,8 @@ namespace OddMaster.Core.Config
                 LoadDrawing(root),
                 LoadMigrationMap(root, ConfigPaths.MigrationMap),
                 LoadFontMetrics(root),
-                LoadStatementTable(root));
+                LoadStatementTable(root),
+                LoadElements(root));
         }
 
         /// <summary>Загружает профиль типоразмеров.</summary>
@@ -130,7 +131,9 @@ namespace OddMaster.Core.Config
                 ParseValueRules(e, "redBorderInnerCornerRadiusMm", file),
                 J.SignsSet(omitted, "signs", file, "/outerBorderMayBeOmitted"),
                 innerWidth, J.OptStr(e, "innerBorderWidthNote", file, "") ?? "",
-                tolerances, J.StringList(e, "markers", file, ""));
+                tolerances, J.StringList(e, "markers", file, ""),
+                ParseRatioRules(e, "innerBorderWidthRatio", file),
+                J.OptStr(e, "innerBorderWidthRatioNote", file, "") ?? "");
         }
 
         private static List<ValueRule> ParseValueRules(JsonElement e, string name, string file)
@@ -141,6 +144,19 @@ namespace OddMaster.Core.Config
             {
                 var p = "/" + name + "/" + i.ToString(CultureInfo.InvariantCulture);
                 result.Add(new ValueRule(J.SignsSet(items[i], "signs", file, p), J.Num(items[i], "value", file, p)));
+            }
+            return result;
+        }
+
+        private static List<RatioRule> ParseRatioRules(JsonElement e, string name, string file)
+        {
+            var result = new List<RatioRule>();
+            var items = J.OptArray(e, name, file, "");
+            for (int i = 0; i < items.Count; i++)
+            {
+                var p = "/" + name + "/" + i.ToString(CultureInfo.InvariantCulture);
+                result.Add(new RatioRule(J.SignsSet(items[i], "signs", file, p),
+                    J.Num(items[i], "value", file, p), J.OptStr(items[i], "note", file, p) ?? ""));
             }
             return result;
         }
@@ -287,7 +303,12 @@ namespace OddMaster.Core.Config
                     J.OptBool(s, "isPlate", false, file, p), colors, pictogram, text,
                     J.OptStr(s, "parameterKind", file, p), J.OptStr(s, "note", file, p),
                     J.ReadNormRef(s, "normRef", file, p), ReadVerificationAt(s, file, p), markers,
-                    J.OptStr(s, "mirrorOf", file, p), J.StringList(s, "composedOf", file, p)));
+                    J.OptStr(s, "mirrorOf", file, p), J.StringList(s, "composedOf", file, p),
+                    J.StringList(s, "elements", file, p),
+                    (int)Math.Round(J.OptNum(s, "demoPriority", file, p) ?? 0),
+                    J.OptStr(s, "textPosition", file, p) ?? "center",
+                    J.OptNum(s, "textWidthRatio", file, p) ?? 1.0,
+                    J.OptStr(s, "orientation", file, p) ?? "asTable"));
             }
             return new SignCatalog(J.Str(e, "catalog", file, ""), J.Str(e, "title", file, ""),
                 J.ReadNormRef(e, "normRef", file, ""), J.ReadVerification(e, file, ""),

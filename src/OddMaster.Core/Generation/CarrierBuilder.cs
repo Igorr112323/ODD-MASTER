@@ -47,6 +47,15 @@ namespace OddMaster.Core.Generation
             return false;
         }
 
+        /// <summary>
+        /// Поворот размеров H↔B для знаков, которые по изображению вертикальные, а в таблице
+        /// прил. Д описаны горизонтальными (CR-25). Гипотеза: норма — прил. Б.
+        /// </summary>
+        public void SwapAxes()
+        {
+            var t = B; B = H; H = t;
+        }
+
         /// <summary>Номинальный габарит носителя (A/D/B/H включают наружную кайму, GOST-004).</summary>
         public BoundingBox NominalBounds() => NominalBounds(0.0);
 

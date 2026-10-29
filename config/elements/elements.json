@@ -1,0 +1,139 @@
+{
+  "normRef": {
+    "doc": "ГОСТ Р 52290-2024",
+    "clause": "прил. А — состав изображений знаков; размеры элементов — [ПРОВЕРИТЬ по прил. Б и тексту стандарта]"
+  },
+  "verification": "Unverified",
+  "markers": ["GOST-025", "GOST-019"],
+  "source": "curator-measure, прил. А (стр. 31–37, 41–51, 60–67), рендер 6×, 29.10.2026",
+  "note": "Примитивы состава (полоса, крест, пучок полос, вставка, панель, вложенный знак, стрелка) — это НЕ пиктограммы: их не нужно оцифровывать по прил. Б, достаточно параметров. Все доли — от габарита знака или от его меньшей стороны. Значения временные (статус Unverified): норма — масштабная сетка прил. Б, сверяет студент. Пиктограммы с реальной графикой (грузовик, автобус, пешеход, монеты и т. п.) в этот файл не входят — они в очереди оцифровки G3.",
+  "defaults": {
+    "xRatio": 0,
+    "yRatio": 0,
+    "strokeRatio": 0.006,
+    "bandRatio": 0.14,
+    "count": 5,
+    "spacingRatio": 0.09,
+    "lengthRatio": 1.0
+  },
+  "elements": {
+    "contourGrey": {
+      "kind": "contour",
+      "color": "Grey",
+      "strokeRatio": 0.006,
+      "note": "Тонкий серый контур по наружной кайме (общий для всех знаков)."
+    },
+    "brickBand": {
+      "kind": "rectangle",
+      "color": "White",
+      "widthRatio": 0.68,
+      "heightRatio": 0.16,
+      "note": "3.1: белый горизонтальный прямоугольник («кирпич») по центру красного поля."
+    },
+    "crossRed": {
+      "kind": "cross",
+      "color": "Red",
+      "lengthRatio": 0.72,
+      "bandRatio": 0.14,
+      "note": "3.27: красный косой крест из двух полос."
+    },
+    "bandBackslash": {
+      "kind": "band",
+      "color": "Red",
+      "lengthRatio": 1.0,
+      "bandRatio": 0.14,
+      "angleDeg": -45,
+      "note": "Красная полоса из левого верхнего угла в правый нижний («\\»). У 3.18.1 и 3.18.2 направление ОДНО (CR-23), поэтому элемент не зеркалится."
+    },
+    "bandSlash": {
+      "kind": "band",
+      "color": "Red",
+      "lengthRatio": 1.0,
+      "bandRatio": 0.14,
+      "angleDeg": 45,
+      "note": "Красная полоса из левого нижнего угла в правый верхний («/»): 5.6, 5.22."
+    },
+    "bundleBackslash": {
+      "kind": "bundle",
+      "color": "Black",
+      "count": 5,
+      "bandRatio": 0.02,
+      "spacingRatio": 0.09,
+      "angleDeg": -45,
+      "note": "Пучок тонких чёрных полос «\\»: 2.2."
+    },
+    "bundleSlash": {
+      "kind": "bundle",
+      "color": "Black",
+      "count": 5,
+      "bandRatio": 0.02,
+      "spacingRatio": 0.09,
+      "angleDeg": 45,
+      "note": "Пучок тонких чёрных полос «/»: 3.25, 3.31, 5.42."
+    },
+    "bundleSlashRed": {
+      "kind": "bundle",
+      "color": "Red",
+      "count": 5,
+      "bandRatio": 0.025,
+      "spacingRatio": 0.09,
+      "angleDeg": 45,
+      "note": "Пучок красных полос «/»: 5.22 (зона)."
+    },
+    "triangleWhite": {
+      "kind": "triangle",
+      "color": "White",
+      "widthRatio": 0.66,
+      "heightRatio": 0.58,
+      "yRatio": -0.08,
+      "note": "5.19.x, 5.20: белый треугольник-вставка на синем поле."
+    },
+    "panelWhite": {
+      "kind": "panel",
+      "color": "White",
+      "widthRatio": 0.72,
+      "heightRatio": 0.56,
+      "yRatio": -0.12,
+      "note": "5.16, 6.2.1: белая внутренняя панель в нижней части поля."
+    },
+    "nestedSign": {
+      "kind": "nested",
+      "color": "Grey",
+      "sizeRatio": 0.44,
+      "yRatio": 0.04,
+      "note": "5.41, 5.42: вложенное изображение 3.27 (контур + красный крест)."
+    },
+    "arrowUpBlack": {
+      "kind": "arrow",
+      "color": "Black",
+      "direction": "up",
+      "sizeRatio": 0.30,
+      "yRatio": 0.18,
+      "note": "8.2.2: стрелка вверх над расстоянием."
+    },
+    "arrowDownLongBlack": {
+      "kind": "arrow",
+      "color": "Black",
+      "direction": "down",
+      "sizeRatio": 0.34,
+      "lengthRatio": 1.6,
+      "note": "8.2.3: длинная стрелка вниз без расстояния."
+    },
+    "arrowUpSmallBlack": {
+      "kind": "arrow",
+      "color": "Black",
+      "direction": "up",
+      "sizeRatio": 0.14,
+      "xRatio": -0.32,
+      "note": "8.2.1: стрелка вверх слева от числа."
+    },
+    "arrowUpSmallBlackRight": {
+      "kind": "arrow",
+      "color": "Black",
+      "direction": "up",
+      "sizeRatio": 0.14,
+      "xRatio": 0.32,
+      "note": "8.2.1: стрелка вверх справа от числа."
+    }
+  }
+}

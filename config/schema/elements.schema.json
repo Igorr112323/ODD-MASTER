@@ -1,0 +1,53 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "elements.schema.json",
+  "title": "Примитивы состава знаков (полосы, кресты, вставки, панели, стрелки)",
+  "type": "object",
+  "required": ["normRef", "verification", "elements"],
+  "properties": {
+    "normRef": {
+      "type": "object",
+      "required": ["doc", "clause"],
+      "properties": {
+        "doc": { "type": "string", "minLength": 1 },
+        "clause": { "type": "string", "minLength": 1 }
+      }
+    },
+    "verification": { "type": "string", "enum": ["Placeholder", "Unverified", "CuratorExtracted", "StudentVerified"] },
+    "source": { "type": "string" },
+    "note": { "type": "string" },
+    "markers": { "type": "array", "items": { "type": "string", "pattern": "^GOST-[0-9]{3}$" } },
+    "defaults": {
+      "type": "object",
+      "additionalProperties": { "type": ["number", "integer"] }
+    },
+    "elements": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "object",
+        "required": ["kind", "color"],
+        "properties": {
+          "kind": { "type": "string", "enum": ["contour", "rectangle", "cross", "band", "bundle", "triangle", "panel", "nested", "arrow"] },
+          "color": { "type": "string", "minLength": 1 },
+          "filled": { "type": "boolean" },
+          "xRatio": { "type": "number", "minimum": -1, "maximum": 1 },
+          "yRatio": { "type": "number", "minimum": -1, "maximum": 1 },
+          "widthRatio": { "type": "number", "exclusiveMinimum": 0, "maximum": 1 },
+          "heightRatio": { "type": "number", "exclusiveMinimum": 0, "maximum": 1 },
+          "bandRatio": { "type": "number", "exclusiveMinimum": 0, "maximum": 0.5 },
+          "lengthRatio": { "type": "number", "exclusiveMinimum": 0, "maximum": 2 },
+          "spacingRatio": { "type": "number", "exclusiveMinimum": 0, "maximum": 0.5 },
+          "count": { "type": "integer", "minimum": 1, "maximum": 12 },
+          "angleDeg": { "type": "number", "minimum": -90, "maximum": 90 },
+          "strokeRatio": { "type": "number", "exclusiveMinimum": 0, "maximum": 0.1 },
+          "sizeRatio": { "type": "number", "exclusiveMinimum": 0, "maximum": 1 },
+          "direction": { "type": "string", "enum": ["up", "down", "left", "right"] },
+          "note": { "type": "string" },
+          "verification": { "type": "string", "enum": ["Placeholder", "Unverified", "CuratorExtracted", "StudentVerified"] },
+          "markers": { "type": "array", "items": { "type": "string", "pattern": "^GOST-[0-9]{3}$" } }
+        }
+      }
+    }
+  }
+}

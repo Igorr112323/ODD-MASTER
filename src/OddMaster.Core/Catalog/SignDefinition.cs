@@ -49,6 +49,8 @@ namespace OddMaster.Core.Catalog
         Field,
         /// <summary>Пиктограмма.</summary>
         Pictogram,
+        /// <summary>Примитивы состава (полосы, кресты, вставки, панели) из каталога (CR-22).</summary>
+        Composition,
         /// <summary>Надпись.</summary>
         Text
     }
@@ -114,7 +116,9 @@ namespace OddMaster.Core.Catalog
         public SignDefinition(SignNumber number, string name, int group, CarrierShape shape, string sizeTableId,
             bool isPlate, Dictionary<string, string> colors, SignPictogram? pictogram, SignTextSpec? text,
             string? parameterKind, string? note, NormRef normRef, Verification verification, List<string> markers,
-            string? mirrorOf = null, List<string>? composedOf = null)
+            string? mirrorOf = null, List<string>? composedOf = null,
+            IReadOnlyList<string>? elements = null, int demoPriority = 0,
+            string textPosition = "center", double textWidthRatio = 1.0, string orientation = "asTable")
         {
             Number = number ?? throw new ArgumentNullException(nameof(number));
             Name = name;
@@ -132,6 +136,11 @@ namespace OddMaster.Core.Catalog
             Markers = markers ?? throw new ArgumentNullException(nameof(markers));
             MirrorOf = mirrorOf;
             ComposedOf = composedOf ?? new List<string>();
+            Elements = elements ?? new List<string>();
+            DemoPriority = demoPriority;
+            TextPosition = textPosition ?? "center";
+            TextWidthRatio = textWidthRatio;
+            Orientation = orientation ?? "asTable";
         }
 
         /// <summary>Номер знака.</summary>
@@ -160,6 +169,24 @@ namespace OddMaster.Core.Catalog
 
         /// <summary>Надпись, если есть.</summary>
         public SignTextSpec? Text { get; }
+
+        /// <summary>Идентификаторы примитивов состава из config/elements/elements.json (CR-22).</summary>
+        public IReadOnlyList<string> Elements { get; }
+
+        /// <summary>Приоритет оцифровки для демо-сценария (Q-018): 1 — первым.</summary>
+        public int DemoPriority { get; }
+
+        /// <summary>Где ставить надпись: center (по умолчанию), top, bottom.</summary>
+        public string TextPosition { get; }
+
+        /// <summary>Доля ширины поля под надпись (например, 0,45 у 8.2.1 со стрелками по бокам).</summary>
+        public double TextWidthRatio { get; }
+
+        /// <summary>
+        /// Ориентация носителя относительно таблицы прил. Д: asTable — как в таблице,
+        /// vertical — размеры применяются с поворотом H↔B (CR-25, гипотеза по изображению).
+        /// </summary>
+        public string Orientation { get; }
 
         /// <summary>Имя параметра из табл. Д.1 (speed, distance, …).</summary>
         public string? ParameterKind { get; }

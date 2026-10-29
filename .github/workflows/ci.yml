@@ -1,13 +1,18 @@
 name: CI
 
+# CR-26: push только для main (после мёржа коммиты тоже проверяются),
+# PR — для веток, workflow_dispatch — ручной запуск.
+# Раньше стояло branches-ignore: [main] + pull_request, и каждый коммит в PR
+# запускал CI дважды (run 40750731369 push + 40750744982 pull_request).
 on:
   push:
-    branches-ignore: [main]
+    branches: [main]
   pull_request:
   workflow_dispatch:
 
+# Группа одна на PR и на его push, поэтому двойных прогонов нет.
 concurrency:
-  group: ci-${{ github.ref }}
+  group: ci-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 
 permissions:
@@ -43,6 +48,9 @@ jobs:
             --settings coverage.runsettings \
             --results-directory ./coverage \
             --logger "console;verbosity=normal" 2>&1 | tee test.log
+      - name: Страж CR-21 (все тестовые проекты решения запускаются)
+        shell: bash
+        run: python3 scripts/check_solution_tests.py --log test.log
       - name: Сводка покрытия Core
         run: |
           python3 scripts/coverage_summary.py coverage | tee coverage.log

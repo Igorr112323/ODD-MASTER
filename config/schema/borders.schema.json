@@ -102,6 +102,33 @@
     },
     "tolerances": {
       "type": "object"
+    },
+    "innerBorderWidthRatio": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "signs",
+          "value"
+        ],
+        "properties": {
+          "signs": {
+            "type": "string"
+          },
+          "value": {
+            "type": "number",
+            "exclusiveMinimum": 0,
+            "maximum": 0.5
+          },
+          "note": {
+            "type": "string"
+          }
+        }
+      },
+      "description": "Доля меньшей стороны поля знака. Временная пропорция (Unverified, GOST-001)."
+    },
+    "innerBorderWidthRatioNote": {
+      "type": "string"
     }
   },
   "description": "JSON Schema (draft-07). Синтаксис проверяется тестом ConfigSchemaTests; семантические проверки выполняет ConfigValidator в ядре (ADR-0014)."

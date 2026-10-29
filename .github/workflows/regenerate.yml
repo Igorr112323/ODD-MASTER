@@ -1,0 +1,59 @@
+# Регенерация эталонов и артефактов из CI (CR-26, ADR-0027).
+# Агент не может запускать .NET в песочнице, поэтому эталоны создаются официальным SDK 8
+# в CI, а не локальным оракулом. Запуск только вручную: workflow_dispatch.
+name: Регенерация артефактов
+
+on:
+  workflow_dispatch:
+    inputs:
+      reason:
+        description: 'Причина регенерации (попадёт в сообщение коммита)'
+        required: true
+        default: 'регенерация эталонов после правки ядра'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: regenerate-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  regenerate:
+    name: Демо, эталоны, DXF-стенд
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Зависимости перечитки
+        run: pip install -r scripts/requirements-dxf.txt
+      - name: Сборка
+        run: dotnet build OddMaster.sln -warnaserror
+      - name: Артефакты демо
+        run: |
+          dotnet run --project src/OddMaster.Demo --no-build -- all
+          dotnet run --project src/OddMaster.Demo --no-build -- dxf
+      - name: Эталоны SVG и отчёты
+        env:
+          ODD_UPDATE_GOLDEN: '1'
+        run: dotnet test OddMaster.sln --no-build --logger "console;verbosity=normal"
+      - name: Независимая перечитка DXF
+        run: python3 scripts/dxf_verify.py --summary docs/demo/dxf/verification.md
+      - name: Коммит и пуш в ветку
+        run: |
+          git config user.name "ODD-Master CI"
+          git config user.email "ci@odd-master.local"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "Артефакты уже совпадают с эталонами — коммит не нужен."
+            exit 0
+          fi
+          git commit -m "chore(artifacts): ${{ inputs.reason }}"
+          git push origin "HEAD:${{ github.ref_name }}"
