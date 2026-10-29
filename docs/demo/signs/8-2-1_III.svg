@@ -6,7 +6,7 @@
       profile="GOST_R_52290_2024"
       sizeTable="Д.8"
       outerBorderMm="10"
-      verification="borders=CuratorExtracted; catalog=Unverified; colors=Unverified; parameters=CuratorExtracted; sizeProfile=CuratorExtracted; textMetrics=Unverified"
+      verification="borders=CuratorExtracted; catalog=Unverified; colors=Unverified; elements.arrowUpSmallBlack=Unverified; elements.arrowUpSmallBlackRight=Unverified; elements.contourGrey=Unverified; parameters=CuratorExtracted; sizeProfile=CuratorExtracted; textMetrics=Unverified"
       isDraft="true"
       colorimetry="DISPLAY_ONLY_NOT_GOST"/>
   </metadata>
@@ -17,10 +17,19 @@
     <g id="Layer-Field">
       <path d="M-440 -180 A35 35 0 0 1 -405 -215 L405 -215 A35 35 0 0 1 440 -180 L440 180 A35 35 0 0 1 405 215 L-405 215 A35 35 0 0 1 -440 180 L-440 -180 Z" fill="#FFFFFF" stroke="none"/>
     </g>
+    <g id="Layer-Composition">
+      <path d="M-440 -180 A35 35 0 0 1 -405 -215 L405 -215 A35 35 0 0 1 440 -180 L440 180 A35 35 0 0 1 405 215 L-405 215 A35 35 0 0 1 -440 180 L-440 -180 Z" fill="none" stroke="#808080" stroke-width="2.58"/>
+    </g>
+    <g id="Layer-Composition">
+      <path d="M-294.844 -30.1 L-268.356 -30.1 L-268.356 3.01 L-254.51 3.01 L-281.6 30.1 L-308.69 3.01 L-294.844 3.01 L-294.844 -30.1 Z" fill="#1A1A1A" stroke="none"/>
+    </g>
+    <g id="Layer-Composition">
+      <path d="M268.356 -30.1 L294.844 -30.1 L294.844 3.01 L308.69 3.01 L281.6 30.1 L254.51 3.01 L268.356 3.01 L268.356 -30.1 Z" fill="#1A1A1A" stroke="none"/>
+    </g>
   </g>
-  <g id="Layer-Text"><text x="-166.252" y="29.777" font-family="DejaVu Sans Bold, Liberation Sans Bold, Arial Bold, sans-serif" font-weight="bold" font-size="130.032" fill="#1A1A1A">50 м</text></g>
+  <g id="Layer-Text"><text x="-96.8" y="17.338" font-family="DejaVu Sans Bold, Liberation Sans Bold, Arial Bold, sans-serif" font-weight="bold" font-size="75.711" fill="#1A1A1A">50 м</text></g>
   <g id="DraftWatermark">
-    <text x="-108.985" y="163.57" font-family="DejaVu Sans Bold, Liberation Sans Bold, Arial Bold, sans-serif" font-size="32.4" fill="#D7191C" fill-opacity="0.85">ЧЕРНОВИК:</text>
-    <text x="-303.957" y="204.07" font-family="DejaVu Sans Bold, Liberation Sans Bold, Arial Bold, sans-serif" font-size="32.4" fill="#D7191C" fill-opacity="0.85">есть непроверенные параметры</text>
+    <text x="-108.985" y="-35.33" font-family="DejaVu Sans Bold, Liberation Sans Bold, Arial Bold, sans-serif" font-size="32.4" fill="#D7191C" fill-opacity="0.85">ЧЕРНОВИК:</text>
+    <text x="-303.957" y="5.17" font-family="DejaVu Sans Bold, Liberation Sans Bold, Arial Bold, sans-serif" font-size="32.4" fill="#D7191C" fill-opacity="0.85">есть непроверенные параметры</text>
   </g>
 </svg>

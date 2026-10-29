@@ -6,7 +6,7 @@
       profile="GOST_R_52290_2024"
       sizeTable="Д.7"
       outerBorderMm="20"
-      verification="borders=CuratorExtracted; catalog=CuratorExtracted; colors=Unverified; parameters=CuratorExtracted; sizeProfile=CuratorExtracted; textMetrics=Unverified"
+      verification="borders=CuratorExtracted; catalog=CuratorExtracted; colors=Unverified; elements.contourGrey=Unverified; elements.panelWhite=Unverified; parameters=CuratorExtracted; sizeProfile=CuratorExtracted; textMetrics=Unverified"
       isDraft="true"
       colorimetry="DISPLAY_ONLY_NOT_GOST"/>
   </metadata>
@@ -17,10 +17,16 @@
     <g id="Layer-Field">
       <path d="M-280 -405 A25 25 0 0 1 -255 -430 L255 -430 A25 25 0 0 1 280 -405 L280 405 A25 25 0 0 1 255 430 L-255 430 A25 25 0 0 1 -280 405 L-280 -405 Z" fill="#0057B8" stroke="none"/>
     </g>
+    <g id="Layer-Composition">
+      <path d="M-280 -405 A25 25 0 0 1 -255 -430 L255 -430 A25 25 0 0 1 280 -405 L280 405 A25 25 0 0 1 255 430 L-255 430 A25 25 0 0 1 -280 405 L-280 -405 Z" fill="none" stroke="#808080" stroke-width="3.36"/>
+    </g>
+    <g id="Layer-Composition">
+      <path d="M-201.6 -344 L201.6 -344 L201.6 137.6 L-201.6 137.6 L-201.6 -344 Z" fill="#FFFFFF" stroke="none"/>
+    </g>
   </g>
-  <g id="Layer-Text"><text x="-180.953" y="59.555" font-family="DejaVu Sans Bold, Liberation Sans Bold, Arial Bold, sans-serif" font-weight="bold" font-size="260.064" fill="#FFFFFF">40</text></g>
+  <g id="Layer-Text"><text x="-63.333" y="-180.396" font-family="DejaVu Sans Bold, Liberation Sans Bold, Arial Bold, sans-serif" font-weight="bold" font-size="91.022" fill="#FFFFFF">40</text></g>
   <g id="DraftWatermark">
-    <text x="-96.81" y="341.403" font-family="DejaVu Sans Bold, Liberation Sans Bold, Arial Bold, sans-serif" font-size="28.78" fill="#D7191C" fill-opacity="0.85">ЧЕРНОВИК:</text>
-    <text x="-270" y="377.378" font-family="DejaVu Sans Bold, Liberation Sans Bold, Arial Bold, sans-serif" font-size="28.78" fill="#D7191C" fill-opacity="0.85">есть непроверенные параметры</text>
+    <text x="-96.81" y="-56.397" font-family="DejaVu Sans Bold, Liberation Sans Bold, Arial Bold, sans-serif" font-size="28.78" fill="#D7191C" fill-opacity="0.85">ЧЕРНОВИК:</text>
+    <text x="-270" y="-20.422" font-family="DejaVu Sans Bold, Liberation Sans Bold, Arial Bold, sans-serif" font-size="28.78" fill="#D7191C" fill-opacity="0.85">есть непроверенные параметры</text>
   </g>
 </svg>

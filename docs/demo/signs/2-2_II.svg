@@ -6,23 +6,38 @@
       profile="GOST_R_52290_2024"
       sizeTable="Д.5"
       outerBorderMm="10"
-      verification="borders=CuratorExtracted; catalog=CuratorExtracted; colors=Unverified; pictogram=Placeholder; sizeProfile=CuratorExtracted"
+      verification="borders=CuratorExtracted; catalog=CuratorExtracted; colors=Unverified; elements.bundleBackslash=Unverified; elements.contourGrey=Unverified; sizeProfile=CuratorExtracted"
       isDraft="true"
       colorimetry="DISPLAY_ONLY_NOT_GOST"/>
   </metadata>
   <g id="Geometry" transform="scale(1,-1)">
     <g id="Layer-Outline">
-      <path d="M0 494.975 L-494.975 0 L0 -494.975 L494.975 0 L0 494.975 Z" fill="#1A1A1A" stroke="none"/>
+      <path d="M0 494.975 L-494.975 0 L0 -494.975 L494.975 0 L0 494.975 Z" fill="#FFFFFF" stroke="none"/>
     </g>
     <g id="Layer-Field">
       <path d="M0 480.833 L-480.833 0 L0 -480.833 L480.833 0 L0 480.833 Z" fill="#FFD200" stroke="none"/>
     </g>
-    <g id="Layer-Pictogram">
-      <path d="M-106.915 0 L23.759 0 L23.759 52.269 L106.915 0 L23.759 -52.269 L23.759 0 L-106.915 0 Z" fill="none" stroke="#1A1A1A" stroke-width="11.879"/>
+    <g id="Layer-Composition">
+      <path d="M0 480.833 L-480.833 0 L0 -480.833 L480.833 0 L0 480.833 Z" fill="none" stroke="#808080" stroke-width="5.77"/>
+    </g>
+    <g id="Layer-Composition">
+      <path d="M-307.733 121.033 L294.133 -480.833 L307.733 -467.233 L-294.133 -467.233 L-307.733 121.033 Z" fill="#1A1A1A" stroke="none"/>
+    </g>
+    <g id="Layer-Composition">
+      <path d="M-346.8 246.65 L333.2 -433.35 L346.8 -419.75 L-333.2 -419.75 L-346.8 246.65 Z" fill="#1A1A1A" stroke="none"/>
+    </g>
+    <g id="Layer-Composition">
+      <path d="M-346.8 333.2 L333.2 -346.8 L346.8 -333.2 L-333.2 -333.2 L-346.8 333.2 Z" fill="#1A1A1A" stroke="none"/>
+    </g>
+    <g id="Layer-Composition">
+      <path d="M-346.8 419.75 L333.2 -260.25 L346.8 -246.65 L-333.2 -246.65 L-346.8 419.75 Z" fill="#1A1A1A" stroke="none"/>
+    </g>
+    <g id="Layer-Composition">
+      <path d="M-307.733 467.233 L294.133 -134.633 L307.733 -121.033 L-294.133 -121.033 L-307.733 467.233 Z" fill="#1A1A1A" stroke="none"/>
     </g>
   </g>
   <g id="DraftWatermark">
-    <text x="-159.728" y="369.256" font-family="DejaVu Sans Bold, Liberation Sans Bold, Arial Bold, sans-serif" font-size="47.485" fill="#D7191C" fill-opacity="0.85">ЧЕРНОВИК:</text>
-    <text x="-445.477" y="428.613" font-family="DejaVu Sans Bold, Liberation Sans Bold, Arial Bold, sans-serif" font-size="47.485" fill="#D7191C" fill-opacity="0.85">есть непроверенные параметры</text>
+    <text x="-135.769" y="-65.481" font-family="DejaVu Sans Bold, Liberation Sans Bold, Arial Bold, sans-serif" font-size="40.362" fill="#D7191C" fill-opacity="0.85">ЧЕРНОВИК:</text>
+    <text x="-378.656" y="-15.028" font-family="DejaVu Sans Bold, Liberation Sans Bold, Arial Bold, sans-serif" font-size="40.362" fill="#D7191C" fill-opacity="0.85">есть непроверенные параметры</text>
   </g>
 </svg>

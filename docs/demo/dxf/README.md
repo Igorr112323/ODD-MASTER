@@ -6,18 +6,18 @@
 
 | Файл | Тип | Что внутри | Сущностей | Слоёв |
 |---|---|---|---|---|
-| `dxf/live-before.dxf` | scenario | до правки | 346 | 37 |
-| `dxf/live-after.dxf` | scenario | после правки | 377 | 41 |
+| `dxf/live-before.dxf` | scenario | до правки | 461 | 45 |
+| `dxf/live-after.dxf` | scenario | после правки | 510 | 51 |
 | `dxf/control.dxf` | scenario | контроль | 59 | 4 |
-| `dxf/hello-3.1-I.dxf` | sign | 3.1 I | 184 | 4 |
-| `dxf/sign-2-1-I.dxf` | sign | 2.1 I | 20 | 4 |
-| `dxf/sign-2-3-1-I.dxf` | sign | 2.3.1 I | 122 | 5 |
-| `dxf/sign-2-4-I.dxf` | sign | 2.4 I | 116 | 4 |
-| `dxf/sign-2-5-II.dxf` | sign | 2.5 II | 31 | 4 |
-| `dxf/sign-5-5-I.dxf` | sign | 5.5 I | 92 | 4 |
-| `dxf/sign-5-7-1-II.dxf` | sign | 5.7.1 II | 92 | 4 |
+| `dxf/hello-3.1-I.dxf` | sign | 3.1 I | 188 | 4 |
+| `dxf/sign-2-1-I.dxf` | sign | 2.1 I | 18 | 4 |
+| `dxf/sign-2-3-1-I.dxf` | sign | 2.3.1 I | 92 | 5 |
+| `dxf/sign-2-4-I.dxf` | sign | 2.4 I | 92 | 5 |
+| `dxf/sign-2-5-II.dxf` | sign | 2.5 II | 39 | 5 |
+| `dxf/sign-5-5-I.dxf` | sign | 5.5 I | 100 | 5 |
+| `dxf/sign-5-7-1-II.dxf` | sign | 5.7.1 II | 100 | 5 |
 | `dxf/sign-8-1-1-I.dxf` | sign | 8.1.1 I | 91 | 4 |
-| `dxf/scheme.dxf` | scheme | DEMO-SCHEME-01 | 261 | 34 |
+| `dxf/scheme.dxf` | scheme | DEMO-SCHEME-01 | 376 | 42 |
 | `dxf/statement.dxf` | statement | ТС ОДД | 84 | 2 |
 
 ## Состав

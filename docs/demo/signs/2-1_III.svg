@@ -6,23 +6,23 @@
       profile="GOST_R_52290_2024"
       sizeTable="Д.5"
       outerBorderMm="10"
-      verification="borders=CuratorExtracted; catalog=CuratorExtracted; colors=Unverified; pictogram=Placeholder; sizeProfile=CuratorExtracted"
+      verification="borders=CuratorExtracted; catalog=CuratorExtracted; colors=Unverified; elements.contourGrey=Unverified; sizeProfile=CuratorExtracted"
       isDraft="true"
       colorimetry="DISPLAY_ONLY_NOT_GOST"/>
   </metadata>
   <g id="Geometry" transform="scale(1,-1)">
     <g id="Layer-Outline">
-      <path d="M0 636.396 L-636.396 0 L0 -636.396 L636.396 0 L0 636.396 Z" fill="#1A1A1A" stroke="none"/>
+      <path d="M0 636.396 L-636.396 0 L0 -636.396 L636.396 0 L0 636.396 Z" fill="#FFFFFF" stroke="none"/>
     </g>
     <g id="Layer-Field">
       <path d="M0 622.254 L-622.254 0 L0 -622.254 L622.254 0 L0 622.254 Z" fill="#FFD200" stroke="none"/>
     </g>
-    <g id="Layer-Pictogram">
-      <path d="M-137.462 0 L30.547 0 L30.547 67.203 L137.462 0 L30.547 -67.203 L30.547 0 L-137.462 0 Z" fill="none" stroke="#1A1A1A" stroke-width="15.274"/>
+    <g id="Layer-Composition">
+      <path d="M0 622.254 L-622.254 0 L0 -622.254 L622.254 0 L0 622.254 Z" fill="none" stroke="#808080" stroke-width="7.467"/>
     </g>
   </g>
   <g id="DraftWatermark">
-    <text x="-205.365" y="474.758" font-family="DejaVu Sans Bold, Liberation Sans Bold, Arial Bold, sans-serif" font-size="61.052" fill="#D7191C" fill-opacity="0.85">ЧЕРНОВИК:</text>
-    <text x="-572.756" y="551.073" font-family="DejaVu Sans Bold, Liberation Sans Bold, Arial Bold, sans-serif" font-size="61.052" fill="#D7191C" fill-opacity="0.85">есть непроверенные параметры</text>
+    <text x="-174.56" y="-84.19" font-family="DejaVu Sans Bold, Liberation Sans Bold, Arial Bold, sans-serif" font-size="51.894" fill="#D7191C" fill-opacity="0.85">ЧЕРНОВИК:</text>
+    <text x="-486.843" y="-19.322" font-family="DejaVu Sans Bold, Liberation Sans Bold, Arial Bold, sans-serif" font-size="51.894" fill="#D7191C" fill-opacity="0.85">есть непроверенные параметры</text>
   </g>
 </svg>

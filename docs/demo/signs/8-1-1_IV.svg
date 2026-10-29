@@ -20,7 +20,7 @@
   </g>
   <g id="Layer-Text"><text x="-224.247" y="40.165" font-family="DejaVu Sans Bold, Liberation Sans Bold, Arial Bold, sans-serif" font-weight="bold" font-size="175.392" fill="#1A1A1A">50 м</text></g>
   <g id="DraftWatermark">
-    <text x="-145.314" y="218.093" font-family="DejaVu Sans Bold, Liberation Sans Bold, Arial Bold, sans-serif" font-size="43.2" fill="#D7191C" fill-opacity="0.85">ЧЕРНОВИК:</text>
-    <text x="-405.276" y="272.093" font-family="DejaVu Sans Bold, Liberation Sans Bold, Arial Bold, sans-serif" font-size="43.2" fill="#D7191C" fill-opacity="0.85">есть непроверенные параметры</text>
+    <text x="-145.314" y="-47.107" font-family="DejaVu Sans Bold, Liberation Sans Bold, Arial Bold, sans-serif" font-size="43.2" fill="#D7191C" fill-opacity="0.85">ЧЕРНОВИК:</text>
+    <text x="-405.276" y="6.893" font-family="DejaVu Sans Bold, Liberation Sans Bold, Arial Bold, sans-serif" font-size="43.2" fill="#D7191C" fill-opacity="0.85">есть непроверенные параметры</text>
   </g>
 </svg>

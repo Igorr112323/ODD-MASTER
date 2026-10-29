@@ -1,21 +1,21 @@
 # Проверка DXF-стенда (независимая перечитка ezdxf)
 
-Файлов: 13; проверок: 5100; расхождений: 0.
+Файлов: 13; проверок: 6036; расхождений: 0.
 
 | Файл | Тип | Сущностей | Текстов | Примечание |
 |---|---|---|---|---|
-| `live-before.dxf` | scenario | 346 | 105 |  |
-| `live-after.dxf` | scenario | 377 | 108 |  |
+| `live-before.dxf` | scenario | 461 | 105 |  |
+| `live-after.dxf` | scenario | 510 | 108 |  |
 | `control.dxf` | scenario | 59 | 24 |  |
-| `hello-3.1-I.dxf` | sign | 184 | 2 | Circle: 600.00×600.00 мм = прил. Д |
-| `sign-2-1-I.dxf` | sign | 20 | 2 | Diamond: 848.53×848.53 в номинальном 848.53×848.53, скругление r=45 (GOST-024) |
-| `sign-2-3-1-I.dxf` | sign | 122 | 2 | TriangleUp: 634.12×561.22 в номинальном 700.00×606.22, скругление r=45 (GOST-024) |
-| `sign-2-4-I.dxf` | sign | 116 | 2 | TriangleDown: 634.12×569.42 в номинальном 700.00×606.22, скругление r=45 (GOST-024) |
-| `sign-2-5-II.dxf` | sign | 31 | 3 | Octagon: 700.00×700.00 мм = прил. Д |
-| `sign-5-5-I.dxf` | sign | 92 | 2 | Square: 600.00×600.00 в номинальном 600.00×600.00, скругление r=45 (GOST-024) |
-| `sign-5-7-1-II.dxf` | sign | 92 | 2 |  |
+| `hello-3.1-I.dxf` | sign | 188 | 2 | Circle: 600.00×600.00 мм = прил. Д |
+| `sign-2-1-I.dxf` | sign | 18 | 2 | Diamond: 848.53×848.53 в номинальном 848.53×848.53, скругление r=45 (GOST-024) |
+| `sign-2-3-1-I.dxf` | sign | 92 | 2 | TriangleUp: 634.12×561.22 в номинальном 700.00×606.22, скругление r=45 (GOST-024) |
+| `sign-2-4-I.dxf` | sign | 92 | 2 | TriangleDown: 634.12×561.22 в номинальном 700.00×606.22, скругление r=45 (GOST-024) |
+| `sign-2-5-II.dxf` | sign | 39 | 3 | Octagon: 700.00×700.00 мм = прил. Д |
+| `sign-5-5-I.dxf` | sign | 100 | 2 | Square: 600.00×600.00 в номинальном 600.00×600.00, скругление r=45 (GOST-024) |
+| `sign-5-7-1-II.dxf` | sign | 100 | 2 |  |
 | `sign-8-1-1-I.dxf` | sign | 91 | 3 |  |
-| `scheme.dxf` | scheme | 261 | 37 |  |
+| `scheme.dxf` | scheme | 376 | 37 |  |
 | `statement.dxf` | statement | 84 | 67 |  |
 
 PNG: `artifacts/dxf/png/*.png` и `contact-sheet.png`. Для картинки кириллица декодирована из `\U+XXXX`; сам DXF-файл остаётся ASCII.

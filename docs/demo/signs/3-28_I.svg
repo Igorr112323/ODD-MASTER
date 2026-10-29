@@ -6,23 +6,29 @@
       profile="GOST_R_52290_2024"
       sizeTable="Д.4"
       outerBorderMm="10"
-      verification="borders=CuratorExtracted; catalog=CuratorExtracted; colors=Unverified; pictogram=Placeholder; sizeProfile=CuratorExtracted"
+      verification="borders=CuratorExtracted; catalog=CuratorExtracted; colors=Unverified; elements.bandBackslash=Unverified; elements.contourGrey=Unverified; innerBorder=Unverified; sizeProfile=CuratorExtracted"
       isDraft="true"
       colorimetry="DISPLAY_ONLY_NOT_GOST"/>
   </metadata>
   <g id="Geometry" transform="scale(1,-1)">
     <g id="Layer-Outline">
-      <path d="M300 0 A300 300 0 0 1 0 300 A300 300 0 0 1 -300 0 A300 300 0 0 1 0 -300 A300 300 0 0 1 300 0 Z" fill="#D7191C" stroke="none"/>
+      <path d="M300 0 A300 300 0 0 1 0 300 A300 300 0 0 1 -300 0 A300 300 0 0 1 0 -300 A300 300 0 0 1 300 0 Z" fill="#FFFFFF" stroke="none"/>
+    </g>
+    <g id="Layer-InnerBorder">
+      <path d="M290 0 A290 290 0 0 1 0 290 A290 290 0 0 1 -290 0 A290 290 0 0 1 0 -290 A290 290 0 0 1 290 0 Z" fill="#D7191C" stroke="none"/>
     </g>
     <g id="Layer-Field">
-      <path d="M290 0 A290 290 0 0 1 0 290 A290 290 0 0 1 -290 0 A290 290 0 0 1 0 -290 A290 290 0 0 1 290 0 Z" fill="#FFFFFF" stroke="none"/>
+      <path d="M237.8 0 A237.8 237.8 0 0 1 0 237.8 A237.8 237.8 0 0 1 -237.8 0 A237.8 237.8 0 0 1 0 -237.8 A237.8 237.8 0 0 1 237.8 0 Z" fill="#0057B8" stroke="none"/>
     </g>
-    <g id="Layer-Pictogram">
-      <path d="M-64.8 0 L14.4 0 L14.4 31.68 L64.8 0 L14.4 -31.68 L14.4 0 L-64.8 0 Z" fill="none" stroke="#1A1A1A" stroke-width="7.2"/>
+    <g id="Layer-Composition">
+      <path d="M290 0 A290 290 0 0 1 0 290 A290 290 0 0 1 -290 0 A290 290 0 0 1 0 -290 A290 290 0 0 1 290 0 Z" fill="none" stroke="#808080" stroke-width="2.854"/>
+    </g>
+    <g id="Layer-Composition">
+      <path d="M-191.691 144.609 L144.609 -191.691 L191.691 -144.609 L-144.609 -144.609 L-191.691 144.609 Z" fill="#D7191C" stroke="none"/>
     </g>
   </g>
   <g id="DraftWatermark">
-    <text x="-96.81" y="223.803" font-family="DejaVu Sans Bold, Liberation Sans Bold, Arial Bold, sans-serif" font-size="28.78" fill="#D7191C" fill-opacity="0.85">ЧЕРНОВИК:</text>
-    <text x="-270" y="259.778" font-family="DejaVu Sans Bold, Liberation Sans Bold, Arial Bold, sans-serif" font-size="28.78" fill="#D7191C" fill-opacity="0.85">есть непроверенные параметры</text>
+    <text x="-82.288" y="-39.687" font-family="DejaVu Sans Bold, Liberation Sans Bold, Arial Bold, sans-serif" font-size="24.463" fill="#D7191C" fill-opacity="0.85">ЧЕРНОВИК:</text>
+    <text x="-229.5" y="-9.108" font-family="DejaVu Sans Bold, Liberation Sans Bold, Arial Bold, sans-serif" font-size="24.463" fill="#D7191C" fill-opacity="0.85">есть непроверенные параметры</text>
   </g>
 </svg>

@@ -6,7 +6,7 @@
       profile="GOST_R_52290_2024"
       sizeTable="Д.8"
       outerBorderMm="10"
-      verification="borders=CuratorExtracted; catalog=CuratorExtracted; colors=Unverified; pictogram=Placeholder; sizeProfile=CuratorExtracted"
+      verification="borders=CuratorExtracted; catalog=CuratorExtracted; colors=Unverified; elements.contourGrey=Unverified; sizeProfile=CuratorExtracted; textMetrics=Unverified"
       isDraft="true"
       colorimetry="DISPLAY_ONLY_NOT_GOST"/>
   </metadata>
@@ -17,12 +17,13 @@
     <g id="Layer-Field">
       <path d="M-440 -180 A35 35 0 0 1 -405 -215 L405 -215 A35 35 0 0 1 440 -180 L440 180 A35 35 0 0 1 405 215 L-405 215 A35 35 0 0 1 -440 180 L-440 -180 Z" fill="#FFFFFF" stroke="none"/>
     </g>
-    <g id="Layer-Pictogram">
-      <path d="M-48.6 0 L10.8 0 L10.8 23.76 L48.6 0 L10.8 -23.76 L10.8 0 L-48.6 0 Z" fill="none" stroke="#1A1A1A" stroke-width="5.4"/>
+    <g id="Layer-Composition">
+      <path d="M-440 -180 A35 35 0 0 1 -405 -215 L405 -215 A35 35 0 0 1 440 -180 L440 180 A35 35 0 0 1 405 215 L-405 215 A35 35 0 0 1 -440 180 L-440 -180 Z" fill="none" stroke="#808080" stroke-width="2.58"/>
     </g>
   </g>
+  <g id="Layer-Text"><text x="-294.509" y="29.777" font-family="DejaVu Sans Bold, Liberation Sans Bold, Arial Bold, sans-serif" font-weight="bold" font-size="130.032" fill="#1A1A1A">ГЛУХИЕ</text></g>
   <g id="DraftWatermark">
-    <text x="-108.985" y="163.57" font-family="DejaVu Sans Bold, Liberation Sans Bold, Arial Bold, sans-serif" font-size="32.4" fill="#D7191C" fill-opacity="0.85">ЧЕРНОВИК:</text>
-    <text x="-303.957" y="204.07" font-family="DejaVu Sans Bold, Liberation Sans Bold, Arial Bold, sans-serif" font-size="32.4" fill="#D7191C" fill-opacity="0.85">есть непроверенные параметры</text>
+    <text x="-108.985" y="-35.33" font-family="DejaVu Sans Bold, Liberation Sans Bold, Arial Bold, sans-serif" font-size="32.4" fill="#D7191C" fill-opacity="0.85">ЧЕРНОВИК:</text>
+    <text x="-303.957" y="5.17" font-family="DejaVu Sans Bold, Liberation Sans Bold, Arial Bold, sans-serif" font-size="32.4" fill="#D7191C" fill-opacity="0.85">есть непроверенные параметры</text>
   </g>
 </svg>
