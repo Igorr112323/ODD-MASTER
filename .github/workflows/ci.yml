@@ -48,6 +48,13 @@ jobs:
             --settings coverage.runsettings \
             --results-directory ./coverage \
             --logger "console;verbosity=normal" 2>&1 | tee test.log
+      - name: Диагностика падений в PR
+        if: failure()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        shell: bash
+        run: bash scripts/ci-annotate.sh "$PR_NUMBER" build.log test.log
       - name: Страж CR-21 (все тестовые проекты решения запускаются)
         shell: bash
         run: python3 scripts/check_solution_tests.py --log test.log
@@ -113,6 +120,13 @@ jobs:
         run: python3 scripts/dxf_verify.py 2>&1 | tee dxf-verify.log
       - name: Метрики шрифта воспроизводятся из файла
         run: python3 scripts/check_font_metrics.py
+      - name: Диагностика падений в PR
+        if: failure()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        shell: bash
+        run: bash scripts/ci-annotate.sh "$PR_NUMBER" dxf-verify.log
       - name: Артефакты стенда (DXF, PNG, отчёт)
         if: always()
         uses: actions/upload-artifact@v4
