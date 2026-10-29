@@ -175,51 +175,31 @@ namespace OddMaster.Core.Composition
         /// <summary>
         /// Сводит наружный контур знака к ломаной для отсечения. Дуги разбиваются по 15° —
         /// точности «внутри знака» это достаточно, а результат остаётся детерминированным.
+        /// Центры и начальные углы берутся у самих дуг, обратное восстановление не нужно.
         /// </summary>
         private static IReadOnlyList<Point2> Flatten(Path path)
         {
             var points = new List<Point2> { path.Start };
-            var current = path.Start;
             foreach (var segment in path.Segments)
             {
                 if (segment is ArcSegment arc)
                 {
-                    var steps = Math.Max(4, (int)Math.Ceiling(Math.Abs(arc.SweepDeg) / 15.0));
-                    var center = ArcCenter(current, arc);
-                    var startAngle = Math.Atan2(current.Y - center.Y, current.X - center.X) * 180.0 / Math.PI;
+                    var steps = Math.Max(2, (int)Math.Ceiling(Math.Abs(arc.SweepDeg) / 15.0));
                     for (var i = 1; i <= steps; i++)
                     {
-                        var angle = (startAngle + arc.SweepDeg * i / steps) * Math.PI / 180.0;
-                        points.Add(new Point2(center.X + arc.Radius * Math.Cos(angle),
-                            center.Y + arc.Radius * Math.Sin(angle)));
+                        var angle = (arc.StartAngleDeg + arc.SweepDeg * i / steps) * Math.PI / 180.0;
+                        points.Add(new Point2(arc.Center.X + arc.Radius * Math.Cos(angle),
+                            arc.Center.Y + arc.Radius * Math.Sin(angle)));
                     }
                 }
                 else
                 {
                     points.Add(segment.End);
                 }
-                current = segment.End;
             }
             if (points.Count > 1 && points[0].DistanceTo(points[points.Count - 1]) < 1e-9)
                 points.RemoveAt(points.Count - 1);
             return points;
-        }
-
-        /// <summary>Центр дуги по началу, концу и радиусу (два варианта — берём согласованный со знаком развёртки).</summary>
-        private static Point2 ArcCenter(Point2 start, ArcSegment arc)
-        {
-            var dx = arc.End.X - start.X;
-            var dy = arc.End.Y - start.Y;
-            var distance = Math.Sqrt(dx * dx + dy * dy);
-            if (distance < 1e-9) return start;
-            var half = distance / 2;
-            var heightSquared = arc.Radius * arc.Radius - half * half;
-            var height = heightSquared > 0 ? Math.Sqrt(heightSquared) : 0;
-            var ux = -dy / distance;
-            var uy = dx / distance;
-            var mx = (start.X + arc.End.X) / 2;
-            var my = (start.Y + arc.End.Y) / 2;
-            return new Point2(mx + ux * height, my + uy * height);
         }
 
         /// <summary>Ромб (2.1/2.2): жёлтое поле внутри белого ромба.</summary>

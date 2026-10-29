@@ -48,8 +48,8 @@ namespace OddMaster.Core.Tests
         public void CircleKeepsVerticesInside()
         {
             var outline = new Path(new Point2(150, 0))
-                .ArcTo(new Point2(-150, 0), 150, 180)
-                .ArcTo(new Point2(150, 0), 150, 180)
+                .ArcTo(new Point2(0, 0), 150, 0, 180)
+                .ArcTo(new Point2(0, 0), 150, 180, 180)
                 .Close();
             var square = new[] { new Point2(-150, -150), new Point2(150, -150), new Point2(150, 150),
                 new Point2(-150, 150) };
@@ -76,8 +76,8 @@ namespace OddMaster.Core.Tests
             var bundle = set.Elements.Find("bundleSlashRed");
             TestAssert.True(band != null && bundle != null, "в elements.json есть bandSlash и bundleSlashRed");
             var outline = new Path(new Point2(150, 0))
-                .ArcTo(new Point2(-150, 0), 150, 180)
-                .ArcTo(new Point2(150, 0), 150, 180)
+                .ArcTo(new Point2(0, 0), 150, 0, 180)
+                .ArcTo(new Point2(0, 0), 150, 180, 180)
                 .Close();
             var field = outline.Bounds();
             var layers = CompositionBuilder.Build(new[] { bundle! }, field, outline);
@@ -109,33 +109,22 @@ namespace OddMaster.Core.Tests
         private static IReadOnlyList<Point2> Flatten(Path path)
         {
             var points = new List<Point2> { path.Start };
-            var current = path.Start;
             foreach (var segment in path.Segments)
             {
                 if (segment is ArcSegment arc)
                 {
-                    var steps = Math.Max(4, (int)Math.Ceiling(Math.Abs(arc.SweepDeg) / 15.0));
-                    var dx = arc.End.X - current.X;
-                    var dy = arc.End.Y - current.Y;
-                    var distance = Math.Sqrt(dx * dx + dy * dy);
-                    var half = distance / 2;
-                    var height = Math.Sqrt(Math.Max(0, arc.Radius * arc.Radius - half * half));
-                    var mx = (current.X + arc.End.X) / 2;
-                    var my = (current.Y + arc.End.Y) / 2;
-                    var center = new Point2(mx - dy / distance * height, my + dx / distance * height);
-                    var startAngle = Math.Atan2(current.Y - center.Y, current.X - center.X) * 180.0 / Math.PI;
+                    var steps = Math.Max(2, (int)Math.Ceiling(Math.Abs(arc.SweepDeg) / 15.0));
                     for (var i = 1; i <= steps; i++)
                     {
-                        var angle = (startAngle + arc.SweepDeg * i / steps) * Math.PI / 180.0;
-                        points.Add(new Point2(center.X + arc.Radius * Math.Cos(angle),
-                            center.Y + arc.Radius * Math.Sin(angle)));
+                        var angle = (arc.StartAngleDeg + arc.SweepDeg * i / steps) * Math.PI / 180.0;
+                        points.Add(new Point2(arc.Center.X + arc.Radius * Math.Cos(angle),
+                            arc.Center.Y + arc.Radius * Math.Sin(angle)));
                     }
                 }
                 else
                 {
                     points.Add(segment.End);
                 }
-                current = segment.End;
             }
             if (points.Count > 1 && points[0].DistanceTo(points[points.Count - 1]) < 1e-9)
                 points.RemoveAt(points.Count - 1);
