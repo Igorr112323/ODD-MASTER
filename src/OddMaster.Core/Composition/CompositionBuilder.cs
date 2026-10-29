@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using OddMaster.Core.Catalog;
 using OddMaster.Core.Geometry;
+using OddMaster.Core.Generation;
 
 namespace OddMaster.Core.Composition
 {
