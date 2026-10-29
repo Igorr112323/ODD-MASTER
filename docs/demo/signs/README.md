@@ -4,12 +4,12 @@
 
 | Знак | Типоразмер | Габарит | Статус проверки | Что сверить |
 |---|---|---|---|---|
-| 2.1 | I | 848.53 × 848.53 мм | borders=CuratorExtracted; catalog=CuratorExtracted; colors=Unverified; elements.contourGrey=Unverified; sizeProfile=CuratorExtracted | рис. Д.5 / прил. Б |
-| 2.1 | II | 989.95 × 989.95 мм | borders=CuratorExtracted; catalog=CuratorExtracted; colors=Unverified; elements.contourGrey=Unverified; sizeProfile=CuratorExtracted | рис. Д.5 / прил. Б |
-| 2.1 | III | 1272.79 × 1272.79 мм | borders=CuratorExtracted; catalog=CuratorExtracted; colors=Unverified; elements.contourGrey=Unverified; sizeProfile=CuratorExtracted | рис. Д.5 / прил. Б |
-| 2.2 | I | 848.53 × 848.53 мм | borders=CuratorExtracted; catalog=CuratorExtracted; colors=Unverified; elements.bundleBackslash=Unverified; elements.contourGrey=Unverified; sizeProfile=CuratorExtracted | рис. Д.5 / прил. Б |
-| 2.2 | II | 989.95 × 989.95 мм | borders=CuratorExtracted; catalog=CuratorExtracted; colors=Unverified; elements.bundleBackslash=Unverified; elements.contourGrey=Unverified; sizeProfile=CuratorExtracted | рис. Д.5 / прил. Б |
-| 2.2 | III | 1272.79 × 1272.79 мм | borders=CuratorExtracted; catalog=CuratorExtracted; colors=Unverified; elements.bundleBackslash=Unverified; elements.contourGrey=Unverified; sizeProfile=CuratorExtracted | рис. Д.5 / прил. Б |
+| 2.1 | I | 848.53 × 848.53 мм | borders=CuratorExtracted; catalog=CuratorExtracted; colors=Unverified; elements.contourGrey=Unverified; elements.diamondYellow=Unverified; sizeProfile=CuratorExtracted | рис. Д.5 / прил. Б |
+| 2.1 | II | 989.95 × 989.95 мм | borders=CuratorExtracted; catalog=CuratorExtracted; colors=Unverified; elements.contourGrey=Unverified; elements.diamondYellow=Unverified; sizeProfile=CuratorExtracted | рис. Д.5 / прил. Б |
+| 2.1 | III | 1272.79 × 1272.79 мм | borders=CuratorExtracted; catalog=CuratorExtracted; colors=Unverified; elements.contourGrey=Unverified; elements.diamondYellow=Unverified; sizeProfile=CuratorExtracted | рис. Д.5 / прил. Б |
+| 2.2 | I | 848.53 × 848.53 мм | borders=CuratorExtracted; catalog=CuratorExtracted; colors=Unverified; elements.bundleBackslash=Unverified; elements.contourGrey=Unverified; elements.diamondYellow=Unverified; sizeProfile=CuratorExtracted | рис. Д.5 / прил. Б |
+| 2.2 | II | 989.95 × 989.95 мм | borders=CuratorExtracted; catalog=CuratorExtracted; colors=Unverified; elements.bundleBackslash=Unverified; elements.contourGrey=Unverified; elements.diamondYellow=Unverified; sizeProfile=CuratorExtracted | рис. Д.5 / прил. Б |
+| 2.2 | III | 1272.79 × 1272.79 мм | borders=CuratorExtracted; catalog=CuratorExtracted; colors=Unverified; elements.bundleBackslash=Unverified; elements.contourGrey=Unverified; elements.diamondYellow=Unverified; sizeProfile=CuratorExtracted | рис. Д.5 / прил. Б |
 | 2.3.1 | I | 700 × 606.22 мм | borders=CuratorExtracted; catalog=CuratorExtracted; colors=Unverified; elements.contourGrey=Unverified; innerBorder=Unverified; sizeProfile=CuratorExtracted | рис. Д.2 / прил. Б |
 | 2.3.1 | II | 900 × 779.42 мм | borders=CuratorExtracted; catalog=CuratorExtracted; colors=Unverified; elements.contourGrey=Unverified; innerBorder=Unverified; sizeProfile=CuratorExtracted | рис. Д.2 / прил. Б |
 | 2.3.1 | III | 1200 × 1039.23 мм | borders=CuratorExtracted; catalog=CuratorExtracted; colors=Unverified; elements.contourGrey=Unverified; innerBorder=Unverified; sizeProfile=CuratorExtracted | рис. Д.2 / прил. Б |

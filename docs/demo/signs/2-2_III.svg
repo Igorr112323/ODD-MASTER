@@ -6,34 +6,37 @@
       profile="GOST_R_52290_2024"
       sizeTable="Д.5"
       outerBorderMm="10"
-      verification="borders=CuratorExtracted; catalog=CuratorExtracted; colors=Unverified; elements.bundleBackslash=Unverified; elements.contourGrey=Unverified; sizeProfile=CuratorExtracted"
+      verification="borders=CuratorExtracted; catalog=CuratorExtracted; colors=Unverified; elements.bundleBackslash=Unverified; elements.contourGrey=Unverified; elements.diamondYellow=Unverified; sizeProfile=CuratorExtracted"
       isDraft="true"
       colorimetry="DISPLAY_ONLY_NOT_GOST"/>
   </metadata>
   <g id="Geometry" transform="scale(1,-1)">
     <g id="Layer-Outline">
-      <path d="M0 636.396 L-636.396 0 L0 -636.396 L636.396 0 L0 636.396 Z" fill="#FFFFFF" stroke="none"/>
+      <path d="M0 636.396 L-636.396 0 L0 -636.396 L636.396 0 L0 636.396 Z" fill="#1A1A1A" stroke="none"/>
     </g>
     <g id="Layer-Field">
-      <path d="M0 622.254 L-622.254 0 L0 -622.254 L622.254 0 L0 622.254 Z" fill="#FFD200" stroke="none"/>
+      <path d="M0 622.254 L-622.254 0 L0 -622.254 L622.254 0 L0 622.254 Z" fill="#FFFFFF" stroke="none"/>
     </g>
     <g id="Layer-Composition">
       <path d="M0 622.254 L-622.254 0 L0 -622.254 L622.254 0 L0 622.254 Z" fill="none" stroke="#808080" stroke-width="7.467"/>
     </g>
     <g id="Layer-Composition">
-      <path d="M-398.243 156.631 L380.643 -622.254 L398.243 -604.654 L-380.643 -604.654 L-398.243 156.631 Z" fill="#1A1A1A" stroke="none"/>
+      <path d="M0 -510.248 L510.248 0 L0 510.248 L-510.248 0 L0 -510.248 Z" fill="#FFD200" stroke="none"/>
     </g>
     <g id="Layer-Composition">
-      <path d="M-448.8 319.194 L431.2 -560.806 L448.8 -543.206 L-431.2 -543.206 L-448.8 319.194 Z" fill="#1A1A1A" stroke="none"/>
+      <path d="M-398.243 156.631 L380.643 -622.254 L398.243 -604.654 L-380.643 174.231 L-398.243 156.631 Z" fill="#1A1A1A" stroke="none"/>
     </g>
     <g id="Layer-Composition">
-      <path d="M-448.8 431.2 L431.2 -448.8 L448.8 -431.2 L-431.2 -431.2 L-448.8 431.2 Z" fill="#1A1A1A" stroke="none"/>
+      <path d="M-448.8 319.194 L431.2 -560.806 L448.8 -543.206 L-431.2 336.794 L-448.8 319.194 Z" fill="#1A1A1A" stroke="none"/>
     </g>
     <g id="Layer-Composition">
-      <path d="M-448.8 543.206 L431.2 -336.794 L448.8 -319.194 L-431.2 -319.194 L-448.8 543.206 Z" fill="#1A1A1A" stroke="none"/>
+      <path d="M-448.8 431.2 L431.2 -448.8 L448.8 -431.2 L-431.2 448.8 L-448.8 431.2 Z" fill="#1A1A1A" stroke="none"/>
     </g>
     <g id="Layer-Composition">
-      <path d="M-398.243 604.654 L380.643 -174.231 L398.243 -156.631 L-380.643 -156.631 L-398.243 604.654 Z" fill="#1A1A1A" stroke="none"/>
+      <path d="M-448.8 543.206 L431.2 -336.794 L448.8 -319.194 L-431.2 560.806 L-448.8 543.206 Z" fill="#1A1A1A" stroke="none"/>
+    </g>
+    <g id="Layer-Composition">
+      <path d="M-398.243 604.654 L380.643 -174.231 L398.243 -156.631 L-380.643 622.254 L-398.243 604.654 Z" fill="#1A1A1A" stroke="none"/>
     </g>
   </g>
   <g id="DraftWatermark">

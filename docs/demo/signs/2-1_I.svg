@@ -6,19 +6,22 @@
       profile="GOST_R_52290_2024"
       sizeTable="Д.5"
       outerBorderMm="10"
-      verification="borders=CuratorExtracted; catalog=CuratorExtracted; colors=Unverified; elements.contourGrey=Unverified; sizeProfile=CuratorExtracted"
+      verification="borders=CuratorExtracted; catalog=CuratorExtracted; colors=Unverified; elements.contourGrey=Unverified; elements.diamondYellow=Unverified; sizeProfile=CuratorExtracted"
       isDraft="true"
       colorimetry="DISPLAY_ONLY_NOT_GOST"/>
   </metadata>
   <g id="Geometry" transform="scale(1,-1)">
     <g id="Layer-Outline">
-      <path d="M0 424.264 L-424.264 0 L0 -424.264 L424.264 0 L0 424.264 Z" fill="#FFFFFF" stroke="none"/>
+      <path d="M0 424.264 L-424.264 0 L0 -424.264 L424.264 0 L0 424.264 Z" fill="#1A1A1A" stroke="none"/>
     </g>
     <g id="Layer-Field">
-      <path d="M0 410.122 L-410.122 0 L0 -410.122 L410.122 0 L0 410.122 Z" fill="#FFD200" stroke="none"/>
+      <path d="M0 410.122 L-410.122 0 L0 -410.122 L410.122 0 L0 410.122 Z" fill="#FFFFFF" stroke="none"/>
     </g>
     <g id="Layer-Composition">
       <path d="M0 410.122 L-410.122 0 L0 -410.122 L410.122 0 L0 410.122 Z" fill="none" stroke="#808080" stroke-width="4.921"/>
+    </g>
+    <g id="Layer-Composition">
+      <path d="M0 -336.3 L336.3 0 L0 336.3 L-336.3 0 L0 -336.3 Z" fill="#FFD200" stroke="none"/>
     </g>
   </g>
   <g id="DraftWatermark">

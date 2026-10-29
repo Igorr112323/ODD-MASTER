@@ -21,7 +21,7 @@
       <path d="M-430 -405 A25 25 0 0 1 -405 -430 L405 -430 A25 25 0 0 1 430 -405 L430 405 A25 25 0 0 1 405 430 L-405 430 A25 25 0 0 1 -430 405 L-430 -405 Z" fill="none" stroke="#808080" stroke-width="5.16"/>
     </g>
     <g id="Layer-Composition">
-      <path d="M-261.488 -346.624 L346.624 261.488 L261.488 346.624 L-346.624 346.624 L-261.488 -346.624 Z" fill="#D7191C" stroke="none"/>
+      <path d="M-261.488 -346.624 L346.624 261.488 L261.488 346.624 L-346.624 -261.488 L-261.488 -346.624 Z" fill="#D7191C" stroke="none"/>
     </g>
     <g id="Layer-Pictogram">
       <path d="M-97.2 0 L21.6 0 L21.6 47.52 L97.2 0 L21.6 -47.52 L21.6 0 L-97.2 0 Z" fill="none" stroke="#FFFFFF" stroke-width="10.8"/>

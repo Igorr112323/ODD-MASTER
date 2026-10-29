@@ -182,7 +182,7 @@
       "sign": "2.1",
       "sizeClass": "I",
       "units": "mm",
-      "entityCount": 18,
+      "entityCount": 24,
       "layers": [
         "SIGN.Composition",
         "SIGN.Field",

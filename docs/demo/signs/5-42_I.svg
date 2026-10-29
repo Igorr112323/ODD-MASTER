@@ -24,25 +24,25 @@
       <path d="M123.2 34.4 A123.2 123.2 0 0 1 0 157.6 A123.2 123.2 0 0 1 -123.2 34.4 A123.2 123.2 0 0 1 0 -88.8 A123.2 123.2 0 0 1 123.2 34.4 Z" fill="none" stroke="#808080" stroke-width="34.496"/>
     </g>
     <g id="Layer-Composition">
-      <path d="M-48.785 -38.777 L73.177 83.185 L48.785 107.577 L-73.177 107.577 L-48.785 -38.777 Z" fill="#D7191C" stroke="none"/>
+      <path d="M-48.785 -38.777 L73.177 83.185 L48.785 107.577 L-73.177 -14.385 L-48.785 -38.777 Z" fill="#D7191C" stroke="none"/>
     </g>
     <g id="Layer-Composition">
-      <path d="M-73.177 83.185 L48.785 -38.777 L73.177 -14.385 L-48.785 -14.385 L-73.177 83.185 Z" fill="#D7191C" stroke="none"/>
+      <path d="M-73.177 83.185 L48.785 -38.777 L73.177 -14.385 L-48.785 107.577 L-73.177 83.185 Z" fill="#D7191C" stroke="none"/>
     </g>
     <g id="Layer-Composition">
-      <path d="M-194.03 -302.75 L201.95 93.23 L194.03 101.15 L-201.95 101.15 L-194.03 -302.75 Z" fill="#1A1A1A" stroke="none"/>
+      <path d="M-194.03 -302.75 L201.95 93.23 L194.03 101.15 L-201.95 -294.83 L-194.03 -302.75 Z" fill="#1A1A1A" stroke="none"/>
     </g>
     <g id="Layer-Composition">
-      <path d="M-194.03 -252.35 L201.95 143.63 L194.03 151.55 L-201.95 151.55 L-194.03 -252.35 Z" fill="#1A1A1A" stroke="none"/>
+      <path d="M-194.03 -252.35 L201.95 143.63 L194.03 151.55 L-201.95 -244.43 L-194.03 -252.35 Z" fill="#1A1A1A" stroke="none"/>
     </g>
     <g id="Layer-Composition">
-      <path d="M-194.03 -201.95 L201.95 194.03 L194.03 201.95 L-201.95 201.95 L-194.03 -201.95 Z" fill="#1A1A1A" stroke="none"/>
+      <path d="M-194.03 -201.95 L201.95 194.03 L194.03 201.95 L-201.95 -194.03 L-194.03 -201.95 Z" fill="#1A1A1A" stroke="none"/>
     </g>
     <g id="Layer-Composition">
-      <path d="M-194.03 -151.55 L201.95 244.43 L194.03 252.35 L-201.95 252.35 L-194.03 -151.55 Z" fill="#1A1A1A" stroke="none"/>
+      <path d="M-194.03 -151.55 L201.95 244.43 L194.03 252.35 L-201.95 -143.63 L-194.03 -151.55 Z" fill="#1A1A1A" stroke="none"/>
     </g>
     <g id="Layer-Composition">
-      <path d="M-194.03 -101.15 L201.95 294.83 L194.03 302.75 L-201.95 302.75 L-194.03 -101.15 Z" fill="#1A1A1A" stroke="none"/>
+      <path d="M-194.03 -101.15 L201.95 294.83 L194.03 302.75 L-201.95 -93.23 L-194.03 -101.15 Z" fill="#1A1A1A" stroke="none"/>
     </g>
     <g id="Layer-Pictogram">
       <path d="M-64.8 0 L14.4 0 L14.4 31.68 L64.8 0 L14.4 -31.68 L14.4 0 L-64.8 0 Z" fill="none" stroke="#808080" stroke-width="7.2"/>

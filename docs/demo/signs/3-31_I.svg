@@ -21,19 +21,19 @@
       <path d="M290 0 A290 290 0 0 1 0 290 A290 290 0 0 1 -290 0 A290 290 0 0 1 0 -290 A290 290 0 0 1 290 0 Z" fill="none" stroke="#808080" stroke-width="3.48"/>
     </g>
     <g id="Layer-Composition">
-      <path d="M-177.398 -290 L185.6 72.998 L177.398 81.2 L-185.6 81.2 L-177.398 -290 Z" fill="#1A1A1A" stroke="none"/>
+      <path d="M-177.398 -290 L185.6 72.998 L177.398 81.2 L-185.6 -281.798 L-177.398 -290 Z" fill="#1A1A1A" stroke="none"/>
     </g>
     <g id="Layer-Composition">
-      <path d="M-200.96 -261.362 L209.162 148.76 L200.96 156.962 L-209.162 156.962 L-200.96 -261.362 Z" fill="#1A1A1A" stroke="none"/>
+      <path d="M-200.96 -261.362 L209.162 148.76 L200.96 156.962 L-209.162 -253.16 L-200.96 -261.362 Z" fill="#1A1A1A" stroke="none"/>
     </g>
     <g id="Layer-Composition">
-      <path d="M-200.96 -209.162 L209.162 200.96 L200.96 209.162 L-209.162 209.162 L-200.96 -209.162 Z" fill="#1A1A1A" stroke="none"/>
+      <path d="M-200.96 -209.162 L209.162 200.96 L200.96 209.162 L-209.162 -200.96 L-200.96 -209.162 Z" fill="#1A1A1A" stroke="none"/>
     </g>
     <g id="Layer-Composition">
-      <path d="M-200.96 -156.962 L209.162 253.16 L200.96 261.362 L-209.162 261.362 L-200.96 -156.962 Z" fill="#1A1A1A" stroke="none"/>
+      <path d="M-200.96 -156.962 L209.162 253.16 L200.96 261.362 L-209.162 -148.76 L-200.96 -156.962 Z" fill="#1A1A1A" stroke="none"/>
     </g>
     <g id="Layer-Composition">
-      <path d="M-177.398 -81.2 L185.6 281.798 L177.398 290 L-185.6 290 L-177.398 -81.2 Z" fill="#1A1A1A" stroke="none"/>
+      <path d="M-177.398 -81.2 L185.6 281.798 L177.398 290 L-185.6 -72.998 L-177.398 -81.2 Z" fill="#1A1A1A" stroke="none"/>
     </g>
   </g>
   <g id="DraftWatermark">

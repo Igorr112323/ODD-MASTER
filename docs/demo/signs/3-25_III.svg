@@ -21,19 +21,19 @@
       <path d="M440 0 A440 440 0 0 1 0 440 A440 440 0 0 1 -440 0 A440 440 0 0 1 0 -440 A440 440 0 0 1 440 0 Z" fill="none" stroke="#808080" stroke-width="5.28"/>
     </g>
     <g id="Layer-Composition">
-      <path d="M-269.155 -440 L281.6 110.755 L269.155 123.2 L-281.6 123.2 L-269.155 -440 Z" fill="#1A1A1A" stroke="none"/>
+      <path d="M-269.155 -440 L281.6 110.755 L269.155 123.2 L-281.6 -427.555 L-269.155 -440 Z" fill="#1A1A1A" stroke="none"/>
     </g>
     <g id="Layer-Composition">
-      <path d="M-304.904 -396.55 L317.35 225.704 L304.904 238.15 L-317.35 238.15 L-304.904 -396.55 Z" fill="#1A1A1A" stroke="none"/>
+      <path d="M-304.904 -396.55 L317.35 225.704 L304.904 238.15 L-317.35 -384.104 L-304.904 -396.55 Z" fill="#1A1A1A" stroke="none"/>
     </g>
     <g id="Layer-Composition">
-      <path d="M-304.904 -317.35 L317.35 304.904 L304.904 317.35 L-317.35 317.35 L-304.904 -317.35 Z" fill="#1A1A1A" stroke="none"/>
+      <path d="M-304.904 -317.35 L317.35 304.904 L304.904 317.35 L-317.35 -304.904 L-304.904 -317.35 Z" fill="#1A1A1A" stroke="none"/>
     </g>
     <g id="Layer-Composition">
-      <path d="M-304.904 -238.15 L317.35 384.104 L304.904 396.55 L-317.35 396.55 L-304.904 -238.15 Z" fill="#1A1A1A" stroke="none"/>
+      <path d="M-304.904 -238.15 L317.35 384.104 L304.904 396.55 L-317.35 -225.704 L-304.904 -238.15 Z" fill="#1A1A1A" stroke="none"/>
     </g>
     <g id="Layer-Composition">
-      <path d="M-269.155 -123.2 L281.6 427.555 L269.155 440 L-281.6 440 L-269.155 -123.2 Z" fill="#1A1A1A" stroke="none"/>
+      <path d="M-269.155 -123.2 L281.6 427.555 L269.155 440 L-281.6 -110.755 L-269.155 -123.2 Z" fill="#1A1A1A" stroke="none"/>
     </g>
   </g>
   <g id="Layer-Text"><text x="-185.161" y="60.94" font-family="DejaVu Sans Bold, Liberation Sans Bold, Arial Bold, sans-serif" font-weight="bold" font-size="266.112" fill="#808080">40</text></g>

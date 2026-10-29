@@ -10,7 +10,7 @@
 | `dxf/live-after.dxf` | scenario | после правки | 510 | 51 |
 | `dxf/control.dxf` | scenario | контроль | 59 | 4 |
 | `dxf/hello-3.1-I.dxf` | sign | 3.1 I | 188 | 4 |
-| `dxf/sign-2-1-I.dxf` | sign | 2.1 I | 18 | 4 |
+| `dxf/sign-2-1-I.dxf` | sign | 2.1 I | 24 | 4 |
 | `dxf/sign-2-3-1-I.dxf` | sign | 2.3.1 I | 92 | 5 |
 | `dxf/sign-2-4-I.dxf` | sign | 2.4 I | 92 | 5 |
 | `dxf/sign-2-5-II.dxf` | sign | 2.5 II | 39 | 5 |
