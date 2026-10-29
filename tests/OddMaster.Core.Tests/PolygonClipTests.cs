@@ -27,6 +27,8 @@ namespace OddMaster.Core.Tests
             var subject = new[] { new Point2(-2, -2), new Point2(2, -2), new Point2(2, 2), new Point2(-2, 2) };
             var clipped = PolygonClip.Clip(subject, Square);
             TestAssert.Equal(4, clipped.Count);
+            TestAssert.True(clipped[0].DistanceTo(clipped[clipped.Count - 1]) > 1e-9,
+                "первая вершина не должна дублироваться в конце");
             TestAssert.True(Math.Abs(PolygonClip.SignedArea(clipped) - 16.0) < 1e-9,
                 "площадь должна сохраниться: " + PolygonClip.SignedArea(clipped));
         }

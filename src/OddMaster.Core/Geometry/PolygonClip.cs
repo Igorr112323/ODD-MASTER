@@ -47,6 +47,10 @@ namespace OddMaster.Core.Geometry
                     }
                 }
             }
+            // Сазерленд—Ходжмен может вернуть первую вершину ещё раз в конце:
+            // Path.Close() добавит замыкание сам, дубль дал бы нулевой сегмент (M9-V03).
+            if (output.Count > 1 && output[0].DistanceTo(output[output.Count - 1]) < Epsilon)
+                output.RemoveAt(output.Count - 1);
             return output.Count >= 3 ? output : (IReadOnlyList<Point2>)Array.Empty<Point2>();
         }
 
