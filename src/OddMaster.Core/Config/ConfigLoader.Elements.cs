@@ -26,6 +26,8 @@ namespace OddMaster.Core.Config
                 return fallback;
             }
 
+            // Статус элемента наследуется от библиотеки, если у элемента он не задан явно.
+            var libraryVerification = ReadVerificationAt(e, file, "");
             var items = J.Property(e, "elements", file, "");
             var elements = new Dictionary<string, CompositionElement>(StringComparer.Ordinal);
             foreach (var p in items.EnumerateObject())
@@ -73,7 +75,9 @@ namespace OddMaster.Core.Config
                     J.OptNum(p.Value, "sizeRatio", file, pointer) ?? 0.3,
                     direction,
                     J.OptStr(p.Value, "note", file, pointer),
-                    ReadVerificationAt(p.Value, file, pointer),
+                    p.Value.TryGetProperty("verification", out _)
+                        ? ReadVerificationAt(p.Value, file, pointer)
+                        : libraryVerification,
                     Markers(p.Value, file, pointer));
                 defaults++;
             }
@@ -81,7 +85,7 @@ namespace OddMaster.Core.Config
                 throw new ConfigException(file, "/elements", "библиотека элементов пуста", "добавьте хотя бы один элемент");
 
             return new CompositionLibrary("elements.mvp-30",
-                J.ReadNormRef(e, "normRef", file, ""), ReadVerificationAt(e, file, ""),
+                J.ReadNormRef(e, "normRef", file, ""), libraryVerification,
                 J.OptStr(e, "source", file, "") ?? "", J.OptStr(e, "note", file, "") ?? "",
                 J.StringList(e, "markers", file, ""), elements);
         }
