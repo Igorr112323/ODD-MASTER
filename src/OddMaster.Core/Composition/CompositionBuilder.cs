@@ -24,6 +24,8 @@ namespace OddMaster.Core.Composition
             var layers = new List<SignLayer>();
             var minSide = Math.Min(field.Width, field.Height);
             if (minSide <= 0) return layers;
+            var mask = field;
+            var maskPolygon = Flatten(outline);
             foreach (var element in elements)
             {
                 switch (element.Kind)
@@ -50,12 +52,12 @@ namespace OddMaster.Core.Composition
                     case CompositionKind.Cross:
                         foreach (var angle in new[] { 45.0, -45.0 })
                             layers.Add(Filled(element, Band(Center(element, field),
-                                FitLength(Center(element, field), field, minSide * element.BandRatio, angle,
+                                FitLength(Center(element, field), mask, minSide * element.BandRatio, angle,
                                     minSide * element.LengthRatio),
-                                minSide * element.BandRatio, angle)));
+                                minSide * element.BandRatio, angle, maskPolygon)));
                         break;
                     case CompositionKind.Band:
-                        layers.Add(Filled(element, Fitted(element, field, minSide)));
+                        layers.Add(Filled(element, Fitted(element, mask, maskPolygon, minSide)));
                         break;
                     case CompositionKind.Bundle:
                         for (var i = 0; i < element.Count; i++)
@@ -63,9 +65,9 @@ namespace OddMaster.Core.Composition
                             var offset = (i - (element.Count - 1) / 2.0) * minSide * element.SpacingRatio;
                             var center = new Point2(Center(element, field).X, Center(element, field).Y + offset);
                             layers.Add(Filled(element, Band(center,
-                                FitLength(center, field, minSide * element.BandRatio, element.AngleDeg,
+                                FitLength(center, mask, minSide * element.BandRatio, element.AngleDeg,
                                     minSide * element.LengthRatio),
-                                minSide * element.BandRatio, element.AngleDeg)));
+                                minSide * element.BandRatio, element.AngleDeg, maskPolygon)));
                         }
                         break;
                     case CompositionKind.Nested:
@@ -84,12 +86,13 @@ namespace OddMaster.Core.Composition
         }
 
         /// <summary>Одна полоса элемента, вписанная в габарит поля.</summary>
-        private static Path Fitted(CompositionElement element, BoundingBox field, double minSide)
+        private static Path Fitted(CompositionElement element, BoundingBox field,
+            IReadOnlyList<Point2> mask, double minSide)
         {
             var center = Center(element, field);
             var width = minSide * element.BandRatio;
             return Band(center, FitLength(center, field, width, element.AngleDeg,
-                minSide * element.LengthRatio), width, element.AngleDeg);
+                minSide * element.LengthRatio), width, element.AngleDeg, mask);
         }
 
         /// <summary>
@@ -144,7 +147,8 @@ namespace OddMaster.Core.Composition
         /// Полоса заданной длины и толщины под углом: замкнутый прямоугольник.
         /// Единичные векторы считаются один раз, углы — против часовой (Y вверх).
         /// </summary>
-        private static Path Band(Point2 center, double length, double width, double angleDeg)
+        private static Path Band(Point2 center, double length, double width, double angleDeg,
+            IReadOnlyList<Point2> mask = null)
         {
             var radians = angleDeg * Math.PI / 180.0;
             var ux = Math.Cos(radians);
@@ -160,7 +164,62 @@ namespace OddMaster.Core.Composition
             var b = Corner(halfLength, -halfWidth);
             var c = Corner(halfLength, halfWidth);
             var d = Corner(-halfLength, halfWidth);
+            if (mask != null)
+            {
+                var clipped = PolygonClip.Clip(new[] { a, b, c, d }, mask);
+                if (clipped.Count >= 3) return PolygonClip.ToPath(clipped);
+            }
             return new Path(a).LineTo(b).LineTo(c).LineTo(d).Close();
+        }
+
+        /// <summary>
+        /// Сводит наружный контур знака к ломаной для отсечения. Дуги разбиваются по 15° —
+        /// точности «внутри знака» это достаточно, а результат остаётся детерминированным.
+        /// </summary>
+        private static IReadOnlyList<Point2> Flatten(Path path)
+        {
+            var points = new List<Point2> { path.Start };
+            var current = path.Start;
+            foreach (var segment in path.Segments)
+            {
+                if (segment is ArcSegment arc)
+                {
+                    var steps = Math.Max(4, (int)Math.Ceiling(Math.Abs(arc.SweepDeg) / 15.0));
+                    var center = ArcCenter(current, arc);
+                    var startAngle = Math.Atan2(current.Y - center.Y, current.X - center.X) * 180.0 / Math.PI;
+                    for (var i = 1; i <= steps; i++)
+                    {
+                        var angle = (startAngle + arc.SweepDeg * i / steps) * Math.PI / 180.0;
+                        points.Add(new Point2(center.X + arc.Radius * Math.Cos(angle),
+                            center.Y + arc.Radius * Math.Sin(angle)));
+                    }
+                }
+                else
+                {
+                    points.Add(segment.End);
+                }
+                current = segment.End;
+            }
+            if (points.Count > 1 && points[0].DistanceTo(points[points.Count - 1]) < 1e-9)
+                points.RemoveAt(points.Count - 1);
+            return points;
+        }
+
+        /// <summary>Центр дуги по началу, концу и радиусу (два варианта — берём согласованный со знаком развёртки).</summary>
+        private static Point2 ArcCenter(Point2 start, ArcSegment arc)
+        {
+            var dx = arc.End.X - start.X;
+            var dy = arc.End.Y - start.Y;
+            var distance = Math.Sqrt(dx * dx + dy * dy);
+            if (distance < 1e-9) return start;
+            var half = distance / 2;
+            var heightSquared = arc.Radius * arc.Radius - half * half;
+            var height = heightSquared > 0 ? Math.Sqrt(heightSquared) : 0;
+            var ux = -dy / distance;
+            var uy = dx / distance;
+            var mx = (start.X + arc.End.X) / 2;
+            var my = (start.Y + arc.End.Y) / 2;
+            return new Point2(mx + ux * height, my + uy * height);
         }
 
         /// <summary>Ромб (2.1/2.2): жёлтое поле внутри белого ромба.</summary>
