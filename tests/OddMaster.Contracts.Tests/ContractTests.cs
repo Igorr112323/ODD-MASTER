@@ -194,7 +194,7 @@ namespace OddMaster.Contracts.Tests
                 host.Events.Unsubscribe(sink);
             }
             Assert.Equal(1, rejected);
-            Assert.Equal(1, document.Query("Sign").Count);
+            Assert.Single(document.Query("Sign"));
             Assert.True(host.Events.Deferred.Count > 0, "пересчёт ждёт в отложенной очереди");
         }
 
@@ -320,7 +320,7 @@ namespace OddMaster.Contracts.Tests
                 "сценарий " + budget + " занял " + watch.ElapsedMilliseconds + " мс");
             Assert.True(host.Document.CanUndo, "вся пачка — одна группа отмены");
             host.Document.Undo();
-            Assert.Equal(0, host.Document.Query("Post").Count);
+            Assert.Empty(host.Document.Query("Post"));
         }
 
         [Fact(DisplayName = "M18-A01 архитектура: ядро не знает ОС и не ссылается на хосты")]
