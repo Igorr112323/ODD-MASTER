@@ -198,7 +198,8 @@ namespace OddMaster.Core.Tests
             // CR-22 §3: ширина в мм неизвестна, но есть замеренная пропорция (Unverified),
             // поэтому статус — Unverified, а не Placeholder; маркер GOST-001 обязателен.
             TestAssert.Contains("Unverified", result.Geometry.Verification.Describe());
-            var noInner = Generator().Generate("3.24", "II", Speed(40m));
+            // CR-22: у 3.24 теперь есть красная кайма, поэтому «знак без каймы» — это 6.4.
+            var noInner = Generator().Generate("6.4", "II");
             TestAssert.True(noInner.IsSuccess);
             TestAssert.False(noInner.Geometry!.InnerBorderIsPlaceholder);
         }

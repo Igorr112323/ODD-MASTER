@@ -596,7 +596,8 @@
         "outerBorder": "White",
         "symbol": "White",
         "text": "White",
-        "contour": "Grey"
+        "contour": "Grey",
+        "accent": "Red"
       },
       "pictogram": {
         "id": "pict.5.6.placeholder",
@@ -883,7 +884,8 @@
         "outerBorder": "White",
         "symbol": "White",
         "text": "White",
-        "contour": "Grey"
+        "contour": "Grey",
+        "accent": "Red"
       },
       "pictogram": {
         "id": "pict.5.22.placeholder",
