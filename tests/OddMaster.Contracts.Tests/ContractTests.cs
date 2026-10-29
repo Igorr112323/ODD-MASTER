@@ -171,9 +171,9 @@ namespace OddMaster.Contracts.Tests
             var rejected = 0;
             var sink = new LambdaSink(change =>
             {
-                var attempt = document.BeginTransaction("FromEvent");
                 try
                 {
+                    var attempt = document.BeginTransaction("FromEvent");
                     attempt.Create("Sign", "ODD_SIGN", new List<CadProperty>
                     {
                         new CadProperty("number", change.Type),

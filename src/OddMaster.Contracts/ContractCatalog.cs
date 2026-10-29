@@ -187,9 +187,9 @@ namespace OddMaster.Contracts
             var rejected = 0;
             var sink = new DelegateSink(change =>
             {
-                var attempt = document.BeginTransaction("FromNotification");
                 try
                 {
+                    var attempt = document.BeginTransaction("FromNotification");
                     attempt.Create(SignType, "ODD_SIGN", new List<CadProperty>
                     {
                         new CadProperty("number", change.Type),
