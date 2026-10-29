@@ -86,24 +86,26 @@ namespace OddMaster.Core.Tests
             {
                 var bounds = layer.Geometry!.Bounds();
                 TestAssert.True(bounds.Width <= field.Width + 1e-6 && bounds.Height <= field.Height + 1e-6,
-                    "полоса состава выходит за знак: " + bounds.Width.ToString("0.###", Culture) + " × " +
-                    bounds.Height.ToString("0.###", Culture));
-                var corners = new[]
+                    "полоса состава выходит за габарит знака: " + bounds.Width.ToString("0.###", Culture) +
+                    " × " + bounds.Height.ToString("0.###", Culture));
+                // Проверяем вершины, а не углы габарита: у обрезанной полосы габарит шире контура.
+                foreach (var point in Vertices(layer.Geometry!))
                 {
-                    new Point2(bounds.MinX, bounds.MinY), new Point2(bounds.MaxX, bounds.MinY),
-                    new Point2(bounds.MaxX, bounds.MaxY), new Point2(bounds.MinX, bounds.MaxY),
-                };
-                foreach (var corner in corners)
-                {
-                    var radius = Math.Sqrt(corner.X * corner.X + corner.Y * corner.Y);
-                    TestAssert.True(radius <= 151.0,
-                        "угол обрезки дальше радиуса: " + radius.ToString("0.###", Culture));
+                    var radius = Math.Sqrt(point.X * point.X + point.Y * point.Y);
+                    TestAssert.True(radius <= 150.5,
+                        "вершина полосы дальше радиуса знака: " + radius.ToString("0.###", Culture));
                 }
             }
         }
 
         private static System.Globalization.CultureInfo Culture =>
             System.Globalization.CultureInfo.InvariantCulture;
+
+        private static IEnumerable<Point2> Vertices(Path path)
+        {
+            yield return path.Start;
+            foreach (var segment in path.Segments) yield return segment.End;
+        }
 
         /// <summary>Разбиение контура в ломаную — та же логика, что в составном построении.</summary>
         private static IReadOnlyList<Point2> Flatten(Path path)

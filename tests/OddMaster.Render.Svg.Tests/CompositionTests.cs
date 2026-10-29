@@ -182,7 +182,11 @@ namespace OddMaster.Render.Svg.Tests
             TestAssert.Equal("Blue", cfg.Catalog.Find("3.28")!.Colors["field"]);
             TestAssert.Equal("White", cfg.Catalog.Find("3.31")!.Colors["field"]);
             TestAssert.Equal("Red", cfg.Catalog.Find("3.1")!.Colors["field"]);
-            TestAssert.Equal("Yellow", cfg.Catalog.Find("2.1")!.Colors["field"]);
+            // CURATOR-03, стр. 31: у 2.1 белый ромб с тонким чёрным контуром, жёлтый ромб — вставка.
+            TestAssert.Equal("White", cfg.Catalog.Find("2.1")!.Colors["field"]);
+            TestAssert.Equal("Yellow", cfg.Catalog.Find("2.1")!.Colors["accent"]);
+            TestAssert.True(cfg.Catalog.Find("2.1")!.Elements.Contains("diamondYellow"),
+                "2.1: жёлтый ромб задаётся элементом diamondYellow, а не полем");
             TestAssert.Equal("White", cfg.Catalog.Find("5.41")!.Colors["field"]);
         }
     }
