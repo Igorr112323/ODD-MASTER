@@ -14,7 +14,8 @@
     "advanceRatios",
     "normRef",
     "verification",
-    "markers"
+    "markers",
+    "minCapHeightMm"
   ],
   "properties": {
     "fontId": {
@@ -106,6 +107,11 @@
           "type": "string"
         }
       }
+    },
+    "minCapHeightMm": {
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "description": "Минимальная высота прописных, мм: ниже неё текст переносится, а не уменьшается. Условное значение, GOST-002."
     }
   }
 }

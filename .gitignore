@@ -22,3 +22,5 @@ nanoCAD-SDK/
 coverage/
 *.binlog
 artifacts/previews/
+__pycache__/
+*.pyc

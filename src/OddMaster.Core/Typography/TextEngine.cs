@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Text;
 using OddMaster.Core.Geometry;
 
 namespace OddMaster.Core.Typography
@@ -59,10 +60,13 @@ namespace OddMaster.Core.Typography
             if (lines == null) throw new ArgumentNullException(nameof(lines));
             if (metrics == null) throw new ArgumentNullException(nameof(metrics));
             if (lines.Count == 0) return Array.Empty<TextLayout>();
-            double height = double.MaxValue;
+            // CR-17: блок целиком обязан влезть в boxHeight, иначе вторая и третья строки
+            // выходили за габарит (водяной знак и шапка таблицы этим и страдали).
+            var stepRatio = 1.0 + metrics.LineGapRatio;
+            double height = boxHeightMm * metrics.MaxHeightRatio;
+            height = Math.Min(height, boxHeightMm / (lines.Count * stepRatio));
             foreach (var line in lines)
-                height = Math.Min(height, Math.Min(boxHeightMm * metrics.MaxHeightRatio,
-                    boxWidthMm / metrics.TotalAdvance(line)));
+                height = Math.Min(height, boxWidthMm / metrics.TotalAdvance(line));
             var step = height * (1.0 + metrics.LineGapRatio);
             var blockHeight = step * lines.Count;
             var top = center.Y + blockHeight / 2;
@@ -74,6 +78,99 @@ namespace OddMaster.Core.Typography
             }
             return result;
         }
+
+        /// <summary>
+        /// Перенос по словам и вписывание блока в прямоугольник: кегль один для всех строк,
+        /// ширина каждой строки ≤ boxWidthMm. Нужен там, где узкая колонка таблицы должна
+        /// остаться читаемой: лучше две строки, чем кегль 1,7 мм (форма ведомости, GOST-011).
+        /// Алгоритм детерминированный: greedy-перенос и монотонное уменьшение кегля (до восьми шагов),
+        /// поэтому результат не зависит от порядка обхода и повторяется байт в байт.
+        /// </summary>
+        public static IReadOnlyList<TextLayout> LayoutWrapped(string text, double boxWidthMm,
+            double boxHeightMm, FontMetrics metrics, Point2 center)
+        {
+            if (metrics == null) throw new ArgumentNullException(nameof(metrics));
+            if (string.IsNullOrWhiteSpace(text)) return Array.Empty<TextLayout>();
+            var words = text!.Split(new[] { ' ', '\u00a0' }, StringSplitOptions.RemoveEmptyEntries);
+            var budget = boxHeightMm * metrics.MaxHeightRatio;
+            var step = 1.0 + metrics.LineGapRatio;
+            var legible = metrics.CapHeightRatio > 0 ? metrics.MinCapHeightMm / metrics.CapHeightRatio : 0;
+            // Стартовый кегль: не больше бюджета высоты и не больше того, при котором самое
+            // длинное слово ещё влезает в ширину без разрыва (но не ниже порога читаемости).
+            double widest = 0;
+            foreach (var word in words) widest = Math.Max(widest, metrics.TotalAdvance(word));
+            var height = budget;
+            if (widest > 0) height = Math.Min(height, Math.Max(boxWidthMm / widest, legible));
+            // Кегль только уменьшаем: итерация монотонна и заведомо сходится.
+            // Блок из n строк влезает и в высоту прямоугольника, и в бюджет кегля,
+            // если кегль ≤ min(бюджет, boxHeight / (n * межстрочный)).
+            for (var iteration = 0; iteration < 8; iteration++)
+            {
+                var linesAtHeight = Wrap(words, boxWidthMm, height, metrics);
+                var allowed = Math.Min(budget, boxHeightMm / (linesAtHeight.Count * step));
+                if (height <= allowed + 1e-9) break;
+                height = Math.Max(Math.Min(allowed, height * 0.9), legible);
+            }
+            var lines = Wrap(words, boxWidthMm, height, metrics);
+            return LayoutBlock(lines, boxWidthMm, boxHeightMm, metrics, center);
+        }
+
+        private static List<string> Wrap(IReadOnlyList<string> words, double boxWidthMm, double height,
+            FontMetrics metrics)
+        {
+            var lines = new List<string>();
+            var current = new StringBuilder();
+            foreach (var word in words)
+            {
+                foreach (var part in SplitByWidth(word, boxWidthMm, height, metrics))
+                {
+                    var candidate = current.Length == 0 ? part : current + " " + part;
+                    if (current.Length > 0 && !Fits(candidate, height, boxWidthMm, metrics))
+                    {
+                        lines.Add(current.ToString());
+                        current.Clear();
+                        current.Append(part);
+                    }
+                    else
+                    {
+                        current.Clear();
+                        current.Append(candidate);
+                    }
+                }
+            }
+            if (current.Length > 0) lines.Add(current.ToString());
+            return lines;
+        }
+
+        private static IEnumerable<string> SplitByWidth(string word, double boxWidthMm, double height,
+            FontMetrics metrics)
+        {
+            if (Fits(word, height, boxWidthMm, metrics) || word.Length < 2)
+            {
+                yield return word;
+                yield break;
+            }
+            var chunk = new StringBuilder();
+            foreach (var ch in word)
+            {
+                var candidate = chunk.ToString() + ch;
+                if (chunk.Length > 0 && !Fits(candidate, height, boxWidthMm, metrics))
+                {
+                    yield return chunk.ToString();
+                    chunk.Clear();
+                }
+                chunk.Append(ch);
+            }
+            if (chunk.Length > 0) yield return chunk.ToString();
+        }
+
+        /// <summary>
+        /// Влезает ли строка в ширину при заданном кегле. Допуск относительный: кегль считается
+        /// ровно по ширине самого длинного слова, и без допуска строка на границе дробилась бы
+        /// из-за погрешности double («Парамет|р» вместо «Параметр»).
+        /// </summary>
+        private static bool Fits(string text, double height, double boxWidthMm, FontMetrics metrics) =>
+            metrics.TotalAdvance(text) * height <= boxWidthMm * (1 + 1e-9);
 
         /// <summary>Оценка ширины строки при заданном кегле (для инвариантов).</summary>
         public static double EstimateWidth(string text, double heightMm, FontMetrics metrics) =>

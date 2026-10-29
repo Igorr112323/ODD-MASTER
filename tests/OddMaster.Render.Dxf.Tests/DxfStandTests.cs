@@ -67,15 +67,20 @@ namespace OddMaster.Render.Dxf.Tests
             TestAssert.True(table.Cells.Count > 0, "таблица должна содержать ячейки");
             foreach (var cell in table.Cells)
             {
-                var box = cell.Layout.Box();
-                TestAssert.True(box.MinX >= cell.Box.MinX - 1e-6,
-                    "текст «" + cell.Text + "» выходит левее ячейки");
-                TestAssert.True(box.MaxX <= cell.Box.MaxX + 1e-6,
-                    "текст «" + cell.Text + "» выходит правее ячейки");
-                TestAssert.True(box.MinY >= cell.Box.MinY - 1e-6,
-                    "текст «" + cell.Text + "» выходит ниже ячейки");
-                TestAssert.True(box.MaxY <= cell.Box.MaxY + 1e-6,
-                    "текст «" + cell.Text + "» выходит выше ячейки");
+                foreach (var line in cell.Lines)
+                {
+                    var box = line.Box();
+                    TestAssert.True(box.MinX >= cell.Box.MinX - 1e-6,
+                        "текст «" + line.Value + "» выходит левее ячейки");
+                    TestAssert.True(box.MaxX <= cell.Box.MaxX + 1e-6,
+                        "текст «" + line.Value + "» выходит правее ячейки");
+                    TestAssert.True(box.MinY >= cell.Box.MinY - 1e-6,
+                        "текст «" + line.Value + "» выходит ниже ячейки");
+                    TestAssert.True(box.MaxY <= cell.Box.MaxY + 1e-6,
+                        "текст «" + line.Value + "» выходит выше ячейки");
+                }
+                if (cell.Text.Length > 0)
+                    TestAssert.True(cell.Lines.Count > 0, "непустая ячейка без строк: " + cell.Text);
             }
         }
 
@@ -97,11 +102,10 @@ namespace OddMaster.Render.Dxf.Tests
             var types = DxfPairs.EntityTypes(text);
             TestAssert.Equal(expectedLines, types.Count(t => t == "LINE"), "каждая линия сетки — сущность LINE");
             var texts = DxfPairs.Texts(text).Select(DxfTextCodec.Decode).ToList();
-            var nonEmptyCells = table.Cells.Count(c => c.Text.Length > 0);
-            var expectedTexts = nonEmptyCells + (table.Title.Length > 0 ? 1 : 0);
+            var expectedTexts = table.Cells.Sum(c => c.Lines.Count) + (table.Title.Length > 0 ? 1 : 0);
             TestAssert.Equal(expectedTexts, texts.Count, "подписи непустых ячеек + заголовок таблицы");
-            TestAssert.Equal(table.Cells.Count, table.Cells.Count(c => c.Layout.HeightMm > 0),
-                "кегль рассчитывается для всех ячеек, даже пустых");
+            TestAssert.Equal(table.Cells.Count(c => c.Text.Length > 0),
+                table.Cells.Count(c => c.Lines.Count > 0), "строки есть ровно у непустых ячеек");
             TestAssert.True(texts.Contains("№"), "в шапке должен быть столбец «№»");
             TestAssert.True(texts.Any(t => t.Contains("ведомость", StringComparison.OrdinalIgnoreCase))
                 || texts.Any(t => t.Contains("Ведомость", StringComparison.Ordinal)),

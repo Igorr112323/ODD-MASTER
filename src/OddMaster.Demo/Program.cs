@@ -11,10 +11,10 @@ namespace OddMaster.Demo
         {
             var command = args.Length > 0 ? args[0] : "all";
             if (command != "signs" && command != "scheme" && command != "check"
-                && command != "actualize" && command != "kernel" && command != "dxf" && command != "all")
+                && command != "actualize" && command != "kernel" && command != "dxf" && command != "scenario" && command != "all")
             {
                 Console.Error.WriteLine("Неизвестная команда: " + command +
-                    ". Доступно: signs, scheme, check, actualize, kernel, dxf, all.");
+                    ". Доступно: signs, scheme, check, actualize, kernel, dxf, scenario, all.");
                 return 2;
             }
             var root = DemoFiles.FindRoot();
@@ -28,6 +28,7 @@ namespace OddMaster.Demo
                 case "actualize": demo.Actualize(); break;
                 case "kernel": demo.Kernel(); break;
                 case "dxf": demo.Dxf(); break;
+                case "scenario": demo.Scenario(); break;
                 default:
                     demo.Signs();
                     demo.Scheme();

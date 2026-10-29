@@ -13,7 +13,7 @@ using OddMaster.Render.Dxf;
 namespace OddMaster.Demo
 {
     /// <summary>Одна запись манифеста: файл, тип, ожидаемые факты для независимой проверки.</summary>
-    internal sealed class DxfFileRecord
+    public sealed class DxfFileRecord
     {
         public DxfFileRecord(string path, string kind, string sign, string sizeClass, DxfBackend backend,
             BoundingBox? contentBounds, BoundingBox? nominalBounds)
@@ -42,8 +42,12 @@ namespace OddMaster.Demo
         /// <summary>Пишет набор DXF-чертежей и манифест docs/demo/dxf/expected.json.</summary>
         public void Dxf()
         {
-            var files = new List<DxfFileRecord>();
-            var texts = new List<string>();
+            // Сначала сценарий: его чертежи тоже попадают в манифест и проверяются тем же читателем.
+            var files = Scenario();
+            var texts = new List<string>
+            {
+                "сценарий: live-before / live-after / control (см. README-scenario.md)"
+            };
 
             // 1. Hello-чертёж: один параметрический объект ядра (знак 3.1 «Направление поворота направо», типоразмер I).
             var helloDefinition = _config.Catalog.Find("3.1");

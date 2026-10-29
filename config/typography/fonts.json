@@ -6,6 +6,7 @@
   "maxHeightRatio": 0.42,
   "paddingRatio": 0.14,
   "lineGapRatio": 0.25,
+  "minCapHeightMm": 2.5,
   "advanceRatios": {
     " ": 0.3481,
     "(": 0.457,

@@ -11,12 +11,13 @@ namespace OddMaster.Core.Typography
         public FontMetrics(string fontId, string fontFamily, double capHeightRatio,
             double defaultAdvanceRatio, double maxHeightRatio, double paddingRatio,
             double lineGapRatio, Dictionary<string, double> advanceRatios,
-            NormRef normRef, Verification verification, string? note)
+            double minCapHeightMm, NormRef normRef, Verification verification, string? note)
         {
             FontId = fontId; FontFamily = fontFamily;
             CapHeightRatio = capHeightRatio; DefaultAdvanceRatio = defaultAdvanceRatio;
             MaxHeightRatio = maxHeightRatio; PaddingRatio = paddingRatio;
             LineGapRatio = lineGapRatio;
+            MinCapHeightMm = minCapHeightMm;
             AdvanceRatios = advanceRatios ?? throw new ArgumentNullException(nameof(advanceRatios));
             NormRef = normRef; Verification = verification; Note = note;
         }
@@ -35,6 +36,11 @@ namespace OddMaster.Core.Typography
         public double PaddingRatio { get; }
         /// <summary>Межстрочный интервал в долях кегля.</summary>
         public double LineGapRatio { get; }
+        /// <summary>
+        /// Порог читаемости: минимальная высота прописных, ниже которой текст не уменьшают,
+        /// а переносят. Условное значение (GOST-002), не норма ГОСТ.
+        /// </summary>
+        public double MinCapHeightMm { get; }
         /// <summary>Ширины символов в долях кегля.</summary>
         public IReadOnlyDictionary<string, double> AdvanceRatios { get; }
         /// <summary>Ссылка на норму.</summary>

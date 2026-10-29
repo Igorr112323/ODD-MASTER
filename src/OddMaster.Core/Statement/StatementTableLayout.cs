@@ -9,9 +9,10 @@ namespace OddMaster.Core.Statement
     public sealed class TableCell
     {
         /// <summary>Создаёт ячейку.</summary>
-        public TableCell(int row, int column, string text, BoundingBox box, TextLayout layout)
+        public TableCell(int row, int column, string text, BoundingBox box, IReadOnlyList<TextLayout> lines)
         {
-            Row = row; Column = column; Text = text ?? string.Empty; Box = box; Layout = layout;
+            if (lines == null) throw new ArgumentNullException(nameof(lines));
+            Row = row; Column = column; Text = text ?? string.Empty; Box = box; Lines = lines;
         }
 
         /// <summary>Строка (0 — шапка).</summary>
@@ -22,8 +23,8 @@ namespace OddMaster.Core.Statement
         public string Text { get; }
         /// <summary>Габарит ячейки в координатах чертежа.</summary>
         public BoundingBox Box { get; }
-        /// <summary>Раскладка: кегль, ширина, начало базовой линии.</summary>
-        public TextLayout Layout { get; }
+        /// <summary>Строки ячейки с переносом по словам (может быть пусто у пустой ячейки).</summary>
+        public IReadOnlyList<TextLayout> Lines { get; }
     }
 
     /// <summary>Отрезок сетки таблицы в координатах чертежа.</summary>
@@ -134,9 +135,11 @@ namespace OddMaster.Core.Statement
             var box = new BoundingBox(left, top - height, left + width, top);
             // TextFillRatio — доля высоты ячейки под кегль; внутри TextEngine ещё раз
             // применяется MaxHeightRatio из метрик шрифта, поэтому запас двойной.
-            var layout = TextEngine.Layout(text ?? string.Empty, width * (1 - 2 * spec.CellPaddingRatio),
-                height * spec.TextFillRatio, font, new Point2(left + width / 2, top - height / 2));
-            return new TableCell(row, column, text ?? string.Empty, box, layout);
+            // CR-17: текст в ячейке переносится по словам — узкие колонки остаются читаемыми.
+            var lines = TextEngine.LayoutWrapped(text ?? string.Empty,
+                width * (1 - 2 * spec.CellPaddingRatio), height * spec.TextFillRatio, font,
+                new Point2(left + width / 2, top - height / 2));
+            return new TableCell(row, column, text ?? string.Empty, box, lines);
         }
     }
 }

@@ -6,6 +6,9 @@
 
 | Файл | Тип | Что внутри | Сущностей | Слоёв |
 |---|---|---|---|---|
+| `dxf/live-before.dxf` | scenario | до правки | 346 | 37 |
+| `dxf/live-after.dxf` | scenario | после правки | 377 | 41 |
+| `dxf/control.dxf` | scenario | контроль | 59 | 4 |
 | `dxf/hello-3.1-I.dxf` | sign | 3.1 I | 184 | 4 |
 | `dxf/sign-2-1-I.dxf` | sign | 2.1 I | 20 | 4 |
 | `dxf/sign-2-3-1-I.dxf` | sign | 2.3.1 I | 122 | 5 |
@@ -15,10 +18,11 @@
 | `dxf/sign-5-7-1-II.dxf` | sign | 5.7.1 II | 92 | 4 |
 | `dxf/sign-8-1-1-I.dxf` | sign | 8.1.1 I | 91 | 4 |
 | `dxf/scheme.dxf` | scheme | DEMO-SCHEME-01 | 261 | 34 |
-| `dxf/statement.dxf` | statement | ТС ОДД | 71 | 2 |
+| `dxf/statement.dxf` | statement | ТС ОДД | 84 | 2 |
 
 ## Состав
 
+- сценарий: live-before / live-after / control (см. README-scenario.md)
 - hello-3.1-I.dxf: знак 3.1, типоразмер I, 600×600 мм
 - dxf/sign-2-1-I.dxf: знак 2.1, форма Diamond, типоразмер I
 - dxf/sign-2-3-1-I.dxf: знак 2.3.1, форма TriangleUp, типоразмер I

@@ -22,7 +22,7 @@ namespace OddMaster.Core.Config
                 J.Str(e, "fontId", file, ""), J.Str(e, "fontFamily", file, ""),
                 J.Num(e, "capHeightRatio", file, ""), J.Num(e, "defaultAdvanceRatio", file, ""),
                 J.Num(e, "maxHeightRatio", file, ""), J.Num(e, "paddingRatio", file, ""),
-                J.Num(e, "lineGapRatio", file, ""), ratios,
+                J.Num(e, "lineGapRatio", file, ""), ratios, J.Num(e, "minCapHeightMm", file, ""),
                 J.ReadNormRef(e, "normRef", file, ""), J.ReadVerification(e, file, ""),
                 J.OptStr(e, "note", file, ""));
         }

@@ -248,6 +248,21 @@ def verify_file(path: Path, record: dict, root: Path) -> dict:
     elif record.get("kind") == "scheme":
         check(any("ЧЕРНОВИК" in t for t in texts), f"{path.name}: нет баннера ЧЕРНОВИК")
         check(any(t.startswith("P1:") for t in texts), f"{path.name}: нет подписи опоры P1")
+    elif record.get("kind") == "scenario":
+        check(len(texts) > 0, f"{path.name}: в чертеже сценария нет ни одной подписи")
+        if "control" in path.name:
+            check(any(t.startswith("R00") for t in texts),
+                  f"{path.name}: нет подписей правил контроля R001–R007")
+            check(any("ЧЕРНОВИК" in t for t in texts), f"{path.name}: нет баннера ЧЕРНОВИК")
+            findings = [e for e in entities if e.dxf.layer == "FINDING"]
+            check(sum(1 for e in findings if e.dxftype() == "LINE") > 0,
+                  f"{path.name}: выноски находок должны быть линиями на слое FINDING")
+            labels = [t for t in texts if t.startswith("R00")]
+            check(len(labels) == len(set(labels)), f"{path.name}: подписи правил повторяются")
+        else:
+            check(any(t.startswith("P1:") for t in texts), f"{path.name}: нет подписи опоры P1")
+            check(any("ведомость" in t.lower() for t in texts),
+                  f"{path.name}: в живой схеме должна быть таблица ведомости")
     elif record.get("kind") == "statement":
         check(any(t.strip() == "№" for t in texts), f"{path.name}: нет шапки ведомости")
     return info

@@ -83,17 +83,17 @@ namespace OddMaster.Render.Dxf.Tests
             var statement = OddMaster.Core.Statement.TsoddStatement.Build(scheme, Stand.Config.Catalog);
             var table = demo.BuildStatementTable(statement);
             foreach (var cell in table.Cells.Where(c => c.Text.Length > 0))
-            {
-                TestAssert.True(cell.Layout.CapHeightMm <= cell.Box.Height,
-                    "прописные «" + cell.Text + "» выше ячейки");
-                TestAssert.True(cell.Layout.WidthMm <= cell.Box.Width,
-                    "строка «" + cell.Text + "» шире ячейки");
-            }
+                foreach (var line in cell.Lines)
+                {
+                    TestAssert.True(line.CapHeightMm <= cell.Box.Height,
+                        "прописные «" + line.Value + "» выше ячейки");
+                    TestAssert.True(line.WidthMm <= cell.Box.Width,
+                        "строка «" + line.Value + "» шире ячейки");
+                }
             var backend = StatementDxfWriter.Build(table, Stand.Config.StatementTable, new Point2(0, 0),
                 Stand.Config.Drawing.DxfFlattenSagittaMm);
             var heights = DxfPairs.TextHeights(backend.Document.Build());
-            var expected = table.Cells.Count(c => c.Text.Length > 0)
-                + (table.Title.Length > 0 ? 1 : 0);
+            var expected = table.Cells.Sum(c => c.Lines.Count) + (table.Title.Length > 0 ? 1 : 0);
             TestAssert.Equal(expected, heights.Count, "по одной высоте на непустую ячейку плюс заголовок");
             TestAssert.True(heights.Max() < Stand.Config.StatementTable.RowHeightMm,
                 "кегль таблицы не выходит за высоту строки данных");
