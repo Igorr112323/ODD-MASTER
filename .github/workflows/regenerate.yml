@@ -1,9 +1,12 @@
 # Регенерация эталонов и артефактов из CI (CR-26, ADR-0027).
-# Агент не может запускать .NET в песочнице, поэтому эталоны создаются официальным SDK 8
-# в CI, а не локальным оракулом. Запуск только вручную: workflow_dispatch.
+# Агент не может запускать .NET в песочнице, поэтому эталоны создаёт официальный SDK 8
+# в CI, а не локальный оракул. Включается меткой [regen] в сообщении коммита:
+# workflow_dispatch недоступен, пока файла нет в ветке main, а push — доступен.
 name: Регенерация артефактов
 
 on:
+  push:
+    branches-ignore: [main]
   workflow_dispatch:
     inputs:
       reason:
@@ -21,6 +24,8 @@ concurrency:
 jobs:
   regenerate:
     name: Демо, эталоны, DXF-стенд
+    # Только по метке [regen] и только не для собственных коммитов (защита от цикла).
+    if: ${{ github.event_name == 'workflow_dispatch' || (contains(github.event.head_commit.message, '[regen]') && !startsWith(github.event.head_commit.message, 'chore(artifacts)')) }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -55,5 +60,5 @@ jobs:
             echo "Артефакты уже совпадают с эталонами — коммит не нужен."
             exit 0
           fi
-          git commit -m "chore(artifacts): ${{ inputs.reason }}"
+          git commit -m "chore(artifacts): ${{ inputs.reason || 'регенерация эталонов и демо-артефактов' }}"
           git push origin "HEAD:${{ github.ref_name }}"
