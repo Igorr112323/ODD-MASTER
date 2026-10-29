@@ -46,9 +46,21 @@ jobs:
           dotnet run --project src/OddMaster.Demo --no-build -- all
           dotnet run --project src/OddMaster.Demo --no-build -- dxf
       - name: Эталоны SVG и отчёты
+        # Тесты запускаются с ODD_UPDATE_GOLDEN=1: эталоны перезаписываются, а падения
+        # не останавливают job — иначе обновлённые эталоны не попадут в коммит.
+        shell: bash
         env:
           ODD_UPDATE_GOLDEN: '1'
-        run: dotnet test OddMaster.sln --no-build --logger "console;verbosity=normal"
+        run: |
+          set -o pipefail
+          dotnet test OddMaster.sln --no-build --logger "console;verbosity=normal" 2>&1 | tee test.log || true
+      - name: Выжимка тестов в PR
+        if: always()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        shell: bash
+        run: bash scripts/ci-annotate.sh "$PR_NUMBER" test.log
       - name: Независимая перечитка DXF
         run: python3 scripts/dxf_verify.py --summary docs/demo/dxf/verification.md
       - name: Коммит и пуш в ветку
