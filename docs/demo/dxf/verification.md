@@ -1,11 +1,11 @@
 # Проверка DXF-стенда (независимая перечитка ezdxf)
 
-Файлов: 13; проверок: 6052; расхождений: 0.
+Файлов: 13; проверок: 6112; расхождений: 0.
 
 | Файл | Тип | Сущностей | Текстов | Примечание |
 |---|---|---|---|---|
-| `live-before.dxf` | scenario | 461 | 105 |  |
-| `live-after.dxf` | scenario | 510 | 108 |  |
+| `live-before.dxf` | scenario | 469 | 105 |  |
+| `live-after.dxf` | scenario | 518 | 108 |  |
 | `control.dxf` | scenario | 59 | 24 |  |
 | `hello-3.1-I.dxf` | sign | 188 | 2 | Circle: 600.00×600.00 мм = прил. Д |
 | `sign-2-1-I.dxf` | sign | 24 | 2 | Diamond: 848.53×848.53 в номинальном 848.53×848.53, скругление r=45 (GOST-024) |
@@ -15,7 +15,7 @@
 | `sign-5-5-I.dxf` | sign | 100 | 2 | Square: 600.00×600.00 в номинальном 600.00×600.00, скругление r=45 (GOST-024) |
 | `sign-5-7-1-II.dxf` | sign | 100 | 2 |  |
 | `sign-8-1-1-I.dxf` | sign | 91 | 3 |  |
-| `scheme.dxf` | scheme | 376 | 37 |  |
+| `scheme.dxf` | scheme | 384 | 37 |  |
 | `statement.dxf` | statement | 84 | 67 |  |
 
 PNG: `artifacts/dxf/png/*.png` и `contact-sheet.png`. Для картинки кириллица декодирована из `\U+XXXX`; сам DXF-файл остаётся ASCII.

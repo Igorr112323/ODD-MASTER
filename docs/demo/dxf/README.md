@@ -6,8 +6,8 @@
 
 | Файл | Тип | Что внутри | Сущностей | Слоёв |
 |---|---|---|---|---|
-| `dxf/live-before.dxf` | scenario | до правки | 461 | 45 |
-| `dxf/live-after.dxf` | scenario | после правки | 510 | 51 |
+| `dxf/live-before.dxf` | scenario | до правки | 469 | 45 |
+| `dxf/live-after.dxf` | scenario | после правки | 518 | 51 |
 | `dxf/control.dxf` | scenario | контроль | 59 | 4 |
 | `dxf/hello-3.1-I.dxf` | sign | 3.1 I | 188 | 4 |
 | `dxf/sign-2-1-I.dxf` | sign | 2.1 I | 24 | 4 |
@@ -17,7 +17,7 @@
 | `dxf/sign-5-5-I.dxf` | sign | 5.5 I | 100 | 5 |
 | `dxf/sign-5-7-1-II.dxf` | sign | 5.7.1 II | 100 | 5 |
 | `dxf/sign-8-1-1-I.dxf` | sign | 8.1.1 I | 91 | 4 |
-| `dxf/scheme.dxf` | scheme | DEMO-SCHEME-01 | 376 | 42 |
+| `dxf/scheme.dxf` | scheme | DEMO-SCHEME-01 | 384 | 42 |
 | `dxf/statement.dxf` | statement | ТС ОДД | 84 | 2 |
 
 ## Состав
