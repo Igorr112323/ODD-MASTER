@@ -1,0 +1,9 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <RootNamespace>OddMaster.Contracts</RootNamespace>
+    <AssemblyName>OddMaster.Contracts</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../../src/OddMaster.Core/OddMaster.Core.csproj" />
+  </ItemGroup>
+</Project>

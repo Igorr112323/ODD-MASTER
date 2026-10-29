@@ -1,0 +1,32 @@
+# ШАБЛОН. НЕ АКТИВЕН: репозиторий PUBLIC (CR-01), гейт G1 закрыт.
+# Студент: 1) сделать репозиторий приватным; 2) поднять раннер; 3) скопировать этот файл
+# в .github/workflows/nanocad-build.yml; 4) vars.NANOCAD_RUNNER=on, vars.NANOCAD_SDK_PATH=<путь>.
+name: nanoCAD build
+on:
+  workflow_dispatch:
+  push:
+    paths: ['src/OddMaster.NanoCAD/**', 'src/OddMaster.Core/**', 'tools/SdkProbe/**', 'OddMaster.NanoCAD.sln', '.github/workflows/nanocad-build.yml']
+concurrency:
+  group: nanocad-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  build:
+    if: ${{ vars.NANOCAD_RUNNER == 'on' }}
+    runs-on: [self-hosted, nanocad]
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build adapter against nanoCAD SDK
+        shell: pwsh
+        run: dotnet build OddMaster.NanoCAD.sln -c Release -p:NanoCadSdkPath="${{ vars.NANOCAD_SDK_PATH }}" -bl:nanocad.binlog
+      - name: SDK API probe
+        shell: pwsh
+        run: dotnet run --project tools/SdkProbe -c Release -- "${{ vars.NANOCAD_SDK_PATH }}" > sdk-api.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: nanocad-build
+          path: |
+            nanocad.binlog
+            sdk-api.txt
+            src/OddMaster.NanoCAD/bin/Release/

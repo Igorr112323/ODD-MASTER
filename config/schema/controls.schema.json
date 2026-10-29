@@ -1,0 +1,142 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "controls.schema.json",
+  "title": "Правила контроля",
+  "type": "object",
+  "required": [
+    "normRef",
+    "verification",
+    "rules",
+    "pairing"
+  ],
+  "properties": {
+    "normRef": {
+      "type": "object",
+      "required": [
+        "doc",
+        "clause"
+      ],
+      "properties": {
+        "doc": {
+          "type": "string",
+          "minLength": 1
+        },
+        "clause": {
+          "type": "string",
+          "minLength": 1
+        },
+        "table": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "figure": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "verification": {
+      "type": "string",
+      "enum": [
+        "Placeholder",
+        "Unverified",
+        "CuratorExtracted",
+        "StudentVerified"
+      ]
+    },
+    "markers": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^GOST-[0-9]{3}$"
+      }
+    },
+    "rules": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "enabled",
+          "severity",
+          "title",
+          "params",
+          "verification",
+          "normRef"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^R[0-9]{3}$"
+          },
+          "enabled": {
+            "type": "boolean"
+          },
+          "severity": {
+            "type": "string",
+            "enum": [
+              "Error",
+              "Warning",
+              "Info"
+            ]
+          },
+          "title": {
+            "type": "string"
+          },
+          "params": {
+            "type": "object"
+          },
+          "verification": {
+            "type": "string",
+            "enum": [
+              "Placeholder",
+              "Unverified",
+              "CuratorExtracted",
+              "StudentVerified"
+            ]
+          },
+          "normRef": {
+            "type": "object",
+            "required": [
+              "doc",
+              "clause"
+            ],
+            "properties": {
+              "doc": {
+                "type": "string",
+                "minLength": 1
+              },
+              "clause": {
+                "type": "string",
+                "minLength": 1
+              },
+              "table": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "figure": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "pairing": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    }
+  },
+  "description": "JSON Schema (draft-07). Синтаксис проверяется тестом ConfigSchemaTests; семантические проверки выполняет ConfigValidator в ядре (ADR-0014)."
+}

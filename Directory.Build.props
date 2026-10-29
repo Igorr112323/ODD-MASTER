@@ -1,0 +1,27 @@
+<Project>
+  <!-- CR-02: единственный целевой фреймворк .NET 8; переменная сохранена для
+       страховочной сборки netstandard2.0 (CR-15) и будущих экспериментов. -->
+  <PropertyGroup>
+    <OddTargetFramework Condition="'$(OddTargetFramework)' == ''">net8.0</OddTargetFramework>
+    <TargetFramework>$(OddTargetFramework)</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <AnalysisLevel>latest</AnalysisLevel>
+    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+    <Deterministic>true</Deterministic>
+    <EnableDefaultCompileItems>true</EnableDefaultCompileItems>
+    <InvariantGlobalization>false</InvariantGlobalization>
+    <NoLogo>true</NoLogo>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(OddGenerateDocs)' == 'true'">
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <Company>ОДД-Мастер</Company>
+    <Authors>Студенческий проект ОДД-Мастер</Authors>
+    <Product>ОДД-Мастер</Product>
+  </PropertyGroup>
+</Project>

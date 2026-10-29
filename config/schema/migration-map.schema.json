@@ -1,0 +1,184 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "migration-map.schema.json",
+  "title": "Карта замен Актуализатора",
+  "type": "object",
+  "required": [
+    "map",
+    "normRef",
+    "verification",
+    "isDemo",
+    "rules"
+  ],
+  "properties": {
+    "map": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "normRef": {
+      "type": "object",
+      "required": [
+        "doc",
+        "clause"
+      ],
+      "properties": {
+        "doc": {
+          "type": "string",
+          "minLength": 1
+        },
+        "clause": {
+          "type": "string",
+          "minLength": 1
+        },
+        "table": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "figure": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "verification": {
+      "type": "string",
+      "enum": [
+        "Placeholder",
+        "Unverified",
+        "CuratorExtracted",
+        "StudentVerified"
+      ]
+    },
+    "markers": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^GOST-[0-9]{3}$"
+      }
+    },
+    "banner": {
+      "type": "string"
+    },
+    "note": {
+      "type": "string"
+    },
+    "isDemo": {
+      "type": "boolean"
+    },
+    "rules": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "condition",
+          "result",
+          "category",
+          "normRef",
+          "verification"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "condition": {
+            "type": "object",
+            "required": [
+              "signs"
+            ],
+            "properties": {
+              "signs": {
+                "type": "string",
+                "description": "Список номеров и диапазонов: '1.5 - 1.7, 2.4'. См. ADR-0005."
+              },
+              "plates": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "result": {
+            "type": "object",
+            "required": [
+              "signs"
+            ],
+            "properties": {
+              "signs": {
+                "type": "string",
+                "description": "Список номеров и диапазонов: '1.5 - 1.7, 2.4'. См. ADR-0005."
+              },
+              "plates": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "note": {
+                "type": "string"
+              }
+            }
+          },
+          "category": {
+            "type": "string",
+            "enum": [
+              "Replaced",
+              "Removed",
+              "NeedsDecision",
+              "AllowedSimplify"
+            ]
+          },
+          "normRef": {
+            "type": "object",
+            "required": [
+              "doc",
+              "clause"
+            ],
+            "properties": {
+              "doc": {
+                "type": "string",
+                "minLength": 1
+              },
+              "clause": {
+                "type": "string",
+                "minLength": 1
+              },
+              "table": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "figure": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            }
+          },
+          "verification": {
+            "type": "string",
+            "enum": [
+              "Placeholder",
+              "Unverified",
+              "CuratorExtracted",
+              "StudentVerified"
+            ]
+          },
+          "comment": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "description": "JSON Schema (draft-07). Синтаксис проверяется тестом ConfigSchemaTests; семантические проверки выполняет ConfigValidator в ядре (ADR-0014)."
+}

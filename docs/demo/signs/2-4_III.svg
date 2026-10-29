@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-744 -663.615 1488 1327.23" width="1488mm" height="1327.23mm">
+  <metadata><odd:sign xmlns:odd="https://odd-master.local/metadata/1"
+      number="2.4"
+      sizeClass="III"
+      profile="GOST_R_52290_2024"
+      sizeTable="Д.2"
+      outerBorderMm="10"
+      verification="borders=CuratorExtracted; catalog=CuratorExtracted; colors=Unverified; elements.contourGrey=Unverified; innerBorder=Unverified; sizeProfile=CuratorExtracted"
+      isDraft="true"
+      colorimetry="DISPLAY_ONLY_NOT_GOST"/>
+  </metadata>
+  <g id="Geometry" transform="scale(1,-1)">
+    <g id="Layer-Outline">
+      <path d="M-38.971 -452.115 A45 45 0 0 1 38.971 -452.115 L561.029 452.115 A45 45 0 0 1 522.058 519.615 L-522.058 519.615 A45 45 0 0 1 -561.029 452.115 L-38.971 -452.115 Z" fill="#FFFFFF" stroke="none"/>
+    </g>
+    <g id="Layer-InnerBorder">
+      <path d="M-30.311 -452.115 A35 35 0 0 1 30.311 -452.115 L552.369 452.115 A35 35 0 0 1 522.058 504.615 L-522.058 504.615 A35 35 0 0 1 -552.369 452.115 L-30.311 -452.115 Z" fill="#D7191C" stroke="none"/>
+    </g>
+    <g id="Layer-Field">
+      <path d="M0 -387.702 L447.679 387.702 L-447.679 387.702 L0 -387.702 Z" fill="#FFFFFF" stroke="none"/>
+    </g>
+    <g id="Layer-Composition">
+      <path d="M-30.311 -452.115 A35 35 0 0 1 30.311 -452.115 L552.369 452.115 A35 35 0 0 1 522.058 504.615 L-522.058 504.615 A35 35 0 0 1 -552.369 452.115 L-30.311 -452.115 Z" fill="none" stroke="#808080" stroke-width="4.652"/>
+    </g>
+  </g>
+  <g id="DraftWatermark">
+    <text x="-73.576" y="-60.623" font-family="DejaVu Sans Bold, Liberation Sans Bold, Arial Bold, sans-serif" font-size="21.873" fill="#D7191C" fill-opacity="0.85">ЧЕРНОВИК:</text>
+    <text x="-205.2" y="-33.282" font-family="DejaVu Sans Bold, Liberation Sans Bold, Arial Bold, sans-serif" font-size="21.873" fill="#D7191C" fill-opacity="0.85">есть непроверенные параметры</text>
+  </g>
+</svg>

@@ -1,0 +1,127 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "drawing.schema.json",
+  "title": "Условные изображения на схеме",
+  "type": "object",
+  "required": [
+    "normRef",
+    "verification",
+    "miniSignOnPaperMm",
+    "sheetScaleDenominator",
+    "placeholderInnerBorderWidthMm",
+    "placeholderTextHeightRatio",
+    "placeholderPictogramRadiusRatio",
+    "parameterTextTemplates",
+    "svgPaddingRatio",
+    "dxfFlattenSagittaMm"
+  ],
+  "properties": {
+    "normRef": {
+      "type": "object",
+      "required": [
+        "doc",
+        "clause"
+      ],
+      "properties": {
+        "doc": {
+          "type": "string",
+          "minLength": 1
+        },
+        "clause": {
+          "type": "string",
+          "minLength": 1
+        },
+        "table": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "figure": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "verification": {
+      "type": "string",
+      "enum": [
+        "Placeholder",
+        "Unverified",
+        "CuratorExtracted",
+        "StudentVerified"
+      ]
+    },
+    "markers": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^GOST-[0-9]{3}$"
+      }
+    },
+    "note": {
+      "type": "string"
+    },
+    "miniSignOnPaperMm": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "sheetScaleDenominator": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "stationTickEveryM": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "postSymbolRadiusMm": {
+      "type": "number"
+    },
+    "leaderLineMm": {
+      "type": "number"
+    },
+    "draftBanner": {
+      "type": "string"
+    },
+    "sheetFrame": {
+      "type": "object"
+    },
+    "placeholderInnerBorderWidthMm": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "placeholderTextHeightRatio": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "placeholderPictogramRadiusRatio": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "parameterTextTemplates": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "placeholderMarkers": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^GOST-[0-9]{3}$"
+      }
+    },
+    "svgPaddingRatio": {
+      "type": "number",
+      "minimum": 0
+    },
+    "dxfFlattenSagittaMm": {
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "description": "Допуск стрелки прогиба при аппроксимации дуг ломаной для DXF-стенда, мм. Только отображение."
+    }
+  },
+  "description": "JSON Schema (draft-07). Синтаксис проверяется тестом ConfigSchemaTests; семантические проверки выполняет ConfigValidator в ядре (ADR-0014)."
+}

@@ -1,0 +1,1476 @@
+{
+  "catalog": "signs.mvp-30",
+  "title": "MVP-30 (30 знаков) + 11 табличек 8.x по программе «Продукт» §7. Наименования — CuratorExtracted, сверяет студент.",
+  "normRef": {
+    "doc": "ГОСТ Р 52290-2024",
+    "clause": "п. 3.1, 3.2; прил. А, Б; прил. Д"
+  },
+  "verification": "CuratorExtracted",
+  "colorStatus": "Unverified",
+  "colorNote": "Семантические имена цветов: field, outerBorder, innerBorder (только там, где она есть), symbol, text. Экранный RGB задаётся только в рендере и не является колориметрией ГОСТ. OuterBorderUnverified — цвет наружной каймы [ПРОВЕРИТЬ ПО ТЕКСТУ ГОСТ], GOST-022. Красная кайма по п. 3.14 — внутренняя (innerBorder), GOST-001. CR-22: цвета MVP-30 сняты куратором с цветных изображений прил. А (CuratorExtracted); размеры элементов состава — Unverified (GOST-025).",
+  "markers": [
+    "GOST-001",
+    "GOST-002",
+    "GOST-005",
+    "GOST-009",
+    "GOST-012",
+    "GOST-013",
+    "GOST-019",
+    "GOST-022",
+    "GOST-023",
+    "GOST-025",
+    "GOST-026",
+    "GOST-027"
+  ],
+  "signTemplate": {
+    "number": "0.0",
+    "name": "<наименование по табл. А.x>",
+    "group": 0,
+    "shape": "Circle",
+    "sizeTableId": "Д.x",
+    "isPlate": false,
+    "colors": {
+      "field": "White",
+      "outerBorder": "OuterBorderUnverified",
+      "innerBorder": "Red",
+      "symbol": "Black",
+      "text": "Black"
+    },
+    "pictogram": {
+      "id": "POC/new",
+      "placeholder": true,
+      "marker": "GOST-019",
+      "verification": "Placeholder",
+      "placeholderShape": "arrow"
+    },
+    "text": null,
+    "parameterKind": null,
+    "normRef": {
+      "doc": "ГОСТ Р 52290-2024",
+      "clause": "п. 3.2; табл. А.x",
+      "table": "А.x",
+      "figure": "Д.x"
+    },
+    "verification": "CuratorExtracted",
+    "mirrorOf": null,
+    "composedOf": [],
+    "elements": [
+      "contourGrey"
+    ],
+    "demoPriority": 0,
+    "orientation": "asTable",
+    "textPosition": "center",
+    "textWidthRatio": 1.0
+  },
+  "signs": [
+    {
+      "number": "2.1",
+      "name": "Главная дорога",
+      "group": 2,
+      "shape": "Diamond",
+      "sizeTableId": "Д.5",
+      "isPlate": false,
+      "colors": {
+        "field": "White",
+        "outerBorder": "Black",
+        "contour": "Grey",
+        "symbol": "Black",
+        "text": "Black",
+        "accent": "Yellow"
+      },
+      "text": null,
+      "parameterKind": null,
+      "normRef": {
+        "doc": "ГОСТ Р 52290-2024",
+        "clause": "п. 3.2; прил. Б, стр. 76 PDF; прил. Д",
+        "table": "А.2",
+        "figure": "Д.5"
+      },
+      "verification": "CuratorExtracted",
+      "note": "2.1: белый ромб с тонким серым контуром, внутри жёлтый ромб. Пиктограммы нет (CR-22).",
+      "elements": [
+        "contourGrey",
+        "diamondYellow"
+      ]
+    },
+    {
+      "number": "2.2",
+      "name": "Конец главной дороги",
+      "group": 2,
+      "shape": "Diamond",
+      "sizeTableId": "Д.5",
+      "isPlate": false,
+      "colors": {
+        "field": "White",
+        "outerBorder": "Black",
+        "contour": "Grey",
+        "symbol": "Black",
+        "text": "Black",
+        "accent": "Yellow"
+      },
+      "text": null,
+      "parameterKind": null,
+      "normRef": {
+        "doc": "ГОСТ Р 52290-2024",
+        "clause": "п. 3.2; прил. Б, стр. 76 PDF; прил. Д",
+        "table": "А.2",
+        "figure": "Д.5"
+      },
+      "verification": "CuratorExtracted",
+      "note": "2.2: как 2.1 плюс пучок тонких чёрных полос «\\» (направление — прил. Б, стр. 76), [ПРОВЕРИТЬ].",
+      "elements": [
+        "contourGrey",
+        "diamondYellow",
+        "bundleBackslash"
+      ]
+    },
+    {
+      "number": "2.3.1",
+      "name": "Пересечение со второстепенной дорогой",
+      "group": 2,
+      "shape": "TriangleUp",
+      "sizeTableId": "Д.2",
+      "isPlate": false,
+      "colors": {
+        "field": "White",
+        "outerBorder": "White",
+        "innerBorder": "Red",
+        "symbol": "Black",
+        "text": "Black",
+        "contour": "Grey"
+      },
+      "text": null,
+      "parameterKind": null,
+      "normRef": {
+        "doc": "ГОСТ Р 52290-2024",
+        "clause": "п. 3.2; прил. Б, стр. 77 PDF; прил. Д",
+        "table": "А.2",
+        "figure": "Д.2"
+      },
+      "verification": "CuratorExtracted",
+      "note": "2.3.1: широкая красная внутренняя кайма, чёрный «перекрёсток» — пиктограмма в очереди G3 (GOST-019).",
+      "elements": [
+        "contourGrey"
+      ],
+      "demoPriority": 2
+    },
+    {
+      "number": "2.4",
+      "name": "Уступите дорогу",
+      "group": 2,
+      "shape": "TriangleDown",
+      "sizeTableId": "Д.2",
+      "isPlate": false,
+      "colors": {
+        "field": "White",
+        "outerBorder": "White",
+        "innerBorder": "Red",
+        "symbol": "Black",
+        "text": "Black",
+        "contour": "Grey"
+      },
+      "text": null,
+      "parameterKind": null,
+      "normRef": {
+        "doc": "ГОСТ Р 52290-2024",
+        "clause": "п. 3.2; прил. Б, стр. 78 PDF; прил. Д",
+        "table": "А.2",
+        "figure": "Д.2"
+      },
+      "verification": "CuratorExtracted",
+      "note": "2.4: широкая красная внутренняя кайма, без пиктограммы (сетка — прил. Б, стр. 78), [ПРОВЕРИТЬ].",
+      "elements": [
+        "contourGrey"
+      ],
+      "demoPriority": 1
+    },
+    {
+      "number": "2.5",
+      "name": "Движение без остановки запрещено",
+      "group": 2,
+      "shape": "Octagon",
+      "sizeTableId": "Д.3",
+      "isPlate": false,
+      "colors": {
+        "field": "Red",
+        "outerBorder": "White",
+        "symbol": "White",
+        "text": "White",
+        "contour": "Grey"
+      },
+      "text": {
+        "kind": "Fixed",
+        "value": "STOP",
+        "verification": "CuratorExtracted",
+        "marker": "GOST-002"
+      },
+      "parameterKind": null,
+      "normRef": {
+        "doc": "ГОСТ Р 52290-2024",
+        "clause": "п. 3.2; прил. Б, стр. 78 PDF; прил. Д",
+        "table": "А.2",
+        "figure": "Д.3"
+      },
+      "verification": "CuratorExtracted",
+      "elements": [
+        "contourGrey"
+      ],
+      "note": null
+    },
+    {
+      "number": "3.1",
+      "name": "Въезд запрещен",
+      "group": 3,
+      "shape": "Circle",
+      "sizeTableId": "Д.4",
+      "isPlate": false,
+      "colors": {
+        "field": "Red",
+        "outerBorder": "White",
+        "symbol": "White",
+        "text": "White",
+        "contour": "Grey"
+      },
+      "text": null,
+      "parameterKind": null,
+      "normRef": {
+        "doc": "ГОСТ Р 52290-2024",
+        "clause": "п. 3.2; прил. Б, стр. 79 PDF; прил. Д",
+        "table": "А.3",
+        "figure": "Д.4"
+      },
+      "verification": "CuratorExtracted",
+      "note": "3.1: красное поле, белый горизонтальный прямоугольник 0,68·D по центру (CR-22), [ПРОВЕРИТЬ по прил. Б].",
+      "elements": [
+        "contourGrey",
+        "brickBand"
+      ]
+    },
+    {
+      "number": "3.4",
+      "name": "Движение грузовых автомобилей запрещено",
+      "group": 3,
+      "shape": "Circle",
+      "sizeTableId": "Д.4",
+      "isPlate": false,
+      "colors": {
+        "field": "White",
+        "outerBorder": "White",
+        "innerBorder": "Red",
+        "symbol": "Black",
+        "text": "White",
+        "contour": "Grey"
+      },
+      "pictogram": null,
+      "text": {
+        "kind": "Parameter",
+        "value": "mass",
+        "verification": "CuratorExtracted",
+        "marker": "GOST-002"
+      },
+      "parameterKind": "mass",
+      "normRef": {
+        "doc": "ГОСТ Р 52290-2024",
+        "clause": "п. 3.2; прил. Б, стр. 79 PDF; прил. Д",
+        "table": "А.3",
+        "figure": "Д.4"
+      },
+      "verification": "CuratorExtracted",
+      "note": "3.4: белое поле, красная кайма, чёрный грузовик с белой массой на кузове — пиктограмма в очереди G3 (GOST-019).",
+      "elements": [
+        "contourGrey"
+      ]
+    },
+    {
+      "number": "3.18.1",
+      "name": "Поворот направо запрещен",
+      "group": 3,
+      "shape": "Circle",
+      "sizeTableId": "Д.4",
+      "isPlate": false,
+      "colors": {
+        "field": "White",
+        "outerBorder": "White",
+        "innerBorder": "Red",
+        "symbol": "Black",
+        "text": "Black",
+        "contour": "Grey"
+      },
+      "pictogram": {
+        "id": "pict.3.18.1.placeholder",
+        "placeholder": true,
+        "placeholderShape": "arrow",
+        "marker": "GOST-019",
+        "verification": "Placeholder"
+      },
+      "text": null,
+      "parameterKind": null,
+      "normRef": {
+        "doc": "ГОСТ Р 52290-2024",
+        "clause": "п. 3.2; прил. Б, стр. 83 PDF; прил. Д",
+        "table": "А.3",
+        "figure": "Д.4"
+      },
+      "verification": "CuratorExtracted",
+      "note": "3.18.1: стрелка вверх-направо — пиктограмма в очереди G3; красная полоса «\\» не зеркалится (CR-23).",
+      "elements": [
+        "contourGrey",
+        "bandBackslash"
+      ]
+    },
+    {
+      "number": "3.18.2",
+      "name": "Поворот налево запрещен",
+      "group": 3,
+      "shape": "Circle",
+      "sizeTableId": "Д.4",
+      "isPlate": false,
+      "colors": {
+        "field": "White",
+        "outerBorder": "White",
+        "innerBorder": "Red",
+        "symbol": "Black",
+        "text": "Black",
+        "contour": "Grey"
+      },
+      "pictogram": {
+        "id": "pict.3.18.2.placeholder",
+        "placeholder": true,
+        "placeholderShape": "arrow",
+        "marker": "GOST-019",
+        "verification": "Placeholder"
+      },
+      "text": null,
+      "parameterKind": null,
+      "normRef": {
+        "doc": "ГОСТ Р 52290-2024",
+        "clause": "п. 3.2; прил. Б, стр. 83 PDF; прил. Д",
+        "table": "А.3",
+        "figure": "Д.4"
+      },
+      "verification": "CuratorExtracted",
+      "note": "3.18.2: зеркальна только стрелка, красная полоса «\\» та же, что у 3.18.1 (CR-23, прил. А стр. 35).",
+      "mirrorOf": "3.18.1",
+      "elements": [
+        "contourGrey",
+        "bandBackslash"
+      ]
+    },
+    {
+      "number": "3.19",
+      "name": "Разворот запрещен",
+      "group": 3,
+      "shape": "Circle",
+      "sizeTableId": "Д.4",
+      "isPlate": false,
+      "colors": {
+        "field": "White",
+        "outerBorder": "White",
+        "innerBorder": "Red",
+        "symbol": "Black",
+        "text": "Black",
+        "contour": "Grey"
+      },
+      "pictogram": {
+        "id": "pict.3.19.placeholder",
+        "placeholder": true,
+        "placeholderShape": "arrow",
+        "marker": "GOST-019",
+        "verification": "Placeholder"
+      },
+      "text": null,
+      "parameterKind": null,
+      "normRef": {
+        "doc": "ГОСТ Р 52290-2024",
+        "clause": "п. 3.2; прил. Б, стр. 83 PDF; прил. Д",
+        "table": "А.3",
+        "figure": "Д.4"
+      },
+      "verification": "CuratorExtracted",
+      "note": "3.19: U-образная стрелка — в очереди G3; красная полоса «\\» (CR-23).",
+      "elements": [
+        "contourGrey",
+        "bandBackslash"
+      ]
+    },
+    {
+      "number": "3.24",
+      "name": "Ограничение максимальной скорости",
+      "group": 3,
+      "shape": "Circle",
+      "sizeTableId": "Д.4",
+      "isPlate": false,
+      "colors": {
+        "field": "White",
+        "outerBorder": "White",
+        "innerBorder": "Red",
+        "symbol": "Black",
+        "text": "Black",
+        "contour": "Grey"
+      },
+      "pictogram": null,
+      "text": {
+        "kind": "Parameter",
+        "value": "speed",
+        "verification": "CuratorExtracted",
+        "marker": "GOST-002"
+      },
+      "parameterKind": "speed",
+      "normRef": {
+        "doc": "ГОСТ Р 52290-2024",
+        "clause": "п. 3.2; прил. Б, стр. 84 PDF; прил. Д",
+        "table": "А.3",
+        "figure": "Д.4"
+      },
+      "verification": "CuratorExtracted",
+      "elements": [
+        "contourGrey"
+      ],
+      "demoPriority": 1,
+      "note": "3.24: белое поле, красная кайма ≈0,087·D (curator-measure, GOST-001), чёрное число — параметр «speed»."
+    },
+    {
+      "number": "3.25",
+      "name": "Конец ограничения максимальной скорости",
+      "group": 3,
+      "shape": "Circle",
+      "sizeTableId": "Д.4",
+      "isPlate": false,
+      "colors": {
+        "field": "White",
+        "outerBorder": "Black",
+        "symbol": "Grey",
+        "text": "Grey",
+        "contour": "Grey"
+      },
+      "text": {
+        "kind": "Parameter",
+        "value": "speed",
+        "verification": "Placeholder",
+        "marker": "GOST-023"
+      },
+      "parameterKind": "speed",
+      "normRef": {
+        "doc": "ГОСТ Р 52290-2024",
+        "clause": "п. 3.2; прил. Б, стр. 84 PDF; прил. Д",
+        "table": "А.3",
+        "figure": "Д.4"
+      },
+      "verification": "CuratorExtracted",
+      "note": "3.25: тонкий чёрный контур, серое число, около 5 тонких чёрных полос «/» (CR-22); цвет числа [ПРОВЕРИТЬ].",
+      "elements": [
+        "contourGrey",
+        "bundleSlash"
+      ],
+      "demoPriority": 1
+    },
+    {
+      "number": "3.27",
+      "name": "Остановка запрещена",
+      "group": 3,
+      "shape": "Circle",
+      "sizeTableId": "Д.4",
+      "isPlate": false,
+      "colors": {
+        "field": "Blue",
+        "outerBorder": "White",
+        "innerBorder": "Red",
+        "symbol": "Red",
+        "text": "Red",
+        "contour": "Grey"
+      },
+      "text": null,
+      "parameterKind": null,
+      "normRef": {
+        "doc": "ГОСТ Р 52290-2024",
+        "clause": "п. 3.2; прил. Б, стр. 85 PDF; прил. Д",
+        "table": "А.3",
+        "figure": "Д.4"
+      },
+      "verification": "CuratorExtracted",
+      "note": "3.27: синее поле, красная кайма, красный косой крест (CR-22).",
+      "elements": [
+        "contourGrey",
+        "crossRed"
+      ]
+    },
+    {
+      "number": "3.28",
+      "name": "Стоянка запрещена",
+      "group": 3,
+      "shape": "Circle",
+      "sizeTableId": "Д.4",
+      "isPlate": false,
+      "colors": {
+        "field": "Blue",
+        "outerBorder": "White",
+        "innerBorder": "Red",
+        "symbol": "Red",
+        "text": "Red",
+        "contour": "Grey"
+      },
+      "text": null,
+      "parameterKind": null,
+      "normRef": {
+        "doc": "ГОСТ Р 52290-2024",
+        "clause": "п. 3.2; прил. Б, стр. 85 PDF; прил. Д",
+        "table": "А.3",
+        "figure": "Д.4"
+      },
+      "verification": "CuratorExtracted",
+      "note": "3.28: синее поле, красная кайма, красная полоса «\\» (CR-22).",
+      "elements": [
+        "contourGrey",
+        "bandBackslash"
+      ]
+    },
+    {
+      "number": "3.31",
+      "name": "Конец всех ограничений",
+      "group": 3,
+      "shape": "Circle",
+      "sizeTableId": "Д.4",
+      "isPlate": false,
+      "colors": {
+        "field": "White",
+        "outerBorder": "Black",
+        "symbol": "Black",
+        "text": "Black",
+        "contour": "Grey"
+      },
+      "text": null,
+      "parameterKind": null,
+      "normRef": {
+        "doc": "ГОСТ Р 52290-2024",
+        "clause": "п. 3.2; прил. Б, стр. 85 PDF; прил. Д",
+        "table": "А.3",
+        "figure": "Д.4"
+      },
+      "verification": "CuratorExtracted",
+      "note": "3.31: белое поле, тонкий чёрный контур, около 5 чёрных полос «/», без красного (CR-22).",
+      "elements": [
+        "contourGrey",
+        "bundleSlash"
+      ]
+    },
+    {
+      "number": "5.5",
+      "name": "Дорога с односторонним движением",
+      "group": 5,
+      "shape": "Square",
+      "sizeTableId": "Д.5",
+      "isPlate": false,
+      "colors": {
+        "field": "Blue",
+        "outerBorder": "White",
+        "symbol": "White",
+        "text": "White",
+        "contour": "Grey"
+      },
+      "pictogram": {
+        "id": "pict.5.5.placeholder",
+        "placeholder": true,
+        "placeholderShape": "arrow",
+        "marker": "GOST-019",
+        "verification": "Placeholder"
+      },
+      "text": null,
+      "parameterKind": null,
+      "normRef": {
+        "doc": "ГОСТ Р 52290-2024",
+        "clause": "п. 3.2; прил. Б, стр. 93 PDF; прил. Д",
+        "table": "А.5",
+        "figure": "Д.5"
+      },
+      "verification": "CuratorExtracted",
+      "note": "5.5: белая стрелка вверх — пиктограмма в очереди G3 (сейчас стрелка-заглушка, GOST-019).",
+      "elements": [
+        "contourGrey"
+      ]
+    },
+    {
+      "number": "5.6",
+      "name": "Конец дороги с односторонним движением",
+      "group": 5,
+      "shape": "Square",
+      "sizeTableId": "Д.5",
+      "isPlate": false,
+      "colors": {
+        "field": "Blue",
+        "outerBorder": "White",
+        "symbol": "White",
+        "text": "White",
+        "contour": "Grey",
+        "accent": "Red"
+      },
+      "pictogram": {
+        "id": "pict.5.6.placeholder",
+        "placeholder": true,
+        "placeholderShape": "arrow",
+        "marker": "GOST-019",
+        "verification": "Placeholder"
+      },
+      "text": null,
+      "parameterKind": null,
+      "normRef": {
+        "doc": "ГОСТ Р 52290-2024",
+        "clause": "п. 3.2; прил. Б, стр. 93 PDF; прил. Д",
+        "table": "А.5",
+        "figure": "Д.5"
+      },
+      "verification": "CuratorExtracted",
+      "note": "5.6: как 5.5 плюс красная полоса «/» (CR-22).",
+      "elements": [
+        "contourGrey",
+        "bandSlash"
+      ]
+    },
+    {
+      "number": "5.7.1",
+      "name": "Выезд на дорогу с односторонним движением",
+      "group": 5,
+      "shape": "RectangleVertical",
+      "sizeTableId": "Д.8",
+      "isPlate": false,
+      "colors": {
+        "field": "Blue",
+        "outerBorder": "White",
+        "symbol": "White",
+        "text": "White",
+        "contour": "Grey"
+      },
+      "pictogram": {
+        "id": "pict.5.7.1.placeholder",
+        "placeholder": true,
+        "placeholderShape": "arrow",
+        "marker": "GOST-019",
+        "verification": "Placeholder"
+      },
+      "text": null,
+      "parameterKind": null,
+      "normRef": {
+        "doc": "ГОСТ Р 52290-2024",
+        "clause": "п. 3.2; прил. Б, стр. 94 PDF; прил. Д",
+        "table": "А.5",
+        "figure": "Д.8"
+      },
+      "verification": "CuratorExtracted",
+      "note": "5.7.1: белая длинная стрелка вправо — в очереди G3.",
+      "elements": [
+        "contourGrey"
+      ]
+    },
+    {
+      "number": "5.7.2",
+      "name": "Выезд на дорогу с односторонним движением",
+      "group": 5,
+      "shape": "RectangleVertical",
+      "sizeTableId": "Д.8",
+      "isPlate": false,
+      "colors": {
+        "field": "Blue",
+        "outerBorder": "White",
+        "symbol": "White",
+        "text": "White",
+        "contour": "Grey"
+      },
+      "pictogram": {
+        "id": "pict.5.7.2.placeholder",
+        "placeholder": true,
+        "placeholderShape": "arrow",
+        "marker": "GOST-019",
+        "verification": "Placeholder"
+      },
+      "text": null,
+      "parameterKind": null,
+      "normRef": {
+        "doc": "ГОСТ Р 52290-2024",
+        "clause": "п. 3.2; прил. Б, стр. 94 PDF; прил. Д",
+        "table": "А.5",
+        "figure": "Д.8"
+      },
+      "verification": "CuratorExtracted",
+      "note": "5.7.2: зеркало 5.7.1 — зеркалится только пиктограмма (CR-23), сверка по прил. А стр. 41.",
+      "mirrorOf": "5.7.1",
+      "elements": [
+        "contourGrey"
+      ]
+    },
+    {
+      "number": "5.16",
+      "name": "Место остановки автобуса и (или) троллейбуса",
+      "group": 5,
+      "shape": "RectangleVertical",
+      "sizeTableId": "Д.7",
+      "isPlate": false,
+      "colors": {
+        "field": "Blue",
+        "outerBorder": "White",
+        "symbol": "Black",
+        "text": "Black",
+        "contour": "Grey"
+      },
+      "pictogram": {
+        "id": "pict.5.16.placeholder",
+        "placeholder": true,
+        "placeholderShape": "arrow",
+        "marker": "GOST-019",
+        "verification": "Placeholder"
+      },
+      "text": null,
+      "parameterKind": null,
+      "normRef": {
+        "doc": "ГОСТ Р 52290-2024",
+        "clause": "п. 3.2; прил. Б, стр. 103 PDF; прил. Д",
+        "table": "А.5",
+        "figure": "Д.7"
+      },
+      "verification": "CuratorExtracted",
+      "note": "5.16: синяя рамка, белая внутренняя панель, автобус — пиктограмма в очереди G3.",
+      "elements": [
+        "contourGrey",
+        "panelWhite"
+      ]
+    },
+    {
+      "number": "5.19.1",
+      "name": "Пешеходный переход",
+      "group": 5,
+      "shape": "Square",
+      "sizeTableId": "Д.5",
+      "isPlate": false,
+      "colors": {
+        "field": "Blue",
+        "outerBorder": "White",
+        "symbol": "Black",
+        "text": "Black",
+        "contour": "Grey"
+      },
+      "pictogram": {
+        "id": "pict.5.19.1.placeholder",
+        "placeholder": true,
+        "placeholderShape": "arrow",
+        "marker": "GOST-019",
+        "verification": "Placeholder"
+      },
+      "text": null,
+      "parameterKind": null,
+      "normRef": {
+        "doc": "ГОСТ Р 52290-2024",
+        "clause": "п. 3.2; прил. Б, стр. 103 PDF; прил. Д",
+        "table": "А.5",
+        "figure": "Д.5"
+      },
+      "verification": "CuratorExtracted",
+      "note": "5.19.1: белый треугольник-вставка, пешеход — пиктограмма в очереди G3 (CR-22).",
+      "elements": [
+        "contourGrey",
+        "triangleWhite"
+      ]
+    },
+    {
+      "number": "5.19.2",
+      "name": "Пешеходный переход",
+      "group": 5,
+      "shape": "Square",
+      "sizeTableId": "Д.5",
+      "isPlate": false,
+      "colors": {
+        "field": "Blue",
+        "outerBorder": "White",
+        "symbol": "Black",
+        "text": "Black",
+        "contour": "Grey"
+      },
+      "pictogram": {
+        "id": "pict.5.19.2.placeholder",
+        "placeholder": true,
+        "placeholderShape": "arrow",
+        "marker": "GOST-019",
+        "verification": "Placeholder"
+      },
+      "text": null,
+      "parameterKind": null,
+      "normRef": {
+        "doc": "ГОСТ Р 52290-2024",
+        "clause": "п. 3.2; прил. Б, стр. 104 PDF; прил. Д",
+        "table": "А.5",
+        "figure": "Д.5"
+      },
+      "verification": "CuratorExtracted",
+      "note": "5.19.2: зеркало 5.19.1 по пиктограмме (CR-23), сверка по прил. А стр. 46.",
+      "mirrorOf": "5.19.1",
+      "elements": [
+        "contourGrey",
+        "triangleWhite"
+      ]
+    },
+    {
+      "number": "5.20",
+      "name": "Искусственная неровность",
+      "group": 5,
+      "shape": "Square",
+      "sizeTableId": "Д.5",
+      "isPlate": false,
+      "colors": {
+        "field": "Blue",
+        "outerBorder": "White",
+        "symbol": "Black",
+        "text": "Black",
+        "contour": "Grey"
+      },
+      "pictogram": {
+        "id": "pict.5.20.placeholder",
+        "placeholder": true,
+        "placeholderShape": "arrow",
+        "marker": "GOST-019",
+        "verification": "Placeholder"
+      },
+      "text": null,
+      "parameterKind": null,
+      "normRef": {
+        "doc": "ГОСТ Р 52290-2024",
+        "clause": "п. 3.2; прил. Б, стр. 104 PDF; прил. Д",
+        "table": "А.5",
+        "figure": "Д.5"
+      },
+      "verification": "CuratorExtracted",
+      "note": "5.20: белый треугольник, «неровность» у основания — в очереди G3.",
+      "elements": [
+        "contourGrey",
+        "triangleWhite"
+      ]
+    },
+    {
+      "number": "5.21",
+      "name": "Жилая зона",
+      "group": 5,
+      "shape": "RectangleVertical",
+      "sizeTableId": "Д.7",
+      "isPlate": false,
+      "colors": {
+        "field": "Blue",
+        "outerBorder": "White",
+        "symbol": "White",
+        "text": "White",
+        "contour": "Grey"
+      },
+      "pictogram": {
+        "id": "pict.5.21.placeholder",
+        "placeholder": true,
+        "placeholderShape": "arrow",
+        "marker": "GOST-019",
+        "verification": "Placeholder"
+      },
+      "text": null,
+      "parameterKind": null,
+      "normRef": {
+        "doc": "ГОСТ Р 52290-2024",
+        "clause": "п. 3.2; прил. Б, стр. 104 PDF; прил. Д",
+        "table": "А.5",
+        "figure": "Д.7"
+      },
+      "verification": "CuratorExtracted",
+      "note": "5.21: белые пиктограммы зоны (автомобиль, дом, пешеход, ребёнок) — в очереди G3.",
+      "elements": [
+        "contourGrey"
+      ]
+    },
+    {
+      "number": "5.22",
+      "name": "Конец жилой зоны",
+      "group": 5,
+      "shape": "RectangleVertical",
+      "sizeTableId": "Д.7",
+      "isPlate": false,
+      "colors": {
+        "field": "Blue",
+        "outerBorder": "White",
+        "symbol": "White",
+        "text": "White",
+        "contour": "Grey",
+        "accent": "Red"
+      },
+      "pictogram": {
+        "id": "pict.5.22.placeholder",
+        "placeholder": true,
+        "placeholderShape": "arrow",
+        "marker": "GOST-019",
+        "verification": "Placeholder"
+      },
+      "text": null,
+      "parameterKind": null,
+      "normRef": {
+        "doc": "ГОСТ Р 52290-2024",
+        "clause": "п. 3.2; прил. Б, стр. 104 PDF; прил. Д",
+        "table": "А.5",
+        "figure": "Д.7"
+      },
+      "verification": "CuratorExtracted",
+      "note": "5.22: пиктограммы зоны + красные полосы «/» (CR-22).",
+      "elements": [
+        "contourGrey",
+        "bundleSlashRed"
+      ]
+    },
+    {
+      "number": "5.41",
+      "name": "Зона с ограничением остановки",
+      "group": 5,
+      "shape": "RectangleVertical",
+      "sizeTableId": "Д.7",
+      "isPlate": false,
+      "colors": {
+        "field": "White",
+        "outerBorder": "Black",
+        "symbol": "Black",
+        "text": "Black",
+        "contour": "Grey",
+        "accent": "Red"
+      },
+      "pictogram": {
+        "id": "pict.5.41.placeholder",
+        "placeholder": true,
+        "placeholderShape": "arrow",
+        "marker": "GOST-019",
+        "verification": "Placeholder"
+      },
+      "text": null,
+      "parameterKind": null,
+      "normRef": {
+        "doc": "ГОСТ Р 52290-2024",
+        "clause": "п. 3.2; прил. Б, стр. 109 PDF; прил. Д",
+        "table": "А.5",
+        "figure": "Д.7"
+      },
+      "verification": "CuratorExtracted",
+      "note": "5.41: белое поле, вложенный 3.27, надпись [ПРОВЕРИТЬ: вероятно «ЗОНА»] (CR-22).",
+      "composedOf": [
+        "3.27"
+      ],
+      "elements": [
+        "contourGrey",
+        "nestedSign"
+      ]
+    },
+    {
+      "number": "5.42",
+      "name": "Конец зоны с ограничением остановки",
+      "group": 5,
+      "shape": "RectangleVertical",
+      "sizeTableId": "Д.7",
+      "isPlate": false,
+      "colors": {
+        "field": "White",
+        "outerBorder": "Black",
+        "symbol": "Grey",
+        "text": "Black",
+        "contour": "Grey",
+        "accent": "Red"
+      },
+      "pictogram": {
+        "id": "pict.5.42.placeholder",
+        "placeholder": true,
+        "placeholderShape": "arrow",
+        "marker": "GOST-019",
+        "verification": "Placeholder"
+      },
+      "text": null,
+      "parameterKind": null,
+      "normRef": {
+        "doc": "ГОСТ Р 52290-2024",
+        "clause": "п. 3.2; прил. Б, стр. 109 PDF; прил. Д",
+        "table": "А.5",
+        "figure": "Д.7"
+      },
+      "verification": "CuratorExtracted",
+      "note": "5.42: белое поле, 3.27 серым, чёрные полосы «/» (CR-22).",
+      "composedOf": [
+        "3.27"
+      ],
+      "elements": [
+        "contourGrey",
+        "nestedSign",
+        "bundleSlash"
+      ]
+    },
+    {
+      "number": "6.2.1",
+      "name": "Рекомендуемая скорость при проезде искусственной неровности",
+      "group": 6,
+      "shape": "RectangleVertical",
+      "sizeTableId": "Д.7",
+      "isPlate": false,
+      "colors": {
+        "field": "Blue",
+        "outerBorder": "White",
+        "symbol": "White",
+        "text": "White",
+        "contour": "Grey"
+      },
+      "pictogram": null,
+      "text": {
+        "kind": "Parameter",
+        "value": "speed",
+        "verification": "Unverified",
+        "marker": "GOST-009"
+      },
+      "parameterKind": "speed",
+      "normRef": {
+        "doc": "ГОСТ Р 52290-2024",
+        "clause": "п. 3.2; прил. Б, стр. 110 PDF; прил. Д",
+        "table": "А.6",
+        "figure": "Д.7"
+      },
+      "verification": "CuratorExtracted",
+      "note": "6.2.1: верх синий с белым числом, низ — белая панель с «неровностью» (очередь G3); GOST-009.",
+      "elements": [
+        "contourGrey",
+        "panelWhite"
+      ],
+      "textPosition": "top"
+    },
+    {
+      "number": "6.3.1",
+      "name": "Место для разворота",
+      "group": 6,
+      "shape": "Square",
+      "sizeTableId": "Д.5",
+      "isPlate": false,
+      "colors": {
+        "field": "Blue",
+        "outerBorder": "White",
+        "symbol": "White",
+        "text": "White",
+        "contour": "Grey"
+      },
+      "pictogram": {
+        "id": "pict.6.3.1.placeholder",
+        "placeholder": true,
+        "placeholderShape": "arrow",
+        "marker": "GOST-019",
+        "verification": "Placeholder"
+      },
+      "text": null,
+      "parameterKind": null,
+      "normRef": {
+        "doc": "ГОСТ Р 52290-2024",
+        "clause": "п. 3.2; прил. Б, стр. 110 PDF; прил. Д",
+        "table": "А.6",
+        "figure": "Д.5"
+      },
+      "verification": "CuratorExtracted",
+      "note": "6.3.1: белая U-образная стрелка — в очереди G3.",
+      "elements": [
+        "contourGrey"
+      ]
+    },
+    {
+      "number": "6.4",
+      "name": "Парковка (парковочное место)",
+      "group": 6,
+      "shape": "Square",
+      "sizeTableId": "Д.5",
+      "isPlate": false,
+      "colors": {
+        "field": "Blue",
+        "outerBorder": "White",
+        "symbol": "White",
+        "text": "White",
+        "contour": "Grey"
+      },
+      "pictogram": null,
+      "text": {
+        "kind": "Fixed",
+        "value": "P",
+        "verification": "CuratorExtracted",
+        "marker": "GOST-002"
+      },
+      "parameterKind": null,
+      "normRef": {
+        "doc": "ГОСТ Р 52290-2024",
+        "clause": "п. 3.2; прил. Б, стр. 111–112 PDF; прил. Д",
+        "table": "А.6",
+        "figure": "Д.5"
+      },
+      "verification": "CuratorExtracted",
+      "elements": [
+        "contourGrey"
+      ],
+      "note": null
+    },
+    {
+      "number": "8.1.1",
+      "name": "Расстояние до объекта",
+      "group": 8,
+      "shape": "RectangleHorizontal",
+      "sizeTableId": "Д.8",
+      "isPlate": true,
+      "colors": {
+        "field": "White",
+        "outerBorder": "Black",
+        "symbol": "Black",
+        "text": "Black"
+      },
+      "pictogram": null,
+      "text": {
+        "kind": "Parameter",
+        "value": "distance",
+        "verification": "CuratorExtracted",
+        "marker": "GOST-002"
+      },
+      "parameterKind": "distance",
+      "normRef": {
+        "doc": "ГОСТ Р 52290-2024",
+        "clause": "п. 3.2; прил. Б, стр. 125 PDF; прил. Д",
+        "table": "А.8",
+        "figure": "Д.8"
+      },
+      "verification": "CuratorExtracted",
+      "note": null
+    },
+    {
+      "number": "8.2.1",
+      "name": "Зона действия",
+      "group": 8,
+      "shape": "RectangleHorizontal",
+      "sizeTableId": "Д.8",
+      "isPlate": true,
+      "colors": {
+        "field": "White",
+        "outerBorder": "Black",
+        "symbol": "Black",
+        "text": "Black",
+        "contour": "Grey"
+      },
+      "pictogram": null,
+      "text": {
+        "kind": "Parameter",
+        "value": "distance",
+        "verification": "Unverified",
+        "marker": "GOST-013"
+      },
+      "parameterKind": "distance",
+      "note": "8.2.1: «↑100 м↑» — стрелки по сторонам числа (CR-22), [ПРОВЕРИТЬ по прил. Б].",
+      "normRef": {
+        "doc": "ГОСТ Р 52290-2024",
+        "clause": "п. 3.2; прил. Б, стр. 125 PDF; прил. Д",
+        "table": "А.8",
+        "figure": "Д.8"
+      },
+      "verification": "Unverified",
+      "elements": [
+        "contourGrey",
+        "arrowUpSmallBlack",
+        "arrowUpSmallBlackRight"
+      ],
+      "textWidthRatio": 0.5,
+      "demoPriority": 1
+    },
+    {
+      "number": "8.2.2",
+      "name": "Зона действия",
+      "group": 8,
+      "shape": "RectangleHorizontal",
+      "sizeTableId": "Д.8",
+      "isPlate": true,
+      "colors": {
+        "field": "White",
+        "outerBorder": "Black",
+        "symbol": "Black",
+        "text": "Black",
+        "contour": "Grey"
+      },
+      "pictogram": null,
+      "text": {
+        "kind": "Parameter",
+        "value": "distance",
+        "verification": "CuratorExtracted",
+        "marker": "GOST-002"
+      },
+      "parameterKind": "distance",
+      "normRef": {
+        "doc": "ГОСТ Р 52290-2024",
+        "clause": "п. 3.2; прил. Б, стр. 126 PDF; прил. Д",
+        "table": "А.8",
+        "figure": "Д.8"
+      },
+      "verification": "CuratorExtracted",
+      "note": "8.2.2: вертикальная табличка — стрелка ↑, ниже расстояние (прил. А стр. 61, прил. Б стр. 126); размеры Д.8 с поворотом H↔B (CR-25, GOST-026, [ПРОВЕРИТЬ]).",
+      "elements": [
+        "contourGrey",
+        "arrowUpBlack"
+      ],
+      "orientation": "vertical",
+      "textPosition": "bottom"
+    },
+    {
+      "number": "8.2.3",
+      "name": "Зона действия",
+      "group": 8,
+      "shape": "RectangleHorizontal",
+      "sizeTableId": "Д.8",
+      "isPlate": true,
+      "colors": {
+        "field": "White",
+        "outerBorder": "Black",
+        "symbol": "Black",
+        "text": "Black",
+        "contour": "Grey"
+      },
+      "normRef": {
+        "doc": "ГОСТ Р 52290-2024",
+        "clause": "п. 3.2; прил. Б, стр. 126 PDF; прил. Д",
+        "table": "А.8",
+        "figure": "Д.8"
+      },
+      "verification": "CuratorExtracted",
+      "note": "8.2.3: вертикальная табличка — длинная стрелка ↓ без расстояния (прил. А стр. 60); размеры Д.8 с поворотом H↔B (CR-25, GOST-026, [ПРОВЕРИТЬ]).",
+      "elements": [
+        "contourGrey",
+        "arrowDownLongBlack"
+      ],
+      "orientation": "vertical"
+    },
+    {
+      "number": "8.4.1",
+      "name": "Вид транспортного средства",
+      "group": 8,
+      "shape": "RectangleHorizontal",
+      "sizeTableId": "Д.8",
+      "isPlate": true,
+      "colors": {
+        "field": "White",
+        "outerBorder": "Black",
+        "symbol": "Black",
+        "text": "Black",
+        "contour": "Grey"
+      },
+      "pictogram": {
+        "id": "pict.8.4.1.placeholder",
+        "placeholder": true,
+        "placeholderShape": "arrow",
+        "marker": "GOST-019",
+        "verification": "Placeholder"
+      },
+      "text": null,
+      "parameterKind": null,
+      "normRef": {
+        "doc": "ГОСТ Р 52290-2024",
+        "clause": "п. 3.2; прил. Б, стр. 127 PDF; прил. Д",
+        "table": "А.8",
+        "figure": "Д.8"
+      },
+      "verification": "CuratorExtracted",
+      "note": "8.4.1: чёрный грузовик — пиктограмма в очереди G3.",
+      "elements": [
+        "contourGrey"
+      ]
+    },
+    {
+      "number": "8.5.4",
+      "name": "Время действия",
+      "group": 8,
+      "shape": "RectangleHorizontal",
+      "sizeTableId": "Д.8",
+      "isPlate": true,
+      "colors": {
+        "field": "White",
+        "outerBorder": "Black",
+        "symbol": "Black",
+        "text": "Black",
+        "contour": "Grey"
+      },
+      "text": {
+        "kind": "Fixed",
+        "value": "8.00–17.30",
+        "verification": "CuratorExtracted",
+        "marker": "GOST-027"
+      },
+      "normRef": {
+        "doc": "ГОСТ Р 52290-2024",
+        "clause": "п. 3.2; прил. Б, стр. 129 PDF; прил. Д",
+        "table": "А.8",
+        "figure": "Д.8"
+      },
+      "verification": "CuratorExtracted",
+      "note": "8.5.4: время «8.00–17.30» — это параметр «время», а не пиктограмма (CR-22); типы значений времени — GOST-027 [ПРОВЕРИТЬ].",
+      "elements": [
+        "contourGrey"
+      ]
+    },
+    {
+      "number": "8.6.1",
+      "name": "Способ постановки транспортного средства на стоянку",
+      "group": 8,
+      "shape": "RectangleHorizontal",
+      "sizeTableId": "Д.8",
+      "isPlate": true,
+      "colors": {
+        "field": "White",
+        "outerBorder": "Black",
+        "symbol": "Black",
+        "text": "Black",
+        "contour": "Grey"
+      },
+      "pictogram": {
+        "id": "pict.8.6.1.placeholder",
+        "placeholder": true,
+        "placeholderShape": "arrow",
+        "marker": "GOST-019",
+        "verification": "Placeholder"
+      },
+      "text": null,
+      "parameterKind": null,
+      "normRef": {
+        "doc": "ГОСТ Р 52290-2024",
+        "clause": "п. 3.2; прил. Б, стр. 130 PDF; прил. Д",
+        "table": "А.8",
+        "figure": "Д.8"
+      },
+      "verification": "CuratorExtracted",
+      "note": "8.6.1: автомобиль на бордюре — в очереди G3; цвета [ПРОВЕРИТЬ по прил. Б, стр. 130].",
+      "elements": [
+        "contourGrey"
+      ]
+    },
+    {
+      "number": "8.8",
+      "name": "Платные услуги",
+      "group": 8,
+      "shape": "RectangleHorizontal",
+      "sizeTableId": "Д.8",
+      "isPlate": true,
+      "colors": {
+        "field": "White",
+        "outerBorder": "Black",
+        "symbol": "Black",
+        "text": "Black",
+        "contour": "Grey"
+      },
+      "pictogram": {
+        "id": "pict.8.8.placeholder",
+        "placeholder": true,
+        "placeholderShape": "arrow",
+        "marker": "GOST-019",
+        "verification": "Placeholder"
+      },
+      "text": null,
+      "parameterKind": null,
+      "normRef": {
+        "doc": "ГОСТ Р 52290-2024",
+        "clause": "п. 3.2; прил. Б, стр. 131 PDF; прил. Д",
+        "table": "А.8",
+        "figure": "Д.8"
+      },
+      "verification": "CuratorExtracted",
+      "note": "8.8: монеты «10 15 20» — в очереди G3; [ПРОВЕРИТЬ, стр. 131].",
+      "elements": [
+        "contourGrey"
+      ]
+    },
+    {
+      "number": "8.15.1",
+      "name": "Глухие пешеходы",
+      "group": 8,
+      "shape": "RectangleHorizontal",
+      "sizeTableId": "Д.8",
+      "isPlate": true,
+      "colors": {
+        "field": "White",
+        "outerBorder": "Black",
+        "symbol": "Black",
+        "text": "Black",
+        "contour": "Grey"
+      },
+      "text": {
+        "kind": "Fixed",
+        "value": "ГЛУХИЕ",
+        "verification": "CuratorExtracted",
+        "marker": "GOST-027"
+      },
+      "parameterKind": null,
+      "normRef": {
+        "doc": "ГОСТ Р 52290-2024",
+        "clause": "п. 3.2; прил. Б, стр. 132 PDF; прил. Д",
+        "table": "А.8",
+        "figure": "Д.8"
+      },
+      "verification": "CuratorExtracted",
+      "note": "8.15.1: текстовая табличка «ГЛУХИЕ»; цвет фона [ПРОВЕРИТЬ, стр. 132].",
+      "elements": [
+        "contourGrey"
+      ]
+    },
+    {
+      "number": "8.17",
+      "name": "Инвалиды",
+      "group": 8,
+      "shape": "RectangleHorizontal",
+      "sizeTableId": "Д.8",
+      "isPlate": true,
+      "colors": {
+        "field": "White",
+        "outerBorder": "Black",
+        "symbol": "Black",
+        "text": "Black",
+        "contour": "Grey"
+      },
+      "pictogram": {
+        "id": "pict.8.17.placeholder",
+        "placeholder": true,
+        "placeholderShape": "arrow",
+        "marker": "GOST-019",
+        "verification": "Placeholder"
+      },
+      "text": null,
+      "parameterKind": null,
+      "normRef": {
+        "doc": "ГОСТ Р 52290-2024",
+        "clause": "п. 3.2; прил. Б, стр. 132 PDF; прил. Д",
+        "table": "А.8",
+        "figure": "Д.8"
+      },
+      "verification": "CuratorExtracted",
+      "note": "8.17: символ инвалидной коляски — в очереди G3.",
+      "elements": [
+        "contourGrey"
+      ]
+    },
+    {
+      "number": "8.24",
+      "name": "Работает эвакуатор",
+      "group": 8,
+      "shape": "RectangleHorizontal",
+      "sizeTableId": "Д.8",
+      "isPlate": true,
+      "colors": {
+        "field": "White",
+        "outerBorder": "Black",
+        "symbol": "Black",
+        "text": "Black",
+        "contour": "Grey"
+      },
+      "pictogram": {
+        "id": "pict.8.24.placeholder",
+        "placeholder": true,
+        "placeholderShape": "arrow",
+        "marker": "GOST-019",
+        "verification": "Placeholder"
+      },
+      "text": null,
+      "parameterKind": null,
+      "normRef": {
+        "doc": "ГОСТ Р 52290-2024",
+        "clause": "п. 3.2; прил. Б, стр. не найдено PDF; прил. Д",
+        "table": "А.8",
+        "figure": "Д.8"
+      },
+      "verification": "CuratorExtracted",
+      "note": "8.24: эвакуатор с автомобилем — в очереди G3.",
+      "elements": [
+        "contourGrey"
+      ]
+    }
+  ]
+}

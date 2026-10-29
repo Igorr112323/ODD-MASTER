@@ -1,0 +1,155 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "size-profile.schema.json",
+  "title": "Профиль типоразмеров",
+  "type": "object",
+  "required": [
+    "profile",
+    "title",
+    "sizeClasses",
+    "normRef",
+    "verification",
+    "tables"
+  ],
+  "properties": {
+    "profile": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "sizeClasses": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    },
+    "sizeClassNames": {
+      "type": "object"
+    },
+    "normRef": {
+      "type": "object",
+      "required": [
+        "doc",
+        "clause"
+      ],
+      "properties": {
+        "doc": {
+          "type": "string",
+          "minLength": 1
+        },
+        "clause": {
+          "type": "string",
+          "minLength": 1
+        },
+        "table": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "figure": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "verification": {
+      "type": "string",
+      "enum": [
+        "Placeholder",
+        "Unverified",
+        "CuratorExtracted",
+        "StudentVerified"
+      ]
+    },
+    "clauseReferencedTables": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "markers": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^GOST-[0-9]{3}$"
+      }
+    },
+    "notes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "tables": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "figure",
+          "shapeHint",
+          "dims",
+          "rows"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "figure": {
+            "type": "string"
+          },
+          "shapeHint": {
+            "type": "string"
+          },
+          "dims": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "notes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "rows": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "signs",
+                "sizes"
+              ],
+              "properties": {
+                "signs": {
+                  "type": "string",
+                  "description": "Список номеров и диапазонов: '1.5 - 1.7, 2.4'. См. ADR-0005."
+                },
+                "sizes": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "object"
+                  }
+                },
+                "classless": {
+                  "type": "object"
+                },
+                "r": {
+                  "type": "number",
+                  "minimum": 0
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "description": "JSON Schema (draft-07). Синтаксис проверяется тестом ConfigSchemaTests; семантические проверки выполняет ConfigValidator в ядре (ADR-0014)."
+}

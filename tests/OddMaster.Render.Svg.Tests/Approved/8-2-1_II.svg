@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-434 -259 868 518" width="868mm" height="518mm">
+  <metadata><odd:sign xmlns:odd="https://odd-master.local/metadata/1"
+      number="8.2.1"
+      sizeClass="II"
+      profile="GOST_R_52290_2024"
+      sizeTable="Д.8"
+      outerBorderMm="10"
+      verification="borders=CuratorExtracted; catalog=Unverified; colors=Unverified; elements.arrowUpSmallBlack=Unverified; elements.arrowUpSmallBlackRight=Unverified; elements.contourGrey=Unverified; parameters=CuratorExtracted; sizeProfile=CuratorExtracted; textMetrics=Unverified"
+      isDraft="true"
+      colorimetry="DISPLAY_ONLY_NOT_GOST"/>
+  </metadata>
+  <g id="Geometry" transform="scale(1,-1)">
+    <g id="Layer-Outline">
+      <path d="M-350 -130 A45 45 0 0 1 -305 -175 L305 -175 A45 45 0 0 1 350 -130 L350 130 A45 45 0 0 1 305 175 L-305 175 A45 45 0 0 1 -350 130 L-350 -130 Z" fill="#1A1A1A" stroke="none"/>
+    </g>
+    <g id="Layer-Field">
+      <path d="M-340 -130 A35 35 0 0 1 -305 -165 L305 -165 A35 35 0 0 1 340 -130 L340 130 A35 35 0 0 1 305 165 L-305 165 A35 35 0 0 1 -340 130 L-340 -130 Z" fill="#FFFFFF" stroke="none"/>
+    </g>
+    <g id="Layer-Composition">
+      <path d="M-340 -130 A35 35 0 0 1 -305 -165 L305 -165 A35 35 0 0 1 340 -130 L340 130 A35 35 0 0 1 305 165 L-305 165 A35 35 0 0 1 -340 130 L-340 -130 Z" fill="none" stroke="#808080" stroke-width="1.98"/>
+    </g>
+    <g id="Layer-Composition">
+      <path d="M-227.764 -23.1 L-207.436 -23.1 L-207.436 2.31 L-196.81 2.31 L-217.6 23.1 L-238.39 2.31 L-227.764 2.31 L-227.764 -23.1 Z" fill="#1A1A1A" stroke="none"/>
+    </g>
+    <g id="Layer-Composition">
+      <path d="M207.436 -23.1 L227.764 -23.1 L227.764 2.31 L238.39 2.31 L217.6 23.1 L196.81 2.31 L207.436 2.31 L207.436 -23.1 Z" fill="#1A1A1A" stroke="none"/>
+    </g>
+  </g>
+  <g id="Layer-Text"><text x="-74.8" y="13.397" font-family="DejaVu Sans Bold, Liberation Sans Bold, Arial Bold, sans-serif" font-weight="bold" font-size="58.504" fill="#1A1A1A">50 м</text></g>
+  <g id="DraftWatermark">
+    <text x="-84.767" y="-27.479" font-family="DejaVu Sans Bold, Liberation Sans Bold, Arial Bold, sans-serif" font-size="25.2" fill="#D7191C" fill-opacity="0.85">ЧЕРНОВИК:</text>
+    <text x="-236.411" y="4.021" font-family="DejaVu Sans Bold, Liberation Sans Bold, Arial Bold, sans-serif" font-size="25.2" fill="#D7191C" fill-opacity="0.85">есть непроверенные параметры</text>
+  </g>
+</svg>

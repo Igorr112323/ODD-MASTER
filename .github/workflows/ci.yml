@@ -1,0 +1,216 @@
+name: CI
+
+# CR-26: push только для main (после мёржа коммиты тоже проверяются),
+# PR — для веток, workflow_dispatch — ручной запуск.
+# Раньше стояло branches-ignore: [main] + pull_request, и каждый коммит в PR
+# запускал CI дважды (run 40750731369 push + 40750744982 pull_request).
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+# Группа одна на PR и на его push, поэтому двойных прогонов нет.
+concurrency:
+  group: ci-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  pull-requests: write
+  issues: write
+  statuses: write
+
+jobs:
+  build-test-demo:
+    name: Linux · build / test / coverage / demo
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # Стражу эталонов нужна база сравнения (origin/main), значит — полная история.
+          fetch-depth: 0
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+      - name: Версия SDK
+        run: dotnet --version | tee dotnet-version.txt
+      - name: Страж «эталон — закон» (F0)
+        if: github.event_name == 'pull_request'
+        run: python3 scripts/check_golden_review.py --base "origin/${{ github.base_ref }}"
+      - name: Restore
+        run: dotnet restore OddMaster.sln
+      - name: Build (0 предупреждений)
+        shell: bash
+        run: |
+          set -o pipefail
+          dotnet build OddMaster.sln --no-restore -warnaserror 2>&1 | tee build.log
+      - name: Tests + покрытие
+        shell: bash
+        run: |
+          set -o pipefail
+          dotnet test OddMaster.sln --no-build \
+            --collect:"XPlat Code Coverage" \
+            --settings coverage.runsettings \
+            --results-directory ./coverage \
+            --logger "console;verbosity=normal" 2>&1 | tee test.log
+      - name: Диагностика падений в PR
+        if: failure()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        shell: bash
+        run: bash scripts/ci-annotate.sh "$PR_NUMBER" build.log test.log
+      - name: Страж CR-21 (все тестовые проекты решения запускаются)
+        shell: bash
+        run: python3 scripts/check_solution_tests.py --log test.log
+      - name: Сводка покрытия Core
+        run: |
+          python3 scripts/coverage_summary.py coverage | tee coverage.log
+          cp coverage-summary.md coverage/coverage-summary.md || true
+      - name: odd-tools selftest (конвейер оцифровки)
+        run: |
+          dotnet build tools/OddMaster.Tools/OddMaster.Tools.csproj -warnaserror 2>&1 | tee tools.log
+          dotnet run --project tools/OddMaster.Tools --no-build -- selftest
+      - name: Demo all
+        run: dotnet run --project src/OddMaster.Demo --no-build -- all
+      - name: Проверка детерминизма артефактов
+        run: git diff --exit-code -- docs/demo
+      - name: Артефакты демо
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: oddmaster-demo
+          path: docs/demo/
+      - name: Покрытие и логи
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-and-logs
+          path: |
+            coverage/
+            coverage-summary.md
+            build.log
+            test.log
+            tools.log
+            dotnet-version.txt
+      - name: Отчёт в PR (оракул для песочницы)
+        if: always()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          JOB_STATUS: ${{ job.status }}
+        shell: bash
+        run: bash scripts/ci-report.sh "$PR_NUMBER" "$JOB_STATUS"
+
+  dxf-stand:
+    name: DXF-стенд · ядро → чертёж → независимая перечитка
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Зависимости перечитки (ezdxf, matplotlib)
+        run: pip install -r scripts/requirements-dxf.txt
+      - name: Сборка и генерация DXF
+        run: |
+          dotnet build OddMaster.sln -warnaserror
+          dotnet run --project src/OddMaster.Demo --no-build -- dxf
+      - name: Детерминизм DXF
+        run: git diff --exit-code -- docs/demo/dxf
+      - name: Независимая перечитка DXF (ezdxf) + PNG
+        run: python3 scripts/dxf_verify.py 2>&1 | tee dxf-verify.log
+      - name: Метрики шрифта воспроизводятся из файла
+        run: python3 scripts/check_font_metrics.py
+      - name: Диагностика падений в PR
+        if: failure()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        shell: bash
+        run: bash scripts/ci-annotate.sh "$PR_NUMBER" dxf-verify.log
+      - name: Артефакты стенда (DXF, PNG, отчёт)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: dxf-stand
+          path: |
+            artifacts/dxf/
+            docs/demo/dxf/
+            dxf-verify.log
+
+  netstandard:
+    name: Страховка netstandard2.0 (CR-15)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+      - name: Сборка ядра под netstandard2.0
+        run: dotnet build src/OddMaster.Core.NetStandard/OddMaster.Core.NetStandard.csproj -warnaserror 2>&1 | tee netstandard.log
+      - name: Лог в PR при ошибке
+        if: failure()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        shell: bash
+        run: |
+          { echo "### ❌ netstandard2.0"; echo '```'; tail -80 netstandard.log; echo '```'; } > /tmp/ns.md
+          PR="${PR_NUMBER:-$(gh pr list --head "$GITHUB_REF_NAME" --json number --jq '.[0].number' || true)}"
+          if [ -n "$PR" ]; then gh pr comment "$PR" --body-file /tmp/ns.md; fi
+
+  previews:
+    name: Превью знаков (PNG + контактный лист)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+      - name: Инструменты превью
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq librsvg2-bin imagemagick
+      - name: Генерация SVG
+        run: |
+          dotnet build OddMaster.sln -warnaserror
+          dotnet run --project src/OddMaster.Demo --no-build -- signs
+          mkdir -p artifacts/previews
+          for f in docs/demo/signs/*.svg; do
+            rsvg-convert -w 260 "$f" -o "artifacts/previews/$(basename "${f%.svg}").png"
+          done
+          montage artifacts/previews/*.png -tile 5x -geometry 260x260+6+6 \
+            -background white artifacts/previews/contact-sheet.png
+      - name: Артефакт превью
+        uses: actions/upload-artifact@v4
+        with:
+          name: sign-previews
+          path: artifacts/previews/
+
+  windows-build:
+    name: Windows · build / test (только PR и ручной запуск)
+    if: ${{ github.event_name == 'pull_request' || github.event_name == 'workflow_dispatch' }}
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+      - name: Build
+        shell: pwsh
+        run: dotnet build OddMaster.sln -warnaserror
+      - name: Test
+        shell: bash
+        run: |
+          set -o pipefail
+          dotnet test OddMaster.sln --no-build --logger "console;verbosity=normal" 2>&1 | tee test.log
+      - name: Диагностика Windows в PR
+        if: failure()
+        shell: bash
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: bash scripts/ci-report.sh "$PR_NUMBER" "failure-windows"

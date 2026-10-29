@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-434 -259 868 518" width="868mm" height="518mm">
+  <metadata><odd:sign xmlns:odd="https://odd-master.local/metadata/1"
+      number="8.4.1"
+      sizeClass="II"
+      profile="GOST_R_52290_2024"
+      sizeTable="Д.8"
+      outerBorderMm="10"
+      verification="borders=CuratorExtracted; catalog=CuratorExtracted; colors=Unverified; elements.contourGrey=Unverified; pictogram=Placeholder; sizeProfile=CuratorExtracted"
+      isDraft="true"
+      colorimetry="DISPLAY_ONLY_NOT_GOST"/>
+  </metadata>
+  <g id="Geometry" transform="scale(1,-1)">
+    <g id="Layer-Outline">
+      <path d="M-350 -130 A45 45 0 0 1 -305 -175 L305 -175 A45 45 0 0 1 350 -130 L350 130 A45 45 0 0 1 305 175 L-305 175 A45 45 0 0 1 -350 130 L-350 -130 Z" fill="#1A1A1A" stroke="none"/>
+    </g>
+    <g id="Layer-Field">
+      <path d="M-340 -130 A35 35 0 0 1 -305 -165 L305 -165 A35 35 0 0 1 340 -130 L340 130 A35 35 0 0 1 305 165 L-305 165 A35 35 0 0 1 -340 130 L-340 -130 Z" fill="#FFFFFF" stroke="none"/>
+    </g>
+    <g id="Layer-Composition">
+      <path d="M-340 -130 A35 35 0 0 1 -305 -165 L305 -165 A35 35 0 0 1 340 -130 L340 130 A35 35 0 0 1 305 165 L-305 165 A35 35 0 0 1 -340 130 L-340 -130 Z" fill="none" stroke="#808080" stroke-width="1.98"/>
+    </g>
+    <g id="Layer-Pictogram">
+      <path d="M-37.8 0 L8.4 0 L8.4 18.48 L37.8 0 L8.4 -18.48 L8.4 0 L-37.8 0 Z" fill="none" stroke="#1A1A1A" stroke-width="4.2"/>
+    </g>
+  </g>
+  <g id="DraftWatermark">
+    <text x="-84.767" y="-27.479" font-family="DejaVu Sans Bold, Liberation Sans Bold, Arial Bold, sans-serif" font-size="25.2" fill="#D7191C" fill-opacity="0.85">ЧЕРНОВИК:</text>
+    <text x="-236.411" y="4.021" font-family="DejaVu Sans Bold, Liberation Sans Bold, Arial Bold, sans-serif" font-size="25.2" fill="#D7191C" fill-opacity="0.85">есть непроверенные параметры</text>
+  </g>
+</svg>

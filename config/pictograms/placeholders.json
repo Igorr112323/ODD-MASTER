@@ -1,0 +1,1339 @@
+{
+  "registry": "pictograms.placeholders",
+  "normRef": {
+    "doc": "ГОСТ Р 52290-2024",
+    "clause": "прил. Б, масштабная сетка"
+  },
+  "verification": "Placeholder",
+  "markers": [
+    "GOST-019"
+  ],
+  "note": "Только заглушки. Ни одна геометрия не оцифрована с ГОСТ.",
+  "pictograms": [
+    {
+      "id": "pict.2.1.placeholder",
+      "sign": "2.1",
+      "status": "Placeholder",
+      "source": "ГОСТ Р 52290-2024, прил. Б (масштабная сетка) — ЗАГЛУШКА, оцифровать студенту",
+      "note": "Схематичная стрелка/полоса. Реальную геометрию получить через odd-tools pictogram import.",
+      "grid": {
+        "cellsAcross": 12,
+        "spans": "D",
+        "origin": "center",
+        "yAxis": "up"
+      },
+      "layers": [
+        {
+          "role": "symbol",
+          "color": "Black",
+          "shapes": [
+            {
+              "type": "polyline",
+              "width": 0.5,
+              "points": [
+                [
+                  -2,
+                  -2
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  -2,
+                  2
+                ],
+                [
+                  -2,
+                  -2
+                ]
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pict.2.2.placeholder",
+      "sign": "2.2",
+      "status": "Placeholder",
+      "source": "ГОСТ Р 52290-2024, прил. Б (масштабная сетка) — ЗАГЛУШКА, оцифровать студенту",
+      "note": "Схематичная стрелка/полоса. Реальную геометрию получить через odd-tools pictogram import.",
+      "grid": {
+        "cellsAcross": 12,
+        "spans": "D",
+        "origin": "center",
+        "yAxis": "up"
+      },
+      "layers": [
+        {
+          "role": "symbol",
+          "color": "Black",
+          "shapes": [
+            {
+              "type": "polyline",
+              "width": 0.5,
+              "points": [
+                [
+                  -2,
+                  -2
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  -2,
+                  2
+                ],
+                [
+                  -2,
+                  -2
+                ]
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pict.2.3.1.placeholder",
+      "sign": "2.3.1",
+      "status": "Placeholder",
+      "source": "ГОСТ Р 52290-2024, прил. Б (масштабная сетка) — ЗАГЛУШКА, оцифровать студенту",
+      "note": "Схематичная стрелка/полоса. Реальную геометрию получить через odd-tools pictogram import.",
+      "grid": {
+        "cellsAcross": 12,
+        "spans": "D",
+        "origin": "center",
+        "yAxis": "up"
+      },
+      "layers": [
+        {
+          "role": "symbol",
+          "color": "Black",
+          "shapes": [
+            {
+              "type": "polyline",
+              "width": 0.5,
+              "points": [
+                [
+                  -2,
+                  -2
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  -2,
+                  2
+                ],
+                [
+                  -2,
+                  -2
+                ]
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pict.3.1.placeholder",
+      "sign": "3.1",
+      "status": "Placeholder",
+      "source": "ГОСТ Р 52290-2024, прил. Б (масштабная сетка) — ЗАГЛУШКА, оцифровать студенту",
+      "note": "Схематичная стрелка/полоса. Реальную геометрию получить через odd-tools pictogram import.",
+      "grid": {
+        "cellsAcross": 12,
+        "spans": "D",
+        "origin": "center",
+        "yAxis": "up"
+      },
+      "layers": [
+        {
+          "role": "symbol",
+          "color": "Black",
+          "shapes": [
+            {
+              "type": "polyline",
+              "width": 0.5,
+              "points": [
+                [
+                  -2,
+                  -2
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  -2,
+                  2
+                ],
+                [
+                  -2,
+                  -2
+                ]
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pict.3.18.1.placeholder",
+      "sign": "3.18.1",
+      "status": "Placeholder",
+      "source": "ГОСТ Р 52290-2024, прил. Б (масштабная сетка) — ЗАГЛУШКА, оцифровать студенту",
+      "note": "Схематичная стрелка/полоса. Реальную геометрию получить через odd-tools pictogram import.",
+      "grid": {
+        "cellsAcross": 12,
+        "spans": "D",
+        "origin": "center",
+        "yAxis": "up"
+      },
+      "layers": [
+        {
+          "role": "symbol",
+          "color": "Black",
+          "shapes": [
+            {
+              "type": "polyline",
+              "width": 0.5,
+              "points": [
+                [
+                  -2,
+                  -2
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  -2,
+                  2
+                ],
+                [
+                  -2,
+                  -2
+                ]
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pict.3.18.2.placeholder",
+      "sign": "3.18.2",
+      "status": "Placeholder",
+      "source": "ГОСТ Р 52290-2024, прил. Б (масштабная сетка) — ЗАГЛУШКА, оцифровать студенту",
+      "note": "Схематичная стрелка/полоса. Реальную геометрию получить через odd-tools pictogram import.",
+      "grid": {
+        "cellsAcross": 12,
+        "spans": "D",
+        "origin": "center",
+        "yAxis": "up"
+      },
+      "layers": [
+        {
+          "role": "symbol",
+          "color": "Black",
+          "shapes": [
+            {
+              "type": "polyline",
+              "width": 0.5,
+              "points": [
+                [
+                  -2,
+                  -2
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  -2,
+                  2
+                ],
+                [
+                  -2,
+                  -2
+                ]
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pict.3.19.placeholder",
+      "sign": "3.19",
+      "status": "Placeholder",
+      "source": "ГОСТ Р 52290-2024, прил. Б (масштабная сетка) — ЗАГЛУШКА, оцифровать студенту",
+      "note": "Схематичная стрелка/полоса. Реальную геометрию получить через odd-tools pictogram import.",
+      "grid": {
+        "cellsAcross": 12,
+        "spans": "D",
+        "origin": "center",
+        "yAxis": "up"
+      },
+      "layers": [
+        {
+          "role": "symbol",
+          "color": "Black",
+          "shapes": [
+            {
+              "type": "polyline",
+              "width": 0.5,
+              "points": [
+                [
+                  -2,
+                  -2
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  -2,
+                  2
+                ],
+                [
+                  -2,
+                  -2
+                ]
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pict.3.25.placeholder",
+      "sign": "3.25",
+      "status": "Placeholder",
+      "source": "ГОСТ Р 52290-2024, прил. Б (масштабная сетка) — ЗАГЛУШКА, оцифровать студенту",
+      "note": "Схематичная стрелка/полоса. Реальную геометрию получить через odd-tools pictogram import.",
+      "grid": {
+        "cellsAcross": 12,
+        "spans": "D",
+        "origin": "center",
+        "yAxis": "up"
+      },
+      "layers": [
+        {
+          "role": "symbol",
+          "color": "Black",
+          "shapes": [
+            {
+              "type": "polyline",
+              "width": 0.5,
+              "points": [
+                [
+                  -2,
+                  -2
+                ],
+                [
+                  2,
+                  2
+                ]
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pict.3.27.placeholder",
+      "sign": "3.27",
+      "status": "Placeholder",
+      "source": "ГОСТ Р 52290-2024, прил. Б (масштабная сетка) — ЗАГЛУШКА, оцифровать студенту",
+      "note": "Схематичная стрелка/полоса. Реальную геометрию получить через odd-tools pictogram import.",
+      "grid": {
+        "cellsAcross": 12,
+        "spans": "D",
+        "origin": "center",
+        "yAxis": "up"
+      },
+      "layers": [
+        {
+          "role": "symbol",
+          "color": "Black",
+          "shapes": [
+            {
+              "type": "polyline",
+              "width": 0.5,
+              "points": [
+                [
+                  -2,
+                  -2
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  -2,
+                  2
+                ],
+                [
+                  -2,
+                  -2
+                ]
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pict.3.28.placeholder",
+      "sign": "3.28",
+      "status": "Placeholder",
+      "source": "ГОСТ Р 52290-2024, прил. Б (масштабная сетка) — ЗАГЛУШКА, оцифровать студенту",
+      "note": "Схематичная стрелка/полоса. Реальную геометрию получить через odd-tools pictogram import.",
+      "grid": {
+        "cellsAcross": 12,
+        "spans": "D",
+        "origin": "center",
+        "yAxis": "up"
+      },
+      "layers": [
+        {
+          "role": "symbol",
+          "color": "Black",
+          "shapes": [
+            {
+              "type": "polyline",
+              "width": 0.5,
+              "points": [
+                [
+                  -2,
+                  -2
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  -2,
+                  2
+                ],
+                [
+                  -2,
+                  -2
+                ]
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pict.3.31.placeholder",
+      "sign": "3.31",
+      "status": "Placeholder",
+      "source": "ГОСТ Р 52290-2024, прил. Б (масштабная сетка) — ЗАГЛУШКА, оцифровать студенту",
+      "note": "Схематичная стрелка/полоса. Реальную геометрию получить через odd-tools pictogram import.",
+      "grid": {
+        "cellsAcross": 12,
+        "spans": "D",
+        "origin": "center",
+        "yAxis": "up"
+      },
+      "layers": [
+        {
+          "role": "symbol",
+          "color": "Black",
+          "shapes": [
+            {
+              "type": "polyline",
+              "width": 0.5,
+              "points": [
+                [
+                  -2,
+                  -2
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  -2,
+                  2
+                ],
+                [
+                  -2,
+                  -2
+                ]
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pict.5.5.placeholder",
+      "sign": "5.5",
+      "status": "Placeholder",
+      "source": "ГОСТ Р 52290-2024, прил. Б (масштабная сетка) — ЗАГЛУШКА, оцифровать студенту",
+      "note": "Схематичная стрелка/полоса. Реальную геометрию получить через odd-tools pictogram import.",
+      "grid": {
+        "cellsAcross": 12,
+        "spans": "D",
+        "origin": "center",
+        "yAxis": "up"
+      },
+      "layers": [
+        {
+          "role": "symbol",
+          "color": "White",
+          "shapes": [
+            {
+              "type": "polyline",
+              "width": 0.5,
+              "points": [
+                [
+                  -2,
+                  -2
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  -2,
+                  2
+                ],
+                [
+                  -2,
+                  -2
+                ]
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pict.5.6.placeholder",
+      "sign": "5.6",
+      "status": "Placeholder",
+      "source": "ГОСТ Р 52290-2024, прил. Б (масштабная сетка) — ЗАГЛУШКА, оцифровать студенту",
+      "note": "Схематичная стрелка/полоса. Реальную геометрию получить через odd-tools pictogram import.",
+      "grid": {
+        "cellsAcross": 12,
+        "spans": "D",
+        "origin": "center",
+        "yAxis": "up"
+      },
+      "layers": [
+        {
+          "role": "symbol",
+          "color": "White",
+          "shapes": [
+            {
+              "type": "polyline",
+              "width": 0.5,
+              "points": [
+                [
+                  -2,
+                  -2
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  -2,
+                  2
+                ],
+                [
+                  -2,
+                  -2
+                ]
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pict.5.7.1.placeholder",
+      "sign": "5.7.1",
+      "status": "Placeholder",
+      "source": "ГОСТ Р 52290-2024, прил. Б (масштабная сетка) — ЗАГЛУШКА, оцифровать студенту",
+      "note": "Схематичная стрелка/полоса. Реальную геометрию получить через odd-tools pictogram import.",
+      "grid": {
+        "cellsAcross": 12,
+        "spans": "D",
+        "origin": "center",
+        "yAxis": "up"
+      },
+      "layers": [
+        {
+          "role": "symbol",
+          "color": "White",
+          "shapes": [
+            {
+              "type": "polyline",
+              "width": 0.5,
+              "points": [
+                [
+                  -2,
+                  -2
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  -2,
+                  2
+                ],
+                [
+                  -2,
+                  -2
+                ]
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pict.5.7.2.placeholder",
+      "sign": "5.7.2",
+      "status": "Placeholder",
+      "source": "ГОСТ Р 52290-2024, прил. Б (масштабная сетка) — ЗАГЛУШКА, оцифровать студенту",
+      "note": "Схематичная стрелка/полоса. Реальную геометрию получить через odd-tools pictogram import.",
+      "grid": {
+        "cellsAcross": 12,
+        "spans": "D",
+        "origin": "center",
+        "yAxis": "up"
+      },
+      "layers": [
+        {
+          "role": "symbol",
+          "color": "White",
+          "shapes": [
+            {
+              "type": "polyline",
+              "width": 0.5,
+              "points": [
+                [
+                  -2,
+                  -2
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  -2,
+                  2
+                ],
+                [
+                  -2,
+                  -2
+                ]
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pict.5.16.placeholder",
+      "sign": "5.16",
+      "status": "Placeholder",
+      "source": "ГОСТ Р 52290-2024, прил. Б (масштабная сетка) — ЗАГЛУШКА, оцифровать студенту",
+      "note": "Схематичная стрелка/полоса. Реальную геометрию получить через odd-tools pictogram import.",
+      "grid": {
+        "cellsAcross": 12,
+        "spans": "D",
+        "origin": "center",
+        "yAxis": "up"
+      },
+      "layers": [
+        {
+          "role": "symbol",
+          "color": "White",
+          "shapes": [
+            {
+              "type": "polyline",
+              "width": 0.5,
+              "points": [
+                [
+                  -2,
+                  -2
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  -2,
+                  2
+                ],
+                [
+                  -2,
+                  -2
+                ]
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pict.5.19.1.placeholder",
+      "sign": "5.19.1",
+      "status": "Placeholder",
+      "source": "ГОСТ Р 52290-2024, прил. Б (масштабная сетка) — ЗАГЛУШКА, оцифровать студенту",
+      "note": "Схематичная стрелка/полоса. Реальную геометрию получить через odd-tools pictogram import.",
+      "grid": {
+        "cellsAcross": 12,
+        "spans": "D",
+        "origin": "center",
+        "yAxis": "up"
+      },
+      "layers": [
+        {
+          "role": "symbol",
+          "color": "White",
+          "shapes": [
+            {
+              "type": "polyline",
+              "width": 0.5,
+              "points": [
+                [
+                  -2,
+                  -2
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  -2,
+                  2
+                ],
+                [
+                  -2,
+                  -2
+                ]
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pict.5.19.2.placeholder",
+      "sign": "5.19.2",
+      "status": "Placeholder",
+      "source": "ГОСТ Р 52290-2024, прил. Б (масштабная сетка) — ЗАГЛУШКА, оцифровать студенту",
+      "note": "Схематичная стрелка/полоса. Реальную геометрию получить через odd-tools pictogram import.",
+      "grid": {
+        "cellsAcross": 12,
+        "spans": "D",
+        "origin": "center",
+        "yAxis": "up"
+      },
+      "layers": [
+        {
+          "role": "symbol",
+          "color": "White",
+          "shapes": [
+            {
+              "type": "polyline",
+              "width": 0.5,
+              "points": [
+                [
+                  -2,
+                  -2
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  -2,
+                  2
+                ],
+                [
+                  -2,
+                  -2
+                ]
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pict.5.20.placeholder",
+      "sign": "5.20",
+      "status": "Placeholder",
+      "source": "ГОСТ Р 52290-2024, прил. Б (масштабная сетка) — ЗАГЛУШКА, оцифровать студенту",
+      "note": "Схематичная стрелка/полоса. Реальную геометрию получить через odd-tools pictogram import.",
+      "grid": {
+        "cellsAcross": 12,
+        "spans": "D",
+        "origin": "center",
+        "yAxis": "up"
+      },
+      "layers": [
+        {
+          "role": "symbol",
+          "color": "White",
+          "shapes": [
+            {
+              "type": "polyline",
+              "width": 0.5,
+              "points": [
+                [
+                  -2,
+                  -2
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  -2,
+                  2
+                ],
+                [
+                  -2,
+                  -2
+                ]
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pict.5.21.placeholder",
+      "sign": "5.21",
+      "status": "Placeholder",
+      "source": "ГОСТ Р 52290-2024, прил. Б (масштабная сетка) — ЗАГЛУШКА, оцифровать студенту",
+      "note": "Схематичная стрелка/полоса. Реальную геометрию получить через odd-tools pictogram import.",
+      "grid": {
+        "cellsAcross": 12,
+        "spans": "D",
+        "origin": "center",
+        "yAxis": "up"
+      },
+      "layers": [
+        {
+          "role": "symbol",
+          "color": "White",
+          "shapes": [
+            {
+              "type": "polyline",
+              "width": 0.5,
+              "points": [
+                [
+                  -2,
+                  -2
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  -2,
+                  2
+                ],
+                [
+                  -2,
+                  -2
+                ]
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pict.5.22.placeholder",
+      "sign": "5.22",
+      "status": "Placeholder",
+      "source": "ГОСТ Р 52290-2024, прил. Б (масштабная сетка) — ЗАГЛУШКА, оцифровать студенту",
+      "note": "Схематичная стрелка/полоса. Реальную геометрию получить через odd-tools pictogram import.",
+      "grid": {
+        "cellsAcross": 12,
+        "spans": "D",
+        "origin": "center",
+        "yAxis": "up"
+      },
+      "layers": [
+        {
+          "role": "symbol",
+          "color": "White",
+          "shapes": [
+            {
+              "type": "polyline",
+              "width": 0.5,
+              "points": [
+                [
+                  -2,
+                  -2
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  -2,
+                  2
+                ],
+                [
+                  -2,
+                  -2
+                ]
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pict.5.41.placeholder",
+      "sign": "5.41",
+      "status": "Placeholder",
+      "source": "ГОСТ Р 52290-2024, прил. Б (масштабная сетка) — ЗАГЛУШКА, оцифровать студенту",
+      "note": "Схематичная стрелка/полоса. Реальную геометрию получить через odd-tools pictogram import.",
+      "grid": {
+        "cellsAcross": 12,
+        "spans": "D",
+        "origin": "center",
+        "yAxis": "up"
+      },
+      "layers": [
+        {
+          "role": "symbol",
+          "color": "White",
+          "shapes": [
+            {
+              "type": "polyline",
+              "width": 0.5,
+              "points": [
+                [
+                  -2,
+                  -2
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  -2,
+                  2
+                ],
+                [
+                  -2,
+                  -2
+                ]
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pict.5.42.placeholder",
+      "sign": "5.42",
+      "status": "Placeholder",
+      "source": "ГОСТ Р 52290-2024, прил. Б (масштабная сетка) — ЗАГЛУШКА, оцифровать студенту",
+      "note": "Схематичная стрелка/полоса. Реальную геометрию получить через odd-tools pictogram import.",
+      "grid": {
+        "cellsAcross": 12,
+        "spans": "D",
+        "origin": "center",
+        "yAxis": "up"
+      },
+      "layers": [
+        {
+          "role": "symbol",
+          "color": "White",
+          "shapes": [
+            {
+              "type": "polyline",
+              "width": 0.5,
+              "points": [
+                [
+                  -2,
+                  -2
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  -2,
+                  2
+                ],
+                [
+                  -2,
+                  -2
+                ]
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pict.6.3.1.placeholder",
+      "sign": "6.3.1",
+      "status": "Placeholder",
+      "source": "ГОСТ Р 52290-2024, прил. Б (масштабная сетка) — ЗАГЛУШКА, оцифровать студенту",
+      "note": "Схематичная стрелка/полоса. Реальную геометрию получить через odd-tools pictogram import.",
+      "grid": {
+        "cellsAcross": 12,
+        "spans": "D",
+        "origin": "center",
+        "yAxis": "up"
+      },
+      "layers": [
+        {
+          "role": "symbol",
+          "color": "White",
+          "shapes": [
+            {
+              "type": "polyline",
+              "width": 0.5,
+              "points": [
+                [
+                  -2,
+                  -2
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  -2,
+                  2
+                ],
+                [
+                  -2,
+                  -2
+                ]
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pict.8.4.1.placeholder",
+      "sign": "8.4.1",
+      "status": "Placeholder",
+      "source": "ГОСТ Р 52290-2024, прил. Б (масштабная сетка) — ЗАГЛУШКА, оцифровать студенту",
+      "note": "Схематичная стрелка/полоса. Реальную геометрию получить через odd-tools pictogram import.",
+      "grid": {
+        "cellsAcross": 12,
+        "spans": "D",
+        "origin": "center",
+        "yAxis": "up"
+      },
+      "layers": [
+        {
+          "role": "symbol",
+          "color": "Black",
+          "shapes": [
+            {
+              "type": "polyline",
+              "width": 0.5,
+              "points": [
+                [
+                  -2,
+                  -2
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  -2,
+                  2
+                ],
+                [
+                  -2,
+                  -2
+                ]
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pict.8.5.4.placeholder",
+      "sign": "8.5.4",
+      "status": "Placeholder",
+      "source": "ГОСТ Р 52290-2024, прил. Б (масштабная сетка) — ЗАГЛУШКА, оцифровать студенту",
+      "note": "Схематичная стрелка/полоса. Реальную геометрию получить через odd-tools pictogram import.",
+      "grid": {
+        "cellsAcross": 12,
+        "spans": "D",
+        "origin": "center",
+        "yAxis": "up"
+      },
+      "layers": [
+        {
+          "role": "symbol",
+          "color": "Black",
+          "shapes": [
+            {
+              "type": "polyline",
+              "width": 0.5,
+              "points": [
+                [
+                  -2,
+                  -2
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  -2,
+                  2
+                ],
+                [
+                  -2,
+                  -2
+                ]
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pict.8.6.1.placeholder",
+      "sign": "8.6.1",
+      "status": "Placeholder",
+      "source": "ГОСТ Р 52290-2024, прил. Б (масштабная сетка) — ЗАГЛУШКА, оцифровать студенту",
+      "note": "Схематичная стрелка/полоса. Реальную геометрию получить через odd-tools pictogram import.",
+      "grid": {
+        "cellsAcross": 12,
+        "spans": "D",
+        "origin": "center",
+        "yAxis": "up"
+      },
+      "layers": [
+        {
+          "role": "symbol",
+          "color": "Black",
+          "shapes": [
+            {
+              "type": "polyline",
+              "width": 0.5,
+              "points": [
+                [
+                  -2,
+                  -2
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  -2,
+                  2
+                ],
+                [
+                  -2,
+                  -2
+                ]
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pict.8.8.placeholder",
+      "sign": "8.8",
+      "status": "Placeholder",
+      "source": "ГОСТ Р 52290-2024, прил. Б (масштабная сетка) — ЗАГЛУШКА, оцифровать студенту",
+      "note": "Схематичная стрелка/полоса. Реальную геометрию получить через odd-tools pictogram import.",
+      "grid": {
+        "cellsAcross": 12,
+        "spans": "D",
+        "origin": "center",
+        "yAxis": "up"
+      },
+      "layers": [
+        {
+          "role": "symbol",
+          "color": "Black",
+          "shapes": [
+            {
+              "type": "polyline",
+              "width": 0.5,
+              "points": [
+                [
+                  -2,
+                  -2
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  -2,
+                  2
+                ],
+                [
+                  -2,
+                  -2
+                ]
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pict.8.15.1.placeholder",
+      "sign": "8.15.1",
+      "status": "Placeholder",
+      "source": "ГОСТ Р 52290-2024, прил. Б (масштабная сетка) — ЗАГЛУШКА, оцифровать студенту",
+      "note": "Схематичная стрелка/полоса. Реальную геометрию получить через odd-tools pictogram import.",
+      "grid": {
+        "cellsAcross": 12,
+        "spans": "D",
+        "origin": "center",
+        "yAxis": "up"
+      },
+      "layers": [
+        {
+          "role": "symbol",
+          "color": "Black",
+          "shapes": [
+            {
+              "type": "polyline",
+              "width": 0.5,
+              "points": [
+                [
+                  -2,
+                  -2
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  -2,
+                  2
+                ],
+                [
+                  -2,
+                  -2
+                ]
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pict.8.17.placeholder",
+      "sign": "8.17",
+      "status": "Placeholder",
+      "source": "ГОСТ Р 52290-2024, прил. Б (масштабная сетка) — ЗАГЛУШКА, оцифровать студенту",
+      "note": "Схематичная стрелка/полоса. Реальную геометрию получить через odd-tools pictogram import.",
+      "grid": {
+        "cellsAcross": 12,
+        "spans": "D",
+        "origin": "center",
+        "yAxis": "up"
+      },
+      "layers": [
+        {
+          "role": "symbol",
+          "color": "Black",
+          "shapes": [
+            {
+              "type": "polyline",
+              "width": 0.5,
+              "points": [
+                [
+                  -2,
+                  -2
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  -2,
+                  2
+                ],
+                [
+                  -2,
+                  -2
+                ]
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pict.8.24.placeholder",
+      "sign": "8.24",
+      "status": "Placeholder",
+      "source": "ГОСТ Р 52290-2024, прил. Б (масштабная сетка) — ЗАГЛУШКА, оцифровать студенту",
+      "note": "Схематичная стрелка/полоса. Реальную геометрию получить через odd-tools pictogram import.",
+      "grid": {
+        "cellsAcross": 12,
+        "spans": "D",
+        "origin": "center",
+        "yAxis": "up"
+      },
+      "layers": [
+        {
+          "role": "symbol",
+          "color": "Black",
+          "shapes": [
+            {
+              "type": "polyline",
+              "width": 0.5,
+              "points": [
+                [
+                  -2,
+                  -2
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  -2,
+                  2
+                ],
+                [
+                  -2,
+                  -2
+                ]
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

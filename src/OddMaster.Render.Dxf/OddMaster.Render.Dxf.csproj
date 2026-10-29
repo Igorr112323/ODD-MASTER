@@ -1,0 +1,10 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OddGenerateDocs>true</OddGenerateDocs>
+    <RootNamespace>OddMaster.Render.Dxf</RootNamespace>
+    <AssemblyName>OddMaster.Render.Dxf</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../OddMaster.Core/OddMaster.Core.csproj" />
+  </ItemGroup>
+</Project>

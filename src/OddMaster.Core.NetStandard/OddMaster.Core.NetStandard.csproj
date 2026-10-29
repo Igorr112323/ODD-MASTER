@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- CR-15: страховка до закрытия SDK-008. Это НЕ второй продукт: тот же исходник
+       OddMaster.Core компилируется под netstandard2.0, чтобы ядро можно было
+       загрузить в хост-процессе nanoCAD с более старым рантаймом. -->
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
+    <AssemblyName>OddMaster.Core.NetStandard</AssemblyName>
+    <RootNamespace>OddMaster.Core</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="../OddMaster.Core/**/*.cs"
+             Exclude="../OddMaster.Core/obj/**/*.cs;../OddMaster.Core/bin/**/*.cs" />
+    <!-- System.Text.Json 8.0.5 (MIT); версия и конфликт с хостом nanoCAD — SDK-008. -->
+    <PackageReference Include="System.Text.Json" Version="8.0.5" />
+  </ItemGroup>
+</Project>

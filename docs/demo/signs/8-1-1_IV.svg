@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-744 -444 1488 888" width="1488mm" height="888mm">
+  <metadata><odd:sign xmlns:odd="https://odd-master.local/metadata/1"
+      number="8.1.1"
+      sizeClass="IV"
+      profile="GOST_R_52290_2024"
+      sizeTable="Д.8"
+      outerBorderMm="10"
+      verification="borders=CuratorExtracted; catalog=CuratorExtracted; colors=Unverified; parameters=CuratorExtracted; sizeProfile=CuratorExtracted; textMetrics=Unverified"
+      isDraft="true"
+      colorimetry="DISPLAY_ONLY_NOT_GOST"/>
+  </metadata>
+  <g id="Geometry" transform="scale(1,-1)">
+    <g id="Layer-Outline">
+      <path d="M-600 -255 A45 45 0 0 1 -555 -300 L555 -300 A45 45 0 0 1 600 -255 L600 255 A45 45 0 0 1 555 300 L-555 300 A45 45 0 0 1 -600 255 L-600 -255 Z" fill="#1A1A1A" stroke="none"/>
+    </g>
+    <g id="Layer-Field">
+      <path d="M-590 -255 A35 35 0 0 1 -555 -290 L555 -290 A35 35 0 0 1 590 -255 L590 255 A35 35 0 0 1 555 290 L-555 290 A35 35 0 0 1 -590 255 L-590 -255 Z" fill="#FFFFFF" stroke="none"/>
+    </g>
+  </g>
+  <g id="Layer-Text"><text x="-224.247" y="40.165" font-family="DejaVu Sans Bold, Liberation Sans Bold, Arial Bold, sans-serif" font-weight="bold" font-size="175.392" fill="#1A1A1A">50 м</text></g>
+  <g id="DraftWatermark">
+    <text x="-145.314" y="-47.107" font-family="DejaVu Sans Bold, Liberation Sans Bold, Arial Bold, sans-serif" font-size="43.2" fill="#D7191C" fill-opacity="0.85">ЧЕРНОВИК:</text>
+    <text x="-405.276" y="6.893" font-family="DejaVu Sans Bold, Liberation Sans Bold, Arial Bold, sans-serif" font-size="43.2" fill="#D7191C" fill-opacity="0.85">есть непроверенные параметры</text>
+  </g>
+</svg>

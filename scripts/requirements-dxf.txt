@@ -1,0 +1,6 @@
+# Зависимости независимой перечитки DXF (scripts/dxf_verify.py).
+# Только для стенда и CI, в продукт не входят: плагин nanoCAD на C# их не использует.
+ezdxf==1.4.5
+matplotlib==3.11.2
+# Метрики шрифта (scripts/measure_font.py).
+fonttools==4.68.0

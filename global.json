@@ -1,0 +1,8 @@
+{
+  "sdk": {
+    "version": "8.0.100",
+    "rollForward": "latestFeature",
+    "allowPrerelease": false
+  },
+  "_comment": "Только официальный .NET 8 SDK. Резервные каналы и самосборный OpenSSL запрещены (CR-02, ADR-0017)."
+}

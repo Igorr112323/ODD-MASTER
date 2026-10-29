@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-558 -558 1116 1116" width="1116mm" height="1116mm">
+  <metadata><odd:sign xmlns:odd="https://odd-master.local/metadata/1"
+      number="3.18.2"
+      sizeClass="III"
+      profile="GOST_R_52290_2024"
+      sizeTable="Д.4"
+      outerBorderMm="10"
+      verification="borders=CuratorExtracted; catalog=CuratorExtracted; colors=Unverified; elements.bandBackslash=Unverified; elements.contourGrey=Unverified; innerBorder=Unverified; pictogram=Placeholder; sizeProfile=CuratorExtracted"
+      isDraft="true"
+      colorimetry="DISPLAY_ONLY_NOT_GOST"/>
+  </metadata>
+  <g id="Geometry" transform="scale(1,-1)">
+    <g id="Layer-Outline">
+      <path d="M450 0 A450 450 0 0 1 0 450 A450 450 0 0 1 -450 0 A450 450 0 0 1 0 -450 A450 450 0 0 1 450 0 Z" fill="#FFFFFF" stroke="none"/>
+    </g>
+    <g id="Layer-InnerBorder">
+      <path d="M440 0 A440 440 0 0 1 0 440 A440 440 0 0 1 -440 0 A440 440 0 0 1 0 -440 A440 440 0 0 1 440 0 Z" fill="#D7191C" stroke="none"/>
+    </g>
+    <g id="Layer-Field">
+      <path d="M361.7 0 A361.7 361.7 0 0 1 0 361.7 A361.7 361.7 0 0 1 -361.7 0 A361.7 361.7 0 0 1 0 -361.7 A361.7 361.7 0 0 1 361.7 0 Z" fill="#FFFFFF" stroke="none"/>
+    </g>
+    <g id="Layer-Composition">
+      <path d="M440 0 A440 440 0 0 1 0 440 A440 440 0 0 1 -440 0 A440 440 0 0 1 0 -440 A440 440 0 0 1 440 0 Z" fill="none" stroke="#808080" stroke-width="4.34"/>
+    </g>
+    <g id="Layer-Composition">
+      <path d="M-291.567 219.954 L219.954 -291.567 L291.567 -219.954 L-219.954 291.567 L-291.567 219.954 Z" fill="#D7191C" stroke="none"/>
+    </g>
+    <g id="Layer-Pictogram">
+      <path d="M97.2 0 L-21.6 0 L-21.6 47.52 L-97.2 0 L-21.6 -47.52 L-21.6 0 L97.2 0 Z" fill="none" stroke="#1A1A1A" stroke-width="10.8"/>
+    </g>
+  </g>
+  <g id="DraftWatermark">
+    <text x="-123.433" y="-59.531" font-family="DejaVu Sans Bold, Liberation Sans Bold, Arial Bold, sans-serif" font-size="36.695" fill="#D7191C" fill-opacity="0.85">ЧЕРНОВИК:</text>
+    <text x="-344.25" y="-13.663" font-family="DejaVu Sans Bold, Liberation Sans Bold, Arial Bold, sans-serif" font-size="36.695" fill="#D7191C" fill-opacity="0.85">есть непроверенные параметры</text>
+  </g>
+</svg>

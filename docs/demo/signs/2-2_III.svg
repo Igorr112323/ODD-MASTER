@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-789.131 -789.131 1578.262 1578.262" width="1578.262mm" height="1578.262mm">
+  <metadata><odd:sign xmlns:odd="https://odd-master.local/metadata/1"
+      number="2.2"
+      sizeClass="III"
+      profile="GOST_R_52290_2024"
+      sizeTable="Д.5"
+      outerBorderMm="10"
+      verification="borders=CuratorExtracted; catalog=CuratorExtracted; colors=Unverified; elements.bundleBackslash=Unverified; elements.contourGrey=Unverified; elements.diamondYellow=Unverified; sizeProfile=CuratorExtracted"
+      isDraft="true"
+      colorimetry="DISPLAY_ONLY_NOT_GOST"/>
+  </metadata>
+  <g id="Geometry" transform="scale(1,-1)">
+    <g id="Layer-Outline">
+      <path d="M0 636.396 L-636.396 0 L0 -636.396 L636.396 0 L0 636.396 Z" fill="#1A1A1A" stroke="none"/>
+    </g>
+    <g id="Layer-Field">
+      <path d="M0 622.254 L-622.254 0 L0 -622.254 L622.254 0 L0 622.254 Z" fill="#FFFFFF" stroke="none"/>
+    </g>
+    <g id="Layer-Composition">
+      <path d="M0 622.254 L-622.254 0 L0 -622.254 L622.254 0 L0 622.254 Z" fill="none" stroke="#808080" stroke-width="7.467"/>
+    </g>
+    <g id="Layer-Composition">
+      <path d="M0 -510.248 L510.248 0 L0 510.248 L-510.248 0 L0 -510.248 Z" fill="#FFD200" stroke="none"/>
+    </g>
+    <g id="Layer-Composition">
+      <path d="M-398.243 156.631 L190.321 -431.933 L207.921 -414.333 L-380.643 174.231 L-398.243 156.631 Z" fill="#1A1A1A" stroke="none"/>
+    </g>
+    <g id="Layer-Composition">
+      <path d="M-375.93 246.324 L246.324 -375.93 L263.924 -358.33 L-358.33 263.924 L-375.93 246.324 Z" fill="#1A1A1A" stroke="none"/>
+    </g>
+    <g id="Layer-Composition">
+      <path d="M-319.927 302.327 L302.327 -319.927 L319.927 -302.327 L-302.327 319.927 L-319.927 302.327 Z" fill="#1A1A1A" stroke="none"/>
+    </g>
+    <g id="Layer-Composition">
+      <path d="M-263.924 358.33 L358.33 -263.924 L375.93 -246.324 L-246.324 375.93 L-263.924 358.33 Z" fill="#1A1A1A" stroke="none"/>
+    </g>
+    <g id="Layer-Composition">
+      <path d="M-207.921 414.333 L380.643 -174.231 L398.243 -156.631 L-190.321 431.933 L-207.921 414.333 Z" fill="#1A1A1A" stroke="none"/>
+    </g>
+  </g>
+  <g id="DraftWatermark">
+    <text x="-174.56" y="-84.19" font-family="DejaVu Sans Bold, Liberation Sans Bold, Arial Bold, sans-serif" font-size="51.894" fill="#D7191C" fill-opacity="0.85">ЧЕРНОВИК:</text>
+    <text x="-486.843" y="-19.322" font-family="DejaVu Sans Bold, Liberation Sans Bold, Arial Bold, sans-serif" font-size="51.894" fill="#D7191C" fill-opacity="0.85">есть непроверенные параметры</text>
+  </g>
+</svg>

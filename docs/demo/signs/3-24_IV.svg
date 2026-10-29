@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-744 -744 1488 1488" width="1488mm" height="1488mm">
+  <metadata><odd:sign xmlns:odd="https://odd-master.local/metadata/1"
+      number="3.24"
+      sizeClass="IV"
+      profile="GOST_R_52290_2024"
+      sizeTable="Д.4"
+      outerBorderMm="10"
+      verification="borders=CuratorExtracted; catalog=CuratorExtracted; colors=Unverified; elements.contourGrey=Unverified; innerBorder=Unverified; parameters=CuratorExtracted; sizeProfile=CuratorExtracted; textMetrics=Unverified"
+      isDraft="true"
+      colorimetry="DISPLAY_ONLY_NOT_GOST"/>
+  </metadata>
+  <g id="Geometry" transform="scale(1,-1)">
+    <g id="Layer-Outline">
+      <path d="M600 0 A600 600 0 0 1 0 600 A600 600 0 0 1 -600 0 A600 600 0 0 1 0 -600 A600 600 0 0 1 600 0 Z" fill="#FFFFFF" stroke="none"/>
+    </g>
+    <g id="Layer-InnerBorder">
+      <path d="M590 0 A590 590 0 0 1 0 590 A590 590 0 0 1 -590 0 A590 590 0 0 1 0 -590 A590 590 0 0 1 590 0 Z" fill="#D7191C" stroke="none"/>
+    </g>
+    <g id="Layer-Field">
+      <path d="M485.6 0 A485.6 485.6 0 0 1 0 485.6 A485.6 485.6 0 0 1 -485.6 0 A485.6 485.6 0 0 1 0 -485.6 A485.6 485.6 0 0 1 485.6 0 Z" fill="#FFFFFF" stroke="none"/>
+    </g>
+    <g id="Layer-Composition">
+      <path d="M590 0 A590 590 0 0 1 0 590 A590 590 0 0 1 -590 0 A590 590 0 0 1 0 -590 A590 590 0 0 1 590 0 Z" fill="none" stroke="#808080" stroke-width="5.827"/>
+    </g>
+  </g>
+  <g id="Layer-Text"><text x="-204.35" y="67.255" font-family="DejaVu Sans Bold, Liberation Sans Bold, Arial Bold, sans-serif" font-weight="bold" font-size="293.691" fill="#1A1A1A">40</text></g>
+  <g id="DraftWatermark">
+    <text x="-164.577" y="-79.375" font-family="DejaVu Sans Bold, Liberation Sans Bold, Arial Bold, sans-serif" font-size="48.927" fill="#D7191C" fill-opacity="0.85">ЧЕРНОВИК:</text>
+    <text x="-459" y="-18.217" font-family="DejaVu Sans Bold, Liberation Sans Bold, Arial Bold, sans-serif" font-size="48.927" fill="#D7191C" fill-opacity="0.85">есть непроверенные параметры</text>
+  </g>
+</svg>

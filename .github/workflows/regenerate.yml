@@ -1,0 +1,97 @@
+# Регенерация эталонов и артефактов из CI (CR-26, ADR-0027).
+# Агент не может запускать .NET в песочнице, поэтому эталоны создаёт официальный SDK 8
+# в CI, а не локальный оракул. Включается меткой [regen] в сообщении коммита:
+# workflow_dispatch недоступен, пока файла нет в ветке main, а push — доступен.
+name: Регенерация артефактов
+
+on:
+  push:
+    branches-ignore: [main]
+  workflow_dispatch:
+    inputs:
+      reason:
+        description: 'Причина регенерации (попадёт в сообщение коммита)'
+        required: true
+        default: 'регенерация эталонов после правки ядра'
+
+permissions:
+  contents: write
+  # Комментарий с выжимкой упавших тестов: без этого токен не может писать в PR (E-079).
+  pull-requests: write
+  issues: write
+
+concurrency:
+  group: regenerate-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  regenerate:
+    name: Демо, эталоны, DXF-стенд
+    # Только по метке [regen] и только не для собственных коммитов (защита от цикла).
+    if: ${{ github.event_name == 'workflow_dispatch' || (contains(github.event.head_commit.message, '[regen]') && !startsWith(github.event.head_commit.message, 'chore(artifacts)')) }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+          # Стражу эталонов и классификатору падений нужна история и база origin/main.
+          fetch-depth: 0
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Зависимости перечитки
+        run: pip install -r scripts/requirements-dxf.txt
+      - name: Страж «эталон — закон» (F0)
+        # Молчаливая регенерация запрещена: в ветке должна быть запись REVIEW-NN.md
+        # с перечнем артефактов, причиной и CR (§9.3 LINUX_FIRST_PROGRAM).
+        run: python3 scripts/check_golden_review.py --base origin/main
+      - name: Сборка
+        run: dotnet build OddMaster.sln -warnaserror
+      - name: Строгий прогон тестов (эталоны не перезаписываются)
+        # Если падает что-то, кроме самих эталонов, — это ошибка, а не повод
+        # перезаписать ожидания. Классификатор ниже решает, можно ли регенерировать.
+        shell: bash
+        run: |
+          set -o pipefail
+          dotnet test OddMaster.sln --no-build --logger "console;verbosity=normal" 2>&1 | tee strict.log || true
+      - name: Классификация падений
+        run: python3 scripts/classify_test_failures.py strict.log
+      - name: Артефакты демо
+        run: |
+          dotnet run --project src/OddMaster.Demo --no-build -- all
+          dotnet run --project src/OddMaster.Demo --no-build -- dxf
+      - name: Эталоны SVG и отчёты
+        # Тесты запускаются с ODD_UPDATE_GOLDEN=1: эталоны перезаписываются, а падения
+        # не останавливают job — иначе обновлённые эталоны не попадут в коммит.
+        # Право на это даёт шаг «Классификация падений»: он уже отсеял обычные ошибки.
+        shell: bash
+        env:
+          ODD_UPDATE_GOLDEN: '1'
+        run: |
+          set -o pipefail
+          dotnet test OddMaster.sln --no-build --logger "console;verbosity=normal" 2>&1 | tee test.log || true
+      - name: Выжимка тестов в PR
+        if: always()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        shell: bash
+        run: bash scripts/ci-annotate.sh "$PR_NUMBER" test.log
+      - name: Независимая перечитка DXF
+        run: python3 scripts/dxf_verify.py --summary docs/demo/dxf/verification.md
+      - name: Коммит и пуш в ветку
+        run: |
+          # Логи — артефакт прогона, а не содержимое репозитория (E-081).
+          rm -f strict.log test.log build.log
+          git config user.name "ODD-Master CI"
+          git config user.email "ci@odd-master.local"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "Артефакты уже совпадают с эталонами — коммит не нужен."
+            exit 0
+          fi
+          git commit -m "chore(artifacts): ${{ inputs.reason || 'регенерация эталонов и демо-артефактов' }}"
+          git push origin "HEAD:${{ github.ref_name }}"

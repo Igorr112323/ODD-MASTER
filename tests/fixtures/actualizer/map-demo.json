@@ -1,0 +1,137 @@
+{
+  "map": "DEMO-2004-2024",
+  "title": "ДЕМО: синтетическая карта замен (не данные ГОСТ)",
+  "normRef": {
+    "doc": "не является нормативным документом",
+    "clause": "синтетическая фикстура"
+  },
+  "verification": "Placeholder",
+  "banner": "ДЕМО: правила выдуманы для проверки движка, не применять к реальным схемам.",
+  "note": "Боевая карта config/actualizer/map-2004-2024.json пустая (GOST-018).",
+  "isDemo": true,
+  "markers": [
+    "GOST-018"
+  ],
+  "rules": [
+    {
+      "id": "DEMO-R1",
+      "condition": {
+        "signs": "3.24",
+        "plates": [
+          "8.2.1"
+        ]
+      },
+      "result": {
+        "signs": "3.25",
+        "plates": [],
+        "note": "Условная замена для теста."
+      },
+      "category": "Replaced",
+      "normRef": {
+        "doc": "не является нормативным документом",
+        "clause": "ДЕМО"
+      },
+      "verification": "Placeholder",
+      "comment": "Синтетический номер, не из ГОСТ."
+    },
+    {
+      "id": "DEMO-R2",
+      "condition": {
+        "signs": "5.19.1",
+        "plates": []
+      },
+      "result": {
+        "signs": null,
+        "plates": [],
+        "note": "Условная отмена для теста."
+      },
+      "category": "Removed",
+      "normRef": {
+        "doc": "не является нормативным документом",
+        "clause": "ДЕМО"
+      },
+      "verification": "Placeholder",
+      "comment": "Синтетический номер, не из ГОСТ."
+    },
+    {
+      "id": "DEMO-R3",
+      "condition": {
+        "signs": "5.19.2",
+        "plates": []
+      },
+      "result": {
+        "signs": "6.4",
+        "plates": [],
+        "note": "Условное упрощение для теста."
+      },
+      "category": "AllowedSimplify",
+      "normRef": {
+        "doc": "не является нормативным документом",
+        "clause": "ДЕМО"
+      },
+      "verification": "Placeholder",
+      "comment": "Синтетический номер, не из ГОСТ."
+    },
+    {
+      "id": "DEMO-R4",
+      "condition": {
+        "signs": "5.19.1",
+        "plates": [
+          "8.2.1"
+        ]
+      },
+      "result": {
+        "signs": "3.24",
+        "plates": [],
+        "note": "Второе правило для проверки конфликта."
+      },
+      "category": "Replaced",
+      "normRef": {
+        "doc": "не является нормативным документом",
+        "clause": "ДЕМО"
+      },
+      "verification": "Placeholder",
+      "comment": "Намеренный конфликт с DEMO-R2."
+    },
+    {
+      "id": "DEMO-R5",
+      "condition": {
+        "signs": "5.19.3",
+        "plates": []
+      },
+      "result": {
+        "signs": null,
+        "plates": [],
+        "note": "Вторая условная отмена для теста."
+      },
+      "category": "Removed",
+      "normRef": {
+        "doc": "не является нормативным документом",
+        "clause": "ДЕМО"
+      },
+      "verification": "Placeholder",
+      "comment": "Синтетический номер, не из ГОСТ."
+    },
+    {
+      "id": "DEMO-R6",
+      "condition": {
+        "signs": "5.19.2",
+        "plates": [
+          "8.2.1"
+        ]
+      },
+      "result": {
+        "signs": "6.4",
+        "plates": [],
+        "note": "Второе правило для проверки конфликта."
+      },
+      "category": "Replaced",
+      "normRef": {
+        "doc": "не является нормативным документом",
+        "clause": "ДЕМО"
+      },
+      "verification": "Placeholder",
+      "comment": "Намеренный конфликт с DEMO-R3."
+    }
+  ]
+}
