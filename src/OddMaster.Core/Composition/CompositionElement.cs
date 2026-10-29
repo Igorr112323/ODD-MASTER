@@ -20,6 +20,8 @@ namespace OddMaster.Core.Composition
         Band,
         /// <summary>Пучок тонких полос под углом (2.2, 3.25, 3.31, 5.22, 5.42).</summary>
         Bundle,
+        /// <summary>Ромб-вставка (2.1, 2.2).</summary>
+        Diamond,
         /// <summary>Треугольник-вставка (5.19.x, 5.20).</summary>
         Triangle,
         /// <summary>Внутренняя панель (5.16, 6.2.1).</summary>

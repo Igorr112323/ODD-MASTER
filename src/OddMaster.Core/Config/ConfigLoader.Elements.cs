@@ -44,13 +44,14 @@ namespace OddMaster.Core.Config
                     case "cross": kind = CompositionKind.Cross; break;
                     case "band": kind = CompositionKind.Band; break;
                     case "bundle": kind = CompositionKind.Bundle; break;
+                    case "diamond": kind = CompositionKind.Diamond; break;
                     case "triangle": kind = CompositionKind.Triangle; break;
                     case "panel": kind = CompositionKind.Panel; break;
                     case "nested": kind = CompositionKind.Nested; break;
                     case "arrow": kind = CompositionKind.Arrow; break;
                     default:
                         throw new ConfigException(file, pointer + "/kind", "неизвестный вид элемента «" + kindRaw + "»",
-                            "допустимо: contour, rectangle, cross, band, bundle, triangle, panel, nested, arrow");
+                            "допустимо: contour, rectangle, cross, band, bundle, diamond, triangle, panel, nested, arrow");
                 }
                 var filled = kind != CompositionKind.Contour && kind != CompositionKind.Band &&
                              kind != CompositionKind.Bundle && kind != CompositionKind.Nested

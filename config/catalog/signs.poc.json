@@ -71,11 +71,12 @@
       "sizeTableId": "Д.5",
       "isPlate": false,
       "colors": {
-        "field": "Yellow",
-        "outerBorder": "White",
+        "field": "White",
+        "outerBorder": "Black",
+        "contour": "Grey",
         "symbol": "Black",
         "text": "Black",
-        "contour": "Grey"
+        "accent": "Yellow"
       },
       "text": null,
       "parameterKind": null,
@@ -88,7 +89,8 @@
       "verification": "CuratorExtracted",
       "note": "2.1: белый ромб с тонким серым контуром, внутри жёлтый ромб. Пиктограммы нет (CR-22).",
       "elements": [
-        "contourGrey"
+        "contourGrey",
+        "diamondYellow"
       ]
     },
     {
@@ -99,11 +101,12 @@
       "sizeTableId": "Д.5",
       "isPlate": false,
       "colors": {
-        "field": "Yellow",
-        "outerBorder": "White",
+        "field": "White",
+        "outerBorder": "Black",
+        "contour": "Grey",
         "symbol": "Black",
         "text": "Black",
-        "contour": "Grey"
+        "accent": "Yellow"
       },
       "text": null,
       "parameterKind": null,
@@ -117,6 +120,7 @@
       "note": "2.2: как 2.1 плюс пучок тонких чёрных полос «\\» (направление — прил. Б, стр. 76), [ПРОВЕРИТЬ].",
       "elements": [
         "contourGrey",
+        "diamondYellow",
         "bundleBackslash"
       ]
     },

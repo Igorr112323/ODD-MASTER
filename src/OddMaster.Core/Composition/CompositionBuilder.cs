@@ -38,6 +38,10 @@ namespace OddMaster.Core.Composition
                             Center(element, field), field.Width * element.WidthRatio,
                             field.Height * element.HeightRatio)));
                         break;
+                    case CompositionKind.Diamond:
+                        layers.Add(Filled(element, Diamond(Center(element, field),
+                            field.Width * element.WidthRatio, field.Height * element.HeightRatio)));
+                        break;
                     case CompositionKind.Triangle:
                         layers.Add(Filled(element, Triangle(
                             Center(element, field), field.Width * element.WidthRatio,
@@ -136,19 +140,39 @@ namespace OddMaster.Core.Composition
                 .Close();
         }
 
-        /// <summary>Полоса заданной длины и толщины под углом: замкнутый прямоугольник.</summary>
+        /// <summary>
+        /// Полоса заданной длины и толщины под углом: замкнутый прямоугольник.
+        /// Единичные векторы считаются один раз, углы — против часовой (Y вверх).
+        /// </summary>
         private static Path Band(Point2 center, double length, double width, double angleDeg)
         {
             var radians = angleDeg * Math.PI / 180.0;
-            var dx = Math.Cos(radians) * length / 2;
-            var dy = Math.Sin(radians) * length / 2;
-            var nx = -Math.Sin(radians) * width / 2;
-            var ny = Math.Cos(radians) * width / 2;
-            var a = new Point2(center.X - dx - nx, center.Y - dy - ny);
-            var b = new Point2(center.X + dx - nx, center.Y + dy - ny);
-            var c = new Point2(center.X + dx + nx, center.Y + dy + ny);
-            var d = new Point2(center.X - dx + nx, center.Y + dy + ny);
+            var ux = Math.Cos(radians);
+            var uy = Math.Sin(radians);
+            var px = -uy;
+            var py = ux;
+            var halfLength = length / 2;
+            var halfWidth = width / 2;
+            Point2 Corner(double along, double across) => new Point2(
+                center.X + ux * along + px * across,
+                center.Y + uy * along + py * across);
+            var a = Corner(-halfLength, -halfWidth);
+            var b = Corner(halfLength, -halfWidth);
+            var c = Corner(halfLength, halfWidth);
+            var d = Corner(-halfLength, halfWidth);
             return new Path(a).LineTo(b).LineTo(c).LineTo(d).Close();
+        }
+
+        /// <summary>Ромб (2.1/2.2): жёлтое поле внутри белого ромба.</summary>
+        private static Path Diamond(Point2 center, double width, double height)
+        {
+            var x = width / 2;
+            var y = height / 2;
+            return new Path(new Point2(center.X, center.Y - y))
+                .LineTo(new Point2(center.X + x, center.Y))
+                .LineTo(new Point2(center.X, center.Y + y))
+                .LineTo(new Point2(center.X - x, center.Y))
+                .Close();
         }
 
         private static IEnumerable<Path> Cross(Point2 center, double length, double width) => new[]

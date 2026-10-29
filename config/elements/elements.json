@@ -33,6 +33,13 @@
       "heightRatio": 0.16,
       "note": "3.1: белый горизонтальный прямоугольник («кирпич») по центру красного поля."
     },
+    "diamondYellow": {
+      "kind": "diamond",
+      "color": "Yellow",
+      "widthRatio": 0.82,
+      "heightRatio": 0.82,
+      "note": "2.1/2.2: жёлтый ромб внутри белого ромба (curator-measure, прил. А стр. 31); размер — временный (GOST-025)."
+    },
     "crossRed": {
       "kind": "cross",
       "color": "Red",

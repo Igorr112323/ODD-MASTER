@@ -28,7 +28,7 @@
         "type": "object",
         "required": ["kind", "color"],
         "properties": {
-          "kind": { "type": "string", "enum": ["contour", "rectangle", "cross", "band", "bundle", "triangle", "panel", "nested", "arrow"] },
+          "kind": { "type": "string", "enum": ["contour", "rectangle", "cross", "band", "bundle", "diamond", "triangle", "panel", "nested", "arrow"] },
           "color": { "type": "string", "minLength": 1 },
           "filled": { "type": "boolean" },
           "xRatio": { "type": "number", "minimum": -1, "maximum": 1 },
