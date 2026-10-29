@@ -148,7 +148,7 @@ namespace OddMaster.Core.Composition
         /// Единичные векторы считаются один раз, углы — против часовой (Y вверх).
         /// </summary>
         private static Path Band(Point2 center, double length, double width, double angleDeg,
-            IReadOnlyList<Point2> mask = null)
+            IReadOnlyList<Point2>? mask = null)
         {
             var radians = angleDeg * Math.PI / 180.0;
             var ux = Math.Cos(radians);
