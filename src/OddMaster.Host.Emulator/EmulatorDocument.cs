@@ -242,7 +242,7 @@ namespace OddMaster.Host.Emulator
             public string Name { get; }
         }
 
-        private sealed class EmulatorObject
+        internal sealed class EmulatorObject
         {
             public EmulatorObject(string type, string layer)
             {
