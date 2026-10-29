@@ -1,8 +1,8 @@
 Test run for /home/runner/work/ODD-MASTER/ODD-MASTER/tests/OddMaster.Core.Tests/bin/Debug/net8.0/OddMaster.Core.Tests.dll (.NETCoreApp,Version=v8.0)
-Test run for /home/runner/work/ODD-MASTER/ODD-MASTER/tests/OddMaster.Render.Svg.Tests/bin/Debug/net8.0/OddMaster.Render.Svg.Tests.dll (.NETCoreApp,Version=v8.0)
 VSTest version 17.11.1 (x64)
 
 Test run for /home/runner/work/ODD-MASTER/ODD-MASTER/tests/OddMaster.Render.Dxf.Tests/bin/Debug/net8.0/OddMaster.Render.Dxf.Tests.dll (.NETCoreApp,Version=v8.0)
+Test run for /home/runner/work/ODD-MASTER/ODD-MASTER/tests/OddMaster.Render.Svg.Tests/bin/Debug/net8.0/OddMaster.Render.Svg.Tests.dll (.NETCoreApp,Version=v8.0)
 VSTest version 17.11.1 (x64)
 
 VSTest version 17.11.1 (x64)
@@ -16,45 +16,49 @@ A total of 1 test files matched the specified pattern.
 [xUnit.net 00:00:00.00] xUnit.net VSTest Adapter v2.8.2+699d445a1a (64-bit .NET 8.0.33)
 [xUnit.net 00:00:00.00] xUnit.net VSTest Adapter v2.8.2+699d445a1a (64-bit .NET 8.0.33)
 [xUnit.net 00:00:00.00] xUnit.net VSTest Adapter v2.8.2+699d445a1a (64-bit .NET 8.0.33)
-[xUnit.net 00:00:00.11]   Discovering: OddMaster.Render.Dxf.Tests
-[xUnit.net 00:00:00.12]   Discovering: OddMaster.Render.Svg.Tests
-[xUnit.net 00:00:00.16]   Discovered:  OddMaster.Render.Svg.Tests
-[xUnit.net 00:00:00.15]   Discovered:  OddMaster.Render.Dxf.Tests
-[xUnit.net 00:00:00.17]   Starting:    OddMaster.Render.Svg.Tests
-[xUnit.net 00:00:00.16]   Starting:    OddMaster.Render.Dxf.Tests
-[xUnit.net 00:00:00.11]   Discovering: OddMaster.Core.Tests
-[xUnit.net 00:00:00.16]   Discovered:  OddMaster.Core.Tests
-[xUnit.net 00:00:00.17]   Starting:    OddMaster.Core.Tests
-  Passed M9-A01: адаптер не входит в OddMaster.sln, но есть в OddMaster.NanoCAD.sln [16 ms]
-  Passed M17-C04: без пересечения — пустой результат, а не мусор [12 ms]
-  Passed M9-A02: в репозитории нет DLL, EXE и PDF [20 ms]
-  Passed M1-N11: VerificationSummary детерминирован и помечает черновик [45 ms]
-  Passed M1-N04: одиночный номер «6.2» не совпадает с 6.2.1 [7 ms]
-  Passed M1-N03: порядок 3.2 < 3.10 < 3.24 и 2.3.7 < 2.4 [< 1 ms]
-  Passed M1-N01: разбор валидных номеров 3.24, 2.3.1, 8.21.3 [< 1 ms]
-  Passed M1-N02: «3..24», «3.24.», «a.1», «» — ошибка [4 ms]
-  Passed M1-N06: «6.14.2 - 6.16» не содержит 6.16.1 [9 ms]
-  Passed M1-N07: «1.1 - 2.4» пересекает группы и содержит 2.3.5 [< 1 ms]
-  Passed M1-N08: список из одиночных номеров и диапазонов [< 1 ms]
-  Passed M1-N05: дефис, en dash, em dash, с пробелами и без [< 1 ms]
-  Passed M1-N10: статусы проверки разбираются и StudentVerified — единственный проверенный [< 1 ms]
-  Passed M1-N09: некорректный список даёт FormatException, а не тихое ignore [< 1 ms]
-  Passed M1-M02: все SDK-NNN из адаптера есть в SDK_ASSUMPTIONS.md [57 ms]
-[xUnit.net 00:00:00.50]     M17-C05: библиотека элементов грузится, полосы в круге не выходят за контур [FAIL]
-[xUnit.net 00:00:00.51]       Проверка не прошла: угол обрезки дальше радиуса: 152.891
-[xUnit.net 00:00:00.51]       Stack Trace:
-[xUnit.net 00:00:00.51]         /home/runner/work/ODD-MASTER/ODD-MASTER/tests/OddMaster.Core.Tests/TestKit.cs(92,0): at OddMaster.TestKit.TestAssert.True(Boolean condition, String message)
-[xUnit.net 00:00:00.51]         /home/runner/work/ODD-MASTER/ODD-MASTER/tests/OddMaster.Core.Tests/PolygonClipTests.cs(99,0): at OddMaster.Core.Tests.PolygonClipTests.DiagonalBandsStayInsideCircle()
-[xUnit.net 00:00:00.51]            at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
-[xUnit.net 00:00:00.51]            at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
-  Passed M1-M01: все GOST-NNN из конфигов и кода есть в VERIFICATION_QUEUE.md [51 ms]
-  Passed M5-S07: перечень по опорам в порядке задания [232 ms]
-  Passed M2-G06: индивидуальное проектирование возвращает находку, а не геометрию [32 ms]
-  Passed M5-S03: экранирование CSV: кавычки и «;» в наименовании [1 ms]
-  Passed M2-G10: скругление, которое не помещается, даёт находку-причину [9 ms]
-  Passed M5-S09: табличная модель содержит 7 колонок и все строки [12 ms]
-  Passed M2-G07: нижний треугольник — зеркальное отражение верхнего [9 ms]
-  Failed M17-C05: библиотека элементов грузится, полосы в круге не выходят за контур [220 ms]
+[xUnit.net 00:00:00.09]   Discovering: OddMaster.Render.Svg.Tests
+[xUnit.net 00:00:00.08]   Discovering: OddMaster.Core.Tests
+[xUnit.net 00:00:00.08]   Discovering: OddMaster.Render.Dxf.Tests
+[xUnit.net 00:00:00.13]   Discovered:  OddMaster.Render.Svg.Tests
+[xUnit.net 00:00:00.13]   Starting:    OddMaster.Render.Svg.Tests
+[xUnit.net 00:00:00.13]   Discovered:  OddMaster.Core.Tests
+[xUnit.net 00:00:00.13]   Starting:    OddMaster.Core.Tests
+[xUnit.net 00:00:00.12]   Discovered:  OddMaster.Render.Dxf.Tests
+[xUnit.net 00:00:00.12]   Starting:    OddMaster.Render.Dxf.Tests
+  Passed M17-C04: без пересечения — пустой результат, а не мусор [9 ms]
+  Passed M4-A06: сдвиг оси на (50;0) меняет X, но не пикеты [24 ms]
+  Passed M4-A01: формат ПК12+35,40 и перенос разряда 1299,996 → ПК13+00,00 [1 ms]
+  Passed M4-A04: PointAt(Project(p)) ≈ p на прямой и ломаной [8 ms]
+  Passed M4-A13: поворот оси меняет координаты, сохраняя пикеты [< 1 ms]
+  Passed M4-A07: знак смещения: справа по ходу = «+» (ADR-0015) [< 1 ms]
+  Passed M4-A14: 200 случайных точек с фиксированным seed: проекция обратима [1 ms]
+  Passed M4-A11: diff журнала при сдвиге показывает X +50 [17 ms]
+  Passed M4-A05: проекция за концами оси помечается Outside [3 ms]
+  Passed M4-A09: Post.Mounts — упорядоченный список сверху вниз [< 1 ms]
+  Passed M4-A02: разбор и форматирование туда и обратно [21 ms]
+  Passed M4-A15: форматирование пикета и CSV не зависит от текущей культуры [7 ms]
+  Passed M4-A10: журнал координат: BOM, «;», запятая в дроби, детерминизм [< 1 ms]
+  Passed M4-A03: настраиваемый формат (пробел и точка) [< 1 ms]
+  Passed M4-A12: смена начального пикета меняет подпись, но не координаты [< 1 ms]
+  Passed M4-A08: сегмент нулевой длины → находка валидатора [7 ms]
+  Passed M5-S07: перечень по опорам в порядке задания [145 ms]
+  Passed M12-X10: LiveStatement добавляет и удаляет знаки, печатает CSV [41 ms]
+  Passed M5-S03: экранирование CSV: кавычки и «;» в наименовании [< 1 ms]
+  Passed M12-X13: DiffMapImporter покрывает все категории и статусы [2 ms]
+  Passed M12-X15: Arrow и MirrorPath обратимы на дугах [4 ms]
+  Passed M5-S09: табличная модель содержит 7 колонок и все строки [7 ms]
+  Passed M5-S04: CSV начинается с BOM и использует CRLF [9 ms]
+  Passed M5-S02: натуральная сортировка 3.2 < 3.10 < 3.24 [4 ms]
+[xUnit.net 00:00:00.37]     M17-C05: библиотека элементов грузится, полосы в круге не выходят за контур [FAIL]
+[xUnit.net 00:00:00.37]       Проверка не прошла: угол обрезки дальше радиуса: 152.891
+[xUnit.net 00:00:00.37]       Stack Trace:
+[xUnit.net 00:00:00.38]         /home/runner/work/ODD-MASTER/ODD-MASTER/tests/OddMaster.Core.Tests/TestKit.cs(92,0): at OddMaster.TestKit.TestAssert.True(Boolean condition, String message)
+[xUnit.net 00:00:00.38]         /home/runner/work/ODD-MASTER/ODD-MASTER/tests/OddMaster.Core.Tests/PolygonClipTests.cs(99,0): at OddMaster.Core.Tests.PolygonClipTests.DiagonalBandsStayInsideCircle()
+[xUnit.net 00:00:00.38]            at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+[xUnit.net 00:00:00.38]            at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+  Passed M12-X02: PictogramRegistry ловит ошибки статуса, сетки и ссылки на знак [24 ms]
+  Passed M5-S05: пустой вход → только шапка [14 ms]
+  Failed M17-C05: библиотека элементов грузится, полосы в круге не выходят за контур [152 ms]
   Error Message:
    Проверка не прошла: угол обрезки дальше радиуса: 152.891
   Stack Trace:
@@ -62,170 +66,166 @@ A total of 1 test files matched the specified pattern.
    at OddMaster.Core.Tests.PolygonClipTests.DiagonalBandsStayInsideCircle() in /home/runner/work/ODD-MASTER/ODD-MASTER/tests/OddMaster.Core.Tests/PolygonClipTests.cs:line 99
    at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
    at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
-  Passed M17-C01: отсечение внутри контура не меняет многоугольник [< 1 ms]
-  Passed M17-C03: выпуклый контур круглого знака даёт вершины не дальше радиуса [2 ms]
-  Passed M17-C02: полоса шире квадрата обрезается по его границе [1 ms]
-  Passed M5-S04: CSV начинается с BOM и использует CRLF [16 ms]
-  Passed M9-A04: GeometryPortWriter отдаёт примитивы без знания о САПР [251 ms]
+  Passed M17-C01: отсечение внутри контура не меняет многоугольник [1 ms]
+  Passed M17-C03: выпуклый контур круглого знака даёт вершины не дальше радиуса [8 ms]
+  Passed M17-C02: полоса шире квадрата обрезается по его границе [< 1 ms]
+  Passed M9-A01: адаптер не входит в OddMaster.sln, но есть в OddMaster.NanoCAD.sln [< 1 ms]
+  Passed M5-S06: golden-файлы ведомости CSV и MD [23 ms]
+  Passed M9-A02: в репозитории нет DLL, EXE и PDF [9 ms]
+  Passed M5-S01: группировка по номер + типоразмер + параметр [36 ms]
+  Passed M1-N11: VerificationSummary детерминирован и помечает черновик [38 ms]
+  Passed M1-N04: одиночный номер «6.2» не совпадает с 6.2.1 [< 1 ms]
+  Passed M1-N03: порядок 3.2 < 3.10 < 3.24 и 2.3.7 < 2.4 [< 1 ms]
+  Passed M1-N01: разбор валидных номеров 3.24, 2.3.1, 8.21.3 [< 1 ms]
+  Passed M12-X01: PictogramDefinition.ToJson содержит все поля [70 ms]
+  Passed M12-X16: JsonConfig читает отсутствующий файл как пустую строку [< 1 ms]
+  Passed M1-N02: «3..24», «3.24.», «a.1», «» — ошибка [1 ms]
+  Passed M1-N06: «6.14.2 - 6.16» не содержит 6.16.1 [< 1 ms]
+  Passed M1-N07: «1.1 - 2.4» пересекает группы и содержит 2.3.5 [< 1 ms]
+  Passed M1-N08: список из одиночных номеров и диапазонов [2 ms]
+  Passed M1-N05: дефис, en dash, em dash, с пробелами и без [< 1 ms]
+  Passed M1-N10: статусы проверки разбираются и StudentVerified — единственный проверенный [< 1 ms]
+  Passed M1-N09: некорректный список даёт FormatException, а не тихое ignore [< 1 ms]
+  Passed M5-S08: CSV и Markdown не зависят от текущей культуры [20 ms]
+  Passed M9-A04: GeometryPortWriter отдаёт примитивы без знания о САПР [56 ms]
+  Passed M7-A01: боевая карта замен пустая, ДЕМО-карта помечена [19 ms]
   Passed M9-A03: все SDK-NNN вызовы в адаптере зарегистрированы [< 1 ms]
-  Passed SMOKE-01: репозиторий доступен из теста [< 1 ms]
-  Passed SMOKE-02: сборка Core загружается [< 1 ms]
-  Passed M5-S02: натуральная сортировка 3.2 < 3.10 < 3.24 [27 ms]
-  Passed M5-S05: пустой вход → только шапка [20 ms]
-  Passed M12-X10: LiveStatement добавляет и удаляет знаки, печатает CSV [56 ms]
-  Passed M5-S06: golden-файлы ведомости CSV и MD [17 ms]
-  Passed M12-X13: DiffMapImporter покрывает все категории и статусы [8 ms]
-  Passed M12-X15: Arrow и MirrorPath обратимы на дугах [< 1 ms]
-  Passed M13-D13 Палитра ACI покрывает все цвета каталога знаков [108 ms]
-  Passed M15-W01 Блок из нескольких строк целиком влезает в прямоугольник [123 ms]
-  Passed M15-W07 Живой пересчёт: дельта на одно событие [40 ms]
-  Passed M13-D09 Сетка ведомости: полный комплект линий и подписей в DXF [99 ms]
-  Passed M13-D08 Текст каждой ячейки ведомости помещается в свою ячейку [1 ms]
-  Passed M14-B02 В DXF кайма даёт два залитых контура и красный цвет каталога [218 ms]
-  Passed M14-B01 Внутренняя кайма — залитая полоса между двумя контурами [13 ms]
-  Passed M14-B06 Метрики шрифта измерены по файлу, а не выдуманы [1 ms]
+  Passed M10-P09: накладка содержит растр и полупрозрачный знак [< 1 ms]
+  Passed M12-X05: импортёр отклоняет SVG без линий и кривые [36 ms]
+  Passed M10-P05: геометрия зеркальной пары совпадает с отражением [15 ms]
+  Passed M10-P07: реестр пиктограмм прошёл валидацию, пустых статусов нет [6 ms]
+  Passed M10-P04: mirrorOf и composedOf ссылаются на существующие знаки [4 ms]
+  Passed M10-P06: параметры знаков MVP валидируются по табл. Д.1 [6 ms]
+  Passed M10-P10: CSV-номенклатура разбирается и даёт заготовки [6 ms]
+  Passed M10-P11: шаблон таблицы различий имеет 8 колонок [2 ms]
+  Passed M7-A07: два прогона и две культуры дают одинаковый отчёт [45 ms]
+[xUnit.net 00:00:00.52]     M16-E07 Цвета MVP-30: поле и кайма заданы каталогом, не кодом [FAIL]
+[xUnit.net 00:00:00.52]       Проверка не прошла: ожидалось «Yellow», получено «White». 
+[xUnit.net 00:00:00.52]       Stack Trace:
+[xUnit.net 00:00:00.52]         /home/runner/work/ODD-MASTER/ODD-MASTER/tests/OddMaster.Render.Svg.Tests/TestKit.cs(113,0): at OddMaster.TestKit.TestAssert.Equal[T](T expected, T actual, String message)
+[xUnit.net 00:00:00.52]         /home/runner/work/ODD-MASTER/ODD-MASTER/tests/OddMaster.Render.Svg.Tests/CompositionTests.cs(185,0): at OddMaster.Render.Svg.Tests.CompositionTests.E07_ColorsFromCatalog()
+[xUnit.net 00:00:00.52]            at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+[xUnit.net 00:00:00.52]            at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+  Passed M13-D14 Ошибочные допуски и радиусы отсекаются исключениями [14 ms]
+  Passed M15-W01 Блок из нескольких строк целиком влезает в прямоугольник [95 ms]
+  Passed M15-W07 Живой пересчёт: дельта на одно событие [36 ms]
+  Passed M13-D03 Знак уходит в DXF заливкой, дугами и текстом; цвета из каталога [133 ms]
+  Passed M14-B02 В DXF кайма даёт два залитых контура и красный цвет каталога [157 ms]
+  Passed M13-D02 Каждый слой сущностей объявлен в таблице LAYER [3 ms]
+  Passed M14-B01 Внутренняя кайма — залитая полоса между двумя контурами [9 ms]
+  Passed M14-B06 Метрики шрифта измерены по файлу, а не выдуманы [2 ms]
   Passed M14-B08 Скрипт измерения шрифта документирован и детерминирован [< 1 ms]
   Passed M14-B07 Текст STOP помещается в поле восьмиугольника 2.5 [< 1 ms]
   Passed M14-B03 У знака без внутренней каймы слоя InnerBorder нет [< 1 ms]
-  Passed M13-D10 Схема в DXF: ось, опоры, стопки знаков и баннер ЧЕРНОВИК [67 ms]
-  Passed M13-D07 Render.Dxf не знает CAD-API: только строки DXF [< 1 ms]
-  Passed M14-B05 Таблица в DXF: кегль каждой подписи внутри своей ячейки [52 ms]
-  Passed M13-D14 Ошибочные допуски и радиусы отсекаются исключениями [1 ms]
-  Passed M14-B04 Высота текста в DXF = высота прописных, а не кегль модели [15 ms]
-  Passed M13-D03 Знак уходит в DXF заливкой, дугами и текстом; цвета из каталога [15 ms]
-  Passed M13-D02 Каждый слой сущностей объявлен в таблице LAYER [4 ms]
-  Passed M13-D04 Вся геометрия DXF внутри габарита знака [13 ms]
-  Passed M15-W06 DXF-стенд: live-before/live-after/control и их отчёт [198 ms]
-  Passed M13-D05 Детерминизм: два прогона дают побайтно одинаковый DXF [26 ms]
-  Passed M13-D01 DXF R12: HEADER с AC1009, ENDSEC, EOF, файл ASCII [11 ms]
-  Passed M13-D06 Кириллица кодируется \U+XXXX и декодируется обратно [3 ms]
-[xUnit.net 00:00:00.69]   Finished:    OddMaster.Render.Dxf.Tests
-  Passed M7-A01: боевая карта замен пустая, ДЕМО-карта помечена [59 ms]
-  Passed M2-G01: POC-знаки генерируются во всех предусмотренных типоразмерах [107 ms]
-  Passed M5-S01: группировка по номер + типоразмер + параметр [27 ms]
-  Passed M12-X02: PictogramRegistry ловит ошибки статуса, сетки и ссылки на знак [38 ms]
-  Passed M2-G04: 2.5 в типоразмере I → находка со ссылкой на Д.3 [27 ms]
-  Passed M5-S08: CSV и Markdown не зависят от текущей культуры [35 ms]
-[xUnit.net 00:00:00.75]     M16-E07 Цвета MVP-30: поле и кайма заданы каталогом, не кодом [FAIL]
-[xUnit.net 00:00:00.76]       Проверка не прошла: ожидалось «Yellow», получено «White». 
-[xUnit.net 00:00:00.76]       Stack Trace:
-[xUnit.net 00:00:00.76]         /home/runner/work/ODD-MASTER/ODD-MASTER/tests/OddMaster.Render.Svg.Tests/TestKit.cs(113,0): at OddMaster.TestKit.TestAssert.Equal[T](T expected, T actual, String message)
-[xUnit.net 00:00:00.76]         /home/runner/work/ODD-MASTER/ODD-MASTER/tests/OddMaster.Render.Svg.Tests/CompositionTests.cs(185,0): at OddMaster.Render.Svg.Tests.CompositionTests.E07_ColorsFromCatalog()
-[xUnit.net 00:00:00.76]            at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
-[xUnit.net 00:00:00.76]            at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
-  Passed M2-G03: ширина наружной каймы 10/20 мм приходит из borders.json [19 ms]
-  Passed M2-G11: габарит окружности по дугам равен диаметру [< 1 ms]
-  Passed M12-X01: PictogramDefinition.ToJson содержит все поля [38 ms]
-  Passed M2-G13: в исходниках Core нет Multicad/Teigha/Avalonia/WinForms/WPF/Render [9 ms]
-  Passed M2-G12: восьмиугольник: B — расстояние между параллельными сторонами [< 1 ms]
-  Passed M12-X16: JsonConfig читает отсутствующий файл как пустую строку [< 1 ms]
-  Passed M7-A07: два прогона и две культуры дают одинаковый отчёт [109 ms]
-  Passed M2-G02: габариты совпадают с данными прил. Д (0,01 мм) [44 ms]
-  Passed M6-C09: отчёт не зависит от текущей культуры [76 ms]
-  Passed M2-G05: 3.24 со скоростью 45 → находка, 40 → геометрия [20 ms]
-  Passed M12-X05: импортёр отклоняет SVG без линий и кривые [62 ms]
-  Passed M6-C02: отчёт содержит находки всех правил R001–R007 [16 ms]
-  Passed M7-A04: баннер прямо говорит о ДЕМО и несверенной карте [30 ms]
-  Passed M6-C03: находки отсортированы по пикету, затем по месту и правилу [14 ms]
-  Passed M7-A05: с пустой боевой картой нет замен и отмен [16 ms]
-  Passed M2-G08: неизвестная внутренняя кайма → заглушка, GOST-001 и ЧЕРНОВИК [25 ms]
-  Passed M6-C01: CSV-фикстура разбирается: 11 записей, BOM и запятая в дроби [17 ms]
-  Passed M2-G09: два прогона дают одинаковую геометрию [15 ms]
-  Passed M7-A11 (CR-11): >=12 элементов и >=2 в каждой категории [18 ms]
-  Passed M12-X11: легенда пустой схемы и JSON листа [44 ms]
-  Passed M13-D11 Развёртка дуги любого знака превращается в пару 50/51 против часовой [3 ms]
+  Passed M13-D04 Вся геометрия DXF внутри габарита знака [15 ms]
+  Passed M13-D05 Детерминизм: два прогона дают побайтно одинаковый DXF [49 ms]
+  Passed M13-D01 DXF R12: HEADER с AC1009, ENDSEC, EOF, файл ASCII [33 ms]
+  Passed M14-B05 Таблица в DXF: кегль каждой подписи внутри своей ячейки [95 ms]
+  Passed M13-D06 Кириллица кодируется \U+XXXX и декодируется обратно [10 ms]
+  Passed M13-D11 Развёртка дуги любого знака превращается в пару 50/51 против часовой [< 1 ms]
   Passed M13-D12 Недопустимое имя слоя — исключение, а не битый DXF [< 1 ms]
-  Passed M15-W08 Сценарий детерминирован: повторный прогон даёт те же байты [82 ms]
+  Passed M14-B04 Высота текста в DXF = высота прописных, а не кегль модели [18 ms]
+  Passed M13-D13 Палитра ACI покрывает все цвета каталога знаков [< 1 ms]
+  Passed M13-D09 Сетка ведомости: полный комплект линий и подписей в DXF [11 ms]
+  Passed M13-D08 Текст каждой ячейки ведомости помещается в свою ячейку [1 ms]
+  Passed M13-D10 Схема в DXF: ось, опоры, стопки знаков и баннер ЧЕРНОВИК [25 ms]
+  Passed M13-D07 Render.Dxf не знает CAD-API: только строки DXF [< 1 ms]
+  Passed M15-W06 DXF-стенд: live-before/live-after/control и их отчёт [222 ms]
+  Passed M10-P01: каталог содержит 30 знаков и 11 табличек [13 ms]
+  Passed M12-X11: легенда пустой схемы и JSON листа [44 ms]
+  Passed M7-A04: баннер прямо говорит о ДЕМО и несверенной карте [18 ms]
+  Passed M10-P03: каждый знак MVP генерируется хотя бы в одном типоразмере [19 ms]
+  Passed M7-A05: с пустой боевой картой нет замен и отмен [15 ms]
+  Passed M10-P08: импорт синтетической стрелки даёт StudentTranscribed [14 ms]
+  Passed M7-A11 (CR-11): >=12 элементов и >=2 в каждой категории [22 ms]
+  Passed M10-P02: у всех записей есть наименование и честный статус [8 ms]
+  Passed SMOKE-01: репозиторий доступен из теста [< 1 ms]
+  Passed SMOKE-02: сборка Core загружается [< 1 ms]
+  Passed M7-A06: golden-файлы отчёта актуализатора [12 ms]
+  Passed M7-A02: отчёт содержит все шесть категорий [13 ms]
+  Passed M12-X09: документ схемы хранит зоны и длину зоны [73 ms]
+  Passed M1-M02: все SDK-NNN из адаптера есть в SDK_ASSUMPTIONS.md [31 ms]
+  Passed M12-X12: ZoneRuleSet требует normRef/verification [3 ms]
+  Passed M12-X07: накладка без viewBox использует запасной размер [< 1 ms]
+  Passed M12-X06: Дуглас–Пекер сохраняет изломы и вырожденные линии [< 1 ms]
+  Passed M12-X04: импортёр понимает path M/L, polygon и несколько линий [< 1 ms]
+  Passed M7-A09: неизвестный блок → Unknown, шаблон NONE [11 ms]
+  Passed M12-X14: FontMetrics и TextEngine работают с неизвестными символами [15 ms]
+  Passed M7-A10: номер из каталога 2024 без правила карты → Unchanged [14 ms]
+  Passed M12-X03: реестр без папки даёт понятную ошибку [< 1 ms]
+  Passed M12-X08: nomenclature импорт ловит битые строки [< 1 ms]
+  Passed M1-M01: все GOST-NNN из конфигов и кода есть в VERIFICATION_QUEUE.md [21 ms]
+  Passed M2-G06: индивидуальное проектирование возвращает находку, а не геометрию [5 ms]
+  Passed M2-G10: скругление, которое не помещается, даёт находку-причину [< 1 ms]
+  Passed M2-G07: нижний треугольник — зеркальное отражение верхнего [1 ms]
+  Passed M7-A03: конфликт правил → NeedsDecision с обоих идентификаторами [11 ms]
+  Passed M11-D04: легенда содержит уникальные знаки по номеру [4 ms]
+  Passed M11-D08: импорт CSV различий строит правила по категориям [< 1 ms]
+  Passed M11-D06: правила зон 8.2.x из конфига со статусом Unverified [1 ms]
+  Passed M2-G01: POC-знаки генерируются во всех предусмотренных типоразмерах [13 ms]
+  Passed M7-A08: CSV-отчёт с BOM и CRLF [12 ms]
+  Passed M2-G04: 2.5 в типоразмере I → находка со ссылкой на Д.3 [4 ms]
+  Passed M11-D01: документ схемы имеет schemaVersion и устойчивые ID [11 ms]
+  Passed M11-D09: демо-артефакты ядра существуют и помечены ДЕМО [< 1 ms]
+  Passed M2-G03: ширина наружной каймы 10/20 мм приходит из borders.json [7 ms]
+  Passed M2-G11: габарит окружности по дугам равен диаметру [< 1 ms]
+  Passed M11-D03: перф-тест — 1000 стоек, одно изменение < 50 мс [9 ms]
+  Passed M11-D07: реестр подсказок Р 52289 честно пуст [< 1 ms]
+  Passed M11-D05: модель листа сериализуется детерминированно [< 1 ms]
+  Passed M2-G13: в исходниках Core нет Multicad/Teigha/Avalonia/WinForms/WPF/Render [3 ms]
+  Passed M2-G12: восьмиугольник: B — расстояние между параллельными сторонами [< 1 ms]
+  Passed M11-D02: живая ведомость даёт дельту только по изменённым строкам [3 ms]
+  Passed M2-G02: габариты совпадают с данными прил. Д (0,01 мм) [4 ms]
+  Passed M2-G05: 3.24 со скоростью 45 → находка, 40 → геометрия [3 ms]
+  Passed M6-C09: отчёт не зависит от текущей культуры [27 ms]
+  Passed M2-G08: неизвестная внутренняя кайма → заглушка, GOST-001 и ЧЕРНОВИК [4 ms]
+  Passed M2-G09: два прогона дают одинаковую геометрию [2 ms]
+  Passed M6-C02: отчёт содержит находки всех правил R001–R007 [4 ms]
+  Passed M6-C03: находки отсортированы по пикету, затем по месту и правилу [4 ms]
+  Passed M6-C01: CSV-фикстура разбирается: 11 записей, BOM и запятая в дроби [4 ms]
+  Passed M6-C04: баннер «ЧЕРНОВИК» и пометка «не проверено по ГОСТ» [7 ms]
+  Passed M6-C05: CSV-отчёт с BOM, «;», CRLF и без времени/GUID [4 ms]
+[xUnit.net 00:00:00.73]   Finished:    OddMaster.Render.Dxf.Tests
+  Passed M6-C06: golden-файлы отчёта аудитора [4 ms]
+  Passed M6-C11 (CR-12): одна находка — одна запись, ID согласованы [5 ms]
+  Passed M6-C12 (CR-12): пометка «не проверено по ГОСТ» только у Unverified/Placeholder [4 ms]
+  Passed M6-C08: пустая схема даёт только глобальный пробел по кайме [3 ms]
+  Passed M6-C07: дубли R001 учитывают допуск из controls.json [4 ms]
+  Passed M6-C10: неверный заголовок CSV даёт понятную русскую ошибку [< 1 ms]
+  Passed M1-C10: форматирование чисел не зависит от текущей культуры [308 ms]
+  Passed M1-C05: валидатор автоматически находит несостыковки 1–4 [20 ms]
+  Passed M1-C04: 2.5 в типоразмере I даёт находку со ссылкой на Д.3 [3 ms]
+  Passed M15-W08 Сценарий детерминирован: повторный прогон даёт те же байты [198 ms]
   Passed M15-W04 Пустой текст и одиночное слово: без падения и без пустых строк [< 1 ms]
   Passed M15-W05 Ведомость: узкая колонка не даёт кегль ниже 2 мм [1 ms]
-  Passed M15-W02 Перенос по словам: каждая строка влезает, кегль один [6 ms]
+  Passed M15-W02 Перенос по словам: каждая строка влезает, кегль один [2 ms]
   Passed M15-W03 Слово без пробелов режется по символам, а не вылезает [< 1 ms]
 
-  Passed M6-C04: баннер «ЧЕРНОВИК» и пометка «не проверено по ГОСТ» [14 ms]
-  Passed M11-D04: легенда содержит уникальные знаки по номеру [16 ms]
-  Passed M11-D08: импорт CSV различий строит правила по категориям [3 ms]
-  Passed M11-D06: правила зон 8.2.x из конфига со статусом Unverified [2 ms]
-  Passed M6-C05: CSV-отчёт с BOM, «;», CRLF и без времени/GUID [13 ms]
-  Passed M7-A06: golden-файлы отчёта актуализатора [36 ms]
 Test Run Successful.
 Total tests: 30
      Passed: 30
- Total time: 1.4416 Seconds
-  Passed M6-C06: golden-файлы отчёта аудитора [15 ms]
-  Passed M12-X09: документ схемы хранит зоны и длину зоны [38 ms]
-  Passed M12-X12: ZoneRuleSet требует normRef/verification [6 ms]
-  Passed M12-X07: накладка без viewBox использует запасной размер [< 1 ms]
-  Passed M12-X06: Дуглас–Пекер сохраняет изломы и вырожденные линии [4 ms]
-  Passed M12-X04: импортёр понимает path M/L, polygon и несколько линий [< 1 ms]
-  Passed M6-C11 (CR-12): одна находка — одна запись, ID согласованы [12 ms]
-  Passed M11-D01: документ схемы имеет schemaVersion и устойчивые ID [36 ms]
-  Passed M11-D09: демо-артефакты ядра существуют и помечены ДЕМО [< 1 ms]
-  Passed M12-X14: FontMetrics и TextEngine работают с неизвестными символами [15 ms]
-  Passed M12-X03: реестр без папки даёт понятную ошибку [< 1 ms]
-  Passed M12-X08: nomenclature импорт ловит битые строки [1 ms]
-  Passed M6-C12 (CR-12): пометка «не проверено по ГОСТ» только у Unverified/Placeholder [9 ms]
-  Passed M10-P09: накладка содержит растр и полупрозрачный знак [3 ms]
-  Passed M7-A02: отчёт содержит все шесть категорий [42 ms]
-  Passed M6-C08: пустая схема даёт только глобальный пробел по кайме [13 ms]
-  Passed M11-D03: перф-тест — 1000 стоек, одно изменение < 50 мс [30 ms]
-  Passed M11-D07: реестр подсказок Р 52289 честно пуст [< 1 ms]
-  Passed M11-D05: модель листа сериализуется детерминированно [< 1 ms]
-  Passed M10-P05: геометрия зеркальной пары совпадает с отражением [19 ms]
-  Passed M6-C07: дубли R001 учитывают допуск из controls.json [16 ms]
-  Passed M6-C10: неверный заголовок CSV даёт понятную русскую ошибку [< 1 ms]
-  Passed M4-A06: сдвиг оси на (50;0) меняет X, но не пикеты [3 ms]
-  Passed M11-D02: живая ведомость даёт дельту только по изменённым строкам [14 ms]
-  Passed M4-A01: формат ПК12+35,40 и перенос разряда 1299,996 → ПК13+00,00 [< 1 ms]
-  Passed M4-A04: PointAt(Project(p)) ≈ p на прямой и ломаной [< 1 ms]
-  Passed M4-A13: поворот оси меняет координаты, сохраняя пикеты [< 1 ms]
-  Passed M4-A07: знак смещения: справа по ходу = «+» (ADR-0015) [< 1 ms]
-  Passed M4-A14: 200 случайных точек с фиксированным seed: проекция обратима [1 ms]
-  Passed M7-A09: неизвестный блок → Unknown, шаблон NONE [34 ms]
-  Passed M10-P07: реестр пиктограмм прошёл валидацию, пустых статусов нет [19 ms]
-  Passed M4-A11: diff журнала при сдвиге показывает X +50 [8 ms]
-  Passed M4-A05: проекция за концами оси помечается Outside [< 1 ms]
-  Passed M4-A09: Post.Mounts — упорядоченный список сверху вниз [< 1 ms]
-  Passed M4-A02: разбор и форматирование туда и обратно [1 ms]
-  Passed M4-A15: форматирование пикета и CSV не зависит от текущей культуры [1 ms]
-  Passed M4-A10: журнал координат: BOM, «;», запятая в дроби, детерминизм [< 1 ms]
-  Passed M10-P04: mirrorOf и composedOf ссылаются на существующие знаки [9 ms]
-  Passed M4-A03: настраиваемый формат (пробел и точка) [< 1 ms]
-  Passed M4-A12: смена начального пикета меняет подпись, но не координаты [< 1 ms]
-  Passed M4-A08: сегмент нулевой длины → находка валидатора [< 1 ms]
-  Passed M1-C10: форматирование чисел не зависит от текущей культуры [42 ms]
-  Passed M10-P06: параметры знаков MVP валидируются по табл. Д.1 [24 ms]
-  Passed M10-P10: CSV-номенклатура разбирается и даёт заготовки [< 1 ms]
-  Passed M10-P11: шаблон таблицы различий имеет 8 колонок [< 1 ms]
-  Passed M10-P01: каталог содержит 30 знаков и 11 табличек [5 ms]
-  Passed M7-A10: номер из каталога 2024 без правила карты → Unchanged [48 ms]
-  Passed M10-P03: каждый знак MVP генерируется хотя бы в одном типоразмере [8 ms]
-  Passed M10-P08: импорт синтетической стрелки даёт StudentTranscribed [1 ms]
-  Passed M10-P02: у всех записей есть наименование и честный статус [5 ms]
-  Passed M1-C05: валидатор автоматически находит несостыковки 1–4 [35 ms]
-  Passed M7-A03: конфликт правил → NeedsDecision с обоих идентификаторами [20 ms]
-  Passed M1-C04: 2.5 в типоразмере I даёт находку со ссылкой на Д.3 [5 ms]
+ Total time: 1.3126 Seconds
+[xUnit.net 00:00:01.06]   Finished:    OddMaster.Core.Tests
   Passed M1-C03: POC-знаки разрешаются в нужные таблицы Д.2–Д.8 [6 ms]
-  Passed M1-C09: битый конфиг даёт понятную ошибку с именем файла [3 ms]
-  Passed M7-A08: CSV-отчёт с BOM и CRLF [17 ms]
+  Passed M1-C09: битый конфиг даёт понятную ошибку с именем файла [235 ms]
   Passed M1-C06: ширина наружной каймы POC-знаков из borders.json [4 ms]
   Passed M1-C11: схемы валидны как JSON и имеют обязательные поля [< 1 ms]
-  Passed M1-C08: кратность 0,1 считается в decimal, 2,3 кратно 0,1 [3 ms]
-  Passed M1-C01: все конфиги загружаются, 13 файлов, каталог MVP-30 + 11 табличек [3 ms]
-  Passed M1-C02: у каждого конфига есть normRef и verification [10 ms]
-[xUnit.net 00:00:01.00]   Finished:    OddMaster.Core.Tests
+  Passed M1-C08: кратность 0,1 считается в decimal, 2,3 кратно 0,1 [4 ms]
+  Passed M1-C01: все конфиги загружаются, 13 файлов, каталог MVP-30 + 11 табличек [4 ms]
+  Passed M1-C02: у каждого конфига есть normRef и verification [12 ms]
   Passed M1-C07: скорость 45 не по табл. Д.1, 40 — по табл. Д.1 [4 ms]
 
 Test Run Failed.
 Total tests: 131
      Passed: 130
      Failed: 1
- Total time: 1.7361 Seconds
-  Passed SMOKE-03: сборка Render.Svg загружается [4 ms]
-  Passed M16-E06 Библиотека элементов: все ссылки каталога существуют [110 ms]
-  Passed M16-E03 Зеркалится только пиктограмма: у 3.18.1 и 3.18.2 полоса одинаковая [85 ms]
-  Passed M16-E04 Водяной знак целиком внутри поля, а не только внутри bbox [129 ms]
-  Passed M16-E01 У знака без пиктограммы нет пиктограммного слоя [143 ms]
-  Failed M16-E07 Цвета MVP-30: поле и кайма заданы каталогом, не кодом [17 ms]
+ Total time: 1.6321 Seconds
+  Passed SMOKE-03: сборка Render.Svg загружается [3 ms]
+  Passed M16-E06 Библиотека элементов: все ссылки каталога существуют [75 ms]
+  Passed M16-E03 Зеркалится только пиктограмма: у 3.18.1 и 3.18.2 полоса одинаковая [42 ms]
+  Passed M16-E04 Водяной знак целиком внутри поля, а не только внутри bbox [51 ms]
+  Passed M16-E01 У знака без пиктограммы нет пиктограммного слоя [130 ms]
+  Failed M16-E07 Цвета MVP-30: поле и кайма заданы каталогом, не кодом [4 ms]
   Error Message:
    Проверка не прошла: ожидалось «Yellow», получено «White». 
   Stack Trace:
@@ -233,38 +233,38 @@ Total tests: 131
    at OddMaster.Render.Svg.Tests.CompositionTests.E07_ColorsFromCatalog() in /home/runner/work/ODD-MASTER/ODD-MASTER/tests/OddMaster.Render.Svg.Tests/CompositionTests.cs:line 185
    at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
    at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
-  Passed M16-E02 Примитивы состава: 3.1 «кирпич», 3.27 крест, 5.19.1 треугольник [33 ms]
-  Passed M16-E05 8.2.2 и 8.2.3 вертикальные, содержимое по изображению [25 ms]
-  Passed M8-S03: повторный прогон all даёт байт-в-байт те же файлы [322 ms]
+  Passed M16-E02 Примитивы состава: 3.1 «кирпич», 3.27 крест, 5.19.1 треугольник [22 ms]
+  Passed M16-E05 8.2.2 и 8.2.3 вертикальные, содержимое по изображению [14 ms]
+  Passed M8-S03: повторный прогон all даёт байт-в-байт те же файлы [579 ms]
   Passed M8-S01: все ожидаемые артефакты существуют [< 1 ms]
-  Passed M8-S07: config_validation.md находит четыре несостыковки и не содержит ошибок конфигов [3 ms]
-  Passed M8-S09: в артефактах нет дат, GUID и случайных чисел [8 ms]
-  Passed M8-S05: golden scheme.svg, reactor_diff.txt и config_validation.md [4 ms]
+  Passed M8-S07: config_validation.md находит четыре несостыковки и не содержит ошибок конфигов [< 1 ms]
+  Passed M8-S09: в артефактах нет дат, GUID и случайных чисел [3 ms]
+  Passed M8-S05: golden scheme.svg, reactor_diff.txt и config_validation.md [1 ms]
   Passed M8-S02: scheme.svg — корректный XML со слоями и баннером [< 1 ms]
   Passed M8-S06: ведомость и журнал координат — CSV с BOM [< 1 ms]
   Passed M8-S08: отчёты аудитора и актуализатора честно помечены [< 1 ms]
   Passed M8-S04: reactor_diff показывает сдвиг X на +50 без смены пикетов [< 1 ms]
-  Passed M3-S03: metadata содержит номер, типоразмер, профиль и не содержит время/GUID [6 ms]
-  Passed M3-S05: у черновика есть водяной знак, у проверенного — нет [12 ms]
+  Passed M3-S03: metadata содержит номер, типоразмер, профиль и не содержит время/GUID [5 ms]
+  Passed M3-S05: у черновика есть водяной знак, у проверенного — нет [8 ms]
   Passed M3-S09: отсутствующий golden-файл — ошибка, а не тихое создание эталона [1 ms]
-  Passed M3-S01: все SVG галереи разбираются как XML [10 ms]
+  Passed M3-S01: все SVG галереи разбираются как XML [11 ms]
   Passed M3-S08: XML-экранирование и инвариантные числа в пути [< 1 ms]
-  Passed M3-S02: golden-файлы 3.24/II и 2.5/II совпадают [15 ms]
+  Passed M3-S02: golden-файлы 3.24/II и 2.5/II совпадают [13 ms]
   Passed M3-S06: рендер не зависит от текущей культуры (ru-RU / en-US) [5 ms]
-  Passed M3-S04: два прогона дают одинаковые байты [4 ms]
+  Passed M3-S04: два прогона дают одинаковые байты [7 ms]
   Passed M3-S07: слои оформлены как <g id>, цвета — из палитры [4 ms]
-  Passed M9-V05: STOP вписан в восьмиугольник 2.5 [6 ms]
-[xUnit.net 00:00:01.35]   Finished:    OddMaster.Render.Svg.Tests
-  Passed M9-V07: одинаковый вход даёт побайтно одинаковый SVG [40 ms]
-  Passed M9-V03: нет нулевых сегментов и повторённых вершин [18 ms]
+  Passed M9-V05: STOP вписан в восьмиугольник 2.5 [4 ms]
+[xUnit.net 00:00:01.34]   Finished:    OddMaster.Render.Svg.Tests
+  Passed M9-V07: одинаковый вход даёт побайтно одинаковый SVG [50 ms]
+  Passed M9-V03: нет нулевых сегментов и повторённых вершин [14 ms]
   Passed M9-V04: в Generation/* нет цветовых литералов; цвета слоев из палитры [9 ms]
-  Passed M9-V02: габарит текста по метрикам внутри поля с отступом [11 ms]
-  Passed M9-V06: водяной знак внутри габарита знака [18 ms]
-  Passed M9-V08: 2.4 без пиктограммы, 3.25 — пучок полос вместо пиктограммы [4 ms]
+  Passed M9-V02: габарит текста по метрикам внутри поля с отступом [10 ms]
+  Passed M9-V06: водяной знак внутри габарита знака [21 ms]
+  Passed M9-V08: 2.4 без пиктограммы, 3.25 — пучок полос вместо пиктограммы [3 ms]
   Passed M9-V01: вся геометрия внутри габарита носителя [14 ms]
 
 Test Run Failed.
 Total tests: 34
      Passed: 33
      Failed: 1
- Total time: 1.9703 Seconds
+ Total time: 1.8783 Seconds
