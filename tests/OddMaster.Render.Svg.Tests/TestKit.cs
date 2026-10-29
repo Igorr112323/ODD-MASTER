@@ -61,6 +61,14 @@ namespace OddMaster.TestKit
             var expected = Normalize(new UTF8Encoding(false).GetString(File.ReadAllBytes(full)));
             if (!string.Equals(expected, normalized, StringComparison.Ordinal))
             {
+                // Осознанное обновление эталона: ODD_UPDATE_GOLDEN=1 переписывает файл.
+                // Без флага расхождение — всегда ошибка (CR-10), поэтому правка эталона
+                // видна в диффе и требует docs/visual/REVIEW-NN.md.
+                if (Environment.GetEnvironmentVariable("ODD_UPDATE_GOLDEN") == "1")
+                {
+                    File.WriteAllBytes(full, new UTF8Encoding(false).GetBytes(normalized));
+                    return;
+                }
                 var lineExpected = expected.Split('\n');
                 var lineActual = normalized.Split('\n');
                 var first = Enumerable.Range(0, Math.Min(lineExpected.Length, lineActual.Length))
