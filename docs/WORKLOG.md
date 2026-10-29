@@ -184,4 +184,12 @@
   правки `ci.yml` и `regenerate.yml`, `test.log` удалён из репозитория.
 - CI: PR-run `40841097675` (коммит `6f896e9`) — все 5 job'ов зелёные, шаг «Страж „эталон — закон“ (F0)» выполнен.
 - Отчёт: `docs/reports/SESSION-03.md`.
+- F1: порты `Core/Ports` (`ICadDocument`/`ICadTransaction`/`ICadEvents`/`ICadPersistence`/`ICadInteraction`,
+  агрегат `ICadHost`) — изменение документа возможно только транзакцией.
+- F1: `OddMaster.Host.Emulator` — снимок на транзакцию (Abort восстанавливает побайтно), группы отмены,
+  слияние событий, запрет повторного входа, отложенная очередь пересчёта, JSON-хранилище v2 с миграцией
+  v1→v2 и кэшем графики, сценарный ввод, инженерные пороги в `config/host/emulator.json`.
+- F1: `OddMaster.Contracts` — 12 кейсов C-DOC/C-TRX/C-UND/C-EVT/C-PER без xUnit; `OddMaster.Contracts.Tests`
+  гоняет их на эмуляторе (25 тестов: 12 кейсов + каталог + 11 правил + архитектурный).
+- CI: PR-run `40843716502` (коммит `20d5062`) — все 5 job'ов зелёные; впервые выполняются 4 тестовых проекта.
 

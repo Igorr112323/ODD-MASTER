@@ -70,4 +70,7 @@
 | E-082 | `Flatten` (разбиение контура) ошибался на дугах 90° и 180° | Центр дуги восстанавливался по хорде, знак выбирался эвристикой | Берём `Center`/`StartAngleDeg`/`SweepDeg` у самого `ArcSegment` | Тест M17-C03 на круге |
 | E-083 | У обрезанной полосы появился нулевой сегмент | Сазерленд—Ходжмен возвращает первую вершину ещё раз в конце, а `Path.Close()` замыкает сам | Дубль удаляется с допуском 1e-9 | Проверка в M17-C01 |
 | E-084 | После пересоздания среды локальная ветка оказалась на `Initial commit` | Песочница переклонировала репозиторий, файлы дерева сохранились как неотслеживаемые | Бэкап дерева в `/tmp`, затем `git reset --hard origin/arena/649405ec-odd-master` | Первым делом сверять `git log --oneline -1` и `git status -sb` |
+| E-085 | CI: «Inconsistent accessibility: parameter type ... is less accessible than method» | `internal`-метод принимал приватный вложенный тип | Вложенный класс объекта эмулятора стал `internal` | Собирать `-warnaserror` в CI, а не только локально |
+| E-086 | CI: xUnit2013 «Do not use Assert.Equal() to check for collection size» | Проверка `Assert.Equal(1, list.Count)` вместо `Assert.Single` | `Assert.Single`/`Assert.Empty` | Анализаторы xUnit включены в сборку тестов |
+| E-087 | M18-R04 и C-EVT-002 падали: исключение вместо проверки | Сценарий ждал `CadMutationRejectedException` от `Create`, а запрет срабатывает раньше — на `BeginTransaction` | `try` охватывает открытие транзакции целиком | Правило «повторный вход» проверяется с первой операции |
 
